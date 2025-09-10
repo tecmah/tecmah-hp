@@ -1,0 +1,107 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Site settings for TECMAH株式会社
+title: TECMAH株式会社
+email: contact@tecmah.co.jp
+description: >- # this means to ignore newlines until "baseurl:"
+  TECMAH株式会社は、AI・データ活用・PdM/PM支援を行うスタートアップです。
+  データドリブンな意思決定と効果的なプロダクトマネジメントで、
+  企業のデジタル変革を支援しています。
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://tecmah.github.io/tecmah-hp" # the base hostname & protocol for your site
+twitter_username: 
+github_username:  tecmah
+
+# Company information
+company:
+  name: TECMAH株式会社
+  name_en: TECMAH Inc.
+  tagline: AI・データ活用・PdM/PM支援
+  tagline_en: AI, Data Analytics & Product Management Support
+
+# Build settings
+remote_theme: andrewbanchich/forty-jekyll-theme
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Language settings for bilingual support
+languages: ["ja", "en"]
+default_lang: "ja"
+exclude_from_localizations: ["javascript", "images", "css", "public"]
+
+# Navigation menu
+navigation:
+  - title: ホーム
+    title_en: Home
+    url: /
+    url_en: /en/
+  - title: サービス
+    title_en: Services  
+    url: /services/
+    url_en: /en/services/
+  - title: 実績
+    title_en: Work
+    url: /work/
+    url_en: /en/work/
+  - title: 会社概要
+    title_en: About
+    url: /about/
+    url_en: /en/about/
+  - title: ポリシー
+    title_en: Policy
+    url: /policy/
+    url_en: /en/policy/
+  - title: お問い合わせ
+    title_en: Contact
+    url: /contact/
+    url_en: /en/contact/
+
+# Forty theme specific settings
+subtitle: AI・データ活用・PdM/PM支援を行うスタートアップ
+image: assets/images/banner.jpg
+name: TECMAH株式会社
+copyright: TECMAH株式会社
+
+# Social media and contact
+social:
+  email: contact@tecmah.co.jp
+  phone: 
+  address: 東京都
+
+# Tiles for the landing page
+tiles-source: pages
+tiles-count: 6
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
