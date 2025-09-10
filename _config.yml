@@ -76,6 +76,22 @@ image: assets/images/banner.jpg
 name: TECMAH株式会社
 copyright: TECMAH株式会社
 
+# Custom head additions for Japanese font support
+head_custom: |
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/tecmah-hp/assets/css/japanese-fonts.css" />
+  <style>
+  /* Critical inline CSS for immediate Japanese font rendering */
+  * {
+    font-family: 'Noto Sans JP', 'Yu Gothic UI', 'Hiragino Kaku Gothic Pro', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+  }
+  </style>
+
+# Custom assets
+custom_css: assets/css/main.css
+
 # Social media and contact
 social:
   email: contact@tecmah.co.jp

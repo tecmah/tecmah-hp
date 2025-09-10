@@ -1,0 +1,70 @@
+/* Critical Japanese font override CSS - loaded after theme CSS */
+
+/* Import Google Fonts for Japanese support with priority */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;700&display=swap');
+
+/* Force override all font families to support Japanese */
+* {
+  font-family: 'Noto Sans JP', 'Yu Gothic UI', 'Hiragino Kaku Gothic Pro', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+}
+
+/* Additional fallback for system fonts when web fonts fail to load */
+@font-face {
+  font-family: 'Japanese-Fallback';
+  src: local('Yu Gothic UI'), local('Hiragino Kaku Gothic Pro'), local('Meiryo UI'), local('Takao Gothic'), local('MS UI Gothic');
+  font-display: swap;
+  unicode-range: U+3040-309F, U+30A0-30FF, U+4E00-9FAF, U+FF66-FF9F;
+}
+
+/* Force Japanese font support on all elements */
+body, html,
+h1, h2, h3, h4, h5, h6,
+p, span, div, a, li, ul, ol, td, th, table,
+button, input, select, textarea, label,
+nav, header, footer, main, section, article, aside,
+.logo, .logo *,
+#header, #header *,
+#menu, #menu *,
+#banner, #banner *,
+.tiles, .tiles *,
+.spotlights, .spotlights *,
+.content, .content *,
+.inner, .inner *,
+.major, .major *,
+.box, .box *,
+#footer, #footer *,
+.button, .button * {
+  font-family: 'Noto Sans JP', 'Japanese-Fallback', 'Yu Gothic UI', 'Hiragino Kaku Gothic Pro', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+}
+
+/* Enhanced rendering settings for Japanese text */
+* {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-feature-settings: "palt" !important;
+  font-feature-settings: "palt" !important;
+}
+
+/* Improved line height for Japanese text readability */
+p, li, td, th, .content, .inner {
+  line-height: 1.8 !important;
+}
+
+/* Ensure proper character spacing for Japanese text */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em !important;
+  font-weight: 500 !important;
+}
+
+/* Typography improvements for hero section */
+#hero h1, #banner h1 {
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+#hero .lead, #banner .lead {
+  font-weight: 400 !important;
+  font-size: 1.2em !important;
+  line-height: 1.8 !important;
+}

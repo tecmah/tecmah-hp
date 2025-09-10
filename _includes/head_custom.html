@@ -1,0 +1,14 @@
+<!-- Custom CSS for Japanese font support - must load after theme CSS -->
+<link rel="stylesheet" href="{{ 'assets/css/japanese-fonts.css' | relative_url }}" />
+
+<!-- Preload Google Fonts for better performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Inline critical CSS for immediate Japanese font support -->
+<style>
+/* Critical inline CSS for immediate Japanese font rendering */
+* {
+  font-family: 'Noto Sans JP', 'Yu Gothic UI', 'Hiragino Kaku Gothic Pro', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+}
+</style>
