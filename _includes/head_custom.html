@@ -1,14 +1,47 @@
-<!-- Custom CSS for Japanese font support - must load after theme CSS -->
-<link rel="stylesheet" href="{{ 'assets/css/japanese-fonts.css' | relative_url }}" />
+<!-- Charset declaration for proper Japanese character encoding -->
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- Preload Google Fonts for better performance -->
+<!-- DNS Prefetch and Preconnect for Google Fonts -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<!-- Inline critical CSS for immediate Japanese font support -->
+<!-- Load Google Fonts with high priority -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<!-- Critical inline CSS for immediate Japanese font rendering -->
 <style>
-/* Critical inline CSS for immediate Japanese font rendering */
-* {
-  font-family: 'Noto Sans JP', 'Yu Gothic UI', 'Hiragino Kaku Gothic Pro', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+/* Critical CSS - Force Japanese fonts immediately with highest specificity */
+html, body, * {
+  font-family: 'Noto Sans JP', 'Yu Gothic UI', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'MS ゴシック', 'MS Gothic', sans-serif !important;
+}
+
+/* Ensure proper text rendering for Japanese characters */
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "palt";
+  -webkit-font-feature-settings: "palt";
+}
+
+/* Specific overrides for common theme elements */
+h1, h2, h3, h4, h5, h6,
+.header, .navigation, .nav, .menu,
+.title, .subtitle, .lead,
+.content, .text, .description,
+a, p, span, div, li, td, th {
+  font-family: 'Noto Sans JP', 'Yu Gothic UI', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'MS ゴシック', 'MS Gothic', sans-serif !important;
 }
 </style>
+
+<!-- Custom CSS for Japanese font support - loaded after critical CSS -->
+<link rel="stylesheet" href="{{ 'assets/css/japanese-fonts.css' | relative_url }}" />
