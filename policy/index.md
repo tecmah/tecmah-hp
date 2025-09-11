@@ -15,12 +15,27 @@ nav-menu: true
       
       <div class="box" style="background: #f8f9fa; padding: 2rem; border-radius: 8px; margin: 2rem 0;">
         <h3>📋 詳細なポリシー文書</h3>
-        <p>以下のリンクから、最新の詳細なポリシー文書をご確認いただけます：</p>
-        <ul class="actions">
-          <li><a href="https://tecmah.notion.site/Privacy-Policy-1234567890abcdef" class="button primary" target="_blank">プライバシーポリシー詳細版</a></li>
-          <li><a href="https://tecmah.notion.site/Terms-of-Service-1234567890abcdef" class="button" target="_blank">利用規約詳細版</a></li>
-          <li><a href="https://tecmah.notion.site/Security-Policy-1234567890abcdef" class="button" target="_blank">セキュリティポリシー詳細版</a></li>
-        </ul>
+        <p>詳細なポリシー文書は現在準備中です。以下の概要をご確認いただき、ご質問がございましたらお気軽にお問い合わせください。</p>
+        <div class="row">
+          <div class="4u 12u$(small)">
+            <div class="policy-status">
+              <h4>プライバシーポリシー</h4>
+              <p><span class="status-badge">準備中</span></p>
+            </div>
+          </div>
+          <div class="4u 12u$(small)">
+            <div class="policy-status">
+              <h4>利用規約</h4>
+              <p><span class="status-badge">準備中</span></p>
+            </div>
+          </div>
+          <div class="4u$ 12u$(small)">
+            <div class="policy-status">
+              <h4>セキュリティポリシー</h4>
+              <p><span class="status-badge">準備中</span></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -57,7 +72,7 @@ nav-menu: true
       </div>
 
       <div class="box">
-        <p><strong>📄 詳細なプライバシーポリシーは上記のNotionリンクからご確認ください。</strong></p>
+        <p><strong>📄 詳細なプライバシーポリシーは現在準備中です。ご質問がございましたらお問い合わせください。</strong></p>
       </div>
     </div>
   </section>
@@ -95,7 +110,7 @@ nav-menu: true
       </div>
 
       <div class="box">
-        <p><strong>📄 詳細な利用規約は上記のNotionリンクからご確認ください。</strong></p>
+        <p><strong>📄 詳細な利用規約は現在準備中です。ご質問がございましたらお問い合わせください。</strong></p>
       </div>
     </div>
   </section>
@@ -134,7 +149,7 @@ nav-menu: true
       </div>
 
       <div class="box">
-        <p><strong>📄 詳細なセキュリティポリシーは上記のNotionリンクからご確認ください。</strong></p>
+        <p><strong>📄 詳細なセキュリティポリシーは現在準備中です。ご質問がございましたらお問い合わせください。</strong></p>
       </div>
     </div>
   </section>
@@ -153,7 +168,7 @@ nav-menu: true
       <div class="box">
         <p><strong>最終更新日:</strong> 2024年12月10日</p>
         <p><strong>版:</strong> 1.0</p>
-        <p><strong>注意:</strong> 詳細なポリシー文書はNotionで管理されており、随時更新される可能性があります。</p>
+        <p><strong>注意:</strong> 詳細なポリシー文書は現在準備中です。公開次第、このページでお知らせいたします。</p>
       </div>
     </div>
   </section>

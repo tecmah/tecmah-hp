@@ -255,6 +255,25 @@ html[lang="ja"], body[lang="ja"] {
   margin-bottom: 1.5em;
 }
 
+/* Policy Status */
+.policy-status {
+  text-align: center;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-badge {
+  display: inline-block;
+  background: #ffc107;
+  color: #856404;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
 /* Footer CTA */
 .footer-cta {
   text-align: center;
