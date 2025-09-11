@@ -14,15 +14,15 @@
 #
 # Site settings for TECMAH株式会社
 title: TECMAH株式会社
-email: contact@tecmah.co.jp
+email: info@tecmah.com
 description: >- # this means to ignore newlines until "baseurl:"
   TECMAH株式会社は、AI・データ活用・PdM/PM支援を行うスタートアップです。
   データドリブンな意思決定と効果的なプロダクトマネジメントで、
   企業のデジタル変革を支援しています。
 baseurl: "/tecmah-hp" # the subpath of your site, e.g. /blog
-url: "https://tecmah.github.io" # the base hostname & protocol for your site
-twitter_username: ""
-github_username: tecmah
+url: "https://www.tecmah.com" # the base hostname & protocol for your site
+twitter_username: "infotecmah"
+github_username: maurayonori
 
 # Encoding for proper Japanese character support
 encoding: utf-8
@@ -37,6 +37,8 @@ company:
 
 # Build settings
 remote_theme: andrewbanchich/forty-jekyll-theme
+# remote_theme: zerostaticthemes/jekyll-serif-theme
+# Custom theme modifications for Serif style with Forty hero elements
 plugins:
   - jekyll-feed
   - jekyll-sitemap
@@ -83,9 +85,18 @@ copyright: TECMAH株式会社
 # Custom assets
 custom_css: assets/css/main.css
 
+# CTA Configuration
+cta:
+  free_consultation:
+    text: "無料相談"
+    text_en: "Free Consultation"
+    url: "/contact/"
+    url_en: "/en/contact/"
+    fixed_position: true
+
 # Social media and contact
 social:
-  email: contact@tecmah.co.jp
+  email: info@tecmah.com
   phone: ""
   address: 東京都
 
@@ -93,6 +104,35 @@ social:
 tiles-source: pages
 tiles-count: 6
 
+# Case Studies (Anonymous examples) - Multilingual support
+case_studies:
+  - title:
+      ja: "製造業A社様"
+      en: "Manufacturing Company A"
+    description:
+      ja: "AI予測メンテナンスシステム導入により、設備稼働率を15%向上"
+      en: "AI predictive maintenance system implementation increased equipment utilization by 15%"
+    result:
+      ja: "年間コスト削減効果: 2,000万円"
+      en: "Annual cost reduction effect: $200,000"
+  - title:
+      ja: "EC事業B社様"
+      en: "E-commerce Company B"
+    description:
+      ja: "データドリブンな商品開発プロセス構築で、新商品の成功率を3倍に"
+      en: "Data-driven product development process increased new product success rate by 3x"
+    result:
+      ja: "売上向上効果: 前年比150%"
+      en: "Sales improvement: 150% YoY"
+  - title:
+      ja: "SaaS事業C社様"
+      en: "SaaS Company C"
+    description:
+      ja: "プロダクトマネジメント体制整備により、開発効率を40%改善"
+      en: "Product management system establishment improved development efficiency by 40%"
+    result:
+      ja: "リリース頻度向上: 月2回→週1回"
+      en: "Release frequency: Monthly → Weekly"
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

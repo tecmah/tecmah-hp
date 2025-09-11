@@ -10,179 +10,211 @@
 	<!-- UTF-8 character encoding declaration for Japanese support -->
 	<meta charset="UTF-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
+
 	<title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	
+
 	<!-- Preload Google Fonts for optimal Japanese font performance -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	
+
 	<!--[if lte IE 8]><script src="{{ '/assets/js/ie/html5shiv.js' | relative_url }}"></script><![endif]-->
 	<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
 	<!--[if lte IE 9]><link rel="stylesheet" href="{{ '/assets/css/ie9.css' | relative_url }}" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="{{ '/assets/css/ie8.css' | relative_url }}" /><![endif]-->
-	
+
 	<!-- Jekyll SEO tag -->
 	{% seo %}
 </head>
 
 <body>
-    <script type="text/javascript">document.body.classList.add("is-loading");</script>
+	<script type="text/javascript">document.body.classList.add("is-loading");</script>
 
-    <!-- Wrapper -->
-<div id="wrapper">
+	<!-- Wrapper -->
+	<div id="wrapper">
 
-<!-- Header -->
-<header id="header"{% if page.layout == "landing" %} class="alt style2"{% endif %}{% if page.layout == "home" %} class="alt"{% endif %}>
-	<a href="{{ '' | absolute_url }}/" class="logo"><strong>{{ site.title }}</strong> <span>{{ site.subtitle }}</span></a>
-	<nav>
-		<a href="#menu">Menu</a>
-	</nav>
-</header>
+		<!-- Fixed CTA Button -->
+		{% if site.cta.free_consultation.fixed_position %}
+		<a href="{{ site.cta.free_consultation.url | relative_url }}" class="cta-fixed">{{
+			site.cta.free_consultation.text }}</a>
+		{% endif %}
 
-<!-- Menu -->
-<nav id="menu">
-	<ul class="links">
-        {% for page in site.pages %}
-		    {% if page.layout == "home" %}
-		        <li><a href="{{ "" | absolute_url }}/">{{ page.title }}</a></li>
-	    	{% endif %}
-		{% endfor %}
-		{% for page in site.pages %}
-		    {% if page.layout != "home" and page.nav-menu == true %}
-		        <li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
-		    {% endif %}
-		{% endfor %}
-	</ul>
-	<ul class="actions vertical">
-		<li><a href="#" class="button special fit">Get Started</a></li>
-		<li><a href="#" class="button fit">Log In</a></li>
-	</ul>
-</nav>
+		<!-- Header -->
+		<header id="header" {% if page.layout=="landing" %} class="alt style2" {% endif %}{% if page.layout=="home" %}
+			class="alt" {% endif %}>
+			<a href="{{ '/' | absolute_url }}" class="logo"><strong>{{ site.title }}</strong> <span>{{ site.subtitle
+					}}</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
 
-{{ content }}
+		<!-- Menu -->
+		<nav id="menu">
+			<ul class="links">
+				{% for p in site.pages %}
+				{% if p.layout == "home" %}
+				<li><a href="{{ p.url | absolute_url }}">{{ p.title }}</a></li>
+				{% endif %}
+				{% endfor %}
+				{% for p in site.pages %}
+				{% if p.layout != "home" and p.nav-menu == true %}
+				<li><a href="{{ p.url | absolute_url }}">{{ p.title }}</a></li>
+				{% endif %}
+				{% endfor %}
+			</ul>
+			<ul class="actions vertical">
+				<li><a href="{{ site.cta.free_consultation.url | relative_url }}" class="button special fit">{{
+						site.cta.free_consultation.text }}</a></li>
+				<li><a href="{{ '/about/' | relative_url }}" class="button fit">会社概要</a></li>
+			</ul>
+		</nav>
 
-<!-- Contact -->
-<section id="contact">
-	<div class="inner">
-		<section>
-			<form action="https://formspree.io/{{ site.email }}" method="POST">
-				<div class="field half first">
-					<label for="name">Name</label>
-					<input type="text" name="name" id="name" />
-				</div>
-				<div class="field half">
-					<label for="email">Email</label>
-					<input type="text" name="_replyto" id="email" />
-				</div>
-				<div class="field">
-					<label for="message">Message</label>
-					<textarea name="message" id="message" rows="6"></textarea>
-				</div>
-				<ul class="actions">
-					<li><input type="submit" value="Send Message" class="special" /></li>
-					<li><input type="reset" value="Clear" /></li>
+		{{ content }}
+
+		<!-- Contact -->
+		<section id="contact">
+			<div class="inner">
+				<section>
+					<form action="https://formspree.io/{{ site.email }}" method="POST">
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" />
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input type="text" name="_replyto" id="email" />
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="6"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="Send Message" class="special" /></li>
+							<li><input type="reset" value="Clear" /></li>
+						</ul>
+					</form>
+				</section>
+				<section class="split">
+					<section>
+						<div class="contact-method">
+							<span class="icon alt fa-envelope"></span>
+							<h3>Email</h3>
+							<a href="mailto:{{ site.email }}">{{ site.email }}</a>
+						</div>
+					</section>
+					<section>
+						<div class="contact-method">
+							<span class="icon alt fa-phone"></span>
+							<h3>Phone</h3>
+							<span>{{ site.phone }}</span>
+						</div>
+					</section>
+					<section>
+						<div class="contact-method">
+							<span class="icon alt fa-home"></span>
+							<h3>Address</h3>
+							<span>
+								{% if site.street_address %}
+								{{ site.street_address }}<br />
+								{% endif %}
+								{% if site.city %}
+								{{ site.city }},
+								{% endif %}
+								{% if site.state %}
+								{{ site.state }}
+								{% endif %}
+								{% if site.zip_code %}
+								{{ site.zip_code }}<br />
+								{% endif %}
+								{% if site.country %}
+								{{ site.country }}
+								{% endif %}
+							</span>
+						</div>
+					</section>
+				</section>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<!-- Footer CTA -->
+				<section class="footer-cta">
+					<header>
+						<h3>Ready to Transform Your Business?</h3>
+					</header>
+					<p>Let's discuss how we can help you leverage AI, data, and product management for growth.</p>
+					<ul class="actions">
+						<li><a href="{{ site.cta.free_consultation.url | relative_url }}" class="button primary">{{
+								site.cta.free_consultation.text }}</a></li>
+					</ul>
+				</section>
+
+				<ul class="icons">
+					{% if site.twitter_username %}
+					<li><a href="https://twitter.com/{{ site.twitter_username }}" class="icon alt fa-twitter"
+							target="_blank"><span class="label">Twitter</span></a></li>
+					{% endif %}
+					{% if site.googleplus_username %}
+					<li><a href="https://plus.google.com/u/0/+{{ site.googleplus_username }}"
+							class="icon alt fa-google-plus" target="_blank"><span class="label">Google+</span></a></li>
+					{% endif %}
+					{% if site.facebook_username %}
+					<li><a href="https://www.facebook.com/{{ site.facebook_username }}" class="icon alt fa-facebook"
+							target="_blank"><span class="label">Facebook</span></a></li>
+					{% endif %}
+					{% if site.instagram_username %}
+					<li><a href="https://www.instagram.com/{{ site.instagram_username }}" class="icon alt fa-instagram"
+							target="_blank"><span class="label">Instagram</span></a></li>
+					{% endif %}
+					{% if site.pinterest_username %}
+					<li><a href="https://www.pinterest.com/{{ site.pinterest_username }}" class="icon alt fa-pinterest"
+							target="_blank"><span class="label">Pinterest</span></a></li>
+					{% endif %}
+					{% assign fivehundredpx_username = site.500px_username %}
+					{% if fivehundredpx_username %}
+					<li><a href="https://500px.com/{{ fivehundredpx_username }}" class="icon alt fa-500px"
+							target="_blank"><span class="label">500px</span></a></li>
+					{% endif %}
+					{% if site.gitlab_username %}
+					<li><a href="https://gitlab.com/{{ site.gitlab_username }}" class="icon alt fa-gitlab"
+							target="_blank"><span class="label">GitLab</span></a></li>
+					{% endif %}
+					{% if site.github_username %}
+					<li><a href="https://github.com/{{ site.github_username }}" class="icon alt fa-github"
+							target="_blank"><span class="label">GitHub</span></a></li>
+					{% endif %}
+					{% if site.slack_username %}
+					<li><a href="https://{{ site.slack_username }}.slack.com" class="icon alt fa-slack"
+							target="_blank"><span class="label">Slack</span></a></li>
+					{% endif %}
+					{% if site.linkedin_username %}
+					<li><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" class="icon alt fa-linkedin"
+							target="_blank"><span class="label">LinkedIn</span></a></li>
+					{% endif %}
 				</ul>
-			</form>
-		</section>
-		<section class="split">
-			<section>
-				<div class="contact-method">
-					<span class="icon alt fa-envelope"></span>
-					<h3>Email</h3>
-					<a href="mailto:{{ site.email }}">{{ site.email }}</a>
-				</div>
-			</section>
-			<section>
-				<div class="contact-method">
-					<span class="icon alt fa-phone"></span>
-					<h3>Phone</h3>
-					<span>{{ site.phone }}</span>
-				</div>
-			</section>
-			<section>
-				<div class="contact-method">
-					<span class="icon alt fa-home"></span>
-					<h3>Address</h3>
-					<span>
-					{% if site.street_address %}
-					    {{ site.street_address }}<br />
-					{% endif %}
-					{% if site.city %}
-					    {{ site.city }},
-					{% endif %}
-					{% if site.state %}
-					    {{ site.state }} 
-					{% endif %}
-					{% if site.zip_code %}
-					    {{ site.zip_code }}<br />
-					{% endif %}
-					{% if site.country %}
-					    {{ site.country }}
-					{% endif %}
-					</span>
-				</div>
-			</section>
-		</section>
+				<ul class="copyright">
+					<li>&copy; {{ site.copyright }}</li>
+					<li>Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a></li>
+					<li>Jekyll integration: <a href="https://andrewbanchi.ch" target="_blank"
+							rel="noopener noreferrer">Andrew Banchich</a></li>
+
+				</ul>
+			</div>
+		</footer>
+
 	</div>
-</section>
 
-<!-- Footer -->
-<footer id="footer">
-	<div class="inner">
-		<ul class="icons">
-			{% if site.twitter_username %}
-			<li><a href="https://twitter.com/{{ site.twitter_username }}" class="icon alt fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
-			{% endif %}
-			{% if site.googleplus_username %}
-			<li><a href="https://plus.google.com/u/0/+{{ site.googleplus_username }}" class="icon alt fa-google-plus" target="_blank"><span class="label">Google+</span></a></li>
-			{% endif %}
-			{% if site.facebook_username %}
-			<li><a href="https://www.facebook.com/{{ site.facebook_username }}" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
-			{% endif %}
-			{% if site.instagram_username %}
-			<li><a href="https://www.instagram.com/{{ site.instagram_username }}" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
-			{% endif %}
-			{% if site.pinterest_username %}
-			<li><a href="https://www.pinterest.com/{{ site.pinterest_username }}" class="icon alt fa-pinterest" target="_blank"><span class="label">Pinterest</span></a></li>
-			{% endif %}
-			{% assign fivehundredpx_username = site.500px_username %}
-			{% if fivehundredpx_username %}
-			<li><a href="https://500px.com/{{ fivehundredpx_username }}" class="icon alt fa-500px" target="_blank"><span class="label">500px</span></a></li>
-			{% endif %}
-			{% if site.gitlab_username %}
-			<li><a href="https://gitlab.com/{{ site.gitlab_username }}" class="icon alt fa-gitlab" target="_blank"><span class="label">GitLab</span></a></li>
-			{% endif %}
-			{% if site.github_username %}
-			<li><a href="https://github.com/{{ site.github_username }}" class="icon alt fa-github" target="_blank"><span class="label">GitHub</span></a></li>
-			{% endif %}
-			{% if site.slack_username %}
-			<li><a href="https://{{ site.slack_username }}.slack.com" class="icon alt fa-slack" target="_blank"><span class="label">Slack</span></a></li>
-			{% endif %}
-			{% if site.linkedin_username %}
-			<li><a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
-			{% endif %}
-		</ul>
-		<ul class="copyright">
-			<li>&copy; {{ site.copyright }}</li>
-			<li>Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a></li>
-			<li>Jekyll integration: <a href="http://andrewbanchi.ch" target="_blank">Andrew Banchich</a></li>
-
-		</ul>
-	</div>
-</footer>
-
-</div>
-
-<!-- Scripts -->
-	<script src="{{ 'assets/js/jquery.min.js' | absolute_url }}"></script>
-	<script src="{{ 'assets/js/jquery.scrolly.min.js' | absolute_url }}"></script>
-	<script src="{{ 'assets/js/jquery.scrollex.min.js' | absolute_url }}"></script>
-	<script src="{{ 'assets/js/skel.min.js' | absolute_url }}"></script>
-	<script src="{{ 'assets/js/util.js' | absolute_url }}"></script>
-	<!--[if lte IE 8]><script src="{{ 'assets/js/ie/respond.min.js' | absolute_url }}"></script><![endif]-->
-	<script src="{{ 'assets/js/main.js' | absolute_url }}"></script>
+	<!-- Scripts -->
+	<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/js/jquery.scrolly.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/js/jquery.scrollex.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/js/skel.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+	<!--[if lte IE 8]><script src="{{ '/assets/js/ie/respond.min.js' | relative_url }}"></script><![endif]-->
+	<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 
 </html>
