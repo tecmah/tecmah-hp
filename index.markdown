@@ -4,6 +4,7 @@ title: TECMAH株式会社
 description: AI・データ活用・PdM/PM支援を行うスタートアップ
 image: assets/images/hero-bg.jpg
 nav-menu: true
+lang: ja
 ---
 
 <div id="main">

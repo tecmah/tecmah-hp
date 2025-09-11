@@ -26,6 +26,7 @@ github_username:  tecmah
 
 # Encoding for proper Japanese character support
 encoding: utf-8
+lang: ja
 
 # Company information
 company:

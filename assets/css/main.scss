@@ -1,120 +1,134 @@
 ---
-# Main CSS file to add Japanese font support to the Forty theme
+# Main CSS file with comprehensive Japanese font support for TECMAH website
 ---
 
-/* Import Google Fonts for Japanese support */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;700&display=swap');
+/* Critical CSS - Load and apply Japanese fonts immediately */
 
-/* Import system Japanese fonts as fallback */
-@font-face {
-  font-family: 'Japanese-Fallback';
-  src: local('Yu Gothic UI'), local('Hiragino Kaku Gothic Pro'), local('Meiryo UI'), local('Takao Gothic'), local('MS UI Gothic'), local('sans-serif');
-  font-display: swap;
+/* Import Google Fonts with high priority */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+/* Define comprehensive Japanese font stack */
+:root {
+  --tecmah-font: 'Noto Sans JP', 
+                 'Yu Gothic UI', 
+                 'Yu Gothic', 
+                 'Hiragino Kaku Gothic ProN', 
+                 'Hiragino Kaku Gothic Pro', 
+                 'ヒラギノ角ゴ ProN', 
+                 'メイリオ', 
+                 'Meiryo', 
+                 'MS PGothic', 
+                 'MS Gothic', 
+                 'ＭＳ ゴシック', 
+                 sans-serif;
 }
 
-/* Enhanced Japanese font support for all text elements */
-body, html, * {
-  font-family: 'Noto Sans JP', 'Japanese-Fallback', 'Yu Gothic UI', 'Hiragino Kaku Gothic Pro', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
-  -webkit-font-feature-settings: "palt";
-  font-feature-settings: "palt";
+/* Universal font application - highest specificity */
+html, body, *, *::before, *::after {
+  font-family: var(--tecmah-font) !important;
 }
 
-/* Stronger font family overrides for all text elements */
-body *, html *, 
-h1, h2, h3, h4, h5, h6, 
-p, span, div, a, li, td, th, 
-button, input, select, textarea,
-.logo, .logo *, 
-nav, nav *, 
-#header, #header *,
-#menu, #menu *,
-.tiles, .tiles *,
-.content, .content *,
-.inner, .inner *,
-.major, .major *,
-#footer, #footer * {
-  font-family: 'Noto Sans JP', 'Japanese-Fallback', 'Yu Gothic UI', 'Hiragino Kaku Gothic Pro', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+/* Comprehensive element targeting to override theme defaults */
+h1, h2, h3, h4, h5, h6,
+p, span, div, a, li, ul, ol, dl, dt, dd,
+table, th, td, thead, tbody, tfoot,
+button, input, select, textarea, label,
+nav, header, footer, main, section, article, aside,
+blockquote, cite, small, strong, em, i, b,
+#header, #header *, .logo, .logo *,
+#menu, #menu *, .navigation, .navigation *,
+#banner, #banner *, .hero, .hero *,
+#main, #main *, .main, .main *,
+.tiles, .tiles *, .tile, .tile *,
+.spotlights, .spotlights *, .spotlight, .spotlight *,
+.content, .content *, .inner, .inner *,
+.major, .major *, .minor, .minor *,
+.box, .box *, .card, .card *,
+#footer, #footer *, .footer, .footer *,
+.button, .button *, .btn, .btn *,
+.title, .title *, .subtitle, .subtitle *, .lead, .lead * {
+  font-family: var(--tecmah-font) !important;
 }
 
-/* Ensure proper line height for Japanese text */
-p, li, td, th {
-  line-height: 1.8;
+/* Enhanced text rendering for Japanese characters */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-/* Fix font rendering for Japanese characters */
-* {
+body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "palt" 1;
+  -webkit-font-feature-settings: "palt" 1;
 }
 
-/* Improve readability for Japanese text */
-.lead {
-  font-size: 1.1em;
-  line-height: 1.8;
+/* Japanese typography optimization */
+p, li, td, th, .content, .inner, .description {
+  line-height: 1.8 !important;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-/* Ensure buttons and form elements use Japanese fonts */
-button, input, select, textarea {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Yu Gothic UI', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.4 !important;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
-/* Navigation menu font improvements */
-nav ul li a {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Yu Gothic UI', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
-  font-weight: 400;
+/* Hero section enhancements */
+#hero h1, #banner h1 {
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.2 !important;
 }
 
-/* Hero section typography improvements */
-#hero h1 {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+#hero .lead, #banner .lead {
+  font-weight: 400 !important;
+  font-size: 1.2em !important;
+  line-height: 1.8 !important;
 }
 
-#hero .lead {
-  font-weight: 400;
-  font-size: 1.2em;
+/* Button and interactive elements */
+button, .button, .btn, input[type="submit"], input[type="button"] {
+  font-family: var(--tecmah-font) !important;
+  font-weight: 500 !important;
 }
 
-/* Improve Japanese text spacing in tiles and sections */
-.spotlights section .content {
-  line-height: 1.8;
-}
-
-.box h3 {
-  font-weight: 700;
-}
-
-.box p {
-  font-weight: 400;
-  line-height: 1.6;
-}
-
-/* Ensure consistent font rendering across different elements */
-.inner h2, .inner h3, .major h2, .major h3 {
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-
-/* Forty theme specific overrides */
-#header .logo {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Yu Gothic UI', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
-}
-
+/* Navigation specific fixes */
+nav a, .navigation a, .nav a, .menu a,
 #menu ul li a {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Yu Gothic UI', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+  font-family: var(--tecmah-font) !important;
+  font-weight: 500 !important;
 }
 
-/* Tiles section font overrides */
-.tiles article .content {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Yu Gothic UI', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+/* Form elements */
+input, textarea, select {
+  font-family: var(--tecmah-font) !important;
 }
 
-.tiles article header h3 {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Yu Gothic UI', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+/* Code blocks with Japanese support */
+code, pre {
+  font-family: 'Noto Sans Mono CJK JP', 'Source Code Pro', 'Courier New', monospace !important;
 }
 
-/* Footer font overrides */
-#footer * {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic Pro', 'Yu Gothic UI', 'Meiryo UI', 'Takao Gothic', 'MS UI Gothic', sans-serif !important;
+/* Special handling for Japanese language attributes */
+[lang="ja"], [lang="jp"], .jp-text {
+  font-variant-east-asian: proportional-width;
+  font-variant-ligatures: common-ligatures;
+}
+
+/* Mobile optimization */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+  }
+  
+  h1, h2, h3 {
+    line-height: 1.3 !important;
+  }
 }
