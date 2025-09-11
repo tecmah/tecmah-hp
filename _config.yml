@@ -14,15 +14,15 @@
 #
 # Site settings for TECMAH株式会社
 title: TECMAH株式会社
-email: contact@tecmah.co.jp
+email: info★tecmah.com
 description: >- # this means to ignore newlines until "baseurl:"
   TECMAH株式会社は、AI・データ活用・PdM/PM支援を行うスタートアップです。
   データドリブンな意思決定と効果的なプロダクトマネジメントで、
   企業のデジタル変革を支援しています。
 baseurl: "/tecmah-hp" # the subpath of your site, e.g. /blog
 url: "https://www.tecmah.com" # the base hostname & protocol for your site
-twitter_username: ""
-github_username: tecmah
+twitter_username: "infotecmah"
+github_username: maurayonori
 
 # Encoding for proper Japanese character support
 encoding: utf-8
@@ -37,6 +37,7 @@ company:
 
 # Build settings
 remote_theme: andrewbanchich/forty-jekyll-theme
+# remote_theme: zerostaticthemes/jekyll-serif-theme
 # Custom theme modifications for Serif style with Forty hero elements
 plugins:
   - jekyll-feed
