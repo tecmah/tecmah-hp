@@ -14,7 +14,7 @@
 #
 # Site settings for TECMAH株式会社
 title: TECMAH株式会社
-email: info★tecmah.com
+email: info@tecmah.com
 description: >- # this means to ignore newlines until "baseurl:"
   TECMAH株式会社は、AI・データ活用・PdM/PM支援を行うスタートアップです。
   データドリブンな意思決定と効果的なプロダクトマネジメントで、
@@ -104,17 +104,35 @@ social:
 tiles-source: pages
 tiles-count: 6
 
-# Case Studies (Anonymous examples)
+# Case Studies (Anonymous examples) - Multilingual support
 case_studies:
-  - title: "製造業A社様"
-    description: "AI予測メンテナンスシステム導入により、設備稼働率を15%向上"
-    result: "年間コスト削減効果: 2,000万円"
-  - title: "EC事業B社様"
-    description: "データドリブンな商品開発プロセス構築で、新商品の成功率を3倍に"
-    result: "売上向上効果: 前年比150%"
-  - title: "SaaS事業C社様"
-    description: "プロダクトマネジメント体制整備により、開発効率を40%改善"
-    result: "リリース頻度向上: 月2回→週1回"
+  - title:
+      ja: "製造業A社様"
+      en: "Manufacturing Company A"
+    description:
+      ja: "AI予測メンテナンスシステム導入により、設備稼働率を15%向上"
+      en: "AI predictive maintenance system implementation increased equipment utilization by 15%"
+    result:
+      ja: "年間コスト削減効果: 2,000万円"
+      en: "Annual cost reduction effect: $200,000"
+  - title:
+      ja: "EC事業B社様"
+      en: "E-commerce Company B"
+    description:
+      ja: "データドリブンな商品開発プロセス構築で、新商品の成功率を3倍に"
+      en: "Data-driven product development process increased new product success rate by 3x"
+    result:
+      ja: "売上向上効果: 前年比150%"
+      en: "Sales improvement: 150% YoY"
+  - title:
+      ja: "SaaS事業C社様"
+      en: "SaaS Company C"
+    description:
+      ja: "プロダクトマネジメント体制整備により、開発効率を40%改善"
+      en: "Product management system establishment improved development efficiency by 40%"
+    result:
+      ja: "リリース頻度向上: 月2回→週1回"
+      en: "Release frequency: Monthly → Weekly"
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

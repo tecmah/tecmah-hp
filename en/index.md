@@ -86,27 +86,15 @@ permalink: /en/
         <h2>Our Track Record</h2>
       </header>
       <div class="grid-wrapper">
+        {% for case in site.case_studies %}
         <div class="col-4">
           <div class="case-study-item">
-            <h3 class="case-study-title">Manufacturing Company A</h3>
-            <p class="case-study-description">AI predictive maintenance system implementation increased equipment utilization by 15%</p>
-            <p class="case-study-result">Annual cost reduction effect: $200,000</p>
+            <h3 class="case-study-title">{{ case.title.en }}</h3>
+            <p class="case-study-description">{{ case.description.en }}</p>
+            <p class="case-study-result">{{ case.result.en }}</p>
           </div>
         </div>
-        <div class="col-4">
-          <div class="case-study-item">
-            <h3 class="case-study-title">E-commerce Company B</h3>
-            <p class="case-study-description">Data-driven product development process increased new product success rate by 3x</p>
-            <p class="case-study-result">Sales improvement: 150% YoY</p>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="case-study-item">
-            <h3 class="case-study-title">SaaS Company C</h3>
-            <p class="case-study-description">Product management system establishment improved development efficiency by 40%</p>
-            <p class="case-study-result">Release frequency: Monthly → Weekly</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
       <ul class="actions">
         <li><a href="/en/work/" class="button">View Case Studies</a></li>

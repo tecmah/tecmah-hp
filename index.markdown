@@ -89,9 +89,9 @@ lang: ja
         {% for case in site.case_studies %}
         <div class="col-4">
           <div class="case-study-item">
-            <h3 class="case-study-title">{{ case.title }}</h3>
-            <p class="case-study-description">{{ case.description }}</p>
-            <p class="case-study-result">{{ case.result }}</p>
+            <h3 class="case-study-title">{{ case.title.ja }}</h3>
+            <p class="case-study-description">{{ case.description.ja }}</p>
+            <p class="case-study-result">{{ case.result.ja }}</p>
           </div>
         </div>
         {% endfor %}
