@@ -133,7 +133,7 @@ permalink: /en/about/
               </tr>
               <tr>
                 <td><strong>Contact</strong></td>
-                <td>contact@tecmah.co.jp</td>
+                <td>{{ site.social.email }}</td>
               </tr>
             </tbody>
           </table>
@@ -173,8 +173,8 @@ permalink: /en/about/
         </header>
         <p>TECMAH is your partner in supporting business growth. Please feel free to contact us for consultation.</p>
         <ul class="actions">
-          <li><a href="/en/contact/" class="button primary">Contact Us</a></li>
-          <li><a href="/en/services/" class="button">Service Details</a></li>
+          <li><a href="{{ '/en/contact/' | relative_url }}" class="button primary">Contact Us</a></li>
+          <li><a href="{{ '/en/services/' | relative_url }}" class="button">Service Details</a></li>
         </ul>
       </section>
     </div>

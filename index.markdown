@@ -19,7 +19,7 @@ lang: ja
         <p class="lead">データドリブンな意思決定と効果的なプロダクトマネジメントで、企業のデジタル変革を支援します。</p>
         <ul class="actions">
           <li><a href="#mission" class="button next scrolly">詳しく見る</a></li>
-          <li><a href="/contact/" class="button primary">お問い合わせ</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}" class="button primary">お問い合わせ</a></li>
         </ul>
       </div>
     </div>
@@ -46,7 +46,7 @@ lang: ja
           </header>
           <p>機械学習アルゴリズムの開発から運用まで、企業のAI導入を包括的にサポート。データ分析基盤の構築、予測モデルの開発、AIシステムの最適化まで対応します。</p>
           <ul class="actions">
-            <li><a href="/services/" class="button">詳細を見る</a></li>
+            <li><a href="{{ '/services/' | relative_url }}" class="button">詳細を見る</a></li>
           </ul>
         </div>
       </div>
@@ -59,7 +59,7 @@ lang: ja
           </header>
           <p>戦略策定から実行まで、PdM/PMとして必要なスキルとプロセスを提供。ユーザー調査、要件定義、開発プロセス管理、リリース戦略まで総合的にサポートします。</p>
           <ul class="actions">
-            <li><a href="/services/" class="button">詳細を見る</a></li>
+            <li><a href="{{ '/services/' | relative_url }}" class="button">詳細を見る</a></li>
           </ul>
         </div>
       </div>
@@ -72,7 +72,7 @@ lang: ja
           </header>
           <p>データに基づいた意思決定フレームワークの構築と運用支援。KPI設計、データ可視化、パフォーマンス分析を通じて継続的な改善を実現します。</p>
           <ul class="actions">
-            <li><a href="/services/" class="button">詳細を見る</a></li>
+            <li><a href="{{ '/services/' | relative_url }}" class="button">詳細を見る</a></li>
           </ul>
         </div>
       </div>
@@ -97,7 +97,7 @@ lang: ja
         {% endfor %}
       </div>
       <ul class="actions">
-        <li><a href="/work/" class="button">実績詳細を見る</a></li>
+        <li><a href="{{ '/work/' | relative_url }}" class="button">実績詳細を見る</a></li>
       </ul>
     </div>
   </section>
@@ -110,8 +110,8 @@ lang: ja
       </header>
       <p>AI・データ活用やプロダクトマネジメントでお困りのことがございましたら、お気軽にご相談ください。</p>
       <ul class="actions uniform">
-        <li><a href="{{ site.cta.free_consultation.url }}" class="button primary">{{ site.cta.free_consultation.text }}</a></li>
-        <li><a href="/about/" class="button">会社概要</a></li>
+        <li><a href="{{ site.cta.free_consultation.url | relative_url }}" class="button primary">{{ site.cta.free_consultation.text }}</a></li>
+        <li><a href="{{ '/about/' | relative_url }}" class="button">会社概要</a></li>
       </ul>
     </div>
   </section>
@@ -124,8 +124,8 @@ lang: ja
       </header>
       <p>無料相談でお客様の課題をお聞かせください。最適なソリューションをご提案いたします。</p>
       <ul class="actions uniform">
-        <li><a href="{{ site.cta.free_consultation.url }}" class="button primary">{{ site.cta.free_consultation.text }}</a></li>
-        <li><a href="/contact/" class="button">お問い合わせ</a></li>
+        <li><a href="{{ site.cta.free_consultation.url | relative_url }}" class="button primary">{{ site.cta.free_consultation.text }}</a></li>
+        <li><a href="{{ '/contact/' | relative_url }}" class="button">お問い合わせ</a></li>
       </ul>
     </div>
   </section>

@@ -97,7 +97,7 @@ permalink: /en/
         {% endfor %}
       </div>
       <ul class="actions">
-        <li><a href="/en/work/" class="button">View Case Studies</a></li>
+        <li><a href="{{ '/en/work/' | relative_url }}" class="button">View Case Studies</a></li>
       </ul>
     </div>
   </section>

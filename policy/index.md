@@ -162,7 +162,7 @@ nav-menu: true
       </header>
       <p>各種ポリシーに関するご質問やご不明な点がございましたら、お気軽にお問い合わせください。</p>
       <ul class="actions">
-        <li><a href="/contact/" class="button primary">お問い合わせ</a></li>
+        <li><a href="{{ '/contact/' | relative_url }}" class="button primary">お問い合わせ</a></li>
       </ul>
       
       <div class="box">

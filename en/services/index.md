@@ -159,8 +159,8 @@ permalink: /en/services/
         </header>
         <p>We'll propose the optimal solution for your business challenges. Initial consultation is free.</p>
         <ul class="actions">
-          <li><a href="/en/contact/" class="button primary">Contact Us</a></li>
-          <li><a href="/en/work/" class="button">View Case Studies</a></li>
+          <li><a href="{{ '/en/contact/' | relative_url }}" class="button primary">Contact Us</a></li>
+          <li><a href="{{ '/en/work/' | relative_url }}" class="button">View Case Studies</a></li>
         </ul>
       </section>
     </div>
