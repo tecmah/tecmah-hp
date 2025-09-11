@@ -19,10 +19,10 @@ description: >- # this means to ignore newlines until "baseurl:"
   TECMAH株式会社は、AI・データ活用・PdM/PM支援を行うスタートアップです。
   データドリブンな意思決定と効果的なプロダクトマネジメントで、
   企業のデジタル変革を支援しています。
-baseurl: "/tecmah-hp" # the subpath of your site, e.g. /blog
-url: "https://www.tecmah.com" # the base hostname & protocol for your site
+baseurl: "/tecmah-hp"
+url: "https://tecmah.github.io"
 twitter_username: "infotecmah"
-github_username: maurayonori
+github_username: tecmah
 
 # Encoding for proper Japanese character support
 encoding: utf-8
@@ -43,11 +43,12 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-polyglot
 
 # Language settings for bilingual support
 languages: ["ja", "en"]
 default_lang: "ja"
-exclude_from_localizations: ["javascript", "images", "css", "public"]
+exclude_from_localization: ["javascript", "images", "css", "public"]
 
 # Navigation menu
 navigation:
