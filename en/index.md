@@ -79,29 +79,32 @@ permalink: /en/
     </section>
   </section>
 
-  <!-- Results Section -->
-  <section id="results">
+  <!-- Case Studies Section -->
+  <section id="case-studies" class="case-studies">
     <div class="inner">
       <header class="major">
         <h2>Our Track Record</h2>
       </header>
       <div class="grid-wrapper">
         <div class="col-4">
-          <div class="box">
-            <h3>50+</h3>
-            <p>Completed Projects</p>
+          <div class="case-study-item">
+            <h3 class="case-study-title">Manufacturing Company A</h3>
+            <p class="case-study-description">AI predictive maintenance system implementation increased equipment utilization by 15%</p>
+            <p class="case-study-result">Annual cost reduction effect: $200,000</p>
           </div>
         </div>
         <div class="col-4">
-          <div class="box">
-            <h3>95%</h3>
-            <p>Client Satisfaction</p>
+          <div class="case-study-item">
+            <h3 class="case-study-title">E-commerce Company B</h3>
+            <p class="case-study-description">Data-driven product development process increased new product success rate by 3x</p>
+            <p class="case-study-result">Sales improvement: 150% YoY</p>
           </div>
         </div>
         <div class="col-4">
-          <div class="box">
-            <h3>200%</h3>
-            <p>Average ROI Improvement</p>
+          <div class="case-study-item">
+            <h3 class="case-study-title">SaaS Company C</h3>
+            <p class="case-study-description">Product management system establishment improved development efficiency by 40%</p>
+            <p class="case-study-result">Release frequency: Monthly → Weekly</p>
           </div>
         </div>
       </div>
@@ -111,16 +114,30 @@ permalink: /en/
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section id="cta" class="main special">
+  <!-- Mid-page CTA Section -->
+  <section id="mid-cta" class="main special">
     <div class="inner">
       <header class="major">
         <h2>We Support Your Business Growth</h2>
       </header>
       <p>If you have any concerns about AI, data utilization, or product management, please feel free to contact us.</p>
       <ul class="actions uniform">
-        <li><a href="/en/contact/" class="button primary">Contact Us</a></li>
+        <li><a href="{{ site.cta.free_consultation.url_en }}" class="button primary">{{ site.cta.free_consultation.text_en }}</a></li>
         <li><a href="/en/about/" class="button">About Us</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section id="final-cta" class="main special">
+    <div class="inner">
+      <header class="major">
+        <h2>Ready to Get Started?</h2>
+      </header>
+      <p>Let us know about your challenges in our free consultation. We'll propose the optimal solution for your business.</p>
+      <ul class="actions uniform">
+        <li><a href="{{ site.cta.free_consultation.url_en }}" class="button primary">{{ site.cta.free_consultation.text_en }}</a></li>
+        <li><a href="/en/contact/" class="button">Contact Us</a></li>
       </ul>
     </div>
   </section>

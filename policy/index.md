@@ -12,6 +12,16 @@ nav-menu: true
         <h1>{{ page.title }}</h1>
       </header>
       <p>TECMAH株式会社の各種ポリシーをご確認いただけます。</p>
+      
+      <div class="box" style="background: #f8f9fa; padding: 2rem; border-radius: 8px; margin: 2rem 0;">
+        <h3>📋 詳細なポリシー文書</h3>
+        <p>以下のリンクから、最新の詳細なポリシー文書をご確認いただけます：</p>
+        <ul class="actions">
+          <li><a href="https://tecmah.notion.site/Privacy-Policy-1234567890abcdef" class="button primary" target="_blank">プライバシーポリシー詳細版</a></li>
+          <li><a href="https://tecmah.notion.site/Terms-of-Service-1234567890abcdef" class="button" target="_blank">利用規約詳細版</a></li>
+          <li><a href="https://tecmah.notion.site/Security-Policy-1234567890abcdef" class="button" target="_blank">セキュリティポリシー詳細版</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -19,35 +29,35 @@ nav-menu: true
   <section id="privacy-policy">
     <div class="inner">
       <header>
-        <h2>プライバシーポリシー</h2>
+        <h2>プライバシーポリシー概要</h2>
       </header>
       
       <h3>個人情報の取り扱いについて</h3>
       <p>TECMAH株式会社（以下「当社」）は、お客様の個人情報を適切に保護することを重要な責務と考え、以下の方針に従って個人情報を取り扱います。</p>
 
-      <h4>1. 個人情報の収集</h4>
-      <p>当社は、以下の目的で必要な範囲内で個人情報を収集いたします：</p>
-      <ul>
-        <li>サービス提供・サポート</li>
-        <li>お問い合わせ対応</li>
-        <li>契約締結・履行</li>
-        <li>セミナー・イベントのご案内</li>
-      </ul>
-
-      <h4>2. 個人情報の利用</h4>
-      <p>収集した個人情報は、収集目的の範囲内でのみ利用し、ご本人の同意なく目的外での利用は行いません。</p>
-
-      <h4>3. 個人情報の保護</h4>
-      <p>当社は、個人情報への不正アクセス、紛失、破壊、改ざん、漏洩等を防ぐため、適切な安全管理措置を講じます。</p>
-
-      <h4>4. 第三者への提供</h4>
-      <p>法令に基づく場合を除き、ご本人の同意なく第三者に個人情報を提供することはありません。</p>
+      <div class="row">
+        <div class="6u 12u$(small)">
+          <h4>収集・利用目的</h4>
+          <ul>
+            <li>サービス提供・サポート</li>
+            <li>お問い合わせ対応</li>
+            <li>契約締結・履行</li>
+            <li>セミナー・イベントのご案内</li>
+          </ul>
+        </div>
+        <div class="6u$ 12u$(small)">
+          <h4>保護・管理</h4>
+          <ul>
+            <li>適切な安全管理措置</li>
+            <li>目的外利用の禁止</li>
+            <li>第三者提供の制限</li>
+            <li>法令遵守</li>
+          </ul>
+        </div>
+      </div>
 
       <div class="box">
-        <p><strong>詳細版ダウンロード:</strong></p>
-        <ul class="actions">
-          <li><a href="/assets/docs/privacy-policy-full.pdf" class="button" target="_blank">プライバシーポリシー詳細版 (PDF)</a></li>
-        </ul>
+        <p><strong>📄 詳細なプライバシーポリシーは上記のNotionリンクからご確認ください。</strong></p>
       </div>
     </div>
   </section>
@@ -58,31 +68,34 @@ nav-menu: true
   <section id="terms">
     <div class="inner">
       <header>
-        <h2>利用規約</h2>
+        <h2>利用規約概要</h2>
       </header>
       
       <h3>サービス利用規約の概要</h3>
       <p>当社サービスをご利用いただく際の基本的な規約をご説明します。</p>
 
-      <h4>1. サービスの利用</h4>
-      <p>本サービスは、法人・個人事業主様を対象としたビジネス向けサービスです。適切な目的でのご利用をお願いいたします。</p>
-
-      <h4>2. 禁止行為</h4>
-      <ul>
-        <li>法令に違反する行為</li>
-        <li>第三者の権利を侵害する行為</li>
-        <li>サービス運営を妨げる行為</li>
-        <li>公序良俗に反する行為</li>
-      </ul>
-
-      <h4>3. 知的財産権</h4>
-      <p>当社が提供するサービス、ドキュメント等の知的財産権は当社に帰属します。</p>
+      <div class="row">
+        <div class="6u 12u$(small)">
+          <h4>サービス利用</h4>
+          <ul>
+            <li>法人・個人事業主様向け</li>
+            <li>適切な目的でのご利用</li>
+            <li>知的財産権の保護</li>
+          </ul>
+        </div>
+        <div class="6u$ 12u$(small)">
+          <h4>禁止行為</h4>
+          <ul>
+            <li>法令違反行為</li>
+            <li>第三者権利侵害</li>
+            <li>サービス運営妨害</li>
+            <li>公序良俗違反</li>
+          </ul>
+        </div>
+      </div>
 
       <div class="box">
-        <p><strong>詳細版ダウンロード:</strong></p>
-        <ul class="actions">
-          <li><a href="/assets/docs/terms-of-service-full.pdf" class="button" target="_blank">利用規約詳細版 (PDF)</a></li>
-        </ul>
+        <p><strong>📄 詳細な利用規約は上記のNotionリンクからご確認ください。</strong></p>
       </div>
     </div>
   </section>
@@ -93,7 +106,7 @@ nav-menu: true
   <section id="security">
     <div class="inner">
       <header>
-        <h2>セキュリティポリシー</h2>
+        <h2>セキュリティポリシー概要</h2>
       </header>
       
       <h3>情報セキュリティへの取り組み</h3>
@@ -121,36 +134,8 @@ nav-menu: true
       </div>
 
       <div class="box">
-        <p><strong>セキュリティ認証:</strong></p>
-        <ul>
-          <li>ISO/IEC 27001 準拠（取得予定）</li>
-          <li>SOC 2 Type II 準拠</li>
-        </ul>
+        <p><strong>📄 詳細なセキュリティポリシーは上記のNotionリンクからご確認ください。</strong></p>
       </div>
-    </div>
-  </section>
-
-  <hr class="major" />
-
-  <!-- Cookie Policy -->
-  <section id="cookies">
-    <div class="inner">
-      <header>
-        <h2>Cookieポリシー</h2>
-      </header>
-      
-      <h3>Cookieの使用について</h3>
-      <p>当サイトでは、サービス向上のためにCookieを使用しています。</p>
-
-      <h4>使用目的</h4>
-      <ul>
-        <li>サイト利用状況の分析</li>
-        <li>ユーザーエクスペリエンスの向上</li>
-        <li>セキュリティの確保</li>
-      </ul>
-
-      <h4>無効化</h4>
-      <p>ブラウザ設定によりCookieを無効化できますが、一部機能がご利用いただけない場合があります。</p>
     </div>
   </section>
 
@@ -168,6 +153,7 @@ nav-menu: true
       <div class="box">
         <p><strong>最終更新日:</strong> 2024年12月10日</p>
         <p><strong>版:</strong> 1.0</p>
+        <p><strong>注意:</strong> 詳細なポリシー文書はNotionで管理されており、随時更新される可能性があります。</p>
       </div>
     </div>
   </section>

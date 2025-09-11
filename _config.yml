@@ -20,7 +20,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   データドリブンな意思決定と効果的なプロダクトマネジメントで、
   企業のデジタル変革を支援しています。
 baseurl: "/tecmah-hp" # the subpath of your site, e.g. /blog
-url: "https://tecmah.github.io" # the base hostname & protocol for your site
+url: "https://www.tecmah.com" # the base hostname & protocol for your site
 twitter_username: ""
 github_username: tecmah
 
@@ -37,6 +37,7 @@ company:
 
 # Build settings
 remote_theme: andrewbanchich/forty-jekyll-theme
+# Custom theme modifications for Serif style with Forty hero elements
 plugins:
   - jekyll-feed
   - jekyll-sitemap
@@ -83,6 +84,15 @@ copyright: TECMAH株式会社
 # Custom assets
 custom_css: assets/css/main.css
 
+# CTA Configuration
+cta:
+  free_consultation:
+    text: "無料相談"
+    text_en: "Free Consultation"
+    url: "/contact/"
+    url_en: "/en/contact/"
+    fixed_position: true
+
 # Social media and contact
 social:
   email: contact@tecmah.co.jp
@@ -93,6 +103,17 @@ social:
 tiles-source: pages
 tiles-count: 6
 
+# Case Studies (Anonymous examples)
+case_studies:
+  - title: "製造業A社様"
+    description: "AI予測メンテナンスシステム導入により、設備稼働率を15%向上"
+    result: "年間コスト削減効果: 2,000万円"
+  - title: "EC事業B社様"
+    description: "データドリブンな商品開発プロセス構築で、新商品の成功率を3倍に"
+    result: "売上向上効果: 前年比150%"
+  - title: "SaaS事業C社様"
+    description: "プロダクトマネジメント体制整備により、開発効率を40%改善"
+    result: "リリース頻度向上: 月2回→週1回"
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

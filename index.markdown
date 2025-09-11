@@ -79,31 +79,22 @@ lang: ja
     </section>
   </section>
 
-  <!-- Results Section -->
-  <section id="results">
+  <!-- Case Studies Section -->
+  <section id="case-studies" class="case-studies">
     <div class="inner">
       <header class="major">
         <h2>これまでの実績</h2>
       </header>
       <div class="grid-wrapper">
+        {% for case in site.case_studies %}
         <div class="col-4">
-          <div class="box">
-            <h3>50+</h3>
-            <p>プロジェクト実績</p>
+          <div class="case-study-item">
+            <h3 class="case-study-title">{{ case.title }}</h3>
+            <p class="case-study-description">{{ case.description }}</p>
+            <p class="case-study-result">{{ case.result }}</p>
           </div>
         </div>
-        <div class="col-4">
-          <div class="box">
-            <h3>95%</h3>
-            <p>クライアント満足度</p>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="box">
-            <h3>200%</h3>
-            <p>平均ROI改善</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
       <ul class="actions">
         <li><a href="/work/" class="button">実績詳細を見る</a></li>
@@ -111,17 +102,32 @@ lang: ja
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section id="cta" class="main special">
+  <!-- Mid-page CTA Section -->
+  <section id="mid-cta" class="main special">
     <div class="inner">
       <header class="major">
         <h2>お客様のビジネス成長を支援します</h2>
       </header>
       <p>AI・データ活用やプロダクトマネジメントでお困りのことがございましたら、お気軽にご相談ください。</p>
       <ul class="actions uniform">
-        <li><a href="/contact/" class="button primary">お問い合わせ</a></li>
+        <li><a href="{{ site.cta.free_consultation.url }}" class="button primary">{{ site.cta.free_consultation.text }}</a></li>
         <li><a href="/about/" class="button">会社概要</a></li>
       </ul>
     </div>
   </section>
+
+  <!-- Final CTA Section -->
+  <section id="final-cta" class="main special">
+    <div class="inner">
+      <header class="major">
+        <h2>今すぐ始めませんか？</h2>
+      </header>
+      <p>無料相談でお客様の課題をお聞かせください。最適なソリューションをご提案いたします。</p>
+      <ul class="actions uniform">
+        <li><a href="{{ site.cta.free_consultation.url }}" class="button primary">{{ site.cta.free_consultation.text }}</a></li>
+        <li><a href="/contact/" class="button">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </section>
 </div>
+

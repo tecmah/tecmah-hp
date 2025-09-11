@@ -33,6 +33,11 @@
     <!-- Wrapper -->
 <div id="wrapper">
 
+<!-- Fixed CTA Button -->
+{% if site.cta.free_consultation.fixed_position %}
+<a href="{{ site.cta.free_consultation.url }}" class="cta-fixed">{{ site.cta.free_consultation.text }}</a>
+{% endif %}
+
 <!-- Header -->
 <header id="header"{% if page.layout == "landing" %} class="alt style2"{% endif %}{% if page.layout == "home" %} class="alt"{% endif %}>
 	<a href="{{ '' | absolute_url }}/" class="logo"><strong>{{ site.title }}</strong> <span>{{ site.subtitle }}</span></a>
@@ -56,8 +61,8 @@
 		{% endfor %}
 	</ul>
 	<ul class="actions vertical">
-		<li><a href="#" class="button special fit">Get Started</a></li>
-		<li><a href="#" class="button fit">Log In</a></li>
+		<li><a href="{{ site.cta.free_consultation.url }}" class="button special fit">{{ site.cta.free_consultation.text }}</a></li>
+		<li><a href="/about/" class="button fit">会社概要</a></li>
 	</ul>
 </nav>
 
@@ -131,6 +136,17 @@
 <!-- Footer -->
 <footer id="footer">
 	<div class="inner">
+		<!-- Footer CTA -->
+		<section class="footer-cta">
+			<header>
+				<h3>Ready to Transform Your Business?</h3>
+			</header>
+			<p>Let's discuss how we can help you leverage AI, data, and product management for growth.</p>
+			<ul class="actions">
+				<li><a href="{{ site.cta.free_consultation.url }}" class="button primary">{{ site.cta.free_consultation.text }}</a></li>
+			</ul>
+		</section>
+		
 		<ul class="icons">
 			{% if site.twitter_username %}
 			<li><a href="https://twitter.com/{{ site.twitter_username }}" class="icon alt fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
