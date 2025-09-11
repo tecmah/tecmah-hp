@@ -4,22 +4,27 @@
 
 /* Critical CSS - Load and apply Japanese fonts immediately */
 
-/* Import Google Fonts with high priority */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+/* Import Google Fonts with high priority and Japanese character support */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap&subset=japanese');
 
 /* Define comprehensive Japanese font stack */
 :root {
   --tecmah-font: 'Noto Sans JP', 
                  'Yu Gothic UI', 
                  'Yu Gothic', 
+                 'Hiragino Sans', 
                  'Hiragino Kaku Gothic ProN', 
                  'Hiragino Kaku Gothic Pro', 
                  'ヒラギノ角ゴ ProN', 
+                 'ヒラギノ角ゴ Pro', 
                  'メイリオ', 
                  'Meiryo', 
+                 'Meiryo UI', 
+                 'Takao Gothic', 
                  'MS PGothic', 
                  'MS Gothic', 
                  'ＭＳ ゴシック', 
+                 'ＭＳ Ｐゴシック', 
                  sans-serif;
 }
 
@@ -93,6 +98,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.8;
 }
 
+.hero-tagline {
+  font-size: 1.5em;
+  margin-bottom: 2em;
+}
+
 /* Button and interactive elements */
 button, .button, .btn, input[type="submit"], input[type="button"] {
   font-weight: 500;
@@ -108,6 +118,50 @@ nav a, .navigation a, .nav a, .menu a,
 [lang="ja"], [lang="jp"], .jp-text {
   font-variant-east-asian: proportional-width;
   font-variant-ligatures: common-ligatures;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure proper Japanese character rendering */
+html[lang="ja"], body[lang="ja"] {
+  font-family: var(--tecmah-font);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Contact page specific styles */
+.process-step {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.step-number {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  background: #4acaa8;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+.contact-info {
+  background: #f8f9fa;
+  padding: 2em;
+  border-radius: 5px;
+}
+
+.contact-info ul.contact {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info ul.contact li {
+  margin-bottom: 1.5em;
 }
 
 /* Mobile optimization */

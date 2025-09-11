@@ -15,7 +15,7 @@ lang: ja
         <h1>{{ site.company.name }}</h1>
       </header>
       <div class="content">
-        <p style="font-size: 1.5em; margin-bottom: 2em;">{{ site.company.tagline }}</p>
+        <p class="hero-tagline">{{ site.company.tagline }}</p>
         <p class="lead">データドリブンな意思決定と効果的なプロダクトマネジメントで、企業のデジタル変革を支援します。</p>
         <ul class="actions">
           <li><a href="#mission" class="button next scrolly">詳しく見る</a></li>

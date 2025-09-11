@@ -24,16 +24,16 @@ nav-menu: true
           <form method="post" action="https://formspree.io/f/your-form-id">
             <div class="row uniform">
               <div class="6u 12u$(xsmall)">
-                <input type="text" name="name" id="name" placeholder="Name *" required />
+                <input type="text" name="name" id="name" placeholder="Name *" autocomplete="name" required />
               </div>
               <div class="6u$ 12u$(xsmall)">
-                <input type="email" name="email" id="email" placeholder="Email *" required />
+                <input type="email" name="email" id="email" placeholder="Email *" autocomplete="email" required />
               </div>
               <div class="6u 12u$(xsmall)">
-                <input type="text" name="company" id="company" placeholder="Company/Organization" />
+                <input type="text" name="company" id="company" placeholder="Company/Organization" autocomplete="organization" />
               </div>
               <div class="6u$ 12u$(xsmall)">
-                <input type="text" name="position" id="position" placeholder="Position/Department" />
+                <input type="text" name="position" id="position" placeholder="Position/Department" autocomplete="organization-title" />
               </div>
               <div class="12u$">
                 <div class="select-wrapper">
@@ -115,20 +115,3 @@ nav-menu: true
     </div>
   </section>
 </div>
-
-<style>
-.contact-info {
-  background: #f8f9fa;
-  padding: 2em;
-  border-radius: 5px;
-}
-
-.contact-info ul.contact {
-  list-style: none;
-  padding: 0;
-}
-
-.contact-info ul.contact li {
-  margin-bottom: 1.5em;
-}
-</style>

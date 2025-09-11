@@ -5,7 +5,6 @@ _site
 vendor
 
 # Additional exclusions
-Gemfile.lock
 
 # Environment files (dotenv pattern)
 .env.local
