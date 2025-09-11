@@ -24,16 +24,16 @@ nav-menu: true
           <form method="post" action="https://formspree.io/f/your-form-id">
             <div class="row uniform">
               <div class="6u 12u$(xsmall)">
-                <input type="text" name="name" id="name" placeholder="お名前 *" required />
+                <input type="text" name="name" id="name" placeholder="お名前 *" autocomplete="name" required />
               </div>
               <div class="6u$ 12u$(xsmall)">
-                <input type="email" name="email" id="email" placeholder="メールアドレス *" required />
+                <input type="email" name="email" id="email" placeholder="メールアドレス *" autocomplete="email" required />
               </div>
               <div class="6u 12u$(xsmall)">
-                <input type="text" name="company" id="company" placeholder="会社名・組織名" />
+                <input type="text" name="company" id="company" placeholder="会社名・組織名" autocomplete="organization" />
               </div>
               <div class="6u$ 12u$(xsmall)">
-                <input type="text" name="position" id="position" placeholder="役職・部署" />
+                <input type="text" name="position" id="position" placeholder="役職・部署" autocomplete="organization-title" />
               </div>
               <div class="12u$">
                 <div class="select-wrapper">

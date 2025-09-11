@@ -20,9 +20,9 @@ description: >- # this means to ignore newlines until "baseurl:"
   データドリブンな意思決定と効果的なプロダクトマネジメントで、
   企業のデジタル変革を支援しています。
 baseurl: "/tecmah-hp" # the subpath of your site, e.g. /blog
-url: "https://tecmah.github.io/tecmah-hp" # the base hostname & protocol for your site
-twitter_username: 
-github_username:  tecmah
+url: "https://tecmah.github.io" # the base hostname & protocol for your site
+twitter_username: ""
+github_username: tecmah
 
 # Encoding for proper Japanese character support
 encoding: utf-8
@@ -54,7 +54,7 @@ navigation:
     url: /
     url_en: /en/
   - title: サービス
-    title_en: Services  
+    title_en: Services
     url: /services/
     url_en: /en/services/
   - title: 実績
@@ -86,7 +86,7 @@ custom_css: assets/css/main.css
 # Social media and contact
 social:
   email: contact@tecmah.co.jp
-  phone: 
+  phone: ""
   address: 東京都
 
 # Tiles for the landing page
