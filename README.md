@@ -39,6 +39,9 @@ TECMAH株式会社の公式ウェブサイト - AI・データ活用・PdM/PM支
 git clone https://github.com/tecmah/tecmah-hp.git
 cd tecmah-hp
 
+# 環境設定ファイルをコピー（オプション）
+cp .env.example .env.local
+
 # 依存関係をインストール
 bundle install
 
@@ -47,6 +50,19 @@ bundle exec jekyll serve
 
 # ブラウザで http://localhost:4000 にアクセス
 ```
+
+### 環境設定（Dotenv）
+このプロジェクトでは、ローカル開発環境の設定にdotenvパターンを使用しています：
+
+- **`.env.example`** - 環境変数のテンプレートファイル
+- **`.env.local`** - ローカル開発用の設定（Git追跡対象外）
+- **`.env.development`** - 開発環境用の設定（Git追跡対象外）
+- **`.env.production`** - 本番環境用の設定（Git追跡対象外）
+
+#### 使い方
+1. `.env.example`を`.env.local`にコピー
+2. 必要に応じて設定値を編集
+3. Jekyll実行時に自動的に環境変数が読み込まれます
 
 ### 開発時の注意点
 - `_config.yml`を変更した場合はサーバーの再起動が必要
