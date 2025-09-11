@@ -54,7 +54,11 @@ navigation:
     url: /
     url_en: /en/
   - title: サービス
+<<<<<<< HEAD
     title_en: Services
+=======
+    title_en: Services  
+>>>>>>> 2cf339640e27eacbbae0f9ddf37279a14322462c
     url: /services/
     url_en: /en/services/
   - title: 実績
@@ -86,7 +90,11 @@ custom_css: assets/css/main.css
 # Social media and contact
 social:
   email: contact@tecmah.co.jp
+<<<<<<< HEAD
   phone: ""
+=======
+  phone: 
+>>>>>>> 2cf339640e27eacbbae0f9ddf37279a14322462c
   address: 東京都
 
 # Tiles for the landing page

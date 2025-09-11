@@ -182,3 +182,38 @@ nav-menu: true
     </div>
   </section>
 </div>
+
+<style>
+.process-step {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.step-number {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  background: #4acaa8;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+.contact-info {
+  background: #f8f9fa;
+  padding: 2em;
+  border-radius: 5px;
+}
+
+.contact-info ul.contact {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info ul.contact li {
+  margin-bottom: 1.5em;
+}
+</style>
