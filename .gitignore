@@ -1,0 +1,19 @@
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+
+# Additional exclusions
+Gemfile.lock
+
+# Environment files (dotenv pattern)
+.env.local
+.env.development
+.env.production
+.env.*.local
+
+# System files
+.DS_Store
+*.log
+/tmp/

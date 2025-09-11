@@ -1,0 +1,123 @@
+---
+# Main CSS file with comprehensive Japanese font support for TECMAH website
+---
+
+/* Critical CSS - Load and apply Japanese fonts immediately */
+
+/* Import Google Fonts with high priority */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+/* Define comprehensive Japanese font stack */
+:root {
+  --tecmah-font: 'Noto Sans JP', 
+                 'Yu Gothic UI', 
+                 'Yu Gothic', 
+                 'Hiragino Kaku Gothic ProN', 
+                 'Hiragino Kaku Gothic Pro', 
+                 'ヒラギノ角ゴ ProN', 
+                 'メイリオ', 
+                 'Meiryo', 
+                 'MS PGothic', 
+                 'MS Gothic', 
+                 'ＭＳ ゴシック', 
+                 sans-serif;
+}
+
+/* Apply Japanese fonts to text elements only */
+body, h1, h2, h3, h4, h5, h6,
+p, a, li, dt, dd, input, button,
+span, div, ul, ol, dl,
+table, th, td, thead, tbody, tfoot,
+select, textarea, label,
+nav, header, footer, main, section, article, aside,
+blockquote, cite, small, strong, em, i, b {
+  font-family: var(--tecmah-font);
+}
+
+/* Japanese font wrapper class for specific elements */
+.jp-font {
+  font-family: var(--tecmah-font);
+}
+
+/* Explicitly exclude monospace and code elements */
+pre, code, kbd, samp {
+  font-family: 'Noto Sans Mono CJK JP', 'Source Code Pro', 'Courier New', monospace;
+}
+
+/* Explicitly exclude icon fonts */
+.fa, .fas, .fab, .far, .fal, .fad, .fat,
+[class^="icon-"], [class*=" icon-"],
+[class^="fa-"], [class*=" fa-"] {
+  font-family: inherit;
+}
+
+/* Enhanced text rendering for Japanese characters */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "palt" 1;
+  -webkit-font-feature-settings: "palt" 1;
+}
+
+/* Japanese typography optimization */
+p, li, td, th, .content, .inner, .description {
+  line-height: 1.8;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Hero section enhancements */
+#hero h1, #banner h1 {
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+#hero .lead, #banner .lead {
+  font-weight: 400;
+  font-size: 1.2em;
+  line-height: 1.8;
+}
+
+/* Button and interactive elements */
+button, .button, .btn, input[type="submit"], input[type="button"] {
+  font-weight: 500;
+}
+
+/* Navigation specific fixes */
+nav a, .navigation a, .nav a, .menu a,
+#menu ul li a {
+  font-weight: 500;
+}
+
+/* Special handling for Japanese language attributes */
+[lang="ja"], [lang="jp"], .jp-text {
+  font-variant-east-asian: proportional-width;
+  font-variant-ligatures: common-ligatures;
+}
+
+/* Mobile optimization */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  
+  h1, h2, h3 {
+    line-height: 1.3;
+  }
+}
