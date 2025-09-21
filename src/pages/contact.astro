@@ -1,0 +1,768 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout title="お問い合わせ・無料相談予約 | TECMAH株式会社">
+  <Header />
+  <main class="pt-20">
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-zinc-900 to-zinc-800 text-white py-32">
+      <div class="container">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="inline-flex items-center px-6 py-3 rounded-full bg-green-500/20 border border-green-500/30 text-green-400 text-sm font-medium mb-8">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            お問い合わせ・無料相談
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <span class="gradient-text">まずは</span>お気軽に<br>
+            <span class="gradient-text">ご相談</span>ください
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+            初回60分のオンライン相談は無料です。<br>
+            お客様の課題をお聞かせください。最適な解決策をご提案します。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultation Types -->
+    <section class="bg-zinc-900 py-20">
+      <div class="container">
+        <div class="text-center max-w-4xl mx-auto mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            <span class="gradient-text">相談プラン</span>
+          </h2>
+          <p class="text-xl text-gray-300">
+            お客様のニーズに応じて2つの相談プランをご用意しています
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          
+          <!-- Free Consultation -->
+          <div class="bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-2xl p-8 border-2 border-green-500/30 relative">
+            <div class="absolute top-6 right-6">
+              <span class="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-bold">おすすめ</span>
+            </div>
+            
+            <div class="mb-6">
+              <div class="text-green-400 mb-4">
+                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg>
+              </div>
+              <h3 class="text-3xl font-bold text-white mb-2">無料相談</h3>
+              <div class="text-4xl font-bold text-green-400 mb-4">無料</div>
+              <p class="text-gray-300">60分のオンライン相談</p>
+            </div>
+
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-300">現状課題のヒアリング・整理</span>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-300">解決方向性・アプローチのご提案</span>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-300">概算見積もり・スケジュール感</span>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-300">次のステップのご提案</span>
+              </div>
+            </div>
+
+            <p class="text-sm text-gray-400 mb-6">
+              ※ 無理な営業は一切行いません。お気軽にご相談ください。
+            </p>
+
+            <button class="btn btn-primary w-full text-lg py-4" onclick="selectConsultationType('free')">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4m-7 8v8m-5-4h18m-9 0V7m0 0L9 3"></path>
+              </svg>
+              無料相談を申し込む
+            </button>
+          </div>
+
+          <!-- Premium Consultation -->
+          <div class="bg-zinc-800 rounded-2xl p-8 border border-zinc-700">
+            <div class="mb-6">
+              <div class="text-blue-400 mb-4">
+                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+              </div>
+              <h3 class="text-3xl font-bold text-white mb-2">プレミアム相談</h3>
+              <div class="text-4xl font-bold text-blue-400 mb-4">¥10,000</div>
+              <p class="text-gray-300">60分の専門コンサルティング</p>
+            </div>
+
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-300">詳細な現状分析・課題整理</span>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-300">具体的なロードマップ策定</span>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-300">詳細見積もり・提案書作成</span>
+              </div>
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-300">1週間のフォローアップ付き</span>
+              </div>
+            </div>
+
+            <p class="text-sm text-gray-400 mb-6">
+              ※ 正式契約時には相談料を差し引かせていただきます。
+            </p>
+
+            <button class="btn btn-secondary w-full text-lg py-4" onclick="selectConsultationType('premium')">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+              </svg>
+              プレミアム相談を申し込む
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="bg-zinc-800 py-20" id="consultation-form">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          
+          <!-- Form Header -->
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-white mb-4">
+              <span class="gradient-text" id="form-title">無料相談お申し込み</span>
+            </h2>
+            <p class="text-gray-300" id="form-subtitle">
+              以下のフォームにご記入ください。24時間以内にご連絡いたします。
+            </p>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-700">
+            <form id="contact-form" class="space-y-6">
+              
+              <!-- Consultation Type (Hidden Field) -->
+              <input type="hidden" id="consultation_type" name="consultation_type" value="free">
+              
+              <!-- Basic Information -->
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label for="company_name" class="block text-sm font-semibold text-white mb-2">
+                    会社名 <span class="text-red-400">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="company_name" 
+                    name="company_name" 
+                    required 
+                    class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                    placeholder="株式会社〇〇"
+                  >
+                  <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+                </div>
+                
+                <div>
+                  <label for="department" class="block text-sm font-semibold text-white mb-2">
+                    部署名
+                  </label>
+                  <input 
+                    type="text" 
+                    id="department" 
+                    name="department" 
+                    class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                    placeholder="開発部"
+                  >
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label for="contact_name" class="block text-sm font-semibold text-white mb-2">
+                    お名前 <span class="text-red-400">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="contact_name" 
+                    name="contact_name" 
+                    required 
+                    class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                    placeholder="田中 太郎"
+                  >
+                  <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+                </div>
+                
+                <div>
+                  <label for="position" class="block text-sm font-semibold text-white mb-2">
+                    役職
+                  </label>
+                  <input 
+                    type="text" 
+                    id="position" 
+                    name="position" 
+                    class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                    placeholder="マネージャー"
+                  >
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label for="email" class="block text-sm font-semibold text-white mb-2">
+                    メールアドレス <span class="text-red-400">*</span>
+                  </label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                    placeholder="tanaka@example.com"
+                  >
+                  <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+                </div>
+                
+                <div>
+                  <label for="phone" class="block text-sm font-semibold text-white mb-2">
+                    電話番号
+                  </label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                    placeholder="03-1234-5678"
+                  >
+                </div>
+              </div>
+
+              <!-- Company Information -->
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label for="industry" class="block text-sm font-semibold text-white mb-2">
+                    業界・業種 <span class="text-red-400">*</span>
+                  </label>
+                  <select 
+                    id="industry" 
+                    name="industry" 
+                    required 
+                    class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                  >
+                    <option value="">選択してください</option>
+                    <option value="manufacturing">製造業</option>
+                    <option value="retail">小売・卸売業</option>
+                    <option value="finance">金融・保険業</option>
+                    <option value="healthcare">医療・ヘルスケア</option>
+                    <option value="education">教育・研修</option>
+                    <option value="it">IT・ソフトウェア</option>
+                    <option value="consulting">コンサルティング</option>
+                    <option value="media">メディア・広告</option>
+                    <option value="logistics">物流・運輸</option>
+                    <option value="real_estate">不動産・建設</option>
+                    <option value="other">その他</option>
+                  </select>
+                  <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+                </div>
+                
+                <div>
+                  <label for="company_size" class="block text-sm font-semibold text-white mb-2">
+                    従業員規模 <span class="text-red-400">*</span>
+                  </label>
+                  <select 
+                    id="company_size" 
+                    name="company_size" 
+                    required 
+                    class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                  >
+                    <option value="">選択してください</option>
+                    <option value="startup">スタートアップ（〜20名）</option>
+                    <option value="small">小規模企業（21〜100名）</option>
+                    <option value="medium">中堅企業（101〜500名）</option>
+                    <option value="large">大企業（501〜1,000名）</option>
+                    <option value="enterprise">大手企業（1,001名〜）</option>
+                  </select>
+                  <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+                </div>
+              </div>
+
+              <!-- Consultation Details -->
+              <div>
+                <label for="consultation_category" class="block text-sm font-semibold text-white mb-2">
+                  相談内容の分類 <span class="text-red-400">*</span>
+                </label>
+                <div class="grid md:grid-cols-3 gap-4">
+                  <label class="flex items-center p-4 bg-zinc-800 rounded-lg border border-zinc-600 cursor-pointer hover:border-green-500 transition-colors">
+                    <input type="checkbox" name="consultation_category" value="ai_data" class="mr-3 text-green-500 focus:ring-green-500">
+                    <span class="text-white">AI・データ活用</span>
+                  </label>
+                  <label class="flex items-center p-4 bg-zinc-800 rounded-lg border border-zinc-600 cursor-pointer hover:border-green-500 transition-colors">
+                    <input type="checkbox" name="consultation_category" value="product_management" class="mr-3 text-green-500 focus:ring-green-500">
+                    <span class="text-white">PdM・PM支援</span>
+                  </label>
+                  <label class="flex items-center p-4 bg-zinc-800 rounded-lg border border-zinc-600 cursor-pointer hover:border-green-500 transition-colors">
+                    <input type="checkbox" name="consultation_category" value="dx_consulting" class="mr-3 text-green-500 focus:ring-green-500">
+                    <span class="text-white">DX・新規事業</span>
+                  </label>
+                </div>
+                <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+              </div>
+
+              <div>
+                <label for="budget_range" class="block text-sm font-semibold text-white mb-2">
+                  予算規模 <span class="text-red-400">*</span>
+                </label>
+                <select 
+                  id="budget_range" 
+                  name="budget_range" 
+                  required 
+                  class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                >
+                  <option value="">選択してください</option>
+                  <option value="under_100">100万円未満</option>
+                  <option value="100_300">100万円〜300万円</option>
+                  <option value="300_500">300万円〜500万円</option>
+                  <option value="500_1000">500万円〜1,000万円</option>
+                  <option value="over_1000">1,000万円以上</option>
+                  <option value="undecided">未定・相談したい</option>
+                </select>
+                <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+              </div>
+
+              <div>
+                <label for="timeline" class="block text-sm font-semibold text-white mb-2">
+                  希望開始時期
+                </label>
+                <select 
+                  id="timeline" 
+                  name="timeline" 
+                  class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
+                >
+                  <option value="">選択してください</option>
+                  <option value="asap">できるだけ早く</option>
+                  <option value="1month">1ヶ月以内</option>
+                  <option value="3months">3ヶ月以内</option>
+                  <option value="6months">6ヶ月以内</option>
+                  <option value="flexible">時期は柔軟に対応可能</option>
+                  <option value="information_gathering">情報収集段階</option>
+                </select>
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for="message" class="block text-sm font-semibold text-white mb-2">
+                  相談内容・課題について <span class="text-red-400">*</span>
+                </label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows="6" 
+                  required 
+                  class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors resize-none"
+                  placeholder="現在抱えている課題や相談したい内容を具体的にお聞かせください。&#10;例：&#10;・既存システムへのAI機能追加を検討している&#10;・新規事業のPdM体制構築について相談したい&#10;・データ活用による業務効率化を進めたい"
+                ></textarea>
+                <div class="text-sm text-gray-400 mt-1">
+                  <span id="char-count">0</span>/1000文字
+                </div>
+                <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+              </div>
+
+              <!-- Preferred Meeting -->
+              <div>
+                <label for="preferred_meeting" class="block text-sm font-semibold text-white mb-2">
+                  希望する相談方法
+                </label>
+                <div class="grid md:grid-cols-2 gap-4">
+                  <label class="flex items-center p-4 bg-zinc-800 rounded-lg border border-zinc-600 cursor-pointer hover:border-green-500 transition-colors">
+                    <input type="radio" name="preferred_meeting" value="online" class="mr-3 text-green-500 focus:ring-green-500" checked>
+                    <div>
+                      <div class="text-white font-medium">オンライン会議</div>
+                      <div class="text-gray-400 text-sm">Google Meet / Zoom</div>
+                    </div>
+                  </label>
+                  <label class="flex items-center p-4 bg-zinc-800 rounded-lg border border-zinc-600 cursor-pointer hover:border-green-500 transition-colors">
+                    <input type="radio" name="preferred_meeting" value="phone" class="mr-3 text-green-500 focus:ring-green-500">
+                    <div>
+                      <div class="text-white font-medium">電話相談</div>
+                      <div class="text-gray-400 text-sm">お電話での相談</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Privacy Policy -->
+              <div class="bg-zinc-800 rounded-lg p-4 border border-zinc-600">
+                <label class="flex items-start cursor-pointer">
+                  <input 
+                    type="checkbox" 
+                    id="privacy_agreement" 
+                    name="privacy_agreement" 
+                    required 
+                    class="mr-3 mt-1 text-green-500 focus:ring-green-500"
+                  >
+                  <span class="text-sm text-gray-300">
+                    <a href="/privacy" class="text-green-400 hover:text-green-300 underline">プライバシーポリシー</a>に同意します <span class="text-red-400">*</span>
+                  </span>
+                </label>
+                <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="pt-4">
+                <button 
+                  type="submit" 
+                  id="submit-btn"
+                  class="w-full bg-gradient-to-r from-green-500 to-blue-600 text-white font-bold py-4 px-8 rounded-lg hover:from-green-600 hover:to-blue-700 transition-all duration-300 text-lg"
+                >
+                  <span id="submit-text">
+                    <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                    </svg>
+                    相談を申し込む
+                  </span>
+                  <span id="submit-loading" class="hidden">
+                    <svg class="animate-spin w-5 h-5 mr-2 inline-block" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    送信中...
+                  </span>
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Information -->
+    <section class="bg-zinc-900 py-20">
+      <div class="container">
+        <div class="text-center max-w-4xl mx-auto mb-16">
+          <h2 class="text-4xl font-bold text-white mb-6">
+            <span class="gradient-text">会社情報</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          
+          <!-- Address -->
+          <div class="bg-zinc-800 rounded-2xl p-6 border border-zinc-700 text-center">
+            <div class="text-green-400 mb-4">
+              <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h3 class="font-bold text-white mb-2">所在地</h3>
+            <p class="text-gray-300 text-sm">
+              〒060-0062<br>
+              北海道札幌市中央区<br>
+              南二条西5丁目31-1<br>
+              RMBld.701
+            </p>
+          </div>
+
+          <!-- Phone -->
+          <div class="bg-zinc-800 rounded-2xl p-6 border border-zinc-700 text-center">
+            <div class="text-green-400 mb-4">
+              <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+            </div>
+            <h3 class="font-bold text-white mb-2">電話番号</h3>
+            <p class="text-gray-300">
+              <a href="tel:+81-70-8359-2530" class="hover:text-green-400 transition-colors">
+                +81-70-8359-2530
+              </a>
+            </p>
+          </div>
+
+          <!-- Email -->
+          <div class="bg-zinc-800 rounded-2xl p-6 border border-zinc-700 text-center">
+            <div class="text-green-400 mb-4">
+              <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="font-bold text-white mb-2">メール</h3>
+            <p class="text-gray-300">
+              <a href="mailto:info@tecmah.com" class="hover:text-green-400 transition-colors">
+                info@tecmah.com
+              </a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Thank You Modal -->
+    <div id="thank-you-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+      <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-700 max-w-md w-full mx-auto text-center">
+        <div class="text-green-400 mb-4">
+          <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-white mb-4">送信完了</h3>
+        <p class="text-gray-300 mb-6">
+          お申し込みありがとうございます。<br>
+          24時間以内にご連絡いたします。
+        </p>
+        <button onclick="closeThankYouModal()" class="btn btn-primary w-full">
+          閉じる
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-zinc-900 text-white py-12">
+    <div class="container">
+      <div class="grid md:grid-cols-4 gap-8">
+        <!-- Company Info -->
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-4">
+            <span class="text-2xl font-bold">TECMAH</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            AI・データ活用・PdM/PM支援を行うスタートアップ。<br>
+            データドリブンな意思決定と生成AIを活用したプロダクト開発で、企業のデジタル変革を伴走支援します。
+          </p>
+          <div class="text-sm text-gray-400">
+            <p>〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701</p>
+            <p>TEL: +81-70-8359-2530 | Email: info@tecmah.com</p>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold mb-4">サービス</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/services/ai-data" class="hover:text-white">生成AI・データ活用</a></li>
+            <li><a href="/services/product-management" class="hover:text-white">PdM/PM伴走</a></li>
+            <li><a href="/services/dx-consulting" class="hover:text-white">DXコンサルティング</a></li>
+          </ul>
+        </div>
+        
+        <!-- Company -->
+        <div>
+          <h4 class="font-bold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/about" class="hover:text-white">会社概要</a></li>
+            <li><a href="/case-studies" class="hover:text-white">事例</a></li>
+            <li><a href="/contact" class="hover:text-white">お問い合わせ</a></li>
+            <li><a href="/privacy" class="hover:text-white">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 TECMAH株式会社. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  // Consultation type selection
+  function selectConsultationType(type) {
+    const form = document.getElementById('consultation-form');
+    const formTitle = document.getElementById('form-title');
+    const formSubtitle = document.getElementById('form-subtitle');
+    const consultationTypeInput = document.getElementById('consultation_type');
+    
+    consultationTypeInput.value = type;
+    
+    if (type === 'premium') {
+      formTitle.textContent = 'プレミアム相談お申し込み';
+      formSubtitle.textContent = '以下のフォームにご記入ください。お支払い方法については後日ご連絡いたします。';
+    } else {
+      formTitle.textContent = '無料相談お申し込み';
+      formSubtitle.textContent = '以下のフォームにご記入ください。24時間以内にご連絡いたします。';
+    }
+    
+    // Scroll to form
+    form.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Character count for message textarea
+  document.addEventListener('DOMContentLoaded', function() {
+    const messageTextarea = document.getElementById('message');
+    const charCount = document.getElementById('char-count');
+    
+    messageTextarea.addEventListener('input', function() {
+      const count = this.value.length;
+      charCount.textContent = count;
+      
+      if (count > 1000) {
+        charCount.style.color = '#f87171'; // red-400
+      } else {
+        charCount.style.color = '#9ca3af'; // gray-400
+      }
+    });
+  });
+
+  // Form validation
+  function validateForm() {
+    const form = document.getElementById('contact-form');
+    const requiredFields = form.querySelectorAll('[required]');
+    let isValid = true;
+    
+    // Clear previous errors
+    const errorMessages = form.querySelectorAll('.error-message');
+    errorMessages.forEach(error => {
+      error.classList.add('hidden');
+      error.textContent = '';
+    });
+    
+    // Validate required fields
+    requiredFields.forEach(field => {
+      const errorDiv = field.parentElement.querySelector('.error-message');
+      
+      if (!field.value.trim()) {
+        if (errorDiv) {
+          errorDiv.textContent = 'この項目は必須です';
+          errorDiv.classList.remove('hidden');
+        }
+        field.classList.add('border-red-500');
+        isValid = false;
+      } else {
+        field.classList.remove('border-red-500');
+      }
+    });
+    
+    // Validate email format
+    const email = document.getElementById('email');
+    if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      const errorDiv = email.parentElement.querySelector('.error-message');
+      if (errorDiv) {
+        errorDiv.textContent = '正しいメールアドレスを入力してください';
+        errorDiv.classList.remove('hidden');
+      }
+      email.classList.add('border-red-500');
+      isValid = false;
+    }
+    
+    // Validate consultation categories
+    const categories = document.querySelectorAll('input[name="consultation_category"]:checked');
+    if (categories.length === 0) {
+      const categoryDiv = document.querySelector('input[name="consultation_category"]').closest('div').nextElementSibling;
+      if (categoryDiv && categoryDiv.classList.contains('error-message')) {
+        categoryDiv.textContent = '相談内容を1つ以上選択してください';
+        categoryDiv.classList.remove('hidden');
+      }
+      isValid = false;
+    }
+    
+    return isValid;
+  }
+
+  // Form submission
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    const submitBtn = document.getElementById('submit-btn');
+    const submitText = document.getElementById('submit-text');
+    const submitLoading = document.getElementById('submit-loading');
+    
+    // Show loading state
+    submitText.classList.add('hidden');
+    submitLoading.classList.remove('hidden');
+    submitBtn.disabled = true;
+    
+    // Simulate form submission (replace with actual submission logic)
+    setTimeout(() => {
+      // Reset button state
+      submitText.classList.remove('hidden');
+      submitLoading.classList.add('hidden');
+      submitBtn.disabled = false;
+      
+      // Show thank you modal
+      document.getElementById('thank-you-modal').classList.remove('hidden');
+      document.getElementById('thank-you-modal').classList.add('flex');
+      
+      // Reset form
+      this.reset();
+      document.getElementById('char-count').textContent = '0';
+    }, 2000);
+  });
+
+  function closeThankYouModal() {
+    document.getElementById('thank-you-modal').classList.add('hidden');
+    document.getElementById('thank-you-modal').classList.remove('flex');
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('thank-you-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeThankYouModal();
+    }
+  });
+</script>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Custom checkbox and radio button styles */
+  input[type="checkbox"]:checked,
+  input[type="radio"]:checked {
+    background-color: #10b981;
+    border-color: #10b981;
+  }
+  
+  /* Form field focus effects */
+  input:focus,
+  select:focus,
+  textarea:focus {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
