@@ -46,7 +46,7 @@ company:
     en: RMBld.701, 31-1 Minami 2-jo Nishi 5-chome, Chuo-ku, Sapporo, Hokkaido 060-0062, Japan
 
 # Build settings
-# remote_theme: tecmah/jekyll-serif-theme@master  # 一時的にコメントアウトして独自ファイルを優先
+remote_theme: tecmah/jekyll-serif-theme # 一時的にコメントアウトして独自ファイルを優先
 
 permalink: pretty
 
