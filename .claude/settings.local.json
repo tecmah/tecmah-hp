@@ -6,7 +6,10 @@
       "WebSearch",
       "Bash(npm install)",
       "Bash(bundle exec jekyll:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(npm create:*)",
+      "Bash(npx astro add tailwind:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

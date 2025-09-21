@@ -1,0 +1,172 @@
+---
+// Services Section - 3つの主要サービス
+const services = [
+  {
+    icon: "🤖",
+    title: "生成AI・データ活用支援",
+    description: "生成AIの活用構想からPoC、運用ガバナンスまで伴走し、事業インパクトを実現します。",
+    features: [
+      "Azure OpenAI / GPT-4o導入",
+      "PoC構築・運用",
+      "MLOps体制整備",
+      "プロンプト設計・評価"
+    ],
+    href: "/services/ai-data"
+  },
+  {
+    icon: "📊",
+    title: "PdM/PM伴走・プロダクトマネジメント",
+    description: "戦略立案からロードマップ、開発体制構築、リリース運用まで一貫したPdM/PjM伴走を提供します。",
+    features: [
+      "市場・ユーザー調査",
+      "アジャイル導入・スクラム推進",
+      "開発チーム運営",
+      "PdM人材育成"
+    ],
+    href: "/services/product-management"
+  },
+  {
+    icon: "🚀",
+    title: "新規事業・DXコンサルティング",
+    description: "市場検証・事業計画・KPI設計・オペレーション構築まで、成長を見据えたDX/新規事業を伴走します。",
+    features: [
+      "カスタマーインタビュー",
+      "事業計画・KPI設計",
+      "プロセス可視化",
+      "アライアンス戦略"
+    ],
+    href: "/services/dx-consulting"
+  }
+];
+---
+
+<section class="section bg-white">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 text-blue-700 text-sm font-medium mb-6">
+        <span class="mr-2">⭐</span>
+        主要サービス
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <span class="gradient-text">3つの専門領域</span>で<br>
+        事業成長を支援
+      </h2>
+      <p class="text-xl text-gray-600 leading-relaxed">
+        生成AIとプロダクトマネジメントの現場経験を活かし、<br>
+        戦略から実装・運用まで一貫した伴走型支援を提供します。
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      {services.map((service, index) => (
+        <div class="card group hover:shadow-2xl transition-all duration-300">
+          <!-- Icon -->
+          <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+            {service.icon}
+          </div>
+          
+          <!-- Title -->
+          <h3 class="text-xl font-bold text-gray-900 mb-3">
+            {service.title}
+          </h3>
+          
+          <!-- Description -->
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            {service.description}
+          </p>
+          
+          <!-- Features -->
+          <ul class="space-y-2 mb-6">
+            {service.features.map((feature) => (
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2 mt-1">✓</span>
+                <span class="text-sm text-gray-600">{feature}</span>
+              </li>
+            ))}
+          </ul>
+          
+          <!-- CTA -->
+          <a 
+            href={service.href}
+            class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group-hover:translate-x-1 transition-all duration-300"
+          >
+            詳細を見る
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center">
+      <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+          どのサービスが最適かわからない？
+        </h3>
+        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+          初回60分のオンライン相談で、現状の課題をヒアリングし、<br>
+          最適なアプローチとサービス組み合わせをご提案します。
+        </p>
+        <a href="/contact" class="btn btn-primary text-lg px-8 py-4">
+          <span class="mr-2">📞</span>
+          無料相談を申し込む
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* サービスカード特有のスタイル */
+  .card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #10a37f, transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .card:hover::before {
+    left: 100%;
+  }
+  
+  /* グラデーションテキスト */
+  .gradient-text {
+    background: linear-gradient(135deg, #10a37f 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* アニメーション */
+  .card {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .card:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  
+  .card:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  
+  /* レスポンシブ調整 */
+  @media (max-width: 768px) {
+    .card {
+      margin-bottom: 2rem;
+    }
+  }
+</style>

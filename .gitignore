@@ -1,20 +1,24 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
 node_modules/
 
-# Additional exclusions
-Gemfile.lock
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Environment files (dotenv pattern)
-.env.local
-.env.development
+
+# environment variables
+.env
 .env.production
-.env.*.local
 
-# System files
+# macOS-specific files
 .DS_Store
-*.log
-/tmp/
+
+# jetbrains setting folder
+.idea/

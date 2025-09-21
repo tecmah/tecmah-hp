@@ -1,0 +1,129 @@
+---
+// Hero Section - OpenAI風メインビジュアル
+---
+
+<section class="section-hero relative overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-600"></div>
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0); background-size: 40px 40px;"></div>
+  </div>
+  
+  <div class="container relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white/90 text-sm font-medium mb-8">
+        <span class="mr-2">🚀</span>
+        AI・データ活用・PdM/PM支援
+      </div>
+      
+      <!-- Main Heading -->
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+        TECMAHは、
+        <span class="gradient-text-secondary">生成AI</span>と<br>
+        プロダクトマネジメントで<br>
+        <span class="gradient-text">事業成長を加速</span>させます
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+        プロダクト戦略の立案からデータ基盤の整備、生成AIの活用企画と実装、内製化支援まで。<br>
+        ビジネスインパクトに直結する伴走型チームで、短期間でも確かな成果創出につなげます。
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="/contact" class="btn btn-primary text-lg px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 shadow-xl">
+          <span class="mr-2">📞</span>
+          無料相談を予約
+        </a>
+        <a href="/services" class="btn btn-secondary text-lg px-8 py-4 bg-transparent text-white border-white hover:bg-white hover:text-gray-900">
+          <span class="mr-2">🔍</span>
+          サービスを見る
+        </a>
+      </div>
+      
+      <!-- Trust Indicators -->
+      <div class="mt-16 pt-8 border-t border-white/20">
+        <p class="text-white/60 text-sm mb-4">これまでの支援実績</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-white/80">
+          <div class="text-center">
+            <div class="text-2xl font-bold">18%</div>
+            <div class="text-sm">学習継続率向上</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold">50%</div>
+            <div class="text-sm">リードタイム短縮</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold">3ヶ月</div>
+            <div class="text-sm">パイロット導入</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold">100%</div>
+            <div class="text-sm">投資判断支援</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60">
+    <div class="animate-bounce">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* アニメーション効果 */
+  .section-hero h1 {
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .section-hero p {
+    animation: fadeInUp 1s ease-out 0.2s both;
+  }
+  
+  .section-hero .btn {
+    animation: fadeInUp 1s ease-out 0.4s both;
+  }
+  
+  /* Gradient text for light backgrounds */
+  .gradient-text {
+    background: linear-gradient(135deg, #10a37f 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .gradient-text-secondary {
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .section-hero h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+    
+    .section-hero p {
+      font-size: 1.1rem;
+    }
+  }
+</style>

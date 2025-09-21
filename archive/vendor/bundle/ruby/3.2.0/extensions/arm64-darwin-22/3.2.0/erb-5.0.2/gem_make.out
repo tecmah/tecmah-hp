@@ -1,0 +1,22 @@
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/erb-5.0.2/ext/erb/escape
+/Users/yono/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+/Users/yono/.rbenv/versions/3.2.2/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
+checking for rb_ext_ractor_safe() in ruby.h... yes
+creating Makefile
+
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250911-1669-egv703 sitelibdir\=./.gem.20250911-1669-egv703 clean
+
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250911-1669-egv703 sitelibdir\=./.gem.20250911-1669-egv703
+compiling escape.c
+linking shared-object erb/escape.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250911-1669-egv703 sitelibdir\=./.gem.20250911-1669-egv703 install
+/usr/bin/install -c -m 0755 escape.bundle ./.gem.20250911-1669-egv703/erb
+
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/erb-5.0.2/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250911-1669-egv703 sitelibdir\=./.gem.20250911-1669-egv703 clean

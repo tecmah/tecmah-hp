@@ -1,0 +1,29 @@
+---
+title: Generative AI & Data Enablement
+image: /assets/images/portfolio/ai-data.jpg
+header_image: /assets/images/portfolio/ai-data-header.jpg
+excerpt: We design and operationalize generative AI programs from discovery to governance with measurable ROI.
+weight: 1
+lang: en
+permalink: /en/portfolio/ai-data/
+---
+
+<h2 class="section-heading">Challenges We Solve</h2>
+<ul>
+  <li>Clarifying where generative AI creates value and how to prioritize use cases</li>
+  <li>Running PoCs quickly with clear ROI metrics and executive-ready reporting</li>
+  <li>Building the data platform, MLOps, and guardrails required for safe scaling</li>
+</ul>
+
+<h2 class="section-heading mt-5">What We Deliver</h2>
+<ul>
+  <li>Generative AI roadmaps and service design workshops</li>
+  <li>PoCs and pilots on Azure OpenAI, SageMaker, and modern ML stacks</li>
+  <li>Governance, monitoring, and risk management frameworks</li>
+  <li>Prompt engineering playbooks and enablement for in-house teams</li>
+</ul>
+
+<div class="contact-card mt-5">
+  <p class="mb-3">Share your current initiatives and we will propose a tailored engagement.</p>
+  <a class="button button-primary" href="/en/contact/">Talk to Us</a>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="168" height="40" viewBox="0 0 168 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- TECMAH Logo -->
+  <rect x="0" y="0" width="40" height="40" rx="8" fill="url(#gradient)"/>
+  <path d="M12 12h16v4h-6v12h-4V16h-6v-4z" fill="white"/>
+  
+  <!-- Text -->
+  <text x="48" y="28" font-family="Inter, sans-serif" font-size="24" font-weight="700" fill="#1f2937">TECMAH</text>
+  
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10a37f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,22 @@
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.7/ext/stringio
+/Users/yono/.rbenv/versions/3.2.2/bin/ruby extconf.rb
+/Users/yono/.rbenv/versions/3.2.2/bin/ruby: warning: Ruby was built without YJIT support. You may need to install rustc to build Ruby with YJIT.
+checking for rb_io_mode_t in ruby/io.h... no
+creating Makefile
+
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.7/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20250911-1669-ki95up sitelibdir\=./.gem.20250911-1669-ki95up clean
+
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.7/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20250911-1669-ki95up sitelibdir\=./.gem.20250911-1669-ki95up
+compiling stringio.c
+linking shared-object stringio.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.7/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20250911-1669-ki95up sitelibdir\=./.gem.20250911-1669-ki95up install
+/usr/bin/install -c -m 0755 stringio.bundle ./.gem.20250911-1669-ki95up
+
+current directory: /Users/yono/Build/tecmah-hp/vendor/bundle/ruby/3.2.0/gems/stringio-3.1.7/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20250911-1669-ki95up sitelibdir\=./.gem.20250911-1669-ki95up clean

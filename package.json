@@ -1,23 +1,16 @@
 {
-  "name": "tecmah-hp",
-  "version": "1.0.0",
-  "description": "TECMAH株式会社のウェブサイト",
+  "name": "growing-gravity",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "build": "bundle exec jekyll build",
-    "serve": "bundle exec jekyll serve",
-    "dev": "bundle exec jekyll serve --livereload"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "devDependencies": {
-    "@bookshop/browser": "^3.0.0",
-    "@bookshop/jekyll-engine": "^3.0.0",
-    "@bookshop/generate": "^3.0.0",
-    "postcss": "^8.4.24",
-    "postcss-cli": "^10.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tecmah/tecmah-hp.git"
-  },
-  "author": "TECMAH Inc.",
-  "license": "MIT"
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "astro": "^5.13.9",
+    "tailwindcss": "^4.1.13"
+  }
 }
