@@ -1,22 +1,24 @@
 @import "tailwindcss";
 
-/* OpenAI風カスタムスタイル */
+/* OpenAI風カスタムスタイル - ダークテーマ */
 :root {
-  /* OpenAI風カラーパレット */
-  --primary: #10a37f;
-  --primary-dark: #0d9488;
-  --secondary: #3b82f6;
+  /* OpenAI風ダークカラーパレット */
+  --primary: #00d4aa;
+  --primary-dark: #00b894;
+  --secondary: #6366f1;
   --accent: #8b5cf6;
-  --text: #0f172a;
-  --text-muted: #64748b;
-  --background: #ffffff;
-  --surface: #f8fafc;
-  --border: #e2e8f0;
+  --text: #ffffff;
+  --text-muted: #a1a1aa;
+  --text-dark: #18181b;
+  --background: #0a0a0b;
+  --surface: #18181b;
+  --surface-light: #27272a;
+  --border: #3f3f46;
   
   /* グラデーション */
-  --gradient-primary: linear-gradient(135deg, #10a37f 0%, #3b82f6 100%);
-  --gradient-secondary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-  --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-primary: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
+  --gradient-secondary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --gradient-hero: linear-gradient(135deg, #18181b 0%, #27272a 100%);
   
   /* タイポグラフィ */
   --font-sans: 'Inter', 'Noto Sans JP', sans-serif;
@@ -96,24 +98,25 @@ h3 {
 }
 
 .btn-secondary {
-  background: white;
+  background: transparent;
   color: var(--primary);
   border: 2px solid var(--primary);
 }
 
 .btn-secondary:hover {
   background: var(--primary);
-  color: white;
+  color: var(--background);
 }
 
 /* カードスタイル */
 .card {
-  background: white;
+  background: var(--surface);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 2rem;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border);
   transition: all 0.3s ease;
+  color: var(--text);
 }
 
 .card:hover {
@@ -122,9 +125,9 @@ h3 {
 }
 
 .card-gradient {
-  background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.9) 100%);
+  background: linear-gradient(135deg, rgba(39,39,42,0.9) 0%, rgba(24,24,27,0.9) 100%);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(63,63,70,0.3);
 }
 
 /* セクションスタイル */
