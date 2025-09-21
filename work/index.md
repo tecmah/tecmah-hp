@@ -1,181 +1,118 @@
 ---
 layout: page
 title: 実績
-description: TECMAHの過去のプロジェクト実績とケーススタディ
+description: TECMAHの支援実績と成果サマリー
 image: assets/images/work-hero.jpg
 nav-menu: true
+lang: ja
 ---
 
-<div id="main" class="alt">
-  <section id="one">
-    <div class="inner">
-      <header class="major">
-        <h1>{{ page.title }}</h1>
-      </header>
-      <p>これまでに手がけたプロジェクトの一部をご紹介します。お客様の課題解決と成果創出にフォーカスしたソリューションを提供しています。</p>
+<div class="container my-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-9 text-center">
+      <span class="badge-soft">Case Studies</span>
+      <h1 class="section-heading mt-3">匿名化したプロジェクト事例</h1>
+      <p class="lead">生成AI導入、データ活用、PdM伴走、新規事業創出など、多様な領域で成果を創出してきたプロジェクトの一部をご紹介します。</p>
     </div>
-  </section>
+  </div>
 
-  <!-- Case Studies -->
-  <section id="case-studies" class="spotlights">
-    <section>
-      <div class="image">
-        <img src="assets/images/case1.jpg" alt="E-commerce推薦システム" />
+  <div class="row g-4 mb-5">
+    <div class="col-md-6">
+      <div class="case-card h-100">
+        <h3>教育SaaS | 生成AI × アダプティブ学習</h3>
+        <p class="mb-3">学習者データとLLMを活用し、ドリル提示・ヒント生成・可視化ダッシュボードを刷新。PdM/PjMとしてロードマップ策定から実装、運用まで伴走。</p>
+        <ul>
+          <li>学習継続率 +18%、PoC〜本番移行を3ヶ月で実現</li>
+          <li>Azure SageMakerでのLLMファインチューニングと評価フレーム構築</li>
+          <li>教師向け可視化UIとワークフローの設計・定着化</li>
+        </ul>
       </div>
-      <div class="content">
-        <div class="inner">
-          <header class="major">
-            <h3>E-commerce推薦システム開発</h3>
-          </header>
-          <p><strong>業界:</strong> 小売・EC</p>
-          <p><strong>課題:</strong> CVR低下、ユーザー離脱率の増加</p>
-          <p><strong>ソリューション:</strong> 機械学習ベースの個人化推薦システムを構築。ユーザーの行動履歴、商品特徴、購買傾向を分析し、リアルタイムレコメンデーションを実現。</p>
-          <p><strong>結果:</strong></p>
-          <ul>
-            <li>CVR 35%向上</li>
-            <li>ユーザー滞在時間 50%増加</li>
-            <li>月次売上 25%向上</li>
-          </ul>
-        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="case-card h-100">
+        <h3>製造業 | 音声データ解析による異常検知</h3>
+        <p class="mb-3">工場現場の音声／センサーデータを用いた異常検知システムを構築。データ基盤とダッシュボード運用を整備し、保全リードタイムを短縮。</p>
+        <ul>
+          <li>Python・FastAPIによるデータパイプライン・API基盤を構築</li>
+          <li>一次判定時間を50%短縮、経営報告の標準化を実現</li>
+          <li>運用マニュアルとKPIモニタリングプロセスを整備</li>
+        </ul>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section>
-      <div class="image">
-        <img src="assets/images/case2.jpg" alt="SaaSプロダクト改善" />
+  <div class="row g-4 mb-5">
+    <div class="col-md-6">
+      <div class="case-card h-100">
+        <h3>小売 × 生成AI | インタラクティブミラー開発</h3>
+        <p class="mb-3">Azure OpenAIとRAG構成、WebRTCによるリアルタイム対話UIを採用したインタラクティブミラーを企画。PoCからマルチテナント対応のパイロット導入まで支援。</p>
+        <ul>
+          <li>3ヶ月でデモ→パイロット導入、建設・小売向けに展開</li>
+          <li>Azure Container Appsを活用したスケーラブルなアーキテクチャを設計</li>
+          <li>オペレーション手順書とチェンジマネジメントを整備</li>
+        </ul>
       </div>
-      <div class="content">
-        <div class="inner">
-          <header class="major">
-            <h3>SaaSプロダクトのPM支援</h3>
-          </header>
-          <p><strong>業界:</strong> SaaS・IT</p>
-          <p><strong>課題:</strong> プロダクト開発の効率化、機能優先度の明確化</p>
-          <p><strong>ソリューション:</strong> データドリブンなプロダクトマネジメント体制を構築。ユーザー行動分析、A/Bテスト、KPI設計を通じて継続的改善プロセスを確立。</p>
-          <p><strong>結果:</strong></p>
-          <ul>
-            <li>開発効率 40%向上</li>
-            <li>ユーザー満足度 30%向上</li>
-            <li>機能リリース頻度 3倍増加</li>
-          </ul>
-        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="case-card h-100">
+        <h3>スタートアップ支援 | 生成AI新規事業創出</h3>
+        <p class="mb-3">市場リサーチ、PoC開発、KPI設計を通じて新規サービスの事業性を検証。投資判断資料と継続改善プロセスを構築。</p>
+        <ul>
+          <li>VC向け投資判断材料とロードマップを整備</li>
+          <li>RAGを活用したPoCで価値検証→第二フェーズ提案につなげる</li>
+          <li>プロダクトバックログ、KPIセット、運用儀式を内製化</li>
+        </ul>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section>
-      <div class="image">
-        <img src="assets/images/case3.jpg" alt="製造業予測保全" />
-      </div>
-      <div class="content">
-        <div class="inner">
-          <header class="major">
-            <h3>製造業向け予測保全システム</h3>
-          </header>
-          <p><strong>業界:</strong> 製造業</p>
-          <p><strong>課題:</strong> 設備故障による生産停止、保全コストの最適化</p>
-          <p><strong>ソリューション:</strong> IoTセンサーデータと機械学習を活用した予測保全システムを開発。設備の異常を事前に検知し、最適な保全タイミングを提案。</p>
-          <p><strong>結果:</strong></p>
-          <ul>
-            <li>予期しない故障 70%減少</li>
-            <li>保全コスト 30%削減</li>
-            <li>稼働率 15%向上</li>
-          </ul>
+  <div class="stats-grid mb-5">
+    <div class="row g-4">
+      <div class="col-md-3 col-6">
+        <div class="stat">
+          <h3>30+</h3>
+          <p>支援プロジェクト</p>
         </div>
       </div>
-    </section>
-
-    <section>
-      <div class="image">
-        <img src="assets/images/case4.jpg" alt="金融リスク分析" />
-      </div>
-      <div class="content">
-        <div class="inner">
-          <header class="major">
-            <h3>金融機関向けリスク分析基盤</h3>
-          </header>
-          <p><strong>業界:</strong> 金融・保険</p>
-          <p><strong>課題:</strong> 信用リスク評価の精度向上、審査時間の短縮</p>
-          <p><strong>ソリューション:</strong> 多様なデータソースを統合したリスク分析基盤を構築。AIモデルによる信用スコアリング、リアルタイムモニタリング機能を実装。</p>
-          <p><strong>結果:</strong></p>
-          <ul>
-            <li>審査精度 20%向上</li>
-            <li>審査時間 60%短縮</li>
-            <li>貸倒率 15%低下</li>
-          </ul>
+      <div class="col-md-3 col-6">
+        <div class="stat">
+          <h3>10+</h3>
+          <p>対応業界</p>
         </div>
       </div>
-    </section>
-  </section>
-
-  <!-- Stats -->
-  <section id="stats">
-    <div class="inner">
-      <header class="major">
-        <h2>数字で見る実績</h2>
-      </header>
-      <div class="row">
-        <div class="3u 6u(medium) 12u$(small)">
-          <div class="stat">
-            <h3>50+</h3>
-            <p>完了プロジェクト数</p>
-          </div>
+      <div class="col-md-3 col-6">
+        <div class="stat">
+          <h3>90%</h3>
+          <p>継続率</p>
         </div>
-        <div class="3u 6u$(medium) 12u$(small)">
-          <div class="stat">
-            <h3>15+</h3>
-            <p>業界実績</p>
-          </div>
-        </div>
-        <div class="3u 6u(medium) 12u$(small)">
-          <div class="stat">
-            <h3>95%</h3>
-            <p>クライアント満足度</p>
-          </div>
-        </div>
-        <div class="3u$ 6u$(medium) 12u$(small)">
-          <div class="stat">
-            <h3>200%</h3>
-            <p>平均ROI改善率</p>
-          </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat">
+          <h3>2-6ヶ月</h3>
+          <p>代表的な伴走期間</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <div class="inner">
-      <header class="major">
-        <h2>お客様の声</h2>
-      </header>
-      <div class="row">
-        <div class="6u 12u$(small)">
-          <blockquote>
-            「TECMAHのサポートにより、データ活用の具体的な成果を短期間で実現できました。技術力の高さと丁寧なサポートに感謝しています。」
-            <footer>— A社 CTO</footer>
-          </blockquote>
-        </div>
-        <div class="6u$ 12u$(small)">
-          <blockquote>
-            「プロダクトマネジメントの体制構築から実際の運用まで、実践的な支援をいただけました。チーム全体のスキルアップにもつながっています。」
-            <footer>— B社 VP of Product</footer>
-          </blockquote>
-        </div>
+  <div class="row g-4 mb-5">
+    <div class="col-md-6">
+      <div class="testimonial h-100">
+        「生成AI活用の検討から導入設計まで、数カ月で意思決定と実装を進められました。ビジネスと技術の両面で伴走いただけた点が特に心強かったです。」
+        <footer class="mt-3">— 教育サービス事業 CTO</footer>
       </div>
     </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="cta">
-    <div class="inner">
-      <header class="major">
-        <h2>あなたの次のプロジェクトを成功に導きます</h2>
-      </header>
-      <p>まずはお気軽にご相談ください。お客様の課題をお聞きし、最適なソリューションをご提案いたします。</p>
-      <ul class="actions">
-        <li><a href="/contact/" class="button primary">お問い合わせ</a></li>
-        <li><a href="/services/" class="button">サービス詳細</a></li>
-      </ul>
+    <div class="col-md-6">
+      <div class="testimonial h-100">
+        「PdM視点を取り入れることで、チームの意思決定スピードが大幅に向上しました。リモートでも密に連携でき、成果につながりました。」
+        <footer class="mt-3">— HRテック企業 プロダクト責任者</footer>
+      </div>
     </div>
-  </section>
+  </div>
+
+  <div class="contact-card text-center">
+    <h2 class="section-heading mb-3">課題に合わせた具体的な事例をご紹介します</h2>
+    <p>公開可能な実績は一部です。課題に近いテーマがありましたらお知らせください。詳細なご説明と体制イメージをご提案します。</p>
+    <a class="button button-primary mt-3" href="/contact/">相談してみる</a>
+  </div>
 </div>

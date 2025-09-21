@@ -1,0 +1,17 @@
+[
+  {
+    "name": "GitHub",
+    "link": "https://github.com/tecmah",
+    "image": "assets/images/icons/github.svg"
+  },
+  {
+    "name": "X",
+    "link": "https://twitter.com/InfoTECMAH",
+    "image": "assets/images/icons/x.svg"
+  },
+  {
+    "name": "Email",
+    "link": "mailto:info@tecmah.com",
+    "image": "assets/images/icons/mail.svg"
+  }
+]

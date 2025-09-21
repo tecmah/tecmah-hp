@@ -1,179 +1,107 @@
 ---
 layout: page
 title: 会社概要
-description: TECMAH株式会社について - ミッション、ビジョン、チーム
+description: TECMAH株式会社のミッション・提供価値・会社情報
 image: assets/images/about-hero.jpg
 nav-menu: true
+lang: ja
 ---
 
-<div id="main" class="alt">
-  <section id="one">
-    <div class="inner">
-      <header class="major">
-        <h1>{{ page.title }}</h1>
-      </header>
-
-      <!-- Company Mission -->
-      <section>
-        <header>
-          <h2>ミッション</h2>
-        </header>
-        <p class="lead">データとAIの力で、企業の意思決定を支援し、持続可能な成長を実現する。</p>
-        <p>私たちTECMAH株式会社は、急速に変化するデジタル時代において、企業がデータドリブンな意思決定を行い、効果的なプロダクトマネジメントを実践できるよう支援することをミッションとしています。</p>
-      </section>
-
-      <hr class="major" />
-
-      <!-- Company Vision -->
-      <section>
-        <header>
-          <h2>ビジョン</h2>
-        </header>
-        <p class="lead">全ての企業がAI・データを活用して価値創造できる社会を実現する。</p>
-        <p>技術の民主化を通じて、規模や業界を問わず、あらゆる企業がAI・データの恩恵を受けられる環境を創造します。高度な技術を実用的なソリューションに変換し、ビジネス価値の最大化を支援します。</p>
-      </section>
-
-      <hr class="major" />
-
-      <!-- Company Values -->
-      <section>
-        <header>
-          <h2>バリュー</h2>
-        </header>
-        <div class="row">
-          <div class="6u 12u$(small)">
-            <h3>🎯 Results First</h3>
-            <p>技術のための技術ではなく、常にビジネス成果にフォーカス。お客様の成功が私たちの成功です。</p>
-          </div>
-          <div class="6u$ 12u$(small)">
-            <h3>🔬 Data-Driven</h3>
-            <p>全ての判断をデータに基づいて行い、仮説検証を通じて継続的に改善していきます。</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="6u 12u$(small)">
-            <h3>🚀 Agile & Adaptive</h3>
-            <p>変化に素早く対応し、アジャイルなアプローチで価値を早期に届けます。</p>
-          </div>
-          <div class="6u$ 12u$(small)">
-            <h3>🤝 Partnership</h3>
-            <p>お客様とのパートナーシップを大切にし、共に成長していくことを目指します。</p>
-          </div>
-        </div>
-      </section>
-
-      <hr class="major" />
-
-      <!-- Team -->
-      <section>
-        <header>
-          <h2>チーム</h2>
-        </header>
-        <p>多様なバックグラウンドを持つ専門家が、お客様の課題解決に取り組んでいます。</p>
-        
-        <div class="row">
-          <div class="4u 12u$(medium)">
-            <div class="team-member">
-              <h3>データサイエンティスト</h3>
-              <p>機械学習・統計学のエキスパートが、データから価値ある洞察を抽出します。</p>
-            </div>
-          </div>
-          <div class="4u 12u$(medium)">
-            <div class="team-member">
-              <h3>プロダクトマネージャー</h3>
-              <p>豊富な経験を持つPM/PdMが、戦略策定から実行まで支援します。</p>
-            </div>
-          </div>
-          <div class="4u$ 12u$(medium)">
-            <div class="team-member">
-              <h3>エンジニア</h3>
-              <p>最新技術に精通したエンジニアが、スケーラブルなシステムを構築します。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <hr class="major" />
-
-      <!-- Company Information -->
-      <section>
-        <header>
-          <h2>会社情報</h2>
-        </header>
-        <div class="table-wrapper">
-          <table>
-            <tbody>
-              <tr>
-                <td><strong>会社名</strong></td>
-                <td>TECMAH株式会社</td>
-              </tr>
-              <tr>
-                <td><strong>英文会社名</strong></td>
-                <td>TECMAH Inc.</td>
-              </tr>
-              <tr>
-                <td><strong>設立</strong></td>
-                <td>2024年</td>
-              </tr>
-              <tr>
-                <td><strong>所在地</strong></td>
-                <td>東京都</td>
-              </tr>
-              <tr>
-                <td><strong>事業内容</strong></td>
-                <td>
-                  <ul>
-                    <li>AI・機械学習システム開発</li>
-                    <li>データ分析・活用支援</li>
-                    <li>プロダクトマネジメント支援</li>
-                    <li>デジタル変革コンサルティング</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td><strong>連絡先</strong></td>
-                <td>contact@tecmah.co.jp</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Awards & Certifications -->
-      <section>
-        <header>
-          <h2>実績・認定</h2>
-        </header>
-        <div class="row">
-          <div class="6u 12u$(small)">
-            <h3>🏆 受賞・表彰</h3>
-            <ul>
-              <li>AI活用事例コンテスト 優秀賞（2024年）</li>
-              <li>スタートアップ大賞 入賞（2024年）</li>
-            </ul>
-          </div>
-          <div class="6u$ 12u$(small)">
-            <h3>📋 認定・資格</h3>
-            <ul>
-              <li>AWS Certified Solutions Architect</li>
-              <li>Google Cloud Professional Data Engineer</li>
-              <li>Certified Scrum Product Owner</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section>
-        <header>
-          <h2>一緒に成長しませんか？</h2>
-        </header>
-        <p>TECMAHは、お客様のビジネス成長を支援するパートナーです。まずはお気軽にご相談ください。</p>
-        <ul class="actions">
-          <li><a href="/contact/" class="button primary">お問い合わせ</a></li>
-          <li><a href="/services/" class="button">サービス詳細</a></li>
-        </ul>
-      </section>
+<div class="container my-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-9">
+      <span class="badge-soft">About TECMAH</span>
+      <h1 class="section-heading mt-3">生成AIとPdMの現場経験で、企業の変革を前進させる</h1>
+      <p class="lead">TECMAH株式会社は、代表の{{ site.company.representative.ja }}（{{ site.company.representative_title.ja }}）を中心に、生成AI・データ活用・プロダクトマネジメントの専門家が集まる伴走型チームです。事業戦略と実装力を両輪に、ビジネスインパクトを最優先にした支援を提供します。</p>
     </div>
-  </section>
+  </div>
+
+  <div class="row g-4 mb-6">
+    <div class="col-md-6">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">ミッション</h2>
+        <p>データとAIの力で企業の意思決定を支援し、持続可能な成長を実現する。</p>
+        <p>生成AI時代に必要なスピードと品質で、ビジョン創出から現場実装、定着化までを伴走します。</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">バリュー</h2>
+        <ul>
+          <li><strong>Results First:</strong> 技術は成果のために。事業インパクトを必ず形にします。</li>
+          <li><strong>Data-Driven:</strong> データと仮説検証を基盤に意思決定を磨き込みます。</li>
+          <li><strong>Agile & Adaptive:</strong> 変化に強い体制をつくり、小さく早く学習します。</li>
+          <li><strong>Partnership:</strong> チームの一員として並走し、内製化と自走化まで支援します。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mb-6">
+    <div class="col-lg-6">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">提供チーム</h2>
+        <ul class="mb-0">
+          <li><strong>生成AIアーキテクト：</strong> Azure OpenAI、RAG、MLOpsの設計と実装</li>
+          <li><strong>プロダクトマネージャー：</strong> 戦略策定、ロードマップ、アジャイル推進</li>
+          <li><strong>データスペシャリスト：</strong> データ基盤構築、ダッシュボード、分析</li>
+          <li><strong>コンサルタント：</strong> 市場検証、ビジネス計画、チェンジマネジメント</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">実績・認定</h2>
+        <ul class="mb-0">
+          <li>教育SaaSでの生成AI導入：学習継続率18%向上、PoC成功率改善</li>
+          <li>製造業データ活用：異常検知リードタイム50%短縮、報告フロー標準化</li>
+          <li>小売×生成AI事業：3ヶ月でパイロット導入、マルチテナント運用設計</li>
+          <li>スタートアップ支援：投資判断材料整備、継続改善プロセス構築</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <h2 class="section-heading mb-3">会社情報</h2>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row" style="width: 160px;">会社名</th>
+          <td>TECMAH株式会社</td>
+        </tr>
+        <tr>
+          <th scope="row">英文社名</th>
+          <td>TECMAH Inc.</td>
+        </tr>
+        <tr>
+          <th scope="row">代表者</th>
+          <td>{{ site.company.representative.ja }}（{{ site.company.representative_title.ja }}）</td>
+        </tr>
+        <tr>
+          <th scope="row">設立</th>
+          <td>{{ site.company.established }}年</td>
+        </tr>
+        <tr>
+          <th scope="row">所在地</th>
+          <td>{{ site.company.headquarters.ja }}</td>
+        </tr>
+        <tr>
+          <th scope="row">事業内容</th>
+          <td>
+            <ul class="mb-0">
+              <li>生成AI・機械学習システム開発／運用</li>
+              <li>データ分析・基盤構築・ガバナンス設計</li>
+              <li>PdM/PM支援・アジャイルプロジェクト推進</li>
+              <li>新規事業開発・デジタルトランスフォーメーション支援</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">連絡先</th>
+          <td><a href="mailto:{{ site.social.email }}">{{ site.social.email }}</a>／TEL: {{ site.social.phone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,0 +1,8 @@
+email: 'info@tecmah.com'
+phone: '+81-70-8359-2530'
+address:
+  ja: '〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701'
+  en: 'RMBld.701, 31-1 Minami 2-jo Nishi 5-chome, Chuo-ku, Sapporo, Hokkaido 060-0062, Japan'
+contact_button_link:
+  ja: '/contact/'
+  en: '/en/contact/'

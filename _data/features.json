@@ -1,0 +1,47 @@
+[
+  {
+    "title": {
+      "ja": "生成AI×PdMの実行力",
+      "en": "Generative AI Execution"
+    },
+    "description": {
+      "ja": "Azure OpenAI、GPT-4oなどの最新技術をビジネス要求に落とし込み、プロダクトマネジメント視点でスピーディに実装します。",
+      "en": "We translate Azure OpenAI, GPT-4o, and modern ML stacks into shippable outcomes with product leadership embedded."
+    },
+    "image": {
+      "url": "assets/images/features/ai-execution.svg",
+      "width": "64",
+      "height": "64"
+    }
+  },
+  {
+    "title": {
+      "ja": "データドリブンな意思決定",
+      "en": "Data-Driven Decisions"
+    },
+    "description": {
+      "ja": "KPI設計、ダッシュボード構築、分析オペレーションの定着まで伴走し、継続的に学習する組織をつくります。",
+      "en": "We design KPI frameworks, dashboards, and analytics ops that keep teams aligned and learning continuously."
+    },
+    "image": {
+      "url": "assets/images/features/data-driven.svg",
+      "width": "64",
+      "height": "64"
+    }
+  },
+  {
+    "title": {
+      "ja": "伴走型コンサルティング",
+      "en": "Embedded Partnership"
+    },
+    "description": {
+      "ja": "短期の成果創出から内製化支援まで、プロジェクトに最適なチーム構成で伴走。北海道から全国までリモート・オンサイト対応。",
+      "en": "We embed as part of your team—from quick wins to enablement—delivering onsite or remotely across Japan."
+    },
+    "image": {
+      "url": "assets/images/features/partner.svg",
+      "width": "64",
+      "height": "64"
+    }
+  }
+]

@@ -22,7 +22,7 @@
 		rel="stylesheet">
 
 	<!--[if lte IE 8]><script src="{{ '/assets/js/ie/html5shiv.js' | relative_url }}"></script><![endif]-->
-	<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+	<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
 	<!--[if lte IE 9]><link rel="stylesheet" href="{{ '/assets/css/ie9.css' | relative_url }}" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="{{ '/assets/css/ie8.css' | relative_url }}" /><![endif]-->
 
@@ -176,7 +176,7 @@
 					<li><a href="https://www.pinterest.com/{{ site.pinterest_username }}" class="icon alt fa-pinterest"
 							target="_blank"><span class="label">Pinterest</span></a></li>
 					{% endif %}
-					{% assign fivehundredpx_username = site.500px_username %}
+					{% assign fivehundredpx_username = site['500px_username'] %}
 					{% if fivehundredpx_username %}
 					<li><a href="https://500px.com/{{ fivehundredpx_username }}" class="icon alt fa-500px"
 							target="_blank"><span class="label">500px</span></a></li>

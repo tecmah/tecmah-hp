@@ -1,134 +1,90 @@
 ---
 layout: page
 title: Contact Us
-description: Contact TECMAH Inc. for AI, Data Analytics & Product Management Support
+description: Reach out to TECMAH Inc. for generative AI enablement, data strategy, and product management support
 permalink: /en/contact/
 nav-menu: true
+lang: en
 ---
 
-<div id="main" class="alt">
-  <section id="one">
-    <div class="inner">
-      <header class="major">
-        <h1>{{ page.title }}</h1>
-      </header>
-      <p>Feel free to contact us for consultation on AI, data utilization, and product management support. Initial consultation is free.</p>
+<div class="container my-5">
+  <div class="row justify-content-center mb-4">
+    <div class="col-lg-8 text-center">
+      <span class="badge-soft">Contact</span>
+      <h1 class="section-heading mt-3">Schedule a discovery session</h1>
+      <p class="lead">We offer a complimentary 60-minute consultation to understand your goals, surface opportunities, and outline next steps.</p>
     </div>
-  </section>
+  </div>
 
-  <!-- Contact Form -->
-  <section id="contact-form">
-    <div class="inner">
-      <div class="row">
-        <div class="8u 12u$(small)">
-          <form method="post" action="https://formspree.io/f/your-form-id">
-            <div class="row uniform">
-              <div class="6u 12u$(xsmall)">
-                <input type="text" name="name" id="name" placeholder="Name *" required />
-              </div>
-              <div class="6u$ 12u$(xsmall)">
-                <input type="email" name="email" id="email" placeholder="Email *" required />
-              </div>
-              <div class="6u 12u$(xsmall)">
-                <input type="text" name="company" id="company" placeholder="Company/Organization" />
-              </div>
-              <div class="6u$ 12u$(xsmall)">
-                <input type="text" name="position" id="position" placeholder="Position/Department" />
-              </div>
-              <div class="12u$">
-                <div class="select-wrapper">
-                  <select name="inquiry_type" id="inquiry_type">
-                    <option value="">Please select inquiry type</option>
-                    <option value="ai-data">AI & Data Analytics</option>
-                    <option value="product-management">Product Management Support</option>
-                    <option value="consulting">Consulting</option>
-                    <option value="partnership">Partnership</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </div>
-              <div class="12u$">
-                <textarea name="message" id="message" placeholder="Please describe your inquiry in detail *" rows="6" required></textarea>
-              </div>
-              <div class="12u$">
-                <input type="checkbox" id="privacy" name="privacy" required>
-                <label for="privacy">
-                  I agree to the <a href="/en/policy/" target="_blank">Privacy Policy</a> *
-                </label>
-              </div>
-              <div class="12u$">
-                <ul class="actions">
-                  <li><input type="submit" value="Send" class="primary" /></li>
-                  <li><input type="reset" value="Reset" /></li>
-                </ul>
+  <div class="row g-5 align-items-start">
+    <div class="col-lg-7">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">Contact form</h2>
+        <!-- TODO: Update Formspree endpoint after creating the account -->
+        <form method="post" action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" class="mt-4">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name *</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email *</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="company" class="form-label">Company</label>
+                <input type="text" class="form-control" id="company" name="company">
               </div>
             </div>
-          </form>
-        </div>
-        <div class="4u$ 12u$(small)">
-          <div class="contact-info">
-            <h3>Direct Contact</h3>
-            <p>For urgent inquiries, please contact us directly via email.</p>
-            <ul class="contact">
-              <li>
-                <h3>Email</h3>
-                <a href="mailto:contact@tecmah.co.jp">contact@tecmah.co.jp</a>
-              </li>
-              <li>
-                <h3>Location</h3>
-                <span>Tokyo, Japan<br />
-                (Details provided upon inquiry)</span>
-              </li>
-            </ul>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="position" class="form-label">Role</label>
+                <input type="text" class="form-control" id="position" name="position">
+              </div>
+            </div>
           </div>
-        </div>
+          <div class="mb-3">
+            <label for="inquiry_type" class="form-label">Inquiry type</label>
+            <select class="form-select" id="inquiry_type" name="inquiry_type">
+              <option value="">Please select</option>
+              <option value="ai-data">Generative AI / Data Enablement</option>
+              <option value="product">Product Leadership Support</option>
+              <option value="consulting">New Business / DX Consulting</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">How can we help? *</label>
+            <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="agree" id="privacy" required>
+            <label class="form-check-label" for="privacy">
+              I agree to the <a href="/en/policy/" target="_blank">privacy policy</a>
+            </label>
+          </div>
+          <button type="submit" class="button button-primary">Submit</button>
+        </form>
       </div>
     </div>
-  </section>
-
-  <!-- Services Overview -->
-  <section id="services-overview">
-    <div class="inner">
-      <header>
-        <h2>How Can We Help?</h2>
-      </header>
-      <div class="row">
-        <div class="6u 12u$(medium)">
-          <h3>🤖 AI & Data Analytics</h3>
-          <ul>
-            <li>Want to implement AI but don't know where to start</li>
-            <li>Have data but don't know how to utilize it</li>
-            <li>Want to improve machine learning model accuracy</li>
-            <li>Need to build data analysis infrastructure</li>
-          </ul>
-        </div>
-        <div class="6u$ 12u$(medium)">
-          <h3>📊 Product Management</h3>
-          <ul>
-            <li>Want to clarify product strategy</li>
-            <li>Need to improve development team productivity</li>
-            <li>Want data-driven product improvement</li>
-            <li>Need to strengthen PM organization</li>
-          </ul>
-        </div>
+    <div class="col-lg-5">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">Direct contact</h2>
+        <p class="mb-4">For urgent matters, partnership discussions, or media requests, feel free to contact us directly.</p>
+        <ul class="list-unstyled mb-4">
+          <li class="mb-2"><strong>Email:</strong> <a href="mailto:info@tecmah.com">info@tecmah.com</a></li>
+          <li class="mb-2"><strong>Tel:</strong> <a href="tel:+817083592530">+81-70-8359-2530</a></li>
+          <li><strong>Address:</strong><br>{{ site.social.address_en }}</li>
+        </ul>
+        <h3 class="section-heading mt-4">Typical topics</h3>
+        <ul>
+          <li>Designing and piloting generative AI services</li>
+          <li>PdM/PjM augmentation for critical product initiatives</li>
+          <li>Data platform modernization and KPI frameworks</li>
+          <li>Market validation for new ventures and GTM strategy</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
 </div>
-
-<style>
-.contact-info {
-  background: #f8f9fa;
-  padding: 2em;
-  border-radius: 5px;
-}
-
-.contact-info ul.contact {
-  list-style: none;
-  padding: 0;
-}
-
-.contact-info ul.contact li {
-  margin-bottom: 1.5em;
-}
-</style>

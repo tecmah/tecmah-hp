@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>{{ page.title }}</h1>
+        {% if page.intro %}
+          <p class="hero-lead">{{ page.intro }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="service-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8">
+        {{ content }}
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="service-sidebar">
+          {% if page.weight %}
+            <div class="service-priority">
+              <strong>優先度: {{ page.weight }}</strong>
+            </div>
+          {% endif %}
+          
+          {% if site.cta.free_consultation %}
+            <div class="service-cta">
+              <a href="{{ site.cta.free_consultation.url }}" class="btn btn-primary">
+                {{ site.cta.free_consultation.text }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

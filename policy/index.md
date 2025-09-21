@@ -1,175 +1,71 @@
 ---
 layout: page
 title: ポリシー
-description: プライバシーポリシー、利用規約等の重要な規約
+description: プライバシーポリシー・利用規約・セキュリティ方針の概要
 nav-menu: true
+lang: ja
 ---
 
-<div id="main" class="alt">
-  <section id="one">
-    <div class="inner">
-      <header class="major">
-        <h1>{{ page.title }}</h1>
-      </header>
-      <p>TECMAH株式会社の各種ポリシーをご確認いただけます。</p>
-      
-      <div class="box" style="background: #f8f9fa; padding: 2rem; border-radius: 8px; margin: 2rem 0;">
-        <h3>📋 詳細なポリシー文書</h3>
-        <p>詳細なポリシー文書は現在準備中です。以下の概要をご確認いただき、ご質問がございましたらお気軽にお問い合わせください。</p>
-        <div class="row">
-          <div class="4u 12u$(small)">
-            <div class="policy-status">
-              <h4>プライバシーポリシー</h4>
-              <p><span class="status-badge">準備中</span></p>
-            </div>
-          </div>
-          <div class="4u 12u$(small)">
-            <div class="policy-status">
-              <h4>利用規約</h4>
-              <p><span class="status-badge">準備中</span></p>
-            </div>
-          </div>
-          <div class="4u$ 12u$(small)">
-            <div class="policy-status">
-              <h4>セキュリティポリシー</h4>
-              <p><span class="status-badge">準備中</span></p>
-            </div>
-          </div>
-        </div>
+<div class="container my-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-9 text-center">
+      <span class="badge-soft">Policies</span>
+      <h1 class="section-heading mt-3">TECMAH株式会社のポリシー概要</h1>
+      <p class="lead">正式な文書は現在整備中です。公開準備が整い次第、本ページでご案内します。ご不明点がありましたらお気軽にお問い合わせください。</p>
+    </div>
+  </div>
+
+  <div class="row g-4 mb-5">
+    <div class="col-md-4">
+      <div class="policy-box h-100">
+        <h3>プライバシーポリシー</h3>
+        <p class="mb-1">個人情報の取り扱い方針と安全管理体制について記載しています。</p>
+        <span class="badge-soft">準備中</span>
       </div>
     </div>
-  </section>
-
-  <!-- Privacy Policy Summary -->
-  <section id="privacy-policy">
-    <div class="inner">
-      <header>
-        <h2>プライバシーポリシー概要</h2>
-      </header>
-      
-      <h3>個人情報の取り扱いについて</h3>
-      <p>TECMAH株式会社（以下「当社」）は、お客様の個人情報を適切に保護することを重要な責務と考え、以下の方針に従って個人情報を取り扱います。</p>
-
-      <div class="row">
-        <div class="6u 12u$(small)">
-          <h4>収集・利用目的</h4>
-          <ul>
-            <li>サービス提供・サポート</li>
-            <li>お問い合わせ対応</li>
-            <li>契約締結・履行</li>
-            <li>セミナー・イベントのご案内</li>
-          </ul>
-        </div>
-        <div class="6u$ 12u$(small)">
-          <h4>保護・管理</h4>
-          <ul>
-            <li>適切な安全管理措置</li>
-            <li>目的外利用の禁止</li>
-            <li>第三者提供の制限</li>
-            <li>法令遵守</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="box">
-        <p><strong>📄 詳細なプライバシーポリシーは現在準備中です。ご質問がございましたらお問い合わせください。</strong></p>
+    <div class="col-md-4">
+      <div class="policy-box h-100">
+        <h3>利用規約</h3>
+        <p class="mb-1">サービス利用時のルールや禁止事項、知的財産権の扱いを定義します。</p>
+        <span class="badge-soft">準備中</span>
       </div>
     </div>
-  </section>
-
-  <hr class="major" />
-
-  <!-- Terms of Service -->
-  <section id="terms">
-    <div class="inner">
-      <header>
-        <h2>利用規約概要</h2>
-      </header>
-      
-      <h3>サービス利用規約の概要</h3>
-      <p>当社サービスをご利用いただく際の基本的な規約をご説明します。</p>
-
-      <div class="row">
-        <div class="6u 12u$(small)">
-          <h4>サービス利用</h4>
-          <ul>
-            <li>法人・個人事業主様向け</li>
-            <li>適切な目的でのご利用</li>
-            <li>知的財産権の保護</li>
-          </ul>
-        </div>
-        <div class="6u$ 12u$(small)">
-          <h4>禁止行為</h4>
-          <ul>
-            <li>法令違反行為</li>
-            <li>第三者権利侵害</li>
-            <li>サービス運営妨害</li>
-            <li>公序良俗違反</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="box">
-        <p><strong>📄 詳細な利用規約は現在準備中です。ご質問がございましたらお問い合わせください。</strong></p>
+    <div class="col-md-4">
+      <div class="policy-box h-100">
+        <h3>セキュリティポリシー</h3>
+        <p class="mb-1">情報セキュリティに関する技術的・組織的対策を明文化しています。</p>
+        <span class="badge-soft">準備中</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <hr class="major" />
-
-  <!-- Security Policy -->
-  <section id="security">
-    <div class="inner">
-      <header>
-        <h2>セキュリティポリシー概要</h2>
-      </header>
-      
-      <h3>情報セキュリティへの取り組み</h3>
-      <p>当社は、お客様の重要な情報資産を保護するため、以下のセキュリティ対策を実施しています。</p>
-
-      <div class="row">
-        <div class="6u 12u$(small)">
-          <h4>技術的対策</h4>
-          <ul>
-            <li>暗号化通信（SSL/TLS）</li>
-            <li>アクセス制御・認証</li>
-            <li>ファイアウォール・IDS</li>
-            <li>定期的なセキュリティ監査</li>
-          </ul>
-        </div>
-        <div class="6u$ 12u$(small)">
-          <h4>物理的・組織的対策</h4>
-          <ul>
-            <li>データセンターの厳重管理</li>
-            <li>従業員への定期研修</li>
-            <li>アクセス権限の最小化</li>
-            <li>インシデント対応体制</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="box">
-        <p><strong>📄 詳細なセキュリティポリシーは現在準備中です。ご質問がございましたらお問い合わせください。</strong></p>
+  <div class="row g-4 mb-5">
+    <div class="col-lg-6">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">個人情報の取り扱い（概要）</h2>
+        <ul>
+          <li>利用目的：サービス提供、問い合わせ対応、契約履行、イベント案内</li>
+          <li>管理体制：アクセス制御、暗号化通信、社員教育、第三者提供の制限</li>
+          <li>法令遵守：個人情報保護法など関連法令を遵守し、継続的に見直します</li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="policy-contact">
-    <div class="inner">
-      <header>
-        <h2>お問い合わせ</h2>
-      </header>
-      <p>各種ポリシーに関するご質問やご不明な点がございましたら、お気軽にお問い合わせください。</p>
-      <ul class="actions">
-        <li><a href="{{ '/contact/' | relative_url }}" class="button primary">お問い合わせ</a></li>
-      </ul>
-      
-      <div class="box">
-        <p><strong>最終更新日:</strong> 2024年12月10日</p>
-        <p><strong>版:</strong> 1.0</p>
-        <p><strong>注意:</strong> 詳細なポリシー文書は現在準備中です。公開次第、このページでお知らせいたします。</p>
+    <div class="col-lg-6">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">利用規約（概要）</h2>
+        <ul>
+          <li>利用対象：法人・個人事業主、協力企業</li>
+          <li>禁止事項：法令違反、第三者権利侵害、サービス運営の妨害など</li>
+          <li>知的財産権：成果物・ナレッジの取り扱いは契約内容に準じます</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+
+  <div class="contact-card">
+    <h2 class="section-heading mb-3">詳細なポリシー文書をご希望の方へ</h2>
+    <p>正式版のポリシー文書が必要な場合は、下記よりお問い合わせください。最新のドラフトを個別にご案内いたします。</p>
+    <a class="button button-primary mt-3" href="/contact/">お問い合わせ</a>
+    <p class="mt-3 mb-0 text-muted">最終更新日: 2024年12月10日</p>
+  </div>
 </div>

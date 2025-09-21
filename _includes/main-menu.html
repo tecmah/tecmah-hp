@@ -1,0 +1,13 @@
+<div id="main-menu" class="main-menu">
+  {% assign lang_code = page.lang | default: site.default_lang %}
+  {% assign mainmenu = site.data.menus.main | sort: 'weight' %}
+  <ul>
+    {% for item in mainmenu %}
+      {% assign link = item.url[lang_code] | default: item.url[site.default_lang] %}
+      {% assign name = item.name[lang_code] | default: item.name[site.default_lang] %}
+      <li class="{% if link == page.url %}active{% endif %}">
+        <a href="{{ link | relative_url }}">{{ name }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

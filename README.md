@@ -6,10 +6,10 @@ TECMAH株式会社の公式ウェブサイト - AI・データ活用・PdM/PM支
 
 このサイトは、Jekyll + GitHub Pagesで構築されており、以下の特徴があります：
 
-- **テーマ**: Forty Jekyll Theme (andrewbanchich/forty-jekyll-theme)
+- **テーマ**: Jekyll Serif Theme (zerostaticthemes/jekyll-serif-theme) をベースにカスタマイズ
 - **多言語対応**: 日本語（デフォルト）、英語（/en）
-- **レスポンシブデザイン**: モバイル・タブレット・デスクトップ対応
-- **プロフェッショナルデザイン**: ビジネス向けの洗練されたUI
+- **サービスコレクション**: `_services` コレクションを利用したサービス紹介カード
+- **カスタムデザイン**: ブランドカラー、日英フォント、カードUI、アイコンを独自実装
 
 ## サイト構成
 
@@ -21,9 +21,12 @@ TECMAH株式会社の公式ウェブサイト - AI・データ活用・PdM/PM支
 - **ポリシー** (`/policy/`) - プライバシーポリシー、利用規約
 - **お問い合わせ** (`/contact/`) - コンタクトフォームと企業情報
 
-### 英語版（ミニマル）
+### 英語版
 - **Home** (`/en/`) - Company overview in English
-- **Services** (`/en/services/`) - Service overview in English  
+- **Services** (`/en/services/`) - Service overview in English
+- **Case Studies** (`/en/work/`) - Selected engagements in English
+- **About** (`/en/about/`) - Company profile in English
+- **Policies** (`/en/policy/`) - Policy overview in English
 - **Contact** (`/en/contact/`) - Contact form in English
 
 ## ローカル開発
@@ -92,13 +95,14 @@ bundle exec jekyll serve
 - 画像: `assets/images/`ディレクトリに配置
 
 ### スタイリング
-- カスタムCSS: テーマの上書きが可能
-- レイアウト: `_layouts/`で独自レイアウトを作成
+- `assets/css/style.scss` でブランドカラー・フォント・カードUIなどを調整
+- 追加アイコンは `assets/images/icons/`、ロゴは `assets/images/logo/` 配下で管理
+- レイアウトの上書きは `_layouts/`、ヘッダー/フッター等のカスタムは `_includes/`
 
 ## 技術スタック
 
 - **Static Site Generator**: Jekyll 3.10.0
-- **Theme**: Forty Jekyll Theme
+- **Theme**: Jekyll Serif Theme （カスタムオーバーライド）
 - **Hosting**: GitHub Pages  
 - **Languages**: HTML5, CSS3, JavaScript
 - **Responsive Framework**: Built-in responsive design
@@ -106,7 +110,7 @@ bundle exec jekyll serve
 
 ## サポート・お問い合わせ
 
-サイトに関する技術的な質問は、GitHubのIssuesまたは contact@tecmah.co.jp までご連絡ください。
+サイトに関する技術的な質問は、GitHubのIssuesまたは info@tecmah.com までご連絡ください。
 
 ---
 

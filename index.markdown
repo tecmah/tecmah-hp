@@ -1,147 +1,42 @@
 ---
-layout: default
-title: メンテナンス中 - TECMAH株式会社
-description: サイト改修中です。しばらくお待ちください。
-nav-menu: false
+layout: home
+title: TECMAH株式会社 | AI・データ活用とPdM支援の伴走パートナー
+description: 生成AIとデータ活用を軸に、新規事業開発・PdM/PM支援・コンサルティングを提供するTECMAH株式会社のコーポレートサイトです。
 lang: ja
+show_call_box: true
 ---
 
-<style>
-.maintenance-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-align: center;
-  padding: 2rem;
-  font-family: 'Arial', sans-serif;
-}
+<div class="badge-soft">AI・データ活用・PdM/PM支援</div>
 
-.maintenance-icon {
-  font-size: 8rem;
-  margin-bottom: 2rem;
-  animation: spin 2s linear infinite;
-}
+# TECMAHは、生成AIとプロダクトマネジメントで事業成長を加速させます。
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+プロダクト戦略の立案からデータ基盤の整備、生成AIの活用企画と実装、内製化支援まで。ビジネスインパクトに直結する伴走型チームで、短期間でも確かな成果創出につなげます。
 
-.maintenance-title {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
+<ul class="list-inline mt-4">
+  <li class="list-inline-item"><a class="button button-primary" href="/contact/">無料相談を予約</a></li>
+  <li class="list-inline-item"><a class="button" href="/services/">サービスを見る</a></li>
+</ul>
 
-.maintenance-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
-
-.maintenance-message {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  max-width: 600px;
-  margin-bottom: 2rem;
-}
-
-.code-block {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 2rem 0;
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
-  text-align: left;
-  border-left: 4px solid #00ff00;
-}
-
-.progress-bar {
-  width: 100%;
-  max-width: 400px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 2rem 0;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #00ff00, #ffff00);
-  width: 0%;
-  animation: progress 3s ease-in-out infinite;
-}
-
-@keyframes progress {
-  0% { width: 0%; }
-  50% { width: 75%; }
-  100% { width: 0%; }
-}
-
-.contact-info {
-  margin-top: 2rem;
-  font-size: 1rem;
-  opacity: 0.8;
-}
-
-.emoji {
-  font-size: 1.5rem;
-  margin: 0 0.5rem;
-}
-
-@media (max-width: 768px) {
-  .maintenance-title {
-    font-size: 2rem;
-  }
-  
-  .maintenance-subtitle {
-    font-size: 1.2rem;
-  }
-  
-  .maintenance-icon {
-    font-size: 5rem;
-  }
-}
-</style>
-
-<div class="maintenance-container">
-  <div class="maintenance-icon">⚙️</div>
-  
-  <h1 class="maintenance-title">メンテナンス中</h1>
-  <h2 class="maintenance-subtitle">Site Under Construction</h2>
-  
-  <div class="maintenance-message">
-    <p>現在、サイトの改修作業を行っております。<br>
-    より良いサービスを提供するため、システムをアップデート中です。</p>
+<section class="mt-6">
+  <h2 class="section-heading mb-4">主要取引領域</h2>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="case-card">
+        <h3>生成AI/LLM導入</h3>
+        <p>利用シーンの定義からPoC、運用ガバナンスまで一気通貫で支援。</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="case-card">
+        <h3>PdM/PjM伴走</h3>
+        <p>戦略・ロードマップ・開発体制の構築を支援し、自走化を実現。</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="case-card">
+        <h3>データ基盤とDX</h3>
+        <p>KPI設計、ダッシュボード構築、業務設計でデータドリブン体制へ。</p>
+      </div>
+    </div>
   </div>
-  
-  <div class="code-block">
-    <div>// 現在の状況</div>
-    <div>const status = "メンテナンス中";</div>
-    <div>const progress = "バックエンドの最適化中...";</div>
-    <div>const eta = "もうしばらくお待ちください";</div>
-    <div></div>
-    <div>console.log("🚀 新しいサイトがもうすぐ公開されます！");</div>
-  </div>
-  
-  <div class="progress-bar">
-    <div class="progress-fill"></div>
-  </div>
-  
-  <div class="maintenance-message">
-    <p>エンジニアが全力で作業中です <span class="emoji">💻</span><br>
-    しばらくしてから再度アクセスしてください。</p>
-  </div>
-  
-  <div class="contact-info">
-    <p>緊急のお問い合わせは以下まで：<br>
-    <strong>contact@tecmah.com</strong></p>
-  </div>
-</div>
-
+</section>

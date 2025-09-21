@@ -1,168 +1,90 @@
 ---
 layout: page
 title: Services
-description: AI, Data Analytics & Product Management Support Services by TECMAH
+description: Generative AI enablement, product leadership, and digital transformation consulting by TECMAH
 image: assets/images/services-hero.jpg
 nav-menu: true
 permalink: /en/services/
+lang: en
 ---
 
-<div id="main" class="alt">
-  <section id="one">
-    <div class="inner">
-      <header class="major">
-        <h1>{{ page.title }}</h1>
-      </header>
-
-      <!-- AI & Data Analytics Support -->
-      <section>
-        <header>
-          <h2>AI & Data Analytics Support</h2>
-        </header>
-        <div class="row">
-          <div class="6u 12u$(small)">
-            <h3>Machine Learning & AI Development</h3>
-            <ul>
-              <li>Predictive model development & operation</li>
-              <li>Natural language processing system construction</li>
-              <li>Computer vision applications</li>
-              <li>Recommendation system development</li>
-            </ul>
-          </div>
-          <div class="6u$ 12u$(small)">
-            <h3>Data Infrastructure Construction</h3>
-            <ul>
-              <li>Data warehouse design</li>
-              <li>ETL/ELT pipeline construction</li>
-              <li>Real-time data processing</li>
-              <li>Data governance system establishment</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="6u 12u$(small)">
-            <h3>Data Analysis & Visualization</h3>
-            <ul>
-              <li>Exploratory data analysis</li>
-              <li>Statistical analysis & hypothesis testing</li>
-              <li>Dashboard construction</li>
-              <li>Report automation</li>
-            </ul>
-          </div>
-          <div class="6u$ 12u$(small)">
-            <h3>AI Strategy Consulting</h3>
-            <ul>
-              <li>AI adoption roadmap development</li>
-              <li>Technology selection & architecture design</li>
-              <li>Organizational structure & skill requirements</li>
-              <li>ROI maximization strategy</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <hr class="major" />
-
-      <!-- Product Management Support -->
-      <section>
-        <header>
-          <h2>Product Management Support</h2>
-        </header>
-        <div class="row">
-          <div class="6u 12u$(small)">
-            <h3>Strategy & Planning</h3>
-            <ul>
-              <li>Product strategy development</li>
-              <li>Market research & competitive analysis</li>
-              <li>User research & persona design</li>
-              <li>Roadmap development</li>
-            </ul>
-          </div>
-          <div class="6u$ 12u$(small)">
-            <h3>Development Process Management</h3>
-            <ul>
-              <li>Agile development support</li>
-              <li>Requirements definition & specification</li>
-              <li>Project management</li>
-              <li>Risk management</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="6u 12u$(small)">
-            <h3>Growth & Improvement</h3>
-            <ul>
-              <li>A/B test design & implementation</li>
-              <li>KPI design & analysis</li>
-              <li>User feedback analysis</li>
-              <li>Continuous improvement process</li>
-            </ul>
-          </div>
-          <div class="6u$ 12u$(small)">
-            <h3>Organization & Talent Development</h3>
-            <ul>
-              <li>PM organizational structure</li>
-              <li>PM skill training</li>
-              <li>Process standardization</li>
-              <li>Knowledge management</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <hr class="major" />
-
-      <!-- Service Process -->
-      <section>
-        <header>
-          <h2>Service Delivery Process</h2>
-        </header>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Phase</th>
-                <th>Duration</th>
-                <th>Content</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1. Discovery & Analysis</td>
-                <td>1-2 weeks</td>
-                <td>Current state assessment, issue identification, requirements definition</td>
-              </tr>
-              <tr>
-                <td>2. Strategy Design</td>
-                <td>1-2 weeks</td>
-                <td>Solution proposal, execution plan development</td>
-              </tr>
-              <tr>
-                <td>3. Implementation & Execution</td>
-                <td>2-6 months</td>
-                <td>System development, process construction, operation support</td>
-              </tr>
-              <tr>
-                <td>4. Optimization & Improvement</td>
-                <td>Ongoing</td>
-                <td>Performance analysis, continuous improvement</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section>
-        <header>
-          <h2>Let's Start with a Consultation</h2>
-        </header>
-        <p>We'll propose the optimal solution for your business challenges. Initial consultation is free.</p>
-        <ul class="actions">
-          <li><a href="{{ '/en/contact/' | relative_url }}" class="button primary">Contact Us</a></li>
-          <li><a href="{{ '/en/work/' | relative_url }}" class="button">View Case Studies</a></li>
-        </ul>
-      </section>
+<div class="container my-5">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+      <span class="badge-soft">Service Lineup</span>
+      <h1 class="section-heading mt-3">Three capabilities to accelerate your roadmap</h1>
+      <p class="lead">From strategy and PoC to delivery and enablement, TECMAH embeds with your team to deliver impact quickly while building long-term capability.</p>
     </div>
-  </section>
+  </div>
+
+  <div class="row g-4 mb-6">
+    {% assign localized_services = site.services | where: 'lang', 'en' %}
+    {% for service in localized_services %}
+      <div class="col-md-4">
+        <div class="service service-summary h-100">
+          <div class="service-content">
+            <h2 class="service-title"><a href="{{ service.permalink | relative_url }}">{{ service.title }}</a></h2>
+            <p>{{ service.excerpt }}</p>
+            <a class="button button-primary mt-3" href="{{ service.permalink | relative_url }}">Learn More</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="row g-4 align-items-stretch mb-6">
+    <div class="col-lg-6">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">Typical engagement flow</h2>
+        <ol class="mt-3">
+          <li><strong>Discovery & Scoping</strong> (1-2 weeks) Clarify goals, constraints, and stakeholders.</li>
+          <li><strong>Planning</strong> (1-2 weeks) Align on roadmap, KPIs, resources, and governance.</li>
+          <li><strong>Delivery</strong> (2-6 months) Operate as embedded PdM/PjM to drive execution.</li>
+          <li><strong>Enablement</strong> (ongoing) Institutionalize knowledge, rituals, and tooling.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="contact-card h-100">
+        <h2 class="section-heading">Common engagement themes</h2>
+        <ul class="mt-3">
+          <li>Generative AI use case design, PoC, and ROI measurement</li>
+          <li>Data platform, MLOps, and governance operating models</li>
+          <li>Product leadership for multi-team delivery and prioritization</li>
+          <li>New business validation and investment readiness</li>
+        </ul>
+        <a class="button button-primary mt-3" href="/en/contact/">Book a Consultation</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <h2 class="section-heading mb-3">Selected outcomes</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Capability</th>
+          <th scope="col">Focus</th>
+          <th scope="col">Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Generative AI & Data</td>
+          <td>Use case design, PoC delivery, governance, and monitoring</td>
+          <td>+18% retention uplift, faster go/no-go, repeatable AI operations</td>
+        </tr>
+        <tr>
+          <td>Product Leadership</td>
+          <td>Roadmaps, agile delivery, KPI dashboards, stakeholder alignment</td>
+          <td>35% faster lead time, 3x release frequency, higher CSAT</td>
+        </tr>
+        <tr>
+          <td>New Business & DX</td>
+          <td>Market validation, business planning, change management</td>
+          <td>Investment-grade insights, successful multi-industry launches</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
