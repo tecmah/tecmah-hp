@@ -8,18 +8,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "workflow:install": "npm install -g @bahdotsh/wrkflw",
-    "workflow:test": "wrkflw run build",
-    "workflow:debug": "wrkflw run build --debug",
     "test:build": "npm run build && npm run preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
     "astro": "^5.13.9",
     "tailwindcss": "^4.1.13"
-  },
-  "devDependencies": {
-    "@bahdotsh/wrkflw": "^1.0.0"
   },
   "repository": {
     "type": "git",

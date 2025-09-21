@@ -177,25 +177,26 @@ npm run build
 # distフォルダをGitHub Pagesに手動アップロード
 ```
 
-## 🔧 wrkflw - ローカルワークフロー実行
+## 🔧 wrkflw - ローカルワークフロー実行（オプション）
 
-### インストール
+> **注意**: wrkflwはオプションのツールです。GitHub Actionsが正常動作している場合は不要です。
+
+### インストール（オプション）
 ```bash
-npm run workflow:install
+npm install -g wrkflw
 ```
 
-### ローカルでGitHub Actionsテスト
+### 使用方法
 ```bash
 # 基本実行
-npm run workflow:test
+wrkflw run .github/workflows/deploy.yml
 
 # デバッグモード
-npm run workflow:debug
+wrkflw run .github/workflows/deploy.yml --debug
 ```
 
-### 設定ファイル
-- `.wrkflw/config.yml`: ワークフロー設定
-- GitHub Actions を本番環境にPushする前にローカルでテスト可能
+### 詳細情報
+詳しい使用方法は [`local-workflow.md`](./local-workflow.md) を参照してください。
 
 ## 🔧 カスタマイズガイド
 
@@ -276,6 +277,9 @@ npm run build -- --verbose
 
 # 型チェック
 npx tsc --noEmit
+
+# ビルドテスト
+npm run test:build
 
 # 開発サーバー詳細ログ
 npm run dev -- --verbose
