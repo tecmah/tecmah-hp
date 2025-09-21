@@ -5,9 +5,13 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tecmah.github.io',
-  base: '/tecmah-hp',
+  site: 'https://www.tecmah.com',
+  base: '',
   output: 'static',
+  trailingSlash: 'never',
+  build: {
+    assets: 'assets'
+  },
   vite: {
     plugins: [tailwindcss()]
   }

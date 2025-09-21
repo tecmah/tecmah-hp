@@ -165,7 +165,8 @@ const company = {
 
 1. **Push時**: `main`ブランチへのPushで自動デプロイ
 2. **GitHub Actions**: `.github/workflows/deploy.yml`で設定
-3. **公開URL**: `https://tecmah.github.io/tecmah-hp/`
+3. **公開URL**: `https://www.tecmah.com/`
+4. **カスタムドメイン**: CNAMEファイルで設定済み
 
 ### 手動デプロイ
 
@@ -175,6 +176,26 @@ npm run build
 
 # distフォルダをGitHub Pagesに手動アップロード
 ```
+
+## 🔧 wrkflw - ローカルワークフロー実行
+
+### インストール
+```bash
+npm run workflow:install
+```
+
+### ローカルでGitHub Actionsテスト
+```bash
+# 基本実行
+npm run workflow:test
+
+# デバッグモード
+npm run workflow:debug
+```
+
+### 設定ファイル
+- `.wrkflw/config.yml`: ワークフロー設定
+- GitHub Actions を本番環境にPushする前にローカルでテスト可能
 
 ## 🔧 カスタマイズガイド
 
@@ -286,8 +307,8 @@ npm run dev -- --verbose
 
 ### 営業・ビジネスお問い合わせ
 
-- **無料相談**: [お問い合わせフォーム](https://tecmah.github.io/tecmah-hp/contact)
-- **サービス詳細**: [サービスページ](https://tecmah.github.io/tecmah-hp/services)
+- **無料相談**: [お問い合わせフォーム](https://www.tecmah.com/contact)
+- **サービス詳細**: [サービスページ](https://www.tecmah.com/services)
 
 ---
 

@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# SEO optimization for TECMAH Corporation
+Sitemap: https://www.tecmah.com/sitemap.xml
+
+# Block common bot paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.well-known/
+
+# Allow all pages for search engines
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /contact
+Allow: /case-studies

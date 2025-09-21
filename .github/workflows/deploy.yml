@@ -3,8 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    # Remove pull_request trigger for production deployments
+
+# Allow only one concurrent deployment
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -13,6 +17,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for git info
       
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -23,8 +29,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
-    - name: Build
+    - name: Build Astro site
       run: npm run build
+      
+    - name: Create CNAME file for custom domain
+      run: echo "www.tecmah.com" > ./dist/CNAME
       
     - name: Upload Pages Artifact
       uses: actions/upload-pages-artifact@v3
@@ -39,6 +48,7 @@ jobs:
     permissions:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
+      contents: read    # to read the repository contents
       
     # Deploy to the github-pages environment
     environment:

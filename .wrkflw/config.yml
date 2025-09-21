@@ -1,0 +1,32 @@
+# wrkflw configuration for GitHub Actions local testing
+workflows:
+  build:
+    file: .github/workflows/deploy.yml
+    env:
+      NODE_ENV: development
+      CI: true
+    
+# Local testing settings
+settings:
+  runner:
+    platform: linux
+    arch: x64
+  
+  # Environment variables for local testing
+  env:
+    GITHUB_WORKSPACE: /github/workspace
+    GITHUB_REPOSITORY: tecmah/tecmah-hp
+    GITHUB_REF: refs/heads/main
+    GITHUB_SHA: local-test
+    
+  # Mock GitHub context
+  github:
+    repository: tecmah/tecmah-hp
+    ref: refs/heads/main
+    sha: local-test-sha
+    
+# Debugging options
+debug:
+  verbose: true
+  step_by_step: false
+  preserve_artifacts: true
