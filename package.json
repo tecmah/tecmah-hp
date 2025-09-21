@@ -1,0 +1,23 @@
+{
+  "name": "tecmah-hp",
+  "version": "1.0.0",
+  "description": "TECMAH株式会社のウェブサイト",
+  "scripts": {
+    "build": "bundle exec jekyll build",
+    "serve": "bundle exec jekyll serve",
+    "dev": "bundle exec jekyll serve --livereload"
+  },
+  "devDependencies": {
+    "@bookshop/browser": "^3.0.0",
+    "@bookshop/jekyll-engine": "^3.0.0",
+    "@bookshop/generate": "^3.0.0",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tecmah/tecmah-hp.git"
+  },
+  "author": "TECMAH Inc.",
+  "license": "MIT"
+}

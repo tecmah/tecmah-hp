@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:jekyll-serif.netlify.app)",
+      "WebSearch",
+      "Bash(npm install)",
+      "Bash(bundle exec jekyll:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
