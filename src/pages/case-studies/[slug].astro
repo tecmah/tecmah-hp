@@ -1,0 +1,864 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+
+export async function getStaticPaths() {
+  const caseStudies = [
+    {
+      slug: 'education-saas',
+      title: '教育SaaS企業',
+      subtitle: '生成AIアダプティブ学習システム',
+      industry: '教育',
+      company_size: 'スタートアップ（従業員50名）',
+      project_period: '6ヶ月（PoC 3ヶ月 + 本格導入 3ヶ月）',
+      team_size: 'TECMAH 3名 + クライアント 5名',
+      budget_range: '300-500万円',
+      image: '/images/case-education.jpg',
+      tags: ['生成AI', 'データ分析', 'EdTech', 'Azure OpenAI'],
+      
+      challenge: {
+        title: '学習継続率の低下と個別最適化の限界',
+        description: '既存の学習プラットフォームでは、学習者の多様なニーズや学習スタイルに対応できず、継続率が徐々に低下していました。',
+        pain_points: [
+          '学習者の70%が3ヶ月以内に離脱',
+          '画一的なカリキュラムによる学習効果の限界',
+          '学習者の理解度・進捗の可視化不足',
+          '講師の個別対応コストの増大'
+        ]
+      },
+      
+      solution: {
+        title: 'GPT-4を活用したアダプティブ学習システム',
+        description: '生成AIとデータ分析を組み合わせ、学習者一人ひとりに最適化された学習体験を提供するシステムを構築しました。',
+        approach: [
+          {
+            phase: 'Phase 1: 現状分析・要件定義',
+            duration: '1ヶ月',
+            activities: [
+              'ユーザー行動データの詳細分析',
+              '学習者・講師へのインタビュー実施',
+              '競合サービスのAI活用状況調査',
+              '技術要件・制約条件の整理'
+            ]
+          },
+          {
+            phase: 'Phase 2: PoCシステム開発',
+            duration: '2ヶ月',
+            activities: [
+              'Azure OpenAI GPT-4の学習領域特化チューニング',
+              '学習者データと学習コンテンツの統合',
+              'リアルタイム適応アルゴリズムの実装',
+              'A/Bテスト環境構築・効果測定'
+            ]
+          },
+          {
+            phase: 'Phase 3: 本格導入・運用',
+            duration: '3ヶ月',
+            activities: [
+              '全学習者への段階的ロールアウト',
+              'フィードバックループ最適化',
+              '運用監視・改善サイクル確立',
+              '社内チームへの技術移転'
+            ]
+          }
+        ]
+      },
+      
+      results: [
+        { 
+          metric: '学習継続率', 
+          before: '30%（3ヶ月後）', 
+          after: '48%（3ヶ月後）',
+          improvement: '+18%',
+          description: '個別最適化により継続率が大幅向上' 
+        },
+        { 
+          metric: 'ユーザー満足度', 
+          before: '3.2/5.0', 
+          after: '4.7/5.0',
+          improvement: '+1.5pt',
+          description: 'より効果的な学習体験を実現' 
+        },
+        { 
+          metric: '学習効率', 
+          before: '平均80時間/コース', 
+          after: '平均65時間/コース',
+          improvement: '19%短縮',
+          description: '最適化により学習時間を短縮' 
+        },
+        { 
+          metric: '講師サポート時間', 
+          before: '週20時間/講師', 
+          after: '週12時間/講師',
+          improvement: '40%削減',
+          description: 'AI支援により講師負荷を軽減' 
+        }
+      ],
+      
+      technologies: [
+        { name: 'Azure OpenAI GPT-4', purpose: '自然言語処理・学習コンテンツ生成' },
+        { name: 'Python + FastAPI', purpose: 'バックエンドAPI・データ処理' },
+        { name: 'React + TypeScript', purpose: 'フロントエンド・UI/UX' },
+        { name: 'PostgreSQL', purpose: '学習データ・ユーザー情報管理' },
+        { name: 'Redis', purpose: 'リアルタイム処理・キャッシュ' },
+        { name: 'Docker + Kubernetes', purpose: 'コンテナ化・スケーラブル運用' }
+      ],
+      
+      key_features: [
+        {
+          title: 'パーソナライズド学習パス',
+          description: '学習者の理解度・学習スタイル・目標に基づいて動的に学習コンテンツを調整',
+          impact: '学習効率19%向上'
+        },
+        {
+          title: 'リアルタイム理解度判定',
+          description: '学習者の回答・反応から理解度をAIが即座に判定し、適切な次のステップを提案',
+          impact: '学習継続率18%向上'
+        },
+        {
+          title: 'AI学習アシスタント',
+          description: '24時間365日利用可能なAIアシスタントが質問対応・学習支援を実施',
+          impact: '講師負荷40%削減'
+        }
+      ],
+      
+      client_voice: {
+        quote: 'AIを活用した個別最適化により、学習者の継続率が劇的に改善しました。特に、リアルタイムで学習内容が調整される仕組みは、従来では実現できなかった価値だと感じています。',
+        name: 'プロダクトマネージャー',
+        title: '教育SaaS企業'
+      }
+    },
+
+    {
+      slug: 'manufacturing-audio',
+      title: '製造業',
+      subtitle: '音声解析による異常検知システム',
+      industry: '製造業',
+      company_size: '中堅企業（従業員300名）',
+      project_period: '9ヶ月（設計3ヶ月 + 開発4ヶ月 + 導入2ヶ月）',
+      team_size: 'TECMAH 4名 + クライアント 8名',
+      budget_range: '800万円-1,200万円',
+      image: '/images/case-manufacturing.jpg',
+      tags: ['音声AI', '異常検知', '製造DX', 'Azure AI'],
+      
+      challenge: {
+        title: '製造現場での異常検知の属人化と効率性の課題',
+        description: '熟練作業者による聴覚を頼りとした異常検知に依存しており、人材不足と判定精度のばらつきが深刻な課題となっていました。',
+        pain_points: [
+          '熟練作業者の退職による検知技術の属人化',
+          '異常判定に平均4時間かかる長いリードタイム',
+          '夜間・休日の監視体制不備による対応遅れ',
+          '検知精度の個人差（70-90%のばらつき）'
+        ]
+      },
+      
+      solution: {
+        title: '音声認識・感情解析による自動異常検知',
+        description: 'Azure Cognitive Servicesを活用し、製造機器の音声パターンから異常を自動検知するシステムを開発しました。',
+        approach: [
+          {
+            phase: 'Phase 1: データ収集・分析設計',
+            duration: '3ヶ月',
+            activities: [
+              '製造現場の音響環境調査',
+              '正常・異常音声データの収集',
+              'ベテラン作業者の判断基準ヒアリング',
+              'AI学習モデル設計・選定'
+            ]
+          },
+          {
+            phase: 'Phase 2: システム開発・学習',
+            duration: '4ヶ月',
+            activities: [
+              '音声認識・分類モデル構築',
+              '既存製造管理システムとの連携',
+              'リアルタイム監視ダッシュボード開発',
+              '精度向上のための継続学習機能実装'
+            ]
+          },
+          {
+            phase: 'Phase 3: 現場導入・最適化',
+            duration: '2ヶ月',
+            activities: [
+              'パイロット工程での検証・調整',
+              '全製造ラインへの段階的展開',
+              '作業者トレーニング・運用体制構築',
+              'パフォーマンス監視・改善サイクル確立'
+            ]
+          }
+        ]
+      },
+      
+      results: [
+        { 
+          metric: '判定時間', 
+          before: '平均4時間', 
+          after: '平均2時間',
+          improvement: '50%短縮',
+          description: 'リアルタイム検知により大幅短縮' 
+        },
+        { 
+          metric: '検知精度', 
+          before: '70-90%（個人差あり）', 
+          after: '95%（安定）',
+          improvement: '精度向上',
+          description: '人間の判定を上回る安定性を実現' 
+        },
+        { 
+          metric: '監視カバレッジ', 
+          before: '8時間/日（勤務時間のみ）', 
+          after: '24時間/日',
+          improvement: '3倍向上',
+          description: '24時間365日の自動監視を実現' 
+        },
+        { 
+          metric: 'コスト削減', 
+          before: '年間1,200万円', 
+          after: '年間700万円',
+          improvement: '年間500万円削減',
+          description: '人件費・検査コスト大幅削減' 
+        }
+      ],
+      
+      technologies: [
+        { name: 'Azure Cognitive Services', purpose: '音声認識・感情分析' },
+        { name: 'Azure Machine Learning', purpose: '異常検知モデル学習・運用' },
+        { name: 'Azure IoT Hub', purpose: '製造機器との連携・データ収集' },
+        { name: 'Python + scikit-learn', purpose: '機械学習・データ解析' },
+        { name: 'Power BI', purpose: '監視ダッシュボード・レポート' },
+        { name: 'Docker', purpose: 'エッジデバイスでのコンテナ運用' }
+      ],
+      
+      key_features: [
+        {
+          title: 'リアルタイム音声解析',
+          description: '製造機器から収集した音声データをリアルタイムで解析し、異常パターンを即座に検知',
+          impact: '判定時間50%短縮'
+        },
+        {
+          title: '継続学習システム',
+          description: 'フィードバックデータを基にAIモデルが継続的に学習し、検知精度を向上',
+          impact: '検知精度95%実現'
+        },
+        {
+          title: '統合監視ダッシュボード',
+          description: '複数製造ラインの状況を一元的に監視できるダッシュボードで効率的な管理を実現',
+          impact: '24時間監視体制構築'
+        }
+      ],
+      
+      client_voice: {
+        quote: 'ベテラン作業者の勘と経験に頼っていた異常検知が、AIによって標準化・自動化できました。24時間体制の監視により、早期発見・対応が可能になり、品質向上とコスト削減の両方を実現できています。',
+        name: '製造部長',
+        title: '中堅製造企業'
+      }
+    },
+
+    {
+      slug: 'retail-ai',
+      title: '小売×生成AI',
+      subtitle: 'RAG構成インタラクティブミラー',
+      industry: '小売業',
+      company_size: '大手企業（従業員1,000名）',
+      project_period: '4ヶ月（設計1ヶ月 + 開発2ヶ月 + 導入1ヶ月）',
+      team_size: 'TECMAH 5名 + クライアント 12名',
+      budget_range: '600-800万円',
+      image: '/images/case-collaboration.jpg',
+      tags: ['生成AI', 'RAG', '小売DX', 'Azure OpenAI'],
+      
+      challenge: {
+        title: '店舗での商品情報提供と顧客体験の向上',
+        description: '店舗スタッフの商品知識のばらつきと、顧客の多様な質問への対応品質向上が課題となっていました。',
+        pain_points: [
+          '店舗スタッフの商品知識・対応スキルのばらつき',
+          '膨大な商品情報の管理・更新コスト',
+          '顧客の複雑な要求への対応時間の長さ',
+          '新人スタッフの商品知識習得時間'
+        ]
+      },
+      
+      solution: {
+        title: 'Azure OpenAI×RAG構成インタラクティブミラー',
+        description: '店舗に設置されたミラー型デバイスで、AIが顧客の質問に対して商品情報やコーディネート提案をリアルタイムで提供します。',
+        approach: [
+          {
+            phase: 'Phase 1: UX設計・技術検証',
+            duration: '1ヶ月',
+            activities: [
+              '顧客行動・ニーズ分析',
+              'インタラクティブUI/UX設計',
+              'Azure OpenAI APIの商品情報特化検証',
+              'RAG構成でのデータ統合アーキテクチャ設計'
+            ]
+          },
+          {
+            phase: 'Phase 2: システム開発',
+            duration: '2ヶ月',
+            activities: [
+              '商品データベースとVector DBの構築',
+              'RAGパイプライン・検索システム開発',
+              'ミラーデバイス用フロントエンド開発',
+              '音声認識・画像解析機能統合'
+            ]
+          },
+          {
+            phase: 'Phase 3: パイロット導入',
+            duration: '1ヶ月',
+            activities: [
+              '主要店舗でのパイロット運用開始',
+              '顧客フィードバック収集・改善',
+              'スタッフトレーニング・運用フロー構築',
+              '効果測定・拡張展開計画策定'
+            ]
+          }
+        ]
+      },
+      
+      results: [
+        { 
+          metric: 'パイロット導入期間', 
+          before: '通常6-12ヶ月', 
+          after: '3ヶ月',
+          improvement: '50-75%短縮',
+          description: '迅速なプロトタイプ開発・検証' 
+        },
+        { 
+          metric: '顧客満足度', 
+          before: '3.4/5.0（店舗平均）', 
+          after: '4.6/5.0',
+          improvement: '+1.2pt',
+          description: 'より充実した情報提供を実現' 
+        },
+        { 
+          metric: '商品認知率', 
+          before: '62%', 
+          after: '83%',
+          improvement: '+35%',
+          description: 'AIによる積極的な商品提案効果' 
+        },
+        { 
+          metric: 'スタッフ対応時間', 
+          before: '平均8分/顧客', 
+          after: '平均5分/顧客',
+          improvement: '38%削減',
+          description: 'AI支援による効率的な接客を実現' 
+        }
+      ],
+      
+      technologies: [
+        { name: 'Azure OpenAI GPT-4', purpose: '自然言語処理・対話システム' },
+        { name: 'Azure Cognitive Search', purpose: 'RAG構成での高精度情報検索' },
+        { name: 'Azure Computer Vision', purpose: '画像認識・スタイル分析' },
+        { name: 'React + TypeScript', purpose: 'ミラーデバイス用インタラクティブUI' },
+        { name: 'Azure Functions', purpose: 'サーバーレス処理・API統合' },
+        { name: 'Cosmos DB', purpose: '商品情報・ユーザー履歴管理' }
+      ],
+      
+      key_features: [
+        {
+          title: 'AI商品コンシェルジュ',
+          description: '顧客の質問・要望に対してAIが最適な商品情報・コーディネート提案を即座に回答',
+          impact: '顧客満足度1.2pt向上'
+        },
+        {
+          title: 'ビジュアル検索・提案',
+          description: '着用写真や希望イメージから類似商品・コーディネートを視覚的に提案',
+          impact: '商品認知率35%向上'
+        },
+        {
+          title: 'パーソナライズ機能',
+          description: '過去の購入履歴・嗜好データから個別最適化された提案を実現',
+          impact: 'クロスセル効果20%向上'
+        }
+      ],
+      
+      client_voice: {
+        quote: 'AIミラーを導入してから、お客様から「欲しい商品がすぐに見つかる」「新しい発見がある」という声を多くいただくようになりました。スタッフの負担軽減と顧客満足度向上を両立できる画期的なソリューションです。',
+        name: '店舗開発部 マネージャー',
+        title: '大手小売企業'
+      }
+    },
+
+    {
+      slug: 'ai-startup',
+      title: 'AIスタートアップ',
+      subtitle: '新規事業の事業性検証・投資判断支援',
+      industry: 'IT・AI',
+      company_size: 'スタートアップ（従業員20名）',
+      project_period: '6ヶ月（市場調査2ヶ月 + PoC3ヶ月 + 事業計画1ヶ月）',
+      team_size: 'TECMAH 2名 + クライアント 4名',
+      budget_range: '200-400万円',
+      image: '/images/case-finance.jpg',
+      tags: ['新規事業', '市場調査', 'PoC開発', 'BizDev'],
+      
+      challenge: {
+        title: '新サービスの市場性・技術的実現性の検証',
+        description: '革新的なAIサービスのアイデアはあったものの、市場ニーズの検証と技術的実現性の確認、投資判断材料の整備が急務でした。',
+        pain_points: [
+          '仮説ベースの事業計画で市場検証が不十分',
+          '技術的実現性・競合優位性の客観的評価不足',
+          '投資家向け資料の説得力・根拠データの不足',
+          'Go-to-Market戦略の具体性不足'
+        ]
+      },
+      
+      solution: {
+        title: '包括的な市場調査とPoCによる事業性検証',
+        description: '市場調査・競合分析から技術PoC開発、事業計画策定まで、投資判断に必要な材料を包括的に整備しました。',
+        approach: [
+          {
+            phase: 'Phase 1: 市場調査・競合分析',
+            duration: '2ヶ月',
+            activities: [
+              'TAM・SAM・SOM市場規模分析',
+              '競合サービス詳細調査・差別化ポイント整理',
+              '潜在顧客インタビュー50社実施',
+              '業界トレンド・規制動向分析'
+            ]
+          },
+          {
+            phase: 'Phase 2: 技術PoC開発',
+            duration: '3ヶ月',
+            activities: [
+              '核となるAI技術の実装・検証',
+              'MVP開発・ユーザビリティテスト',
+              '競合技術との性能比較検証',
+              'スケーラビリティ・コスト構造分析'
+            ]
+          },
+          {
+            phase: 'Phase 3: 事業計画策定',
+            duration: '1ヶ月',
+            activities: [
+              '収益モデル・価格戦略策定',
+              '5ヵ年事業計画・財務モデル構築',
+              '投資家向けピッチ資料作成',
+              'リスク分析・対策シナリオ策定'
+            ]
+          }
+        ]
+      },
+      
+      results: [
+        { 
+          metric: '市場規模', 
+          before: '仮説ベース', 
+          after: '300億円（TAM）',
+          improvement: '定量化完了',
+          description: 'データに基づく市場機会の明確化' 
+        },
+        { 
+          metric: '技術実現性', 
+          before: '不明', 
+          after: 'PoC成功',
+          improvement: '検証完了',
+          description: '核となる技術の実装・動作確認' 
+        },
+        { 
+          metric: '投資判断材料', 
+          before: '30%整備', 
+          after: '100%整備',
+          improvement: '完全整備',
+          description: 'VCとの本格協議開始可能' 
+        },
+        { 
+          metric: '事業計画精度', 
+          before: '仮説レベル', 
+          after: '根拠ベース',
+          improvement: '大幅向上',
+          description: '実データに基づく精緻な計画' 
+        }
+      ],
+      
+      technologies: [
+        { name: 'Python + scikit-learn', purpose: 'AI技術プロトタイプ開発' },
+        { name: 'AWS SageMaker', purpose: '機械学習モデル学習・デプロイ' },
+        { name: 'React + Next.js', purpose: 'MVP フロントエンド開発' },
+        { name: 'PostgreSQL', purpose: 'ユーザーデータ・分析データ管理' },
+        { name: 'Docker', purpose: 'PoC環境構築・デプロイ' },
+        { name: 'Tableau', purpose: 'データ分析・可視化' }
+      ],
+      
+      key_features: [
+        {
+          title: '包括的市場分析',
+          description: 'TAM・SAM・SOMから競合分析、顧客インタビューまで多角的な市場検証を実施',
+          impact: '投資家説得力向上'
+        },
+        {
+          title: '技術PoC実装',
+          description: '核となるAI技術の実装・検証により技術的実現性と競合優位性を実証',
+          impact: '技術リスク解消'
+        },
+        {
+          title: '精緻な事業計画',
+          description: '実データに基づく収益モデル・財務計画で投資判断材料を完全整備',
+          impact: 'VC協議開始'
+        }
+      ],
+      
+      client_voice: {
+        quote: '漠然としたアイデアから、データと根拠に基づいた説得力のある事業計画まで整備していただきました。特に市場調査と技術PoCの両方を並行して進めることで、短期間で投資判断に必要な材料をすべて揃えることができました。',
+        name: 'CEO',
+        title: 'AIスタートアップ'
+      }
+    }
+  ];
+
+  return caseStudies.map((study) => ({
+    params: { slug: study.slug },
+    props: { study }
+  }));
+}
+
+const { study } = Astro.props;
+
+// Related case studies (exclude current)
+const relatedStudies = [
+  { slug: 'education-saas', title: '教育SaaS企業', subtitle: '生成AIアダプティブ学習' },
+  { slug: 'manufacturing-audio', title: '製造業', subtitle: '音声解析異常検知' },
+  { slug: 'retail-ai', title: '小売×生成AI', subtitle: 'インタラクティブミラー' },
+  { slug: 'ai-startup', title: 'AIスタートアップ', subtitle: '事業性検証' }
+].filter(item => item.slug !== study.slug).slice(0, 3);
+---
+
+<Layout title={`${study.title} - ${study.subtitle} | TECMAH株式会社 導入事例`}>
+  <Header />
+  <main class="pt-20">
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-zinc-900 to-zinc-800 text-white py-24">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          
+          <!-- Breadcrumb -->
+          <nav class="mb-8">
+            <div class="flex items-center space-x-2 text-gray-400 text-sm">
+              <a href="/" class="hover:text-white">ホーム</a>
+              <span>/</span>
+              <a href="/case-studies" class="hover:text-white">導入事例</a>
+              <span>/</span>
+              <span class="text-white">{study.title}</span>
+            </div>
+          </nav>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            {study.tags.map(tag => (
+              <span class="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <!-- Title -->
+          <h1 class="text-5xl md:text-6xl font-bold mb-4 leading-tight">
+            <span class="gradient-text">{study.title}</span>
+          </h1>
+          <p class="text-2xl text-gray-300 mb-8">{study.subtitle}</p>
+
+          <!-- Project Info -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 bg-zinc-800/50 rounded-2xl p-6 border border-zinc-700">
+            <div>
+              <h3 class="font-semibold text-gray-400 mb-2">業界</h3>
+              <p class="text-white">{study.industry}</p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-400 mb-2">企業規模</h3>
+              <p class="text-white">{study.company_size}</p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-400 mb-2">プロジェクト期間</h3>
+              <p class="text-white">{study.project_period}</p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-400 mb-2">チーム構成</h3>
+              <p class="text-white">{study.team_size}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section class="bg-zinc-900 py-20">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-4xl font-bold text-white mb-8">
+            <span class="gradient-text">課題・背景</span>
+          </h2>
+          
+          <div class="bg-zinc-800 rounded-2xl p-8 border border-zinc-700 mb-8">
+            <h3 class="text-2xl font-bold text-white mb-4">{study.challenge.title}</h3>
+            <p class="text-gray-300 text-lg leading-relaxed mb-6">
+              {study.challenge.description}
+            </p>
+            
+            <h4 class="font-bold text-white mb-4">主な課題・ペインポイント</h4>
+            <ul class="space-y-3">
+              {study.challenge.pain_points.map(point => (
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-red-400 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                  </svg>
+                  <span class="text-gray-300">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="bg-zinc-800 py-20">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-4xl font-bold text-white mb-8">
+            <span class="gradient-text">ソリューション・アプローチ</span>
+          </h2>
+          
+          <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-700 mb-8">
+            <h3 class="text-2xl font-bold text-white mb-4">{study.solution.title}</h3>
+            <p class="text-gray-300 text-lg leading-relaxed mb-8">
+              {study.solution.description}
+            </p>
+            
+            <h4 class="font-bold text-white mb-6">プロジェクトフェーズ</h4>
+            <div class="space-y-6">
+              {study.solution.approach.map((phase, index) => (
+                <div class="bg-zinc-800 rounded-lg p-6 border border-zinc-700">
+                  <div class="flex items-center mb-4">
+                    <div class="bg-green-500 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm mr-4">
+                      {index + 1}
+                    </div>
+                    <div>
+                      <h5 class="font-bold text-white">{phase.phase}</h5>
+                      <p class="text-sm text-gray-400">{phase.duration}</p>
+                    </div>
+                  </div>
+                  <ul class="space-y-2">
+                    {phase.activities.map(activity => (
+                      <li class="flex items-start">
+                        <svg class="w-4 h-4 text-green-400 mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-gray-300 text-sm">{activity}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="bg-zinc-900 py-20">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-4xl font-bold text-white mb-8">
+            <span class="gradient-text">成果・効果</span>
+          </h2>
+          
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            {study.results.map(result => (
+              <div class="bg-zinc-800 rounded-2xl p-6 border border-zinc-700">
+                <h3 class="font-bold text-white mb-3">{result.metric}</h3>
+                <div class="space-y-2 mb-4">
+                  <div class="flex items-center">
+                    <span class="text-sm text-gray-400 mr-4">Before:</span>
+                    <span class="text-red-300">{result.before}</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span class="text-sm text-gray-400 mr-4">After:</span>
+                    <span class="text-green-300">{result.after}</span>
+                  </div>
+                </div>
+                <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-3 mb-3">
+                  <div class="text-2xl font-bold text-green-400 mb-1">{result.improvement}</div>
+                </div>
+                <p class="text-sm text-gray-300">{result.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="bg-zinc-800 py-20">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-4xl font-bold text-white mb-8">
+            <span class="gradient-text">使用技術・手法</span>
+          </h2>
+          
+          <div class="grid md:grid-cols-2 gap-4 mb-8">
+            {study.technologies.map(tech => (
+              <div class="bg-zinc-900 rounded-lg p-4 border border-zinc-700">
+                <h3 class="font-bold text-white mb-2">{tech.name}</h3>
+                <p class="text-sm text-gray-300">{tech.purpose}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- Key Features -->
+          <h3 class="text-2xl font-bold text-white mb-6">主要機能・特徴</h3>
+          <div class="space-y-6">
+            {study.key_features.map(feature => (
+              <div class="bg-zinc-900 rounded-lg p-6 border border-zinc-700">
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <h4 class="font-bold text-white mb-2">{feature.title}</h4>
+                    <p class="text-gray-300 mb-3">{feature.description}</p>
+                  </div>
+                  <div class="bg-green-500/10 border border-green-500/30 rounded-lg px-4 py-2 ml-4">
+                    <span class="text-green-400 font-bold text-sm">{feature.impact}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client Voice Section -->
+    <section class="bg-zinc-900 py-20">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-4xl font-bold text-white mb-8">
+            <span class="gradient-text">お客様の声</span>
+          </h2>
+          
+          <div class="bg-gradient-to-br from-green-500/10 to-blue-500/10 rounded-2xl p-8 border border-green-500/30">
+            <svg class="w-8 h-8 text-green-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+            </svg>
+            <blockquote class="text-lg text-white mb-6 leading-relaxed italic">
+              "{study.client_voice.quote}"
+            </blockquote>
+            <div class="text-right">
+              <div class="font-bold text-green-400">{study.client_voice.name}</div>
+              <div class="text-gray-400">{study.client_voice.title}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Cases -->
+    <section class="bg-zinc-800 py-20">
+      <div class="container">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-4xl font-bold text-white mb-8 text-center">
+            <span class="gradient-text">関連事例</span>
+          </h2>
+          
+          <div class="grid md:grid-cols-3 gap-8">
+            {relatedStudies.map(related => (
+              <div class="bg-zinc-900 rounded-2xl p-6 border border-zinc-700 hover:border-zinc-600 transition-all duration-300 group">
+                <h3 class="text-xl font-bold text-white mb-2">{related.title}</h3>
+                <p class="text-gray-300 mb-4">{related.subtitle}</p>
+                <a href={`/case-studies/${related.slug}`} class="inline-flex items-center text-green-400 hover:text-green-300 font-medium group-hover:translate-x-1 transition-all duration-300">
+                  詳細を見る
+                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-gradient-to-r from-green-500 to-blue-600 text-white py-20">
+      <div class="container text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+          同様の課題を抱えていませんか？
+        </h2>
+        <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          初回60分のオンライン相談は無料です。<br>
+          お客様の課題に最適なソリューションをご提案します。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn btn-primary bg-white text-gray-900 hover:bg-gray-100 text-lg px-8 py-4">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            無料相談を予約する
+          </a>
+          <a href="/services" class="btn btn-secondary bg-transparent text-white border-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            サービス一覧を見る
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-zinc-900 text-white py-12">
+    <div class="container">
+      <div class="grid md:grid-cols-4 gap-8">
+        <!-- Company Info -->
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-4">
+            <span class="text-2xl font-bold">TECMAH</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            AI・データ活用・PdM/PM支援を行うスタートアップ。<br>
+            データドリブンな意思決定と生成AIを活用したプロダクト開発で、企業のデジタル変革を伴走支援します。
+          </p>
+          <div class="text-sm text-gray-400">
+            <p>〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701</p>
+            <p>TEL: +81-70-8359-2530 | Email: info@tecmah.com</p>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold mb-4">サービス</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/services/ai-data" class="hover:text-white">生成AI・データ活用</a></li>
+            <li><a href="/services/product-management" class="hover:text-white">PdM/PM伴走</a></li>
+            <li><a href="/services/dx-consulting" class="hover:text-white">DXコンサルティング</a></li>
+          </ul>
+        </div>
+        
+        <!-- Company -->
+        <div>
+          <h4 class="font-bold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/about" class="hover:text-white">会社概要</a></li>
+            <li><a href="/case-studies" class="hover:text-white">事例</a></li>
+            <li><a href="/contact" class="hover:text-white">お問い合わせ</a></li>
+            <li><a href="/privacy" class="hover:text-white">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 TECMAH株式会社. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
