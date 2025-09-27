@@ -149,8 +149,7 @@ export const company: CompanyInfo = {
     full: "〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701"
   },
   contact: {
-    email: "info@tecmah.com",
-    phone: "+81-70-8359-2530"
+    email: "info@tecmah.com"
   }
 };
 
@@ -459,7 +458,6 @@ npm run dev -- --verbose
 
 - **GitHub Issues**: バグ報告・機能要望
 - **Email**: info@tecmah.com
-- **Phone**: +81-70-8359-2530
 
 ### 営業・ビジネスお問い合わせ
 

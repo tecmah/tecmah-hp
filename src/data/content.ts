@@ -70,7 +70,6 @@ export const company: CompanyInfo = {
     full: "〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701"
   },
   contact: {
-    phone: "+81-70-8359-2530",
     email: "info@tecmah.com",
     website: "https://www.tecmah.com"
   }
