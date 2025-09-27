@@ -1,4 +1,10 @@
 ---
+const LOGO = {
+  default: '/images/logo/logo-horizontal.svg',
+  dark: '/images/logo/logo-horizontal-dark.svg',
+  fallback: '/images/logo/logo-horizontal.png',
+  mobile: '/images/logo/logo-horizontal-mobile.svg'
+};
 // Header component - OpenAI風ナビゲーション
 ---
 
@@ -7,9 +13,23 @@
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="/" class="flex items-center space-x-2">
-          <img src="/logo.svg" alt="TECMAH" class="h-8 w-auto" />
-          <span class="text-xl font-bold text-white">TECMAH</span>
+        <a href="/" class="flex items-center" aria-label="TECMAH ホーム">
+          <picture class="logo-picture" data-logo-mode="dynamic">
+            <source srcset={LOGO.dark} media="(prefers-color-scheme: dark) and (min-width: 768px)" type="image/svg+xml" />
+            <source srcset={LOGO.dark} media="(prefers-color-scheme: dark)" type="image/svg+xml" />
+            <source srcset={LOGO.mobile} media="(max-width: 767px)" type="image/svg+xml" />
+            <source srcset={LOGO.default} type="image/svg+xml" />
+            <img
+              src={LOGO.fallback}
+              alt="TECMAH"
+              class="logo"
+              width="200"
+              height="48"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
+          <span class="sr-only">TECMAH</span>
         </a>
       </div>
 
@@ -114,5 +134,21 @@
   .logo:hover {
     transform: scale(1.05);
     transition: transform 0.2s ease;
+  }
+
+  .logo {
+    width: clamp(120px, 15vw, 200px);
+    height: auto;
+    transition: filter 0.3s ease;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .logo {
+      filter: brightness(0) invert(1);
+    }
+
+    .logo-picture[data-logo-mode='dynamic'] .logo {
+      filter: none;
+    }
   }
 </style>
