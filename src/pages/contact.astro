@@ -437,7 +437,7 @@ import Header from "../components/Header.astro";
                     <option value="IT・ソフトウェア">IT・ソフトウェア</option>
                     <option value="コンサルティング">コンサルティング</option>
                     <option value="メディア・広告">メディア・広告</option>
-                    <option value="物流・運輸,">物流・運輸</option>
+                    <option value="物流・運輸">物流・運輸</option>
                     <option value="不動産・建設">不動産・建設</option>
                     <option value="その他">その他</option>
                   </select>
@@ -468,7 +468,7 @@ import Header from "../components/Header.astro";
                     <option value="中堅企業（101〜500名）"
                       >中堅企業（101〜500名）</option
                     >
-                    <option value=",大企業（501〜1,000名）"
+                    <option value="大企業（501〜1,000名）"
                       >大企業（501〜1,000名）</option
                     >
                     <option value="大手企業（1,001名〜）"
@@ -1047,12 +1047,16 @@ import Header from "../components/Header.astro";
       ); // 従業員規模
 
       // Consultation details
-      const categories = Array.from(
+      const categoryValues = Array.from(
         document.querySelectorAll('input[name="consultation_category"]:checked')
-      )
-        .map((cb) => cb.value)
-        .join(", ");
-      googleFormData.append("entry.248267075", categories); // 相談内容
+      ).map((cb) => cb.value);
+      if (categoryValues.length > 0) {
+        categoryValues.forEach((v) => {
+          googleFormData.append("entry.248267075", v);
+        });
+      } else {
+        googleFormData.append("entry.248267075", "");
+      }
 
       googleFormData.append(
         "entry.1767368493",
@@ -1075,6 +1079,22 @@ import Header from "../components/Header.astro";
           : ""
       ); // プライバシーポリシー同意
 
+      // Note: Google Forms hidden fields (fvv, pageHistory, fbzx, submissionTimestamp) are not required for simple single-page forms.
+
+      // Ensure required fields are not empty
+      if (!googleFormData.get("entry.613070658")) {
+        googleFormData.set("entry.613070658", "未入力");
+      }
+      if (!googleFormData.get("entry.1182563392")) {
+        googleFormData.set("entry.1182563392", "未入力");
+      }
+      if (!googleFormData.get("entry.1558582620")) {
+        googleFormData.set("entry.1558582620", "未入力");
+      }
+      if (!googleFormData.get("entry.1394113561")) {
+        googleFormData.set("entry.1394113561", "未入力");
+      }
+
       // Debug: Log form data
       console.log("Form data being sent:", {
         company_name: formData.get("company_name"),
@@ -1094,17 +1114,50 @@ import Header from "../components/Header.astro";
         console.log(`${key}: ${value}`);
       }
 
-      // Submit to Google Forms
-      fetch(
-        "https://docs.google.com/forms/d/e/1FAIpQLScaWcLHfLO7ZizP3yv86hKwvCnhjeFNq3U1zi3ENC1_8qKKnw/formResponse",
-        {
-          method: "POST",
-          mode: "no-cors",
-          body: googleFormData,
-        }
-      )
-        .then(() => {
+      // Submit to Google Forms with improved error handling
+      const submitFormData = async () => {
+        try {
+          // First, try with regular fetch to check for errors
+          const response = await fetch(
+            "https://docs.google.com/forms/d/e/1FAIpQLScaWcLHfLO7ZizP3yv86hKwvCnhjeFNq3U1zi3ENC1_8qKKnw/formResponse",
+            {
+              method: "POST",
+              mode: "no-cors",
+              body: googleFormData,
+            }
+          );
+
           console.log("Form submission completed");
+
+          // Also try with iframe method as backup
+          const iframe = document.createElement("iframe");
+          iframe.style.display = "none";
+          iframe.name = "hidden_iframe";
+          document.body.appendChild(iframe);
+
+          const form = document.createElement("form");
+          form.method = "POST";
+          form.action =
+            "https://docs.google.com/forms/d/e/1FAIpQLScaWcLHfLO7ZizP3yv86hKwvCnhjeFNq3U1zi3ENC1_8qKKnw/formResponse";
+          form.target = "hidden_iframe";
+
+          // Add all form data as hidden inputs
+          for (let [key, value] of googleFormData.entries()) {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = key;
+            input.value = value;
+            form.appendChild(input);
+          }
+
+          document.body.appendChild(form);
+          form.submit();
+
+          // Clean up after submission
+          setTimeout(() => {
+            document.body.removeChild(form);
+            document.body.removeChild(iframe);
+          }, 1000);
 
           // Reset button state
           if (submitText) submitText.classList.remove("hidden");
@@ -1122,8 +1175,7 @@ import Header from "../components/Header.astro";
           this.reset();
           const charCount = document.getElementById("char-count");
           if (charCount) charCount.textContent = "0";
-        })
-        .catch((error) => {
+        } catch (error) {
           console.error("Form submission error:", error);
 
           // Reset button state
@@ -1133,7 +1185,10 @@ import Header from "../components/Header.astro";
 
           // Show error message
           alert("送信に失敗しました。しばらく時間をおいて再度お試しください。");
-        });
+        }
+      };
+
+      submitFormData();
     });
   });
 

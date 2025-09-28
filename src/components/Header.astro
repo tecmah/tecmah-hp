@@ -1,23 +1,37 @@
 ---
 const LOGO = {
-  default: '/images/logo/logo-horizontal.svg',
-  dark: '/images/logo/logo-horizontal-dark.svg',
-  fallback: '/images/logo/logo-horizontal.png',
-  mobile: '/images/logo/logo-horizontal-mobile.svg'
+  default: "/images/logo/logo-horizontal.svg",
+  dark: "/images/logo/logo-horizontal-dark.svg",
+  fallback: "/images/logo/logo-horizontal.png",
+  mobile: "/images/logo/logo-horizontal-mobile.svg",
 };
 // Header component - OpenAI風ナビゲーション
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-zinc-900/90 backdrop-blur-md border-b border-zinc-700">
+<header
+  class="fixed top-0 left-0 right-0 z-50 bg-zinc-900/90 backdrop-blur-md border-b border-zinc-700"
+>
   <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
       <div class="flex items-center">
         <a href="/" class="flex items-center" aria-label="TECMAH ホーム">
           <picture class="logo-picture" data-logo-mode="dynamic">
-            <source srcset={LOGO.dark} media="(prefers-color-scheme: dark) and (min-width: 768px)" type="image/svg+xml" />
-            <source srcset={LOGO.dark} media="(prefers-color-scheme: dark)" type="image/svg+xml" />
-            <source srcset={LOGO.mobile} media="(max-width: 767px)" type="image/svg+xml" />
+            <source
+              srcset={LOGO.dark}
+              media="(prefers-color-scheme: dark) and (min-width: 768px)"
+              type="image/svg+xml"
+            />
+            <source
+              srcset={LOGO.dark}
+              media="(prefers-color-scheme: dark)"
+              type="image/svg+xml"
+            />
+            <source
+              srcset={LOGO.mobile}
+              media="(max-width: 767px)"
+              type="image/svg+xml"
+            />
             <source srcset={LOGO.default} type="image/svg+xml" />
             <img
               src={LOGO.fallback}
@@ -35,21 +49,31 @@ const LOGO = {
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="/" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
+        <a
+          href="/"
+          class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
+        >
           ホーム
         </a>
-        <a href="/services" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
+        <a
+          href="/services"
+          class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
+        >
           サービス
         </a>
-        <a href="/about" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
+        <a
+          href="/about"
+          class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
+        >
           会社概要
         </a>
-        <a href="/case-studies" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">
+        <a
+          href="/case-studies"
+          class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
+        >
           事例
         </a>
-        <a href="/contact" class="btn btn-primary text-sm">
-          無料相談
-        </a>
+        <a href="/contact" class="btn btn-primary text-sm"> 無料相談 </a>
       </div>
 
       <!-- Mobile menu button -->
@@ -62,8 +86,17 @@ const LOGO = {
         >
           <span class="sr-only">メニューを開く</span>
           <!-- Hamburger icon -->
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
@@ -71,17 +104,31 @@ const LOGO = {
 
     <!-- Mobile menu -->
     <div class="mobile-menu hidden md:hidden">
-      <div class="px-2 pt-2 pb-3 space-y-1 bg-zinc-900 border-t border-zinc-700">
-        <a href="/" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800">
+      <div
+        class="px-2 pt-2 pb-3 space-y-1 bg-zinc-900 border-t border-zinc-700"
+      >
+        <a
+          href="/"
+          class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
+        >
           ホーム
         </a>
-        <a href="/services" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800">
+        <a
+          href="/services"
+          class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
+        >
           サービス
         </a>
-        <a href="/about" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800">
+        <a
+          href="/about"
+          class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
+        >
           会社概要
         </a>
-        <a href="/case-studies" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800">
+        <a
+          href="/case-studies"
+          class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
+        >
           事例
         </a>
         <a href="/contact" class="block mx-3 my-2 text-center btn btn-primary">
@@ -94,24 +141,32 @@ const LOGO = {
 
 <script>
   // Mobile menu toggle
-  document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const mobileMenu = document.querySelector('.mobile-menu');
+  document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuButton = document.querySelector(".mobile-menu-button");
+    const mobileMenu = document.querySelector(".mobile-menu");
 
     if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', function() {
-        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-        
-        mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-        mobileMenu.classList.toggle('hidden');
+      mobileMenuButton.addEventListener("click", function () {
+        const isExpanded =
+          mobileMenuButton.getAttribute("aria-expanded") === "true";
+
+        mobileMenuButton.setAttribute(
+          "aria-expanded",
+          (!isExpanded).toString()
+        );
+        mobileMenu.classList.toggle("hidden");
       });
     }
 
     // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-      if (mobileMenu && !mobileMenu.contains(event.target) && !mobileMenuButton?.contains(event.target)) {
-        mobileMenu.classList.add('hidden');
-        mobileMenuButton?.setAttribute('aria-expanded', 'false');
+    document.addEventListener("click", function (event) {
+      if (
+        mobileMenu &&
+        !mobileMenu.contains(event.target) &&
+        !mobileMenuButton?.contains(event.target)
+      ) {
+        mobileMenu.classList.add("hidden");
+        mobileMenuButton?.setAttribute("aria-expanded", "false");
       }
     });
   });
@@ -122,14 +177,14 @@ const LOGO = {
   header {
     transition: all 0.3s ease;
   }
-  
+
   /* スクロール時の効果 */
   .scrolled {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
-  
+
   /* Logo hover effect */
   .logo:hover {
     transform: scale(1.05);
@@ -142,12 +197,23 @@ const LOGO = {
     transition: filter 0.3s ease;
   }
 
+  /* ライトモード時のロゴ調整 */
+  @media (prefers-color-scheme: light) {
+    .logo {
+      filter: brightness(0) invert(0.2);
+    }
+
+    .logo-picture[data-logo-mode="dynamic"] .logo {
+      filter: none;
+    }
+  }
+
   @media (prefers-color-scheme: dark) {
     .logo {
       filter: brightness(0) invert(1);
     }
 
-    .logo-picture[data-logo-mode='dynamic'] .logo {
+    .logo-picture[data-logo-mode="dynamic"] .logo {
       filter: none;
     }
   }
