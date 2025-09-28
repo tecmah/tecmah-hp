@@ -429,17 +429,17 @@ import Header from "../components/Header.astro";
                     class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
                   >
                     <option value="">選択してください</option>
-                    <option value="manufacturing">製造業</option>
-                    <option value="retail">小売・卸売業</option>
-                    <option value="finance">金融・保険業</option>
-                    <option value="healthcare">医療・ヘルスケア</option>
-                    <option value="education">教育・研修</option>
-                    <option value="it">IT・ソフトウェア</option>
-                    <option value="consulting">コンサルティング</option>
-                    <option value="media">メディア・広告</option>
-                    <option value="logistics">物流・運輸</option>
-                    <option value="real_estate">不動産・建設</option>
-                    <option value="other">その他</option>
+                    <option value="製造業">製造業</option>
+                    <option value="小売・卸売業">小売・卸売業</option>
+                    <option value="金融・保険業">金融・保険業</option>
+                    <option value="医療・ヘルスケア">医療・ヘルスケア</option>
+                    <option value="教育・研修">教育・研修</option>
+                    <option value="IT・ソフトウェア">IT・ソフトウェア</option>
+                    <option value="コンサルティング">コンサルティング</option>
+                    <option value="メディア・広告">メディア・広告</option>
+                    <option value="物流・運輸,">物流・運輸</option>
+                    <option value="不動産・建設">不動産・建設</option>
+                    <option value="その他">その他</option>
                   </select>
                   <div class="error-message text-red-400 text-sm mt-1 hidden">
                   </div>
@@ -459,11 +459,21 @@ import Header from "../components/Header.astro";
                     class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
                   >
                     <option value="">選択してください</option>
-                    <option value="startup">スタートアップ（〜20名）</option>
-                    <option value="small">小規模企業（21〜100名）</option>
-                    <option value="medium">中堅企業（101〜500名）</option>
-                    <option value="large">大企業（501〜1,000名）</option>
-                    <option value="enterprise">大手企業（1,001名〜）</option>
+                    <option value="スタートアップ（〜20名）"
+                      >スタートアップ（〜20名）</option
+                    >
+                    <option value="小規模企業（21〜100名）"
+                      >小規模企業（21〜100名）</option
+                    >
+                    <option value="中堅企業（101〜500名）"
+                      >中堅企業（101〜500名）</option
+                    >
+                    <option value=",大企業（501〜1,000名）"
+                      >大企業（501〜1,000名）</option
+                    >
+                    <option value="大手企業（1,001名〜）"
+                      >大手企業（1,001名〜）</option
+                    >
                   </select>
                   <div class="error-message text-red-400 text-sm mt-1 hidden">
                   </div>
@@ -485,7 +495,7 @@ import Header from "../components/Header.astro";
                     <input
                       type="checkbox"
                       name="consultation_category"
-                      value="ai_data"
+                      value="AI・データ活用"
                       class="mr-3 text-green-500 focus:ring-green-500"
                     />
                     <span class="text-white">AI・データ活用</span>
@@ -496,7 +506,7 @@ import Header from "../components/Header.astro";
                     <input
                       type="checkbox"
                       name="consultation_category"
-                      value="product_management"
+                      value="PdM・PM支援"
                       class="mr-3 text-green-500 focus:ring-green-500"
                     />
                     <span class="text-white">PdM・PM支援</span>
@@ -507,7 +517,7 @@ import Header from "../components/Header.astro";
                     <input
                       type="checkbox"
                       name="consultation_category"
-                      value="dx_consulting"
+                      value="DX・新規事業"
                       class="mr-3 text-green-500 focus:ring-green-500"
                     />
                     <span class="text-white">DX・新規事業</span>
@@ -531,12 +541,12 @@ import Header from "../components/Header.astro";
                   class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
                 >
                   <option value="">選択してください</option>
-                  <option value="under_100">100万円未満</option>
-                  <option value="100_300">100万円〜300万円</option>
-                  <option value="300_500">300万円〜500万円</option>
-                  <option value="500_1000">500万円〜1,000万円</option>
-                  <option value="over_1000">1,000万円以上</option>
-                  <option value="undecided">未定・相談したい</option>
+                  <option value="100万円未満">100万円未満</option>
+                  <option value="100万円〜300万円">100万円〜300万円</option>
+                  <option value="300万円〜500万円">300万円〜500万円</option>
+                  <option value="500万円〜1,000万円">500万円〜1,000万円</option>
+                  <option value="1,000万円以上">1,000万円以上</option>
+                  <option value="未定・相談したい">未定・相談したい</option>
                 </select>
                 <div class="error-message text-red-400 text-sm mt-1 hidden">
                 </div>
@@ -555,12 +565,14 @@ import Header from "../components/Header.astro";
                   class="w-full px-4 py-3 bg-zinc-800 border border-zinc-600 rounded-lg text-white focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-colors"
                 >
                   <option value="">選択してください</option>
-                  <option value="asap">できるだけ早く</option>
-                  <option value="1month">1ヶ月以内</option>
-                  <option value="3months">3ヶ月以内</option>
-                  <option value="6months">6ヶ月以内</option>
-                  <option value="flexible">時期は柔軟に対応可能</option>
-                  <option value="information_gathering">情報収集段階</option>
+                  <option value="できるだけ早く">できるだけ早く</option>
+                  <option value="1ヶ月以内">1ヶ月以内</option>
+                  <option value="3ヶ月以内">3ヶ月以内</option>
+                  <option value="6ヶ月以内">6ヶ月以内</option>
+                  <option value="時期は柔軟に対応可能"
+                    >時期は柔軟に対応可能</option
+                  >
+                  <option value="情報収集段階">情報収集段階</option>
                 </select>
               </div>
 
@@ -606,7 +618,7 @@ import Header from "../components/Header.astro";
                     <input
                       type="radio"
                       name="preferred_meeting"
-                      value="online"
+                      value="オンライン会議（Google Meet）"
                       class="mr-3 text-green-500 focus:ring-green-500"
                       checked
                     />
@@ -828,15 +840,18 @@ import Header from "../components/Header.astro";
           <ul class="space-y-2 text-gray-400">
             <li>
               <a href="/services/ai-data" class="hover:text-white"
-                >生成AI・データ活用</a>
+                >生成AI・データ活用</a
+              >
             </li>
             <li>
               <a href="/services/product-management" class="hover:text-white"
-                >PdM/PM伴走</a>
+                >PdM/PM伴走</a
+              >
             </li>
             <li>
               <a href="/services/dx-consulting" class="hover:text-white"
-                >DXコンサルティング</a>
+                >DXコンサルティング</a
+              >
             </li>
           </ul>
         </div>
@@ -852,7 +867,8 @@ import Header from "../components/Header.astro";
             </li>
             <li>
               <a href="/privacy" class="hover:text-white"
-                >プライバシーポリシー</a>
+                >プライバシーポリシー</a
+              >
             </li>
           </ul>
         </div>
@@ -865,7 +881,7 @@ import Header from "../components/Header.astro";
   </footer>
 </Layout>
 
-<script>
+<script is:inline>
   // Consultation type selection
   function selectConsultationType(type) {
     const form = document.getElementById("consultation-form");
@@ -873,20 +889,26 @@ import Header from "../components/Header.astro";
     const formSubtitle = document.getElementById("form-subtitle");
     const consultationTypeInput = document.getElementById("consultation_type");
 
-    consultationTypeInput.value = type;
+    if (consultationTypeInput) {
+      consultationTypeInput.value = type;
+    }
 
     if (type === "premium") {
-      formTitle.textContent = "プレミアム相談お申し込み";
-      formSubtitle.textContent =
-        "以下のフォームにご記入ください。お支払い方法については後日ご連絡いたします。";
+      if (formTitle) formTitle.textContent = "プレミアム相談お申し込み";
+      if (formSubtitle)
+        formSubtitle.textContent =
+          "以下のフォームにご記入ください。お支払い方法については後日ご連絡いたします。";
     } else {
-      formTitle.textContent = "無料相談お申し込み";
-      formSubtitle.textContent =
-        "以下のフォームにご記入ください。24時間以内にご連絡いたします。";
+      if (formTitle) formTitle.textContent = "無料相談お申し込み";
+      if (formSubtitle)
+        formSubtitle.textContent =
+          "以下のフォームにご記入ください。24時間以内にご連絡いたします。";
     }
 
     // Scroll to form
-    form.scrollIntoView({ behavior: "smooth" });
+    if (form) {
+      form.scrollIntoView({ behavior: "smooth" });
+    }
   }
 
   // Character count for message textarea
@@ -894,21 +916,25 @@ import Header from "../components/Header.astro";
     const messageTextarea = document.getElementById("message");
     const charCount = document.getElementById("char-count");
 
-    messageTextarea.addEventListener("input", function () {
-      const count = this.value.length;
-      charCount.textContent = count;
+    if (messageTextarea && charCount) {
+      messageTextarea.addEventListener("input", function () {
+        const count = this.value.length;
+        charCount.textContent = count;
 
-      if (count > 1000) {
-        charCount.style.color = "#f87171"; // red-400
-      } else {
-        charCount.style.color = "#9ca3af"; // gray-400
-      }
-    });
+        if (count > 1000) {
+          charCount.style.color = "#f87171"; // red-400
+        } else {
+          charCount.style.color = "#9ca3af"; // gray-400
+        }
+      });
+    }
   });
 
   // Form validation
   function validateForm() {
     const form = document.getElementById("contact-form");
+    if (!form) return false;
+
     const requiredFields = form.querySelectorAll("[required]");
     let isValid = true;
 
@@ -921,7 +947,7 @@ import Header from "../components/Header.astro";
 
     // Validate required fields
     requiredFields.forEach((field) => {
-      const errorDiv = field.parentElement.querySelector(".error-message");
+      const errorDiv = field.parentElement?.querySelector(".error-message");
 
       if (!field.value.trim()) {
         if (errorDiv) {
@@ -937,8 +963,12 @@ import Header from "../components/Header.astro";
 
     // Validate email format
     const email = document.getElementById("email");
-    if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-      const errorDiv = email.parentElement.querySelector(".error-message");
+    if (
+      email &&
+      email.value &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)
+    ) {
+      const errorDiv = email.parentElement?.querySelector(".error-message");
       if (errorDiv) {
         errorDiv.textContent = "正しいメールアドレスを入力してください";
         errorDiv.classList.remove("hidden");
@@ -952,9 +982,10 @@ import Header from "../components/Header.astro";
       'input[name="consultation_category"]:checked'
     );
     if (categories.length === 0) {
-      const categoryDiv = document
-        .querySelector('input[name="consultation_category"]')
-        .closest("div").nextElementSibling;
+      const categoryInput = document.querySelector(
+        'input[name="consultation_category"]'
+      );
+      const categoryDiv = categoryInput?.closest("div")?.nextElementSibling;
       if (categoryDiv && categoryDiv.classList.contains("error-message")) {
         categoryDiv.textContent = "相談内容を1つ以上選択してください";
         categoryDiv.classList.remove("hidden");
@@ -965,10 +996,12 @@ import Header from "../components/Header.astro";
     return isValid;
   }
 
-  // Form submission
-  document
-    .getElementById("contact-form")
-    .addEventListener("submit", function (e) {
+  // Form submission to Google Forms
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
 
       if (!validateForm()) {
@@ -980,40 +1013,149 @@ import Header from "../components/Header.astro";
       const submitLoading = document.getElementById("submit-loading");
 
       // Show loading state
-      submitText.classList.add("hidden");
-      submitLoading.classList.remove("hidden");
-      submitBtn.disabled = true;
+      if (submitText) submitText.classList.add("hidden");
+      if (submitLoading) submitLoading.classList.remove("hidden");
+      if (submitBtn) submitBtn.disabled = true;
 
-      // Simulate form submission (replace with actual submission logic)
-      setTimeout(() => {
-        // Reset button state
-        submitText.classList.remove("hidden");
-        submitLoading.classList.add("hidden");
-        submitBtn.disabled = false;
+      // Get form data
+      const formData = new FormData(this);
 
-        // Show thank you modal
-        document.getElementById("thank-you-modal").classList.remove("hidden");
-        document.getElementById("thank-you-modal").classList.add("flex");
+      // Map form fields to Google Forms entry IDs
+      const googleFormData = new FormData();
 
-        // Reset form
-        this.reset();
-        document.getElementById("char-count").textContent = "0";
-      }, 2000);
+      // Basic information
+      googleFormData.append(
+        "entry.613070658",
+        formData.get("company_name") || ""
+      ); // 会社名
+      googleFormData.append(
+        "entry.2116052852",
+        formData.get("department") || ""
+      ); // 部署名
+      googleFormData.append(
+        "entry.1182563392",
+        formData.get("contact_name") || ""
+      ); // お名前
+      googleFormData.append("entry.244536876", formData.get("position") || ""); // 役職
+      googleFormData.append("entry.1558582620", formData.get("email") || ""); // メールアドレス
+
+      // Company information
+      googleFormData.append("entry.1997662257", formData.get("industry") || ""); // 業界・業種
+      googleFormData.append(
+        "entry.1893426852",
+        formData.get("company_size") || ""
+      ); // 従業員規模
+
+      // Consultation details
+      const categories = Array.from(
+        document.querySelectorAll('input[name="consultation_category"]:checked')
+      )
+        .map((cb) => cb.value)
+        .join(", ");
+      googleFormData.append("entry.248267075", categories); // 相談内容
+
+      googleFormData.append(
+        "entry.1767368493",
+        formData.get("budget_range") || ""
+      ); // 予算規模
+      googleFormData.append("entry.1087875316", formData.get("timeline") || ""); // 希望開始時期
+      googleFormData.append("entry.1394113561", formData.get("message") || ""); // 相談内容・課題について
+
+      // Meeting preference
+      googleFormData.append(
+        "entry.430505463",
+        formData.get("preferred_meeting") || ""
+      ); // 希望する相談方法
+
+      // Privacy policy agreement
+      googleFormData.append(
+        "entry.831363846",
+        formData.get("privacy_agreement")
+          ? "プライバシーポリシーに同意します"
+          : ""
+      ); // プライバシーポリシー同意
+
+      // Debug: Log form data
+      console.log("Form data being sent:", {
+        company_name: formData.get("company_name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+        industry: formData.get("industry"),
+        company_size: formData.get("company_size"),
+        budget_range: formData.get("budget_range"),
+        timeline: formData.get("timeline"),
+        preferred_meeting: formData.get("preferred_meeting"),
+        privacy_agreement: formData.get("privacy_agreement"),
+      });
+
+      // Debug: Log all Google Form data
+      console.log("Google Form data entries:");
+      for (let [key, value] of googleFormData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+
+      // Submit to Google Forms
+      fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLScaWcLHfLO7ZizP3yv86hKwvCnhjeFNq3U1zi3ENC1_8qKKnw/formResponse",
+        {
+          method: "POST",
+          mode: "no-cors",
+          body: googleFormData,
+        }
+      )
+        .then(() => {
+          console.log("Form submission completed");
+
+          // Reset button state
+          if (submitText) submitText.classList.remove("hidden");
+          if (submitLoading) submitLoading.classList.add("hidden");
+          if (submitBtn) submitBtn.disabled = false;
+
+          // Show thank you modal
+          const modal = document.getElementById("thank-you-modal");
+          if (modal) {
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+          }
+
+          // Reset form
+          this.reset();
+          const charCount = document.getElementById("char-count");
+          if (charCount) charCount.textContent = "0";
+        })
+        .catch((error) => {
+          console.error("Form submission error:", error);
+
+          // Reset button state
+          if (submitText) submitText.classList.remove("hidden");
+          if (submitLoading) submitLoading.classList.add("hidden");
+          if (submitBtn) submitBtn.disabled = false;
+
+          // Show error message
+          alert("送信に失敗しました。しばらく時間をおいて再度お試しください。");
+        });
     });
+  });
 
   function closeThankYouModal() {
-    document.getElementById("thank-you-modal").classList.add("hidden");
-    document.getElementById("thank-you-modal").classList.remove("flex");
+    const modal = document.getElementById("thank-you-modal");
+    if (modal) {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
   }
 
   // Close modal when clicking outside
-  document
-    .getElementById("thank-you-modal")
-    .addEventListener("click", function (e) {
-      if (e.target === this) {
-        closeThankYouModal();
-      }
-    });
+  document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("thank-you-modal");
+    if (modal) {
+      modal.addEventListener("click", function (e) {
+        if (e.target === this) {
+          closeThankYouModal();
+        }
+      });
+    }
+  });
 </script>
 
 <style>
