@@ -4,7 +4,6 @@ import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Services from "../components/Services.astro";
 import { company, pageMeta } from "../data/content.ts";
-import "../styles/global.css";
 ---
 
 <Layout title={pageMeta.home.title}>
@@ -43,10 +42,10 @@ import "../styles/global.css";
                   d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">
+            <h3 class="text-xl font-bold text-white mb-3">
               生成AI×PdMの実行力
             </h3>
-            <p class="text-gray-600">
+            <p class="text-gray-300">
               Azure
               OpenAI、GPT-4oなどの最新技術をビジネス要求に落とし込み、プロダクトマネジメント視点でスピーディに実装します。
             </p>
@@ -69,10 +68,10 @@ import "../styles/global.css";
                 ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">
+            <h3 class="text-xl font-bold text-white mb-3">
               データドリブンな意思決定
             </h3>
-            <p class="text-gray-600">
+            <p class="text-gray-300">
               KPI設計、ダッシュボード構築、分析オペレーションの定着まで伴走し、継続的に学習する組織をつくります。
             </p>
           </div>
@@ -94,10 +93,10 @@ import "../styles/global.css";
                 ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">
+            <h3 class="text-xl font-bold text-white mb-3">
               伴走型コンサルティング
             </h3>
-            <p class="text-gray-600">
+            <p class="text-gray-300">
               短期の成果創出から内製化支援まで、プロジェクトに最適なチーム構成で伴走。北海道から全国までリモート・オンサイト対応。
             </p>
           </div>
@@ -105,110 +104,68 @@ import "../styles/global.css";
       </div>
     </section>
 
-    <!-- Case Studies Section -->
+    <!-- Approach Section -->
     <section class="section py-20 md:py-32">
       <div class="container">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-            <span class="gradient-text">実績事例</span>
+            <span class="gradient-text">進め方</span>
           </h2>
-          <p class="text-xl text-gray-300">様々な業界でのAI・データ活用実績</p>
+          <p class="text-xl text-gray-300">課題定義から運用まで、一気通貫で伴走します</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Case Study 1 -->
+          <!-- Step 1 -->
           <div class="card text-center">
-            <div class="text-green-600 mb-3">
-              <svg
-                class="w-8 h-8 mx-auto"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                ></path>
+            <div class="text-green-500 mb-3">
+              <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h4 class="font-bold text-white mb-2">教育SaaS企業</h4>
-            <p class="text-sm text-gray-300 mb-3">
-              生成AIと学習者データを活用したアダプティブ学習機能構築
-            </p>
-            <div class="text-green-600 font-bold">学習継続率 +18%</div>
+            <h4 class="font-bold text-white mb-2">課題定義</h4>
+            <p class="text-sm text-gray-300 mb-1">ビジネス要件／成功条件の明確化</p>
+            <p class="text-xs text-gray-400">現状把握、KPI仮説、リスク洗い出し</p>
           </div>
 
-          <!-- Case Study 2 -->
+          <!-- Step 2 -->
           <div class="card text-center">
-            <div class="text-green-600 mb-3">
-              <svg
-                class="w-8 h-8 mx-auto"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-                ></path>
+            <div class="text-green-500 mb-3">
+              <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17a4 4 0 100-8 4 4 0 000 8zm0 0v4m0-18v2m-7 7H2m18 0h-2m-3.536 5.536l-1.414-1.414M6.95 6.95L5.536 5.536" />
               </svg>
             </div>
-            <h4 class="font-bold text-white mb-2">製造業音声解析</h4>
-            <p class="text-sm text-gray-300 mb-3">
-              音声認識・感情解析モデルで異常検知を自動化
-            </p>
-            <div class="text-green-600 font-bold">判定時間 50%短縮</div>
+            <h4 class="font-bold text-white mb-2">設計／プロトタイプ</h4>
+            <p class="text-sm text-gray-300 mb-1">情報設計・UX・技術選定・評価設計</p>
+            <p class="text-xs text-gray-400">小さく作って早く検証</p>
           </div>
 
-          <!-- Case Study 3 -->
+          <!-- Step 3 -->
           <div class="card text-center">
-            <div class="text-green-600 mb-3">
-              <svg
-                class="w-8 h-8 mx-auto"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+            <div class="text-green-500 mb-3">
+              <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17l4 4 4-4m0-10l-4-4-4 4M3 12h18" />
               </svg>
             </div>
-            <h4 class="font-bold text-white mb-2">小売×生成AI</h4>
-            <p class="text-sm text-gray-300 mb-3">
-              Azure OpenAIとRAG構成を活用したインタラクティブミラー
-            </p>
-            <div class="text-green-600 font-bold">3ヶ月でパイロット</div>
+            <h4 class="font-bold text-white mb-2">実装／統合</h4>
+            <p class="text-sm text-gray-300 mb-1">API/RAG/ワークフローを堅実に実装</p>
+            <p class="text-xs text-gray-400">品質ゲート／セキュリティ／監視</p>
           </div>
 
-          <!-- Case Study 4 -->
+          <!-- Step 4 -->
           <div class="card text-center">
-            <div class="text-green-600 mb-3">
-              <svg
-                class="w-8 h-8 mx-auto"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            <div class="text-green-500 mb-3">
+              <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19a8 8 0 100-16 8 8 0 000 16zm-1-7h2v5h-2v-5zm0-4h2v2h-2V8z" />
               </svg>
             </div>
-            <h4 class="font-bold text-white mb-2">AIスタートアップ</h4>
-            <p class="text-sm text-gray-300 mb-3">
-              市場調査・PoC開発・KPI設計で事業性検証を支援
-            </p>
-            <div class="text-green-600 font-bold">投資判断材料整備</div>
+            <h4 class="font-bold text-white mb-2">計測／改善</h4>
+            <p class="text-sm text-gray-300 mb-1">KPI計測・可視化・継続的な改善</p>
+            <p class="text-xs text-gray-400">意思決定をデータ駆動に</p>
           </div>
+        </div>
+
+        <div class="text-center mt-10">
+          <a href="/case-studies" class="text-green-400 hover:text-green-300 underline underline-offset-4">事例を見る</a>
         </div>
       </div>
     </section>
@@ -263,7 +220,7 @@ import "../styles/global.css";
                 d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
               ></path>
             </svg>
-            資料ダウンロード
+            サービスを見る
           </a>
         </div>
       </div>

@@ -29,11 +29,33 @@ const { title, description = "TECMAH株式会社は、AI・データ活用・PdM
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
+  <meta name="theme-color" content="#0a0a0b" />
+  <link rel="canonical" href={Astro.url?.href || 'https://tecmah.com/'} />
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD: Organization & WebSite -->
+  <script type="application/ld+json">{JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'TECMAH株式会社',
+    url: 'https://tecmah.com/',
+    logo: 'https://tecmah.com/images/logo/tecmah-logo.svg'
+  })}</script>
+  <script type="application/ld+json">{JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'TECMAH',
+    url: 'https://tecmah.com/',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://tecmah.com/?q={search_term_string}',
+      'query-input': 'required name=search_term_string'
+    }
+  })}</script>
 </head>
 <body>
   <slot />
