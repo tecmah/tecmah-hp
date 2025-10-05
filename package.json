@@ -13,6 +13,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
     "@types/three": "^0.180.0",
+    "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.13.9",
     "tailwindcss": "^4.1.13",
     "three": "^0.180.0",
