@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "test:build": "npm run build && npm run preview",
-    "lhci": "lhci autorun"
+    "lhci": "npm run build && lhci autorun --collect.staticDistDir=./dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
