@@ -49,12 +49,62 @@ const LOGO = {
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
-        <a
-          href="/"
-          class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
-        >
-          ホーム
-        </a>
+        <!-- Home Version Selector -->
+        <div class="relative home-version-selector group">
+          <button
+            type="button"
+            class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors flex items-center gap-1"
+            aria-expanded="false"
+            aria-haspopup="true"
+            id="home-version-button"
+          >
+            ホーム
+            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div
+            class="home-version-dropdown hidden absolute top-full left-0 mt-2 w-48 bg-zinc-800 rounded-lg shadow-xl border border-zinc-700 py-2 z-50"
+            id="home-version-dropdown"
+          >
+            <a
+              href="/"
+              class="block px-4 py-2 text-sm text-gray-300 hover:bg-zinc-700 hover:text-white transition-colors"
+            >
+              <span class="flex items-center justify-between">
+                <span>デフォルト</span>
+                <span class="text-xs text-gray-500">現在</span>
+              </span>
+            </a>
+            <a
+              href="/index-01"
+              class="block px-4 py-2 text-sm text-gray-300 hover:bg-zinc-700 hover:text-white transition-colors"
+            >
+              <span class="flex items-center justify-between">
+                <span>バージョン01</span>
+                <span class="text-xs text-gray-500">ライト</span>
+              </span>
+            </a>
+            <a
+              href="/index-02"
+              class="block px-4 py-2 text-sm text-gray-300 hover:bg-zinc-700 hover:text-white transition-colors"
+            >
+              <span class="flex items-center justify-between">
+                <span>バージョン02</span>
+                <span class="text-xs text-gray-500">グラデーション</span>
+              </span>
+            </a>
+            <a
+              href="/index-03"
+              class="block px-4 py-2 text-sm text-gray-300 hover:bg-zinc-700 hover:text-white transition-colors"
+            >
+              <span class="flex items-center justify-between">
+                <span>バージョン03</span>
+                <span class="text-xs text-gray-500">ニューモーフィズム</span>
+              </span>
+            </a>
+          </div>
+        </div>
         <a
           href="/services"
           class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
@@ -107,12 +157,33 @@ const LOGO = {
       <div
         class="px-2 pt-2 pb-3 space-y-1 bg-zinc-900 border-t border-zinc-700"
       >
-        <a
-          href="/"
-          class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
-        >
-          ホーム
-        </a>
+        <div class="border-b border-zinc-700 pb-2 mb-2">
+          <div class="px-3 py-2 text-base font-medium text-gray-400">ホーム</div>
+          <a
+            href="/"
+            class="block px-6 py-2 text-sm text-gray-300 hover:text-white hover:bg-zinc-800"
+          >
+            デフォルト
+          </a>
+          <a
+            href="/index-01"
+            class="block px-6 py-2 text-sm text-gray-300 hover:text-white hover:bg-zinc-800"
+          >
+            バージョン01（ライト）
+          </a>
+          <a
+            href="/index-02"
+            class="block px-6 py-2 text-sm text-gray-300 hover:text-white hover:bg-zinc-800"
+          >
+            バージョン02（グラデーション）
+          </a>
+          <a
+            href="/index-03"
+            class="block px-6 py-2 text-sm text-gray-300 hover:text-white hover:bg-zinc-800"
+          >
+            バージョン03（ニューモーフィズム）
+          </a>
+        </div>
         <a
           href="/services"
           class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
@@ -169,6 +240,50 @@ const LOGO = {
         mobileMenuButton?.setAttribute("aria-expanded", "false");
       }
     });
+
+    // Home version dropdown toggle
+    const homeVersionButton = document.getElementById("home-version-button");
+    const homeVersionDropdown = document.getElementById("home-version-dropdown");
+    const homeVersionArrow = homeVersionButton?.querySelector("svg");
+
+    if (homeVersionButton && homeVersionDropdown) {
+      homeVersionButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+        const isExpanded = homeVersionButton.getAttribute("aria-expanded") === "true";
+        
+        homeVersionButton.setAttribute("aria-expanded", (!isExpanded).toString());
+        homeVersionDropdown.classList.toggle("hidden");
+        
+        if (homeVersionArrow) {
+          homeVersionArrow.classList.toggle("rotate-180");
+        }
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (event) {
+        if (
+          homeVersionDropdown &&
+          !homeVersionDropdown.contains(event.target) &&
+          !homeVersionButton?.contains(event.target)
+        ) {
+          homeVersionDropdown.classList.add("hidden");
+          homeVersionButton?.setAttribute("aria-expanded", "false");
+          if (homeVersionArrow) {
+            homeVersionArrow.classList.remove("rotate-180");
+          }
+        }
+      });
+
+      // Highlight current version
+      const currentPath = window.location.pathname;
+      const dropdownLinks = homeVersionDropdown.querySelectorAll("a");
+      dropdownLinks.forEach((link) => {
+        if (link.getAttribute("href") === currentPath) {
+          link.classList.add("bg-zinc-700", "text-white");
+          link.querySelector("span.text-xs").textContent = "✓ 現在";
+        }
+      });
+    }
   });
 </script>
 
@@ -215,6 +330,26 @@ const LOGO = {
 
     .logo-picture[data-logo-mode="dynamic"] .logo {
       filter: none;
+    }
+  }
+
+  /* Home version selector */
+  .home-version-selector:hover .home-version-dropdown {
+    display: block;
+  }
+
+  .home-version-dropdown {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 </style>

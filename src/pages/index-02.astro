@@ -1,0 +1,206 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import { company, pageMeta } from "../data/content.ts";
+---
+
+<Layout title={pageMeta.home.title}>
+  <Header />
+  <main class="theme-gradient pt-20">
+    <!-- Hero Section -->
+    <section class="section-hero bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-20 md:py-32 relative overflow-hidden">
+      <!-- Gradient overlay -->
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-purple-400/10 to-pink-400/10 pointer-events-none"></div>
+      
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-5xl mx-auto text-center">
+          <!-- Badge -->
+          <div class="inline-flex items-center px-6 py-3 rounded-full bg-white/80 backdrop-blur-md border border-blue-200 text-blue-700 text-sm font-medium mb-12 shadow-lg">
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span class="font-semibold">🚀 AI最先端企業</span>
+          </div>
+
+          <!-- Main Heading -->
+          <h1 class="text-6xl md:text-8xl font-black mb-8 leading-tight">
+            <span class="block text-slate-900">次世代</span>
+            <span class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">AI技術</span>で<br />
+            <span class="block text-slate-900">ビジネスを</span>
+            <span class="bg-gradient-to-r from-emerald-500 to-indigo-600 bg-clip-text text-transparent">変革</span>する
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-2xl md:text-3xl text-slate-700 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
+            生成AI、機械学習、データサイエンスの最先端技術で<br />
+            あなたのビジネスを未来へ導きます
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <a href="/contact" class="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+              <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+              無料相談を開始
+            </a>
+            <a href="/services" class="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-slate-900 bg-white/80 backdrop-blur-md border-2 border-white rounded-full hover:bg-white transition-all duration-300 hover:scale-105 shadow-lg">
+              <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+              サービスを見る
+            </a>
+          </div>
+
+          <!-- Trust Indicators -->
+          <div class="mt-20 pt-12 border-t border-blue-200/50">
+            <p class="text-slate-600 text-lg mb-8 font-medium">提供できる価値</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent">フルサイクル</div>
+                <div class="text-sm font-medium text-slate-700">要件定義→設計→実装</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">データ活用</div>
+                <div class="text-sm font-medium text-slate-700">KPI設計→計測→可視化</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">生成AI実装</div>
+                <div class="text-sm font-medium text-slate-700">RAG・評価・運用</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-orange-500 to-yellow-500 bg-clip-text text-transparent">運用/品質</div>
+                <div class="text-sm font-medium text-slate-700">監視・SLO・セキュリティ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-white py-20 md:py-32">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">なぜTECMAH</span>が<br />
+            <span class="text-slate-900">選ばれるのか</span>
+          </h2>
+          <p class="text-xl text-slate-600">
+            生成AI時代の変化に対応する、3つの強み
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div class="card-gradient text-center p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="bg-gradient-to-br from-blue-500 to-emerald-500 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">生成AI×PdMの実行力</h3>
+            <p class="text-slate-600">
+              Azure OpenAI、GPT-4oなどの最新技術をビジネス要求に落とし込み、プロダクトマネジメント視点でスピーディに実装します。
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="card-gradient text-center p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">データドリブンな意思決定</h3>
+            <p class="text-slate-600">
+              KPI設計、ダッシュボード構築、分析オペレーションの定着まで伴走し、継続的に学習する組織をつくります。
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="card-gradient text-center p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="bg-gradient-to-br from-purple-500 to-pink-600 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">伴走型コンサルティング</h3>
+            <p class="text-slate-600">
+              短期の成果創出から内製化支援まで、プロジェクトに最適なチーム構成で伴走。北海道から全国までリモート・オンサイト対応。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-20 md:py-32">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+          無料相談で最適な<br />
+          アプローチを見つけませんか？
+        </h2>
+        <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+          初回60分のオンラインセッションで、現状の課題をヒアリングし、<br />
+          具体的な解決策とロードマップをご提案します。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold bg-white text-indigo-600 hover:bg-slate-50 text-lg shadow-xl transition-colors duration-200">
+            今すぐ無料相談を予約
+          </a>
+          <a href="/services" class="inline-flex items-center justify-center px-8 py-4 rounded-full font-bold bg-transparent text-white border-2 border-white hover:bg-white/10 text-lg transition-colors duration-200">
+            サービスを見る
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-white py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-4">
+            <span class="text-2xl font-bold">TECMAH</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            AI・データ活用・PdM/PM支援を行うスタートアップ。<br />
+            データドリブンな意思決定と生成AIを活用したプロダクト開発で、企業のデジタル変革を伴走支援します。
+          </p>
+          <div class="text-sm text-gray-400">
+            <p>{company.address.full}</p>
+            <p>Email: {company.contact.email}</p>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold mb-4">サービス</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/services/ai-data" class="hover:text-white">生成AI・データ活用</a></li>
+            <li><a href="/services/product-management" class="hover:text-white">PdM/PM伴走</a></li>
+            <li><a href="/services/dx-consulting" class="hover:text-white">DXコンサルティング</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold mb-4">会社情報</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/about" class="hover:text-white">会社概要</a></li>
+            <li><a href="/case-studies" class="hover:text-white">事例</a></li>
+            <li><a href="/contact" class="hover:text-white">お問い合わせ</a></li>
+            <li><a href="/privacy" class="hover:text-white">プライバシーポリシー</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 株式会社TECMAH. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</Layout>

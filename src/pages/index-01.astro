@@ -1,0 +1,189 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import { company, pageMeta } from "../data/content.ts";
+
+const features = [
+  {
+    title: "生成AI実装",
+    desc: "GPT-4o / Azure OpenAI",
+    icon: "⚡️",
+    class: "md:col-span-2 md:row-span-2 bg-slate-100"
+  },
+  {
+    title: "データ分析",
+    desc: "KPI Dashboard",
+    icon: "📊",
+    class: "bg-white border border-slate-200"
+  },
+  {
+    title: "PdM伴走",
+    desc: "Agile / Scrum",
+    icon: "🤝",
+    class: "bg-slate-900 text-white"
+  },
+  {
+    title: "セキュリティ",
+    desc: "Enterprise Grade",
+    icon: "🔒",
+    class: "bg-white border border-slate-200"
+  },
+  {
+    title: "スケーラビリティ",
+    desc: "Cloud Native",
+    icon: "🚀",
+    class: "md:col-span-2 bg-slate-100"
+  }
+];
+---
+
+<Layout title={pageMeta.home.title}>
+  <Header />
+  
+  <main class="bg-white text-slate-900 font-sans selection:bg-black selection:text-white pt-20">
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-32 md:pt-32 md:pb-48 overflow-hidden">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <div class="max-w-4xl">
+          <div class="inline-flex items-center space-x-2 bg-slate-100 rounded-full px-4 py-2 mb-8">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span class="text-sm font-medium text-slate-600">Available for new projects</span>
+          </div>
+          
+          <h1 class="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-8">
+            The Intelligence<br />
+            Platform for<br />
+            <span class="text-slate-400">Your Business.</span>
+          </h1>
+          
+          <p class="text-xl md:text-2xl text-slate-600 max-w-2xl leading-relaxed mb-12">
+            TECMAHは、生成AIとプロダクトマネジメントの力で、<br class="hidden md:block" />
+            企業のデジタルトランスフォーメーションを加速させます。
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-black rounded-xl hover:bg-slate-800 transition-colors duration-200">
+              無料相談を予約
+            </a>
+            <a href="/services" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-slate-900 bg-slate-100 rounded-xl hover:bg-slate-200 transition-colors duration-200">
+              サービス詳細
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abstract Decoration -->
+      <div class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 -z-10 opacity-50 md:opacity-100">
+        <div class="w-[800px] h-[800px] bg-gradient-to-br from-slate-200 to-slate-50 rounded-full blur-3xl"></div>
+      </div>
+    </section>
+
+    <!-- Bento Grid Section -->
+    <section class="py-24 bg-slate-50">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <div class="mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">Capabilities</h2>
+          <p class="text-xl text-slate-600">ビジネスに必要な機能を、ワンストップで。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[240px]">
+          {features.map((item) => (
+            <div class={`group relative p-8 rounded-3xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl overflow-hidden ${item.class}`}>
+              <div class="flex flex-col h-full justify-between relative z-10">
+                <div class="text-4xl mb-4">{item.icon}</div>
+                <div>
+                  <h3 class={`text-2xl font-bold mb-2 ${item.class.includes('text-white') ? 'text-white' : 'text-slate-900'}`}>
+                    {item.title}
+                  </h3>
+                  <p class={`text-lg ${item.class.includes('text-white') ? 'text-slate-300' : 'text-slate-500'}`}>
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+              {/* Hover Effect Background */}
+              <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            </div>
+          ))}
+          
+          <!-- CTA Card -->
+          <div class="md:col-span-1 md:row-span-1 bg-green-500 text-white p-8 rounded-3xl flex flex-col justify-center items-center text-center cursor-pointer group transition-all hover:bg-green-600">
+            <a href="/contact" class="w-full h-full flex flex-col justify-center items-center">
+              <span class="text-3xl font-bold mb-2">Start Now</span>
+              <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section class="py-24 bg-white border-t border-slate-100">
+      <div class="container mx-auto px-6 max-w-7xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+          <div>
+            <div class="text-5xl md:text-6xl font-bold text-slate-900 mb-2 tracking-tight">50%</div>
+            <div class="text-slate-500 font-medium">リードタイム短縮</div>
+          </div>
+          <div>
+            <div class="text-5xl md:text-6xl font-bold text-slate-900 mb-2 tracking-tight">18%</div>
+            <div class="text-slate-500 font-medium">学習継続率向上</div>
+          </div>
+          <div>
+            <div class="text-5xl md:text-6xl font-bold text-slate-900 mb-2 tracking-tight">3mo</div>
+            <div class="text-slate-500 font-medium">平均PoC期間</div>
+          </div>
+          <div>
+            <div class="text-5xl md:text-6xl font-bold text-slate-900 mb-2 tracking-tight">100%</div>
+            <div class="text-slate-500 font-medium">プロジェクト完遂率</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="py-24 bg-black text-white">
+      <div class="container mx-auto px-6 max-w-7xl text-center">
+        <h2 class="text-4xl md:text-6xl font-bold tracking-tight mb-8">
+          Ready to scale?
+        </h2>
+        <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto">
+          プロジェクトの成功確度を高めるための、<br />
+          最適なパートナーシップをご提案します。
+        </p>
+        <a href="/contact" class="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-black bg-white rounded-full hover:scale-105 transition-transform duration-200">
+          無料相談を申し込む
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-12">
+    <div class="container mx-auto px-6 max-w-7xl">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <span class="text-2xl font-bold tracking-tight text-slate-900">TECMAH</span>
+          <p class="text-sm text-slate-500 mt-1">© 2025 TECMAH Inc.</p>
+        </div>
+        <div class="flex space-x-8">
+          <a href="/services" class="text-slate-600 hover:text-slate-900">Services</a>
+          <a href="/case-studies" class="text-slate-600 hover:text-slate-900">Case Studies</a>
+          <a href="/about" class="text-slate-600 hover:text-slate-900">About</a>
+          <a href="/contact" class="text-slate-600 hover:text-slate-900">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* カスタムフォント設定などが必要な場合はここに記述 */
+  :global(body) {
+    font-family: 'Inter', sans-serif;
+  }
+</style>

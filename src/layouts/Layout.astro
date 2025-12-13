@@ -8,7 +8,7 @@ export interface Props {
   ogImage?: string;
 }
 
-const { title, description = "TECMAH株式会社は、AI・データ活用・PdM/PM支援を行うスタートアップです。", ogImage = "/og-default.jpg" } = Astro.props;
+const { title, description = "株式会社TECMAHは、AI・データ活用・PdM/PM支援を行うスタートアップです。", ogImage = "/og-default.jpg" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ const { title, description = "TECMAH株式会社は、AI・データ活用・PdM
   <script type="application/ld+json">{JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'TECMAH株式会社',
+    name: '株式会社TECMAH',
     url: 'https://tecmah.com/',
     logo: 'https://tecmah.com/images/logo/tecmah-logo.svg'
   })}</script>

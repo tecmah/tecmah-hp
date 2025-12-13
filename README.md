@@ -1,23 +1,22 @@
-# TECMAH株式会社 - Webサイト
+# 株式会社TECMAH - Webサイト
 
-> 🚀 **Astro + TypeScript + Tailwind CSS** で構築されたモダンなAI企業サイト
+Astro + TypeScript + Tailwind CSS で構築されたコーポレートサイト
 
-## 🎯 プロジェクト概要
+## プロジェクト概要
 
-TECMAH株式会社のコーポレートサイトを、スタートアップ式のデザインに刷新。
-Jekyll（Ruby）から **Astro（TypeScript）** に移行し、GitHub Pagesでの静的デプロイを実現。
+株式会社TECMAHのコーポレートサイト。Jekyll（Ruby）から Astro（TypeScript）に移行し、GitHub Pagesでの静的デプロイを実現。
 
-### 🌟 特徴
+### 特徴
 
-- **ダークテーマ**: 黒・グレー基調の洗練されたデザイン
-- **統一コンテンツ管理**: TypeScriptベースの型安全なコンテンツ管理システム
-- **高速パフォーマンス**: Astroによる静的サイト生成で最適化
-- **完全TypeScript**: 型安全な開発環境
+- **ダークテーマ**: 黒・グレー基調のデザイン
+- **統一コンテンツ管理**: TypeScriptベースのコンテンツ管理システム
+- **静的サイト生成**: Astroによる最適化
+- **TypeScript**: 型安全な開発環境
 - **レスポンシブ**: モバイルファーストデザイン
 - **SEO最適化**: メタタグ、構造化データ対応
-- **絵文字レス**: SVGアイコンによるプロフェッショナルな表現
+- **SVGアイコン**: アイコンによる表現
 
-## 🛠️ 技術スタック
+## 技術スタック
 
 | 技術 | バージョン | 用途 |
 |------|------------|------|
@@ -27,7 +26,7 @@ Jekyll（Ruby）から **Astro（TypeScript）** に移行し、GitHub Pagesで�
 | **GitHub Pages** | - | 静的サイトホスティング |
 | **GitHub Actions** | - | CI/CD自動デプロイ |
 
-## 📁 プロジェクト構造
+## プロジェクト構造
 
 ```
 tecmah-hp/
@@ -37,7 +36,7 @@ tecmah-hp/
 │   │   ├── Hero.astro       # メインビジュアル
 │   │   ├── Services.astro   # サービス紹介
 │   │   └── ...
-│   ├── data/                # 📊 コンテンツ管理
+│   ├── data/                # コンテンツ管理
 │   │   └── content.ts       # 統一コンテンツ管理ファイル
 │   ├── layouts/             # レイアウトテンプレート
 │   │   └── Layout.astro     # ベースレイアウト
@@ -53,7 +52,7 @@ tecmah-hp/
 │   │   │   └── index.astro  # 事例一覧
 │   │   └── contact.astro    # お問い合わせ
 │   └── styles/              # スタイルファイル
-│       └── global.css       # OpenAI風ダークテーマCSS
+│       └── global.css       # ダークテーマCSS
 ├── public/                  # 静的アセット
 │   ├── images/              # 画像ファイル
 │   ├── logo.svg             # ロゴ
@@ -65,7 +64,7 @@ tecmah-hp/
 └── tsconfig.json            # TypeScript設定
 ```
 
-## 🚀 開発環境セットアップ
+## 開発環境セットアップ
 
 ### 前提条件
 
@@ -98,13 +97,13 @@ npm run build
 npm run preview
 ```
 
-## 🎨 デザインシステム
+## デザインシステム
 
-### OpenAI風ダークテーマ
+### ダークテーマ
 
 ```css
 :root {
-  /* OpenAI風ダークカラーパレット */
+  /* ダークカラーパレット */
   --primary: #00d4aa;        /* TECMAHグリーン */
   --primary-dark: #00b894;
   --secondary: #6366f1;      /* ブルー */
@@ -132,16 +131,16 @@ npm run preview
 - **レスポンシブ**: `clamp()` 関数で可変サイズ
 - **カラー**: 白文字ベースでコントラスト最適化
 
-## 📄 コンテンツ管理システム
+## コンテンツ管理システム
 
-### 🎯 統一コンテンツ管理 (`src/data/content.ts`)
+### 統一コンテンツ管理 (`src/data/content.ts`)
 
-全サイトのコンテンツを**TypeScript**で型安全に一元管理。
+全サイトのコンテンツをTypeScriptで一元管理。
 
 ```typescript
 // 会社基本情報
 export const company: CompanyInfo = {
-  name: "TECMAH株式会社",
+  name: "株式会社TECMAH",
   tagline: "AI・データ活用・PdM/PM支援",
   representative: "松浦 賢孝",
   established: 2025,
@@ -153,7 +152,7 @@ export const company: CompanyInfo = {
   }
 };
 
-// サービス情報（型安全）
+// サービス情報
 export const services: ServiceInfo[] = [
   {
     id: "ai-data",
@@ -179,7 +178,7 @@ export const caseStudies: CaseStudy[] = [
 ];
 ```
 
-### 🔄 コンテンツ活用
+### コンテンツ活用
 
 ```astro
 ---
@@ -198,43 +197,49 @@ import { company, services, messages } from '../data/content.ts';
 ))}
 ```
 
-### ⚠️ 制約・集約できなかった要素
+### 制約・集約できなかった要素
 
-#### 1. **フォームのプレースホルダー**
+#### 1. フォームのプレースホルダー
+
 ```typescript
-// ❌ 集約困難（HTMLの制約）
+// 集約困難（HTMLの制約）
 placeholder="株式会社〇〇"  // contact.astro内
 placeholder="田中 太郎"    // 直接HTML属性
 ```
+
 **理由**: Astroコンポーネント内でのHTML属性は、動的な日本語プレースホルダーとの相性が悪く、可読性を優先。
 
-#### 2. **ページタイトル（Layout）**
+#### 2. ページタイトル（Layout）
+
 ```astro
-<!-- ❌ 部分的に集約困難 -->
-<Layout title="生成AI・データ活用支援 | TECMAH株式会社">
+<!-- 部分的に集約困難 -->
+<Layout title="生成AI・データ活用支援 | 株式会社TECMAH">
 ```
+
 **理由**: 各ページ固有のSEOタイトルは`pageMeta`で管理しているが、Layoutコンポーネントでの直接指定も併用。
 
-#### 3. **SVGアイコン（インライン）**
+#### 3. SVGアイコン（インライン）
+
 ```typescript
-// ✅ 集約済み（content.ts内）
+// 集約済み（content.ts内）
 icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor">...</svg>`
 ```
+
 **対応済み**: アイコンは文字列として`content.ts`に集約完了。
 
-### 📊 集約状況
+### 集約状況
 
 | 要素 | 集約状況 | 管理場所 |
 |------|----------|----------|
-| 会社情報 | ✅ 完了 | `company` |
-| サービス情報 | ✅ 完了 | `services` |
-| 実績事例 | ✅ 完了 | `caseStudies` |
-| メッセージ・文言 | ✅ 完了 | `messages` |
-| ページメタ情報 | ✅ 完了 | `pageMeta` |
-| フォームラベル | ⚠️ 部分的 | 各ページ |
-| プレースホルダー | ❌ 個別管理 | 各ページ |
+| 会社情報 | 完了 | `company` |
+| サービス情報 | 完了 | `services` |
+| 実績事例 | 完了 | `caseStudies` |
+| メッセージ・文言 | 完了 | `messages` |
+| ページメタ情報 | 完了 | `pageMeta` |
+| フォームラベル | 部分的 | 各ページ |
+| プレースホルダー | 個別管理 | 各ページ |
 
-## 🚀 デプロイ
+## デプロイ
 
 ### GitHub Pages自動デプロイ
 
@@ -252,16 +257,18 @@ npm run build
 # distフォルダをGitHub Pagesに手動アップロード
 ```
 
-## 🔧 wrkflw - ローカルワークフロー実行（オプション）
+## wrkflw - ローカルワークフロー実行（オプション）
 
-> **注意**: wrkflwはオプションのツールです。GitHub Actionsが正常動作している場合は不要です。
+**注意**: wrkflwはオプションのツールです。GitHub Actionsが正常動作している場合は不要です。
 
 ### インストール（オプション）
+
 ```bash
 npm install -g wrkflw
 ```
 
 ### 使用方法
+
 ```bash
 # 基本実行
 wrkflw run .github/workflows/deploy.yml
@@ -271,19 +278,21 @@ wrkflw run .github/workflows/deploy.yml --debug
 ```
 
 ### 詳細情報
+
 詳しい使用方法は [`local-workflow.md`](./local-workflow.md) を参照してください。
 
-## 🔧 カスタマイズガイド
+## カスタマイズガイド
 
 ### 新しいページの追加
 
 1. **ページメタ情報を追加**
+
 ```typescript
 // src/data/content.ts
 export const pageMeta = {
   // ... 既存のページ
   "new-page": {
-    title: "新しいページ | TECMAH株式会社",
+    title: "新しいページ | 株式会社TECMAH",
     description: "新しいページの説明文",
     keywords: ["キーワード1", "キーワード2"]
   }
@@ -291,6 +300,7 @@ export const pageMeta = {
 ```
 
 2. **ページファイル作成**
+
 ```astro
 ---
 // src/pages/new-page.astro
@@ -310,6 +320,7 @@ import { pageMeta } from '../data/content.ts';
 ```
 
 3. **ナビゲーションに追加**
+
 ```typescript
 // src/data/content.ts
 export const navigation = {
@@ -394,7 +405,7 @@ const service = serviceId ? services.find(s => s.id === serviceId) : null;
 </div>
 ```
 
-## 🐛 トラブルシューティング
+## トラブルシューティング
 
 ### よくある問題
 
@@ -436,7 +447,7 @@ npm run test:build
 npm run dev -- --verbose
 ```
 
-## 📊 パフォーマンス
+## パフォーマンス
 
 ### Lighthouse スコア目標
 
@@ -452,7 +463,7 @@ npm run dev -- --verbose
 3. **JavaScript最小化**: 必要最小限のJS
 4. **CSS最適化**: 未使用スタイル削除
 
-## 📞 サポート・お問い合わせ
+## サポート・お問い合わせ
 
 ### 技術的なお問い合わせ
 
@@ -466,8 +477,8 @@ npm run dev -- --verbose
 
 ---
 
-## 📄 ライセンス
+## ライセンス
 
-© 2025 TECMAH株式会社. All rights reserved.
+© 2025 株式会社TECMAH. All rights reserved.
 
 ---

@@ -2,7 +2,7 @@
   "name": "tecmah-hp",
   "type": "module",
   "version": "1.0.0",
-  "description": "TECMAH株式会社のコーポレートサイト - OpenAI風スタイリッシュデザイン",
+  "description": "株式会社TECMAHのコーポレートサイト - OpenAI風スタイリッシュデザイン",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -25,7 +25,7 @@
     "url": "https://github.com/tecmah/tecmah-hp"
   },
   "homepage": "https://www.tecmah.com",
-  "author": "TECMAH株式会社",
+  "author": "株式会社TECMAH",
   "license": "MIT",
   "devDependencies": {
     "@lhci/cli": "^0.15.1",

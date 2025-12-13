@@ -1,4 +1,4 @@
-// TECMAH株式会社 - 統一コンテンツ管理ファイル
+// 株式会社TECMAH - 統一コンテンツ管理ファイル
 // すべてのページで使用する文字列・データを一元管理
 
 export interface CompanyInfo {
@@ -55,7 +55,7 @@ export interface PageMeta {
 
 // 会社基本情報
 export const company: CompanyInfo = {
-  name: "TECMAH株式会社",
+  name: "株式会社TECMAH",
   nameEn: "TECMAH Inc.",
   tagline: "AI・データ活用・PdM/PM支援",
   description: "データドリブンな意思決定と生成AIを活用したプロダクト開発で、企業のデジタル変革を伴走支援します。",
@@ -202,28 +202,28 @@ export const features = [
 // ページメタ情報
 export const pageMeta: Record<string, PageMeta> = {
   home: {
-    title: "TECMAH株式会社 | AI・データ活用とPdM支援の伴走パートナー",
-    description: "TECMAH株式会社は、生成AIとプロダクトマネジメントの専門知識で企業のデジタル変革を支援します。Azure OpenAI導入からPdM伴走、新規事業開発まで包括的にサポート。",
+    title: "株式会社TECMAH | AI・データ活用とPdM支援の伴走パートナー",
+    description: "株式会社TECMAHは、生成AIとプロダクトマネジメントの専門知識で企業のデジタル変革を支援します。Azure OpenAI導入からPdM伴走、新規事業開発まで包括的にサポート。",
     keywords: ["AI", "データ活用", "プロダクトマネジメント", "DX", "コンサルティング", "生成AI", "Azure OpenAI"]
   },
   services: {
-    title: "サービス一覧 | TECMAH株式会社 - AI・データ活用支援",
+    title: "サービス一覧 | 株式会社TECMAH - AI・データ活用支援",
     description: "TECMAHの3つの専門サービス：生成AI・データ活用支援、PdM/PM伴走、新規事業・DXコンサルティング。お客様の事業成長を包括的に支援します。",
     keywords: ["サービス", "AI導入", "プロダクトマネジメント", "DXコンサルティング"]
   },
   about: {
-    title: "会社概要 | TECMAH株式会社 - AI・データ活用とPdM支援",
-    description: "TECMAH株式会社の会社概要。代表者情報、企業理念、事業内容をご紹介。AI時代の伴走パートナーとして、企業のデジタル変革を専門的に支援しています。",
+    title: "会社概要 | 株式会社TECMAH - AI・データ活用とPdM支援",
+    description: "株式会社TECMAHの会社概要。代表者情報、企業理念、事業内容をご紹介。AI時代の伴走パートナーとして、企業のデジタル変革を専門的に支援しています。",
     keywords: ["会社概要", "企業情報", "代表者", "松浦賢孝"]
   },
   "case-studies": {
-    title: "導入事例・成功事例 | TECMAH株式会社 - AI・データ活用支援実績",
+    title: "導入事例・成功事例 | 株式会社TECMAH - AI・データ活用支援実績",
     description: "TECMAHの支援実績をご紹介。教育SaaS、製造業、小売業、AIスタートアップなど、様々な業界でのAI・データ活用、プロダクトマネジメント支援の成功事例。",
     keywords: ["導入事例", "成功事例", "実績", "AI導入", "データ活用事例"]
   },
   contact: {
-    title: "お問い合わせ・無料相談予約 | TECMAH株式会社",
-    description: "TECMAH株式会社へのお問い合わせ・無料相談のお申し込み。初回60分のオンライン相談は無料。AI・データ活用、プロダクトマネジメント支援のご相談はお気軽に。",
+    title: "お問い合わせ・無料相談予約 | 株式会社TECMAH",
+    description: "株式会社TECMAHへのお問い合わせ・無料相談のお申し込み。初回60分のオンライン相談は無料。AI・データ活用、プロダクトマネジメント支援のご相談はお気軽に。",
     keywords: ["お問い合わせ", "無料相談", "相談予約", "コンタクト"]
   }
 };
