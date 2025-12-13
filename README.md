@@ -475,7 +475,12 @@ npx lhci autorun --config=./lighthouserc.json
     "collect": {
       "staticDistDir": "./dist",
       "url": ["/", "/about", "/services/ai-data", "/case-studies", "/contact"],
-      "numberOfRuns": 3
+      "numberOfRuns": 3,
+      "settings": {
+        "preset": "desktop",
+        "emulatedFormFactor": "desktop",
+        "throttlingMethod": "devtools"
+      }
     },
     "assert": {
       "assertions": {
@@ -495,6 +500,7 @@ npx lhci autorun --config=./lighthouserc.json
 - `collect.staticDistDir` … `npm run build` で生成された `dist/` をホストし、主要5ページを3回ずつ計測。
 - `assert.assertions` … READMEで定義した95点ラインをそのまま最小スコアに使用。基準を変えたい場合はここを編集します。
 - `upload.target` … GitHub Actions 上では一時公開ストレージにアップロードし、ログに共有リンクを出力します（追加のシークレット設定不要）。
+- `collect.settings` … `preset: "desktop"` とデスクトップ向けのエミュレーション/スロットリング方法を固定し、再現性を担保します。
 
 ### 最適化施策
 
