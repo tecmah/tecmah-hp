@@ -1,0 +1,72 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lighthouse:
+    name: Run Lighthouse CI
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      PREVIEW_PORT: 4321
+      LHCI_RESULTS_DIR: ./.lighthouseci
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Start preview server
+        run: |
+          npm run preview -- --host 0.0.0.0 --port $PREVIEW_PORT > preview.log 2>&1 &
+          echo $! > preview.pid
+
+      - name: Wait for preview server
+        run: npx wait-on@7 --timeout 60000 http://127.0.0.1:$PREVIEW_PORT
+
+      - name: Run Lighthouse CI
+        env:
+          LHCI_ASSERTIONS__CATEGORY_PERFORMANCE__MIN_SCORE: "0.90"
+          LHCI_ASSERTIONS__CATEGORY_ACCESSIBILITY__MIN_SCORE: "0.90"
+          LHCI_ASSERTIONS__CATEGORY_BEST_PRACTICES__MIN_SCORE: "0.90"
+          LHCI_ASSERTIONS__CATEGORY_SEO__MIN_SCORE: "0.90"
+        run: |
+          npx @lhci/cli@0.14.0 collect \
+            --url=http://127.0.0.1:$PREVIEW_PORT \
+            --numberOfRuns=3 \
+            --settings.preset=desktop \
+            --outputPath=$LHCI_RESULTS_DIR
+          npx @lhci/cli@0.14.0 assert --inputPath=$LHCI_RESULTS_DIR
+
+      - name: Upload Lighthouse artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: |
+            ${{ env.LHCI_RESULTS_DIR }}
+            preview.log
+
+      - name: Stop preview server
+        if: always()
+        run: |
+          if [ -f preview.pid ]; then
+            kill $(cat preview.pid) || true
+            rm -f preview.pid
+          fi
