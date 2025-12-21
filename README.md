@@ -597,6 +597,63 @@ npm run dev -- --verbose
 - **Best Practices**: 95+
 - **SEO**: 95+
 
+#### Lighthouse スコア測定フロー
+
+- **手動測定（Chrome DevTools）**: Chromeで対象ページを開き、DevTools > Lighthouse > `Desktop` プロファイルを選択して「Analyze page load」を実行。`Performance`/`Accessibility` を個別に確認したい場合はカテゴリを切り替えて再実行します。
+- **手動測定（Lighthouse CLI）**: 公開済みURLを対象にする場合は `npx lighthouse https://www.tecmah.com --view --preset=desktop` を実行。レポートがブラウザで開き、GitHubにアップロードせずに素早く数値を把握できます。
+
+#### 自動測定（GitHub Actions）
+
+- `.github/workflows/lighthouse-ci.yml` で **Lighthouse CI** ワークフローを定義。`main` ブランチへの push と Pull Request で自動実行され、`npm run build` の成果物に対して `npx lhci autorun` を流します。
+- スコアが目標値を下回るとジョブが失敗し、PRのステータスで検知できます。詳細グラフはワークフローの「Run Lighthouse CI」ステップのログから確認します。
+- 追加検証やローカルデバッグを行いたい場合は `wrkflw run .github/workflows/lighthouse-ci.yml` で同じ処理をそのまま再現できます。
+
+#### ローカル測定コマンド
+
+```bash
+npm run build
+npx lhci autorun --config=./lighthouserc.json
+```
+
+`lhci autorun` が `dist/` を起動して複数ページを連続計測します。CI と同じ設定を使うことで数値の再現性を担保できます。
+
+#### 設定ファイル (`lighthouserc.json`)
+
+ルート直下の `lighthouserc.json` で対象URLやしきい値を共通管理しています。
+
+```json
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./dist",
+      "url": ["/", "/about", "/services/ai-data", "/case-studies", "/contact"],
+      "numberOfRuns": 3,
+      "settings": {
+        "preset": "desktop",
+        "emulatedFormFactor": "desktop",
+        "throttlingMethod": "devtools"
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", {"minScore": 0.95}],
+        "categories:accessibility": ["error", {"minScore": 0.95}],
+        "categories:best-practices": ["error", {"minScore": 0.95}],
+        "categories:seo": ["error", {"minScore": 0.95}]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
+```
+
+- `collect.staticDistDir` … `npm run build` で生成された `dist/` をホストし、主要5ページを3回ずつ計測。
+- `assert.assertions` … READMEで定義した95点ラインをそのまま最小スコアに使用。基準を変えたい場合はここを編集します。
+- `upload.target` … GitHub Actions 上では一時公開ストレージにアップロードし、ログに共有リンクを出力します（追加のシークレット設定不要）。
+- `collect.settings` … `preset: "desktop"` とデスクトップ向けのエミュレーション/スロットリング方法を固定し、再現性を担保します。
+
 ### 最適化施策
 
 1. **画像最適化**: WebP形式、適切なサイズ
