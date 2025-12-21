@@ -15,6 +15,7 @@ Astro + TypeScript + Tailwind CSS で構築されたコーポレートサイト
 - **レスポンシブ**: モバイルファーストデザイン
 - **SEO最適化**: メタタグ、構造化データ対応
 - **SVGアイコン**: アイコンによる表現
+- **経歴書LP**: スクロールアニメーション付きのインタラクティブな経歴書ページ（`/profile`）
 
 ## 技術スタック
 
@@ -37,7 +38,8 @@ tecmah-hp/
 │   │   ├── Services.astro   # サービス紹介
 │   │   └── ...
 │   ├── data/                # コンテンツ管理
-│   │   └── content.ts       # 統一コンテンツ管理ファイル
+│   │   ├── content.ts       # 統一コンテンツ管理ファイル
+│   │   └── resume.ts        # 経歴書データ管理
 │   ├── layouts/             # レイアウトテンプレート
 │   │   └── Layout.astro     # ベースレイアウト
 │   ├── pages/               # ページファイル
@@ -50,7 +52,8 @@ tecmah-hp/
 │   │   ├── case-studies/    # 事例ページ
 │   │   │   ├── [slug].astro # 個別事例詳細
 │   │   │   └── index.astro  # 事例一覧
-│   │   └── contact.astro    # お問い合わせ
+│   │   ├── contact.astro    # お問い合わせ
+│   │   └── profile.astro    # 経歴書LP
 │   └── styles/              # スタイルファイル
 │       └── global.css       # ダークテーマCSS
 ├── public/                  # 静的アセット
@@ -231,11 +234,12 @@ icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor">...</svg>`
 
 | 要素 | 集約状況 | 管理場所 |
 |------|----------|----------|
-| 会社情報 | 完了 | `company` |
-| サービス情報 | 完了 | `services` |
-| 実績事例 | 完了 | `caseStudies` |
-| メッセージ・文言 | 完了 | `messages` |
-| ページメタ情報 | 完了 | `pageMeta` |
+| 会社情報 | 完了 | `content.ts` → `company` |
+| サービス情報 | 完了 | `content.ts` → `services` |
+| 実績事例 | 完了 | `content.ts` → `caseStudies` |
+| メッセージ・文言 | 完了 | `content.ts` → `messages` |
+| ページメタ情報 | 完了 | `content.ts` → `pageMeta` |
+| 経歴書データ | 完了 | `resume.ts` → `personalInfo`, `workExperiences`, etc. |
 | フォームラベル | 部分的 | 各ページ |
 | プレースホルダー | 個別管理 | 各ページ |
 
@@ -403,6 +407,143 @@ const service = serviceId ? services.find(s => s.id === serviceId) : null;
   )}
   <slot />
 </div>
+```
+
+## 経歴書ページ（/profile）
+
+代表取締役の経歴書をLP風の1ページで表示するインタラクティブなページ。
+
+### URL
+
+- **開発環境**: `http://localhost:4321/profile`
+- **本番環境**: `https://www.tecmah.com/profile`
+
+### ページ構成
+
+| セクション | 説明 |
+|------------|------|
+| **Hero** | フルスクリーンHero、プロフィール画像、FluidBackground |
+| **Metrics** | 経験年数・プロジェクト数などのカウントアップアニメーション |
+| **About** | 4つの強みをカード形式で表示 |
+| **Skills** | 6カテゴリのスキルタグ（言語、フレームワーク、クラウド、AI/ML、ドメイン、マネジメント） |
+| **Featured Projects** | 注目プロジェクト4件をカード形式で表示 |
+| **Career Timeline** | 縦型タイムラインで職務経歴を表示 |
+| **Contact CTA** | お問い合わせへの誘導 |
+
+### 特徴
+
+- **スクロールアニメーション**: Intersection Observer APIによるフェードイン・スライドイン
+- **カウントアップアニメーション**: メトリクスの数値がスクロール時にアニメーション
+- **タイムライン表示**: 職務経歴を視覚的に表示（モバイル/デスクトップ対応）
+- **グラスモーフィズム**: カードにblur効果を適用
+- **アクセシビリティ対応**: `prefers-reduced-motion` でアニメーション無効化
+
+### データ管理（`src/data/resume.ts`）
+
+```typescript
+// 個人情報
+export const personalInfo: PersonalInfo = {
+  name: "松浦 賢孝",
+  title: "PdM / AI Engineer",
+  tagline: "技術とビジネスの両面から成果を生み出す",
+  // ...
+};
+
+// スキルカテゴリ
+export const skillCategories: SkillCategory[] = [
+  {
+    name: "プログラミング言語",
+    skills: ["TypeScript", "Python", "Ruby", "Swift", ...]
+  },
+  // ...
+];
+
+// 職務経歴
+export const workExperiences: WorkExperience[] = [
+  {
+    company: "株式会社 古田土経営",
+    period: "2025年10月～現在",
+    role: "PM / 業務コンサルタント",
+    projectTitle: "中小企業向け経営計画モデル設計支援",
+    highlights: ["経営者支援プロセスの可視化", ...],
+    technologies: ["Python", "TypeScript", "AWS SageMaker", ...]
+  },
+  // ...
+];
+
+// 注目プロジェクト
+export const featuredProjects: FeaturedProject[] = [
+  {
+    title: "インタラクティブミラー開発",
+    company: "株式会社Sapeet",
+    achievement: "世界初のAIインタラクティブミラー",
+    // ...
+  },
+  // ...
+];
+```
+
+### カスタマイズ
+
+#### 経歴情報の更新
+
+`src/data/resume.ts` を編集：
+
+```typescript
+// 新しい職歴を追加
+export const workExperiences: WorkExperience[] = [
+  {
+    id: "new-company-2025",
+    company: "新しい会社名",
+    period: "2025年12月～現在",
+    duration: "現在進行中",
+    role: "役割",
+    projectTitle: "プロジェクト名",
+    description: "プロジェクトの説明",
+    highlights: ["成果1", "成果2"],
+    technologies: ["技術1", "技術2"],
+    isFeatured: true  // 注目プロジェクトとして表示
+  },
+  // ... 既存の経歴
+];
+```
+
+#### スキルの追加
+
+```typescript
+export const skillCategories: SkillCategory[] = [
+  {
+    name: "プログラミング言語",
+    icon: "code",
+    skills: ["TypeScript", "Python", "Ruby", "NewSkill"]  // 追加
+  },
+  // ...
+];
+```
+
+### アニメーション制御
+
+```css
+/* スクロールアニメーションの調整 */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* アニメーション無効化（アクセシビリティ） */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 ```
 
 ## トラブルシューティング

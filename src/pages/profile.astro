@@ -1,0 +1,729 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import FluidBackground from "../components/FluidBackground.astro";
+import {
+  personalInfo,
+  selfPRPoints,
+  skillCategories,
+  workExperiences,
+  featuredProjects,
+  metrics,
+} from "../data/resume";
+---
+
+<Layout
+  title="松浦 賢孝 - Profile | PdM / AI Engineer"
+  description="松浦賢孝の経歴書。AI技術を活用した新規事業開発やPdM/AEとしてのプロジェクト推進に強みを持ち、技術とビジネスの両面から成果を生み出す。"
+>
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section relative min-h-screen flex items-center overflow-hidden">
+      <FluidBackground />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-zinc-900 z-10"></div>
+      
+      <div class="container relative z-20 pt-20">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Profile Image -->
+          <div class="order-2 lg:order-1 flex justify-center lg:justify-start animate-on-scroll" data-animation="fade-right">
+            <div class="relative">
+              <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-green-400/50 shadow-2xl shadow-green-400/20">
+                <img
+                  src={personalInfo.image}
+                  alt={personalInfo.name}
+                  class="w-full h-full object-cover"
+                  loading="eager"
+                />
+              </div>
+              <div class="absolute -bottom-4 -right-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-full px-6 py-2 text-white font-bold text-sm shadow-lg">
+                {personalInfo.title}
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Content -->
+          <div class="order-1 lg:order-2 text-center lg:text-left animate-on-scroll" data-animation="fade-left">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-sm font-medium mb-6">
+              <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+              Available for Projects
+            </div>
+            
+            <p class="text-green-400 font-medium mb-2">{personalInfo.nameKana}</p>
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-4 leading-tight">
+              {personalInfo.name}
+            </h1>
+            <p class="text-2xl md:text-3xl text-white/90 mb-6 font-light">
+              <span class="gradient-text-hero">{personalInfo.subtitle}</span>
+            </p>
+            <p class="text-lg text-white/70 mb-8 max-w-xl leading-relaxed">
+              {personalInfo.tagline}
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a href="/contact" class="btn-hero-primary">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                お問い合わせ
+              </a>
+              <a href="#career" class="btn-hero-secondary">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+                経歴を見る
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60">
+          <div class="flex flex-col items-center animate-bounce">
+            <span class="text-xs mb-2">Scroll</span>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section class="bg-zinc-900 py-16 border-y border-zinc-800">
+      <div class="container">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {metrics.map((metric, index) => (
+            <div 
+              class="text-center animate-on-scroll" 
+              data-animation="fade-up"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <div class="text-4xl md:text-5xl font-black gradient-text mb-2 counter" data-target={metric.value}>
+                {metric.value}
+              </div>
+              <div class="text-gray-400 text-sm md:text-base">{metric.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Self PR Section -->
+    <section class="bg-zinc-900 py-20 md:py-32" id="about">
+      <div class="container">
+        <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll" data-animation="fade-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            <span class="gradient-text">About Me</span>
+          </h2>
+          <p class="text-xl text-gray-300">
+            技術を活かして新しい価値を生み出し、チームと共に成長していく
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {selfPRPoints.map((point, index) => (
+            <div 
+              class="card-glass group animate-on-scroll" 
+              data-animation="fade-up"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  {point.icon === "code" && (
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                  )}
+                  {point.icon === "users" && (
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  )}
+                  {point.icon === "ai" && (
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                  {point.icon === "remote" && (
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  )}
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">{point.title}</h3>
+                  <p class="text-gray-400 leading-relaxed">{point.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="bg-zinc-800 py-20 md:py-32" id="skills">
+      <div class="container">
+        <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll" data-animation="fade-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            <span class="gradient-text">Skills</span>
+          </h2>
+          <p class="text-xl text-gray-300">
+            幅広い技術スタックとドメイン知識
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {skillCategories.map((category, index) => (
+            <div 
+              class="card-glass animate-on-scroll" 
+              data-animation="fade-up"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-400/20 to-blue-500/20 flex items-center justify-center">
+                  {category.icon === "code" && (
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                  )}
+                  {category.icon === "framework" && (
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  )}
+                  {category.icon === "cloud" && (
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                    </svg>
+                  )}
+                  {category.icon === "ai" && (
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                  {category.icon === "domain" && (
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                  {category.icon === "management" && (
+                    <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  )}
+                </div>
+                <h3 class="text-lg font-bold text-white">{category.name}</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {category.skills.map((skill) => (
+                  <span class="skill-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section class="bg-zinc-900 py-20 md:py-32" id="projects">
+      <div class="container">
+        <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll" data-animation="fade-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            <span class="gradient-text">Featured Projects</span>
+          </h2>
+          <p class="text-xl text-gray-300">
+            注目のプロジェクト実績
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {featuredProjects.map((project, index) => (
+            <div 
+              class="project-card group animate-on-scroll" 
+              data-animation="fade-up"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <div class="flex items-start gap-4 mb-4">
+                <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  {project.icon === "mirror" && (
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  )}
+                  {project.icon === "education" && (
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  )}
+                  {project.icon === "audio" && (
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                    </svg>
+                  )}
+                  {project.icon === "rocket" && (
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  )}
+                </div>
+                <div class="flex-1">
+                  <p class="text-green-400 text-sm font-medium mb-1">{project.company}</p>
+                  <h3 class="text-xl font-bold text-white group-hover:text-green-400 transition-colors">{project.title}</h3>
+                </div>
+              </div>
+              
+              <p class="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
+              
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.technologies.map((tech) => (
+                  <span class="tech-tag">{tech}</span>
+                ))}
+              </div>
+
+              <div class="flex items-center gap-2 pt-4 border-t border-zinc-700">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="text-green-400 font-medium">{project.achievement}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Timeline Section -->
+    <section class="bg-zinc-800 py-20 md:py-32" id="career">
+      <div class="container">
+        <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll" data-animation="fade-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            <span class="gradient-text">Career</span>
+          </h2>
+          <p class="text-xl text-gray-300">
+            職務経歴
+          </p>
+        </div>
+
+        <div class="timeline">
+          {workExperiences.map((exp, index) => (
+            <div 
+              class="timeline-item animate-on-scroll" 
+              data-animation={index % 2 === 0 ? "fade-right" : "fade-left"}
+              style={`animation-delay: ${index * 50}ms`}
+            >
+              <div class="timeline-marker">
+                <div class={`timeline-dot ${exp.isFeatured ? 'featured' : ''}`}></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-card">
+                  <div class="flex flex-wrap items-center gap-2 mb-2">
+                    <span class="text-green-400 font-mono text-sm">{exp.period}</span>
+                    <span class="text-gray-500 text-sm">({exp.duration})</span>
+                  </div>
+                  <h3 class="text-xl font-bold text-white mb-1">{exp.company}</h3>
+                  <p class="text-green-400 font-medium mb-3">{exp.role}</p>
+                  <p class="text-white font-medium mb-2">{exp.projectTitle}</p>
+                  <p class="text-gray-400 text-sm mb-4">{exp.description}</p>
+                  
+                  {exp.highlights.length > 0 && (
+                    <ul class="space-y-1 mb-4">
+                      {exp.highlights.map((highlight) => (
+                        <li class="flex items-start gap-2 text-sm text-gray-300">
+                          <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <div class="flex flex-wrap gap-1">
+                    {exp.technologies.slice(0, 5).map((tech) => (
+                      <span class="text-xs px-2 py-1 bg-zinc-700/50 text-gray-300 rounded">{tech}</span>
+                    ))}
+                    {exp.technologies.length > 5 && (
+                      <span class="text-xs px-2 py-1 bg-zinc-700/50 text-gray-400 rounded">+{exp.technologies.length - 5}</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="bg-gradient-to-r from-green-500 to-blue-600 py-20 md:py-32">
+      <div class="container text-center">
+        <div class="max-w-3xl mx-auto animate-on-scroll" data-animation="fade-up">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            一緒に仕事をしませんか？
+          </h2>
+          <p class="text-xl text-white/90 mb-8">
+            プロジェクトのご相談、お気軽にお問い合わせください。<br />
+            技術力とマネジメント力の両面から貢献します。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact"
+              class="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-bold rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              お問い合わせ
+            </a>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              class="inline-flex items-center justify-center px-8 py-4 bg-transparent text-white font-bold rounded-full border-2 border-white hover:bg-white hover:text-gray-900 transition-all duration-300"
+            >
+              {personalInfo.email}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-zinc-900 text-white py-12">
+    <div class="container">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-center md:text-left">
+          <p class="text-2xl font-bold mb-2">{personalInfo.name}</p>
+          <p class="text-gray-400">{personalInfo.title}</p>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="/" class="text-gray-400 hover:text-white transition-colors">
+            ← TECMAHに戻る
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-zinc-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 {personalInfo.name}. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  }
+
+  .gradient-text-hero {
+    background: linear-gradient(135deg, #00d4aa 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(to right, #00d4aa, #3b82f6);
+    color: white;
+    font-weight: 700;
+    border-radius: 9999px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .btn-hero-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 212, 170, 0.25);
+  }
+
+  .btn-hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: white;
+    font-weight: 700;
+    border-radius: 9999px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+  }
+
+  .btn-hero-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Cards */
+  .card-glass {
+    background: rgba(39, 39, 42, 0.5);
+    backdrop-filter: blur(12px);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(63, 63, 70, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .card-glass:hover {
+    border-color: rgba(0, 212, 170, 0.3);
+  }
+
+  .project-card {
+    background: rgba(39, 39, 42, 0.5);
+    backdrop-filter: blur(12px);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(63, 63, 70, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover {
+    border-color: rgba(0, 212, 170, 0.3);
+    transform: translateY(-4px);
+  }
+
+  /* Tags */
+  .skill-tag {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    background: linear-gradient(to right, rgba(0, 212, 170, 0.1), rgba(59, 130, 246, 0.1));
+    color: #00d4aa;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 212, 170, 0.2);
+    transition: all 0.2s ease;
+  }
+
+  .skill-tag:hover {
+    border-color: rgba(0, 212, 170, 0.5);
+  }
+
+  .tech-tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: rgba(63, 63, 70, 0.5);
+    color: #d4d4d8;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #00d4aa, #3b82f6);
+  }
+
+  @media (min-width: 768px) {
+    .timeline::before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 60px;
+    padding-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-item {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .timeline-item:nth-child(odd) {
+      padding-right: calc(50% + 30px);
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(even) {
+      padding-left: calc(50% + 30px);
+    }
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: 12px;
+    top: 0;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-marker {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #27272a;
+    border: 3px solid #00d4aa;
+    transition: all 0.3s ease;
+  }
+
+  .timeline-dot.featured {
+    background: #00d4aa;
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.5);
+  }
+
+  .timeline-item:hover .timeline-dot {
+    transform: scale(1.3);
+    box-shadow: 0 0 20px rgba(0, 212, 170, 0.5);
+  }
+
+  .timeline-card {
+    background: rgba(39, 39, 42, 0.5);
+    backdrop-filter: blur(12px);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(63, 63, 70, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .timeline-card:hover {
+    border-color: rgba(0, 212, 170, 0.3);
+  }
+
+  /* Animations */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .animate-on-scroll[data-animation="fade-left"] {
+    transform: translateX(30px);
+  }
+
+  .animate-on-scroll[data-animation="fade-left"].visible {
+    transform: translateX(0);
+  }
+
+  .animate-on-scroll[data-animation="fade-right"] {
+    transform: translateX(-30px);
+  }
+
+  .animate-on-scroll[data-animation="fade-right"].visible {
+    transform: translateX(0);
+  }
+
+  .animate-on-scroll[data-animation="fade-up"] {
+    transform: translateY(30px);
+  }
+
+  .animate-on-scroll[data-animation="fade-up"].visible {
+    transform: translateY(0);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    
+    .timeline-item:hover .timeline-dot {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll animations
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          
+          // Counter animation for metrics
+          if (entry.target.querySelector('.counter')) {
+            animateCounters(entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Counter animation function
+    function animateCounters(container: Element) {
+      const counters = container.querySelectorAll('.counter');
+      counters.forEach((counter) => {
+        const target = counter.getAttribute('data-target');
+        if (!target) return;
+        
+        const numericValue = parseInt(target.replace(/\D/g, ''));
+        const suffix = target.replace(/\d/g, '');
+        let current = 0;
+        const increment = numericValue / 50;
+        const duration = 1500;
+        const stepTime = duration / 50;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= numericValue) {
+            current = numericValue;
+            clearInterval(timer);
+          }
+          counter.textContent = Math.floor(current) + suffix;
+        }, stepTime);
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        if (href) {
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+  });
+</script>
+

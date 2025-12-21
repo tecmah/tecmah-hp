@@ -43,3 +43,6 @@ pnpm-debug.log*
 
 # GitHub Pages / deployment
 .github/pages/
+
+# docs (local only)
+Doc/*

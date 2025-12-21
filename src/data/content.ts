@@ -225,6 +225,11 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "お問い合わせ・無料相談予約 | 株式会社TECMAH",
     description: "株式会社TECMAHへのお問い合わせ・無料相談のお申し込み。初回60分のオンライン相談は無料。AI・データ活用、プロダクトマネジメント支援のご相談はお気軽に。",
     keywords: ["お問い合わせ", "無料相談", "相談予約", "コンタクト"]
+  },
+  profile: {
+    title: "松浦 賢孝 - Profile | PdM / AI Engineer | 株式会社TECMAH",
+    description: "松浦賢孝の経歴書。AI技術を活用した新規事業開発やPdM/AEとしてのプロジェクト推進に強みを持ち、技術とビジネスの両面から成果を生み出す。10年以上の開発・マネジメント経験。",
+    keywords: ["松浦賢孝", "経歴書", "PdM", "AI Engineer", "プロダクトマネージャー", "職務経歴書"]
   }
 };
 
