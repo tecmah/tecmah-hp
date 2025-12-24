@@ -24,20 +24,44 @@ SOFTWARE.
 
 'use strict';
 
-// TECMAH Customization - Promo section disabled
+// Mobile promo section
+
+const promoPopup = document.getElementsByClassName('promo')[0];
+const promoPopupClose = document.getElementsByClassName('promo-close')[0];
+
+if (isMobile()) {
+    setTimeout(() => {
+        promoPopup.style.display = 'table';
+    }, 20000);
+}
+
+promoPopupClose.addEventListener('click', e => {
+    promoPopup.style.display = 'none';
+});
+
+const appleLink = document.getElementById('apple_link');
+appleLink.addEventListener('click', e => {
+    ga('send', 'event', 'link promo', 'app');
+    window.open('https://apps.apple.com/us/app/fluid-simulation/id1443124993');
+});
+
+const googleLink = document.getElementById('google_link');
+googleLink.addEventListener('click', e => {
+    ga('send', 'event', 'link promo', 'app');
+    window.open('https://play.google.com/store/apps/details?id=games.paveldogreat.fluidsimfree');
+});
 
 // Simulation section
-const canvas = document.getElementById('fluid-canvas') || document.getElementsByTagName('canvas')[0];
-if (canvas) {
-    resizeCanvas();
-}
+
+const canvas = document.getElementsByTagName('canvas')[0];
+resizeCanvas();
 
 let config = {
     SIM_RESOLUTION: 128,
     DYE_RESOLUTION: 1024,
     CAPTURE_RESOLUTION: 512,
-    DENSITY_DISSIPATION: 0.97,  // TECMAH: Slightly longer trails
-    VELOCITY_DISSIPATION: 0.98, // TECMAH: Smoother flow
+    DENSITY_DISSIPATION: 1,
+    VELOCITY_DISSIPATION: 0.2,
     PRESSURE: 0.8,
     PRESSURE_ITERATIONS: 20,
     CURL: 30,
@@ -47,7 +71,7 @@ let config = {
     COLORFUL: true,
     COLOR_UPDATE_SPEED: 10,
     PAUSED: false,
-    BACK_COLOR: { r: 10, g: 10, b: 11 }, // TECMAH: Brand background color
+    BACK_COLOR: { r: 0, g: 0, b: 0 },
     TRANSPARENT: false,
     BLOOM: true,
     BLOOM_ITERATIONS: 8,
@@ -70,7 +94,7 @@ function pointerPrototype () {
     this.deltaY = 0;
     this.down = false;
     this.moved = false;
-    this.color = [0, 212, 170]; // TECMAH: Brand cyan color (#00d4aa)
+    this.color = [30, 0, 300];
 }
 
 let pointers = [];
@@ -89,8 +113,7 @@ if (!ext.supportLinearFiltering) {
     config.SUNRAYS = false;
 }
 
-// TECMAH: GUI disabled for website integration
-// startGUI();
+startGUI();
 
 function getWebGLContext (canvas) {
     const params = { alpha: true, depth: false, stencil: false, antialias: false, preserveDrawingBuffer: false };
@@ -1540,18 +1563,7 @@ function correctDeltaY (delta) {
 }
 
 function generateColor () {
-    // TECMAH: Brand colors - cyan (#00d4aa) to indigo (#6366f1) to purple (#8b5cf6)
-    // HSV hue values: cyan ~= 0.47, indigo ~= 0.65, purple ~= 0.75
-    const hueRange = Math.random();
-    let h;
-    if (hueRange < 0.5) {
-        // Cyan to indigo range
-        h = 0.47 + Math.random() * 0.18; // 0.47 to 0.65
-    } else {
-        // Indigo to purple range
-        h = 0.65 + Math.random() * 0.10; // 0.65 to 0.75
-    }
-    let c = HSVtoRGB(h, 0.9, 1.0);
+    let c = HSVtoRGB(Math.random(), 1.0, 1.0);
     c.r *= 0.15;
     c.g *= 0.15;
     c.b *= 0.15;
