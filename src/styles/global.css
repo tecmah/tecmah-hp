@@ -183,6 +183,22 @@ h3 {
   }
 }
 
+/* Glass-morphism utility classes for fluid background */
+.glass-surface-primary {
+  background: rgba(24, 24, 27, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.glass-surface-secondary {
+  background: rgba(24, 24, 27, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.glass-surface-tertiary {
+  background: rgba(24, 24, 27, 0.4);
+  backdrop-filter: blur(8px);
+}
+
 /* レスポンシブユーティリティ */
 .container {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;

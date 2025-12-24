@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 export interface Props {
   title: string;
@@ -62,16 +63,7 @@ const isProduction = import.meta.env.PROD;
 </head>
 <body>
   <slot />
-  {isProduction && (
-    <script is:inline>
-      // Load Vercel Speed Insights only in production
-      const script = document.createElement('script');
-      script.src = '/_vercel/speed-insights/script.js';
-      script.defer = true;
-      script.onerror = () => console.log('[Speed Insights] Not available in this environment');
-      document.body.appendChild(script);
-    </script>
-  )}
+  {isProduction && <SpeedInsights />}
 </body>
 </html>
 

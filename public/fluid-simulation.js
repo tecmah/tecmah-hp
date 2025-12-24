@@ -30,7 +30,7 @@ SOFTWARE.
 (function() {
 
 // Simulation section
-const canvas = document.getElementById('fluid-canvas') || document.getElementsByTagName('canvas')[0];
+const canvas = document.getElementById('fluid-canvas');
 if (!canvas) {
     console.warn('Fluid canvas not found - skipping initialization');
     return;
@@ -64,6 +64,12 @@ let config = {
     SUNRAYS: true,
     SUNRAYS_RESOLUTION: 196,
     SUNRAYS_WEIGHT: 1.0,
+    // TECMAH: Brand color hues (HSV hue values)
+    BRAND_HUES: {
+        CYAN: 0.47,      // #00d4aa
+        INDIGO: 0.65,    // #6366f1
+        PURPLE: 0.75     // #8b5cf6
+    }
 }
 
 function pointerPrototype () {
@@ -1551,16 +1557,16 @@ function correctDeltaY (delta) {
 }
 
 function generateColor () {
-    // TECMAH: Brand colors - cyan (#00d4aa) to indigo (#6366f1) to purple (#8b5cf6)
-    // HSV hue values: cyan ~= 0.47, indigo ~= 0.65, purple ~= 0.75
+    // TECMAH: Brand colors using config values
+    const { CYAN, INDIGO, PURPLE } = config.BRAND_HUES;
     const hueRange = Math.random();
     let h;
     if (hueRange < 0.5) {
         // Cyan to indigo range
-        h = 0.47 + Math.random() * 0.18; // 0.47 to 0.65
+        h = CYAN + Math.random() * (INDIGO - CYAN);
     } else {
         // Indigo to purple range
-        h = 0.65 + Math.random() * 0.10; // 0.65 to 0.75
+        h = INDIGO + Math.random() * (PURPLE - INDIGO);
     }
     let c = HSVtoRGB(h, 0.9, 1.0);
     c.r *= 0.15;
