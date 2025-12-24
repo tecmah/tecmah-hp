@@ -26,11 +26,17 @@ SOFTWARE.
 
 // TECMAH Customization - Promo section disabled
 
+// Wrap entire script to prevent execution if canvas not found
+(function() {
+
 // Simulation section
 const canvas = document.getElementById('fluid-canvas') || document.getElementsByTagName('canvas')[0];
-if (canvas) {
-    resizeCanvas();
+if (!canvas) {
+    console.warn('Fluid canvas not found - skipping initialization');
+    return;
 }
+
+resizeCanvas();
 
 let config = {
     SIM_RESOLUTION: 128,
@@ -1632,3 +1638,4 @@ function hashCode (s) {
     }
     return hash;
 };
+})(); // End IIFE

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGL Fluid Simulation Test - TECMAH</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #0a0a0b;
+            overflow: hidden;
+        }
+
+        #fluid-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        #fluid-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            color: white;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 0 0 1rem 0;
+            background: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            color: #a1a1aa;
+        }
+
+        .status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: #10a37f;
+        }
+    </style>
+</head>
+<body>
+    <div id="fluid-container">
+        <canvas id="fluid-canvas"></canvas>
+    </div>
+
+    <div class="overlay">
+        <h1>WebGL Fluid Simulation</h1>
+        <p>Move your mouse or touch to interact</p>
+        <div class="status" id="status">Initializing...</div>
+    </div>
+
+    <script src="/fluid-simulation.js" defer></script>
+
+    <script>
+        // Status check
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const canvas = document.getElementById('fluid-canvas');
+                const status = document.getElementById('status');
+
+                if (canvas) {
+                    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+                    if (gl) {
+                        status.textContent = '✓ WebGL Initialized Successfully!';
+                        status.style.color = '#00d4aa';
+                    } else {
+                        status.textContent = '✗ WebGL Not Supported';
+                        status.style.color = '#ff6b6b';
+                    }
+                } else {
+                    status.textContent = '✗ Canvas Not Found';
+                    status.style.color = '#ff6b6b';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
