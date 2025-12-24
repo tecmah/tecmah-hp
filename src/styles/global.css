@@ -117,11 +117,12 @@ h3 {
 
 /* カードスタイル */
 .card {
-  background: var(--surface);
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(63, 63, 70, 0.5);
   transition: all 0.3s ease;
   color: var(--text);
 }
@@ -129,10 +130,11 @@ h3 {
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-xl);
+  background: rgba(24, 24, 27, 0.8);
 }
 
 .card-gradient {
-  background: linear-gradient(135deg, rgba(39,39,42,0.9) 0%, rgba(24,24,27,0.9) 100%);
+  background: linear-gradient(135deg, rgba(39,39,42,0.7) 0%, rgba(24,24,27,0.7) 100%);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(63,63,70,0.3);
 }
@@ -140,10 +142,11 @@ h3 {
 /* セクションスタイル */
 .section {
   @apply py-16 md:py-24;
+  background: transparent;
 }
 
 .section-hero {
-  background: var(--gradient-hero);
+  background: transparent;
   color: white;
   min-height: 100vh;
   display: flex;
@@ -151,7 +154,8 @@ h3 {
 }
 
 .section-alt {
-  background: var(--surface);
+  background: rgba(24, 24, 27, 0.3);
+  backdrop-filter: blur(5px);
 }
 
 /* アニメーション */
