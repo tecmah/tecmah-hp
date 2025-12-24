@@ -1,278 +1,29 @@
 ---
-// WebGL Fluid Simulation Background Component
+// WebGL Fluid Simulation Background - TECMAH Branding
 ---
 
 <div id="fluid-container" class="fluid-background">
   <canvas id="fluid-canvas"></canvas>
 </div>
 
-<script is:inline>
-  class FluidSimulation {
-    constructor(canvas) {
-      this.canvas = canvas;
-      this.ctx = canvas.getContext("2d");
-      this.width = 0;
-      this.height = 0;
-      this.particles = [];
-      this.mouse = { x: 0, y: 0 };
-      this.mousePressed = false;
-      this.lastFrameTime = 0;
-
-      this.init();
-      this.animate();
-      this.setupEventListeners();
-    }
-
-    init() {
-      this.resize();
-      this.createParticles();
-    }
-
-    resize() {
-      const rect = this.canvas.getBoundingClientRect();
-      this.width = rect.width;
-      this.height = rect.height;
-      this.canvas.width = this.width;
-      this.canvas.height = this.height;
-    }
-
-    createParticles() {
-      this.particles = [];
-      // Performance optimization based on device capabilities
-      const isMobile = window.innerWidth < 768;
-      const isLowEnd =
-        navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
-
-      let particleCount;
-      if (isMobile || isLowEnd) {
-        particleCount = Math.min(
-          80,
-          Math.floor((this.width * this.height) / 15000)
-        );
-      } else {
-        particleCount = Math.min(
-          200,
-          Math.floor((this.width * this.height) / 8000)
-        );
-      }
-
-      for (let i = 0; i < particleCount; i++) {
-        this.particles.push({
-          x: Math.random() * this.width,
-          y: Math.random() * this.height,
-          vx: (Math.random() - 0.5) * (isMobile ? 1 : 1.5),
-          vy: (Math.random() - 0.5) * (isMobile ? 1 : 1.5),
-          size: Math.random() * (isMobile ? 3 : 4) + (isMobile ? 1.5 : 2),
-          opacity: Math.random() * 0.6 + 0.3,
-          hue: Math.random() * 80 + 180, // Blue to cyan range
-          originalHue: Math.random() * 80 + 180,
-          pulsePhase: Math.random() * Math.PI * 2,
-        });
-      }
-    }
-
-    updateParticles() {
-      const time = Date.now() * 0.001;
-
-      this.particles.forEach((particle) => {
-        // Mouse interaction with enhanced effect
-        const dx = this.mouse.x - particle.x;
-        const dy = this.mouse.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 120) {
-          const force = (120 - distance) / 120;
-          particle.vx += (dx / distance) * force * 0.15;
-          particle.vy += (dy / distance) * force * 0.15;
-        }
-
-        // Pulsing effect
-        particle.pulsePhase += 0.02;
-        const pulse = Math.sin(particle.pulsePhase) * 0.5 + 0.5;
-        particle.hue = particle.originalHue + pulse * 20;
-        particle.opacity = Math.random() * 0.4 + 0.3 + pulse * 0.2;
-
-        // Update position
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        // Boundary collision with soft bounce
-        if (particle.x < 0 || particle.x > this.width) {
-          particle.vx *= -0.7;
-          particle.x = Math.max(0, Math.min(this.width, particle.x));
-        }
-        if (particle.y < 0 || particle.y > this.height) {
-          particle.vy *= -0.7;
-          particle.y = Math.max(0, Math.min(this.height, particle.y));
-        }
-
-        // Enhanced damping
-        particle.vx *= 0.985;
-        particle.vy *= 0.985;
-
-        // Organic movement
-        particle.vx += (Math.random() - 0.5) * 0.05;
-        particle.vy += (Math.random() - 0.5) * 0.05;
-      });
-    }
-
-    drawParticles() {
-      this.ctx.clearRect(0, 0, this.width, this.height);
-
-      // Draw enhanced connections with AI-inspired colors
-      for (let i = 0; i < this.particles.length; i++) {
-        for (let j = i + 1; j < this.particles.length; j++) {
-          const dx = this.particles[i].x - this.particles[j].x;
-          const dy = this.particles[i].y - this.particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 100) {
-            this.ctx.beginPath();
-            const alpha = 0.15 * (1 - distance / 100);
-            this.ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
-            this.ctx.lineWidth = 1.5;
-            this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-            this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-            this.ctx.stroke();
-          }
-        }
-      }
-
-      // Draw particles with enhanced AI aesthetics
-      this.particles.forEach((particle) => {
-        // Outer glow
-        this.ctx.beginPath();
-        this.ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2);
-        const outerGradient = this.ctx.createRadialGradient(
-          particle.x,
-          particle.y,
-          0,
-          particle.x,
-          particle.y,
-          particle.size * 3
-        );
-        outerGradient.addColorStop(
-          0,
-          `hsla(${particle.hue}, 80%, 70%, ${particle.opacity * 0.3})`
-        );
-        outerGradient.addColorStop(1, `hsla(${particle.hue}, 80%, 70%, 0)`);
-        this.ctx.fillStyle = outerGradient;
-        this.ctx.fill();
-
-        // Main particle
-        this.ctx.beginPath();
-        this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        const gradient = this.ctx.createRadialGradient(
-          particle.x,
-          particle.y,
-          0,
-          particle.x,
-          particle.y,
-          particle.size * 2
-        );
-        gradient.addColorStop(
-          0,
-          `hsla(${particle.hue}, 85%, 80%, ${particle.opacity})`
-        );
-        gradient.addColorStop(
-          0.7,
-          `hsla(${particle.hue}, 70%, 60%, ${particle.opacity * 0.8})`
-        );
-        gradient.addColorStop(1, `hsla(${particle.hue}, 70%, 60%, 0)`);
-
-        this.ctx.fillStyle = gradient;
-        this.ctx.fill();
-
-        // Inner core
-        this.ctx.beginPath();
-        this.ctx.arc(
-          particle.x,
-          particle.y,
-          particle.size * 0.3,
-          0,
-          Math.PI * 2
-        );
-        this.ctx.fillStyle = `hsla(${particle.hue}, 100%, 90%, ${particle.opacity * 1.2})`;
-        this.ctx.fill();
-      });
-    }
-
-    animate() {
-      // Performance optimization: reduce frame rate on mobile
-      const isMobile = window.innerWidth < 768;
-      const targetFPS = isMobile ? 30 : 60;
-      const frameInterval = 1000 / targetFPS;
-
-      const now = performance.now();
-      if (now - this.lastFrameTime >= frameInterval) {
-        this.updateParticles();
-        this.drawParticles();
-        this.lastFrameTime = now;
-      }
-
-      requestAnimationFrame(() => this.animate());
-    }
-
-    setupEventListeners() {
-      window.addEventListener("resize", () => {
-        this.resize();
-        this.createParticles();
-      });
-
-      this.canvas.addEventListener("mousemove", (e) => {
-        const rect = this.canvas.getBoundingClientRect();
-        this.mouse.x = e.clientX - rect.left;
-        this.mouse.y = e.clientY - rect.top;
-      });
-
-      this.canvas.addEventListener("mousedown", () => {
-        this.mousePressed = true;
-      });
-
-      this.canvas.addEventListener("mouseup", () => {
-        this.mousePressed = false;
-      });
-
-      this.canvas.addEventListener("mouseleave", () => {
-        this.mousePressed = false;
-      });
-    }
-  }
-
-  // Initialize fluid simulation when DOM is loaded
-  document.addEventListener("DOMContentLoaded", () => {
-    const canvas = document.getElementById("fluid-canvas");
-    if (canvas) {
-      new FluidSimulation(canvas);
-    }
-  });
-</script>
+<script is:inline src="/fluid-simulation.js"></script>
 
 <style>
   .fluid-background {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 0;
     overflow: hidden;
+    pointer-events: none;
   }
 
   #fluid-canvas {
     width: 100%;
     height: 100%;
     display: block;
-  }
-
-  /* Ensure canvas doesn't interfere with text selection */
-  #fluid-canvas {
-    pointer-events: none;
-  }
-
-  /* Re-enable pointer events for interaction */
-  #fluid-canvas:hover {
-    pointer-events: auto;
   }
 
   /* Performance optimizations */
@@ -287,15 +38,14 @@
   /* Mobile optimizations */
   @media (max-width: 768px) {
     .fluid-background {
-      /* Reduce visual complexity on mobile */
-      filter: brightness(0.8) contrast(1.2);
+      filter: brightness(0.8);
     }
   }
 
   /* Reduce motion for users who prefer it */
   @media (prefers-reduced-motion: reduce) {
-    #fluid-canvas {
-      animation: none;
+    .fluid-background {
+      display: none;
     }
   }
 </style>

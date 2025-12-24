@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
+import FluidBackground from "../../components/FluidBackground.astro";
 
 const service = {
   title: "生成AI・データ活用支援",
@@ -33,8 +34,9 @@ const service = {
 ---
 
 <Layout title={`${service.title} | 株式会社TECMAH`}>
+  <FluidBackground />
   <Header />
-  <main class="pt-20">
+  <main class="pt-20 relative z-10">
     <section class="bg-gradient-to-br from-zinc-900 to-zinc-800 text-white py-28">
       <div class="container">
         <div class="max-w-3xl">
