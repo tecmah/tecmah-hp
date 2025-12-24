@@ -1136,6 +1136,10 @@ function createTextureAsync (url) {
         gl.bindTexture(gl.TEXTURE_2D, texture);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
     };
+    image.onerror = () => {
+        // Silently handle missing texture - use default white texture
+        console.log('[Fluid Simulation] Texture not found, using default');
+    };
     image.src = url;
 
     return obj;
