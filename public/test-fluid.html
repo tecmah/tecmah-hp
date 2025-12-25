@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TECMAH | AI・データ活用とPdM支援</title>
+    <meta name="description" content="株式会社TECMAHへようこそ。生成AIとプロダクトマネジメントで、あなたのビジネスを未来へ導きます。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #0a0a0b;
+            overflow: hidden;
+        }
+
+        #fluid-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        #fluid-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            color: white;
+            text-align: center;
+            max-width: 90%;
+            width: 100%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, calc(-50% + 30px));
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0 0 1rem 0;
+            background: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.1em;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            color: white;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            color: #a1a1aa;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+            pointer-events: auto;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 212, 170, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .hint {
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: #71717a;
+            opacity: 0.8;
+        }
+
+        .features {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #a1a1aa;
+            font-size: 0.875rem;
+        }
+
+        .feature-icon {
+            color: #00d4aa;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="fluid-container">
+        <canvas id="fluid-canvas"></canvas>
+    </div>
+
+    <div class="overlay">
+        <div class="logo">TECMAH</div>
+        <h1>AI・データ活用で<br>ビジネスを変革する</h1>
+        <p class="tagline">
+            生成AI、機械学習、データサイエンスの最先端技術で<br>
+            あなたのビジネスを未来へ導きます
+        </p>
+
+        <a href="/" class="cta-button">
+            <span>サービスを見る</span>
+            <span class="arrow">→</span>
+        </a>
+
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>生成AI・データ活用支援</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>PdM/PM伴走</span>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span>
+                <span>DXコンサルティング</span>
+            </div>
+        </div>
+
+        <p class="hint">マウスやタッチで画面に触れてみてください</p>
+    </div>
+
+    <script src="/fluid-simulation.js" defer></script>
+</body>
+</html>

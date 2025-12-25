@@ -9,6 +9,9 @@ export interface Props {
 }
 
 const { title, description = "株式会社TECMAHは、AI・データ活用・PdM/PM支援を行うスタートアップです。", ogImage = "/og-default.jpg" } = Astro.props;
+
+// Only load Speed Insights in production
+const isProduction = import.meta.env.PROD;
 ---
 
 <!DOCTYPE html>
@@ -60,7 +63,7 @@ const { title, description = "株式会社TECMAHは、AI・データ活用・PdM
 </head>
 <body>
   <slot />
-  <SpeedInsights />
+  {isProduction && <SpeedInsights />}
 </body>
 </html>
 

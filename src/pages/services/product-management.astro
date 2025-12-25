@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
+import FluidBackground from "../../components/FluidBackground.astro";
 
 const service = {
   title: "PdM/PM伴走・プロダクトマネジメント",
@@ -34,9 +35,10 @@ const service = {
 ---
 
 <Layout title={`${service.title} | 株式会社TECMAH`}>
+  <FluidBackground />
   <Header />
-  <main class="pt-20">
-    <section class="bg-gradient-to-br from-zinc-900 to-zinc-800 text-white py-28">
+  <main class="pt-20 relative z-10">
+    <section class="text-white py-28 glass-surface-primary">
       <div class="container">
         <div class="max-w-3xl">
           <p class="text-sm uppercase tracking-widest text-cyan-300 mb-6">
@@ -61,7 +63,7 @@ const service = {
       </div>
     </section>
 
-    <section class="bg-zinc-900 py-20">
+    <section class="py-20 glass-surface-secondary">
       <div class="container grid lg:grid-cols-2 gap-12 items-start">
         <div>
           <h2 class="text-3xl font-bold text-white mb-6">サービス概要</h2>
@@ -69,7 +71,7 @@ const service = {
             プロダクトの成長段階に合わせて、戦略、オペレーション、チームの整備を同時に進めます。短期的な成果に加え、組織の意思決定力と学習サイクルを内部に根付かせることを重視しています。
           </p>
         </div>
-        <div class="card bg-zinc-950/60 border border-zinc-800 p-8">
+        <div class="card border border-zinc-800 p-8">
           <h3 class="text-xl font-semibold text-white mb-4">主な支援内容</h3>
           <ul class="space-y-3">
             {service.features.map((feature) => (
@@ -83,12 +85,12 @@ const service = {
       </div>
     </section>
 
-    <section class="bg-zinc-950 py-20">
+    <section class="py-20 glass-surface-tertiary">
       <div class="container">
         <h2 class="text-3xl font-bold text-white mb-10">伴走の進め方</h2>
         <div class="grid md:grid-cols-3 gap-8">
           {service.process.map((step, index) => (
-            <div class="card h-full border border-zinc-800 bg-zinc-900/60 p-6">
+            <div class="card h-full border border-zinc-800 p-6">
               <div class="flex items-center text-cyan-300 text-sm font-semibold mb-4">
                 <span class="mr-2">STEP {index + 1}</span>
               </div>
@@ -100,7 +102,7 @@ const service = {
       </div>
     </section>
 
-    <section class="bg-zinc-900 py-16">
+    <section class="py-16 glass-surface-secondary">
       <div class="container text-center">
         <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
           プロダクトの成長課題、まずはご相談ください
