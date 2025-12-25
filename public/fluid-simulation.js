@@ -33,6 +33,10 @@ SOFTWARE.
 const canvas = document.getElementById('fluid-canvas');
 if (!canvas) {
     console.warn('Fluid canvas not found - skipping initialization');
+    console.error('Fluid simulation initialization failed: canvas element not found. Simulation is disabled.');
+    if (typeof window !== 'undefined') {
+        window.FLUID_SIMULATION_STATUS = 'canvas_not_found';
+    }
     return;
 }
 
@@ -70,7 +74,7 @@ let config = {
         INDIGO: 0.65,    // #6366f1
         PURPLE: 0.75     // #8b5cf6
     }
-}
+};
 
 function pointerPrototype () {
     this.id = -1;
@@ -195,80 +199,81 @@ function supportRenderTextureFormat (gl, internalFormat, format, type) {
     return status == gl.FRAMEBUFFER_COMPLETE;
 }
 
-function startGUI () {
-    var gui = new dat.GUI({ width: 300 });
-    gui.add(config, 'DYE_RESOLUTION', { 'high': 1024, 'medium': 512, 'low': 256, 'very low': 128 }).name('quality').onFinishChange(initFramebuffers);
-    gui.add(config, 'SIM_RESOLUTION', { '32': 32, '64': 64, '128': 128, '256': 256 }).name('sim resolution').onFinishChange(initFramebuffers);
-    gui.add(config, 'DENSITY_DISSIPATION', 0, 4.0).name('density diffusion');
-    gui.add(config, 'VELOCITY_DISSIPATION', 0, 4.0).name('velocity diffusion');
-    gui.add(config, 'PRESSURE', 0.0, 1.0).name('pressure');
-    gui.add(config, 'CURL', 0, 50).name('vorticity').step(1);
-    gui.add(config, 'SPLAT_RADIUS', 0.01, 1.0).name('splat radius');
-    gui.add(config, 'SHADING').name('shading').onFinishChange(updateKeywords);
-    gui.add(config, 'COLORFUL').name('colorful');
-    gui.add(config, 'PAUSED').name('paused').listen();
-
-    gui.add({ fun: () => {
-        splatStack.push(parseInt(Math.random() * 20) + 5);
-    } }, 'fun').name('Random splats');
-
-    let bloomFolder = gui.addFolder('Bloom');
-    bloomFolder.add(config, 'BLOOM').name('enabled').onFinishChange(updateKeywords);
-    bloomFolder.add(config, 'BLOOM_INTENSITY', 0.1, 2.0).name('intensity');
-    bloomFolder.add(config, 'BLOOM_THRESHOLD', 0.0, 1.0).name('threshold');
-
-    let sunraysFolder = gui.addFolder('Sunrays');
-    sunraysFolder.add(config, 'SUNRAYS').name('enabled').onFinishChange(updateKeywords);
-    sunraysFolder.add(config, 'SUNRAYS_WEIGHT', 0.3, 1.0).name('weight');
-
-    let captureFolder = gui.addFolder('Capture');
-    captureFolder.addColor(config, 'BACK_COLOR').name('background color');
-    captureFolder.add(config, 'TRANSPARENT').name('transparent');
-    captureFolder.add({ fun: captureScreenshot }, 'fun').name('take screenshot');
-
-    let github = gui.add({ fun : () => {
-        window.open('https://github.com/PavelDoGreat/WebGL-Fluid-Simulation');
-        // ga('send', 'event', 'link button', 'github');
-    } }, 'fun').name('Github');
-    github.__li.className = 'cr function bigFont';
-    github.__li.style.borderLeft = '3px solid #8C8C8C';
-    let githubIcon = document.createElement('span');
-    github.domElement.parentElement.appendChild(githubIcon);
-    githubIcon.className = 'icon github';
-
-    let twitter = gui.add({ fun : () => {
-        // ga('send', 'event', 'link button', 'twitter');
-        window.open('https://twitter.com/PavelDoGreat');
-    } }, 'fun').name('Twitter');
-    twitter.__li.className = 'cr function bigFont';
-    twitter.__li.style.borderLeft = '3px solid #8C8C8C';
-    let twitterIcon = document.createElement('span');
-    twitter.domElement.parentElement.appendChild(twitterIcon);
-    twitterIcon.className = 'icon twitter';
-
-    let discord = gui.add({ fun : () => {
-        // ga('send', 'event', 'link button', 'discord');
-        window.open('https://discordapp.com/invite/CeqZDDE');
-    } }, 'fun').name('Discord');
-    discord.__li.className = 'cr function bigFont';
-    discord.__li.style.borderLeft = '3px solid #8C8C8C';
-    let discordIcon = document.createElement('span');
-    discord.domElement.parentElement.appendChild(discordIcon);
-    discordIcon.className = 'icon discord';
-
-    let app = gui.add({ fun : () => {
-        // ga('send', 'event', 'link button', 'app');
-        window.open('http://onelink.to/5b58bn');
-    } }, 'fun').name('Check out mobile app');
-    app.__li.className = 'cr function appBigFont';
-    app.__li.style.borderLeft = '3px solid #00FF7F';
-    let appIcon = document.createElement('span');
-    app.domElement.parentElement.appendChild(appIcon);
-    appIcon.className = 'icon app';
-
-    if (isMobile())
-        gui.close();
-}
+// GUI functionality removed: GUI is disabled for website integration and startGUI was unused.
+// function startGUI () {
+//     var gui = new dat.GUI({ width: 300 });
+//     gui.add(config, 'DYE_RESOLUTION', { 'high': 1024, 'medium': 512, 'low': 256, 'very low': 128 }).name('quality').onFinishChange(initFramebuffers);
+//     gui.add(config, 'SIM_RESOLUTION', { '32': 32, '64': 64, '128': 128, '256': 256 }).name('sim resolution').onFinishChange(initFramebuffers);
+//     gui.add(config, 'DENSITY_DISSIPATION', 0, 4.0).name('density diffusion');
+//     gui.add(config, 'VELOCITY_DISSIPATION', 0, 4.0).name('velocity diffusion');
+//     gui.add(config, 'PRESSURE', 0.0, 1.0).name('pressure');
+//     gui.add(config, 'CURL', 0, 50).name('vorticity').step(1);
+//     gui.add(config, 'SPLAT_RADIUS', 0.01, 1.0).name('splat radius');
+//     gui.add(config, 'SHADING').name('shading').onFinishChange(updateKeywords);
+//     gui.add(config, 'COLORFUL').name('colorful');
+//     gui.add(config, 'PAUSED').name('paused').listen();
+//
+//     gui.add({ fun: () => {
+//         splatStack.push(parseInt(Math.random() * 20) + 5);
+//     } }, 'fun').name('Random splats');
+//
+//     let bloomFolder = gui.addFolder('Bloom');
+//     bloomFolder.add(config, 'BLOOM').name('enabled').onFinishChange(updateKeywords);
+//     bloomFolder.add(config, 'BLOOM_INTENSITY', 0.1, 2.0).name('intensity');
+//     bloomFolder.add(config, 'BLOOM_THRESHOLD', 0.0, 1.0).name('threshold');
+//
+//     let sunraysFolder = gui.addFolder('Sunrays');
+//     sunraysFolder.add(config, 'SUNRAYS').name('enabled').onFinishChange(updateKeywords);
+//     sunraysFolder.add(config, 'SUNRAYS_WEIGHT', 0.3, 1.0).name('weight');
+//
+//     let captureFolder = gui.addFolder('Capture');
+//     captureFolder.addColor(config, 'BACK_COLOR').name('background color');
+//     captureFolder.add(config, 'TRANSPARENT').name('transparent');
+//     captureFolder.add({ fun: captureScreenshot }, 'fun').name('take screenshot');
+//
+//     let github = gui.add({ fun : () => {
+//         window.open('https://github.com/PavelDoGreat/WebGL-Fluid-Simulation');
+//         // ga('send', 'event', 'link button', 'github');
+//     } }, 'fun').name('Github');
+//     github.__li.className = 'cr function bigFont';
+//     github.__li.style.borderLeft = '3px solid #8C8C8C';
+//     let githubIcon = document.createElement('span');
+//     github.domElement.parentElement.appendChild(githubIcon);
+//     githubIcon.className = 'icon github';
+//
+//     let twitter = gui.add({ fun : () => {
+//         // ga('send', 'event', 'link button', 'twitter');
+//         window.open('https://twitter.com/PavelDoGreat');
+//     } }, 'fun').name('Twitter');
+//     twitter.__li.className = 'cr function bigFont';
+//     twitter.__li.style.borderLeft = '3px solid #8C8C8C';
+//     let twitterIcon = document.createElement('span');
+//     twitter.domElement.parentElement.appendChild(twitterIcon);
+//     twitterIcon.className = 'icon twitter';
+//
+//     let discord = gui.add({ fun : () => {
+//         // ga('send', 'event', 'link button', 'discord');
+//         window.open('https://discordapp.com/invite/CeqZDDE');
+//     } }, 'fun').name('Discord');
+//     discord.__li.className = 'cr function bigFont';
+//     discord.__li.style.borderLeft = '3px solid #8C8C8C';
+//     let discordIcon = document.createElement('span');
+//     discord.domElement.parentElement.appendChild(discordIcon);
+//     discordIcon.className = 'icon discord';
+//
+//     let app = gui.add({ fun : () => {
+//         // ga('send', 'event', 'link button', 'app');
+//         window.open('http://onelink.to/5b58bn');
+//     } }, 'fun').name('Check out mobile app');
+//     app.__li.className = 'cr function appBigFont';
+//     app.__li.style.borderLeft = '3px solid #00FF7F';
+//     let appIcon = document.createElement('span');
+//     app.domElement.parentElement.appendChild(appIcon);
+//     appIcon.className = 'icon app';
+//
+//     if (isMobile())
+//         gui.close();
+// }
 
 function isMobile () {
     return /Mobi|Android/i.test(navigator.userAgent);
@@ -931,11 +936,12 @@ const blit = (() => {
     }
 })();
 
-function CHECK_FRAMEBUFFER_STATUS () {
-    let status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
-    if (status != gl.FRAMEBUFFER_COMPLETE)
-        console.trace("Framebuffer error: " + status);
-}
+// Unused function: CHECK_FRAMEBUFFER_STATUS was kept for potential debugging but is not currently called
+// function CHECK_FRAMEBUFFER_STATUS () {
+//     let status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
+//     if (status != gl.FRAMEBUFFER_COMPLETE)
+//         console.trace("Framebuffer error: " + status);
+// }
 
 let dye;
 let velocity;
@@ -1455,48 +1461,53 @@ function correctRadius (radius) {
     return radius;
 }
 
-canvas.addEventListener('mousedown', e => {
-    let posX = scaleByPixelRatio(e.offsetX);
-    let posY = scaleByPixelRatio(e.offsetY);
+// Convert window coordinates to canvas coordinates
+function getCanvasCoordinates(e) {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    return {
+        x: scaleByPixelRatio(x),
+        y: scaleByPixelRatio(y)
+    };
+}
+
+window.addEventListener('mousedown', e => {
+    const coords = getCanvasCoordinates(e);
     let pointer = pointers.find(p => p.id == -1);
     if (pointer == null)
         pointer = new pointerPrototype();
-    updatePointerDownData(pointer, -1, posX, posY);
+    updatePointerDownData(pointer, -1, coords.x, coords.y);
 });
 
-canvas.addEventListener('mousemove', e => {
-    let pointer = pointers[0];
-    if (!pointer.down) return;
-    let posX = scaleByPixelRatio(e.offsetX);
-    let posY = scaleByPixelRatio(e.offsetY);
-    updatePointerMoveData(pointer, posX, posY);
+window.addEventListener('mousemove', e => {
+    const pointer = pointers[0];
+    if (!pointer || !pointer.down) return;
+    const coords = getCanvasCoordinates(e);
+    updatePointerMoveData(pointer, coords.x, coords.y);
 });
 
 window.addEventListener('mouseup', () => {
     updatePointerUpData(pointers[0]);
 });
 
-canvas.addEventListener('touchstart', e => {
-    e.preventDefault();
-    const touches = e.targetTouches;
+window.addEventListener('touchstart', e => {
+    const touches = e.touches;
     while (touches.length >= pointers.length)
         pointers.push(new pointerPrototype());
     for (let i = 0; i < touches.length; i++) {
-        let posX = scaleByPixelRatio(touches[i].pageX);
-        let posY = scaleByPixelRatio(touches[i].pageY);
-        updatePointerDownData(pointers[i + 1], touches[i].identifier, posX, posY);
+        const coords = getCanvasCoordinates({ clientX: touches[i].clientX, clientY: touches[i].clientY });
+        updatePointerDownData(pointers[i + 1], touches[i].identifier, coords.x, coords.y);
     }
 });
 
-canvas.addEventListener('touchmove', e => {
-    e.preventDefault();
-    const touches = e.targetTouches;
+window.addEventListener('touchmove', e => {
+    const touches = e.touches;
     for (let i = 0; i < touches.length; i++) {
         let pointer = pointers[i + 1];
         if (!pointer.down) continue;
-        let posX = scaleByPixelRatio(touches[i].pageX);
-        let posY = scaleByPixelRatio(touches[i].pageY);
-        updatePointerMoveData(pointer, posX, posY);
+        const coords = getCanvasCoordinates({ clientX: touches[i].clientX, clientY: touches[i].clientY });
+        updatePointerMoveData(pointer, coords.x, coords.y);
     }
 }, false);
 
