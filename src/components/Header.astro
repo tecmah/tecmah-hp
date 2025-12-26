@@ -144,17 +144,12 @@ const navItems = [
     }
 
     // Header scroll effect
-    let lastScroll = 0;
     window.addEventListener("scroll", () => {
-      const currentScroll = window.pageYOffset;
-
-      if (currentScroll > 50) {
+      if (window.pageYOffset > 50) {
         header?.classList.add("scrolled");
       } else {
         header?.classList.remove("scrolled");
       }
-
-      lastScroll = currentScroll;
     });
   });
 </script>
