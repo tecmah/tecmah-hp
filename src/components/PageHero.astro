@@ -1,14 +1,16 @@
 ---
 // PageHero component - Stripe-inspired page header
+// SECURITY NOTE: titleHtml, subtitleHtml, and badgeIconHtml accept raw HTML strings.
+// Only pass trusted, developer-defined content. Never pass user input directly.
 interface Props {
-  title: string;
-  subtitle?: string;
-  badge?: string;
-  badgeIcon?: string;
+  titleHtml: string;      // HTML allowed (e.g., <span class="gradient-text">). Pass trusted content only.
+  subtitleHtml?: string;  // HTML allowed (e.g., <br>). Pass trusted content only.
+  badge?: string;         // Plain text only - safe from XSS
+  badgeIconHtml?: string; // HTML allowed (SVG icons). Pass trusted content only.
   gradient?: 'primary' | 'secondary' | 'accent';
 }
 
-const { title, subtitle, badge, badgeIcon, gradient = 'primary' } = Astro.props;
+const { titleHtml, subtitleHtml, badge, badgeIconHtml, gradient = 'primary' } = Astro.props;
 
 const gradientClasses = {
   primary: 'from-primary to-secondary',
@@ -29,15 +31,15 @@ const gradientClasses = {
     <div class="hero-content">
       {badge && (
         <div class="hero-badge">
-          {badgeIcon && <span class="badge-icon" set:html={badgeIcon} />}
+          {badgeIconHtml && <span class="badge-icon" set:html={badgeIconHtml} />}
           <span>{badge}</span>
         </div>
       )}
 
-      <h1 class="hero-title" set:html={title} />
+      <h1 class="hero-title" set:html={titleHtml} />
 
-      {subtitle && (
-        <p class="hero-subtitle" set:html={subtitle} />
+      {subtitleHtml && (
+        <p class="hero-subtitle" set:html={subtitleHtml} />
       )}
     </div>
   </div>
