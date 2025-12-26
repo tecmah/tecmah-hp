@@ -31,6 +31,11 @@
   --border-light: rgba(255, 255, 255, 0.1);
   --border-hover: rgba(0, 212, 170, 0.4);
 
+  /* Header Colors - Translucent backgrounds */
+  --header-bg: rgba(10, 22, 40, 0.8);
+  --header-bg-scrolled: rgba(10, 22, 40, 0.95);
+  --header-bg-mobile: rgba(10, 22, 40, 0.98);
+
   /* Advanced Gradients - Stripe Style */
   --gradient-primary: linear-gradient(135deg, #00d4aa 0%, #635bff 50%, #ff6b6b 100%);
   --gradient-secondary: linear-gradient(135deg, #635bff 0%, #00d4aa 100%);

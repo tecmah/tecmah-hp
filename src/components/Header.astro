@@ -13,6 +13,9 @@ const navItems = [
   { href: "/about", label: "会社概要" },
   { href: "/case-studies", label: "事例" },
 ];
+
+// Shared icon for CTA buttons (desktop and mobile)
+const lightningIcon = `<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`;
 ---
 
 <header class="header" id="header">
@@ -62,9 +65,7 @@ const navItems = [
       <div class="nav-cta">
         <a href="/contact" class="cta-button">
           <span class="cta-glow"></span>
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
+          <Fragment set:html={lightningIcon} />
           無料相談
         </a>
       </div>
@@ -95,9 +96,7 @@ const navItems = [
         ))}
         <div class="mobile-cta">
           <a href="/contact" class="cta-button mobile">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
+            <Fragment set:html={lightningIcon} />
             無料相談
           </a>
         </div>
@@ -143,12 +142,19 @@ const navItems = [
       });
     }
 
-    // Header scroll effect
+    // Header scroll effect with requestAnimationFrame for performance
+    let ticking = false;
     window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 50) {
-        header?.classList.add("scrolled");
-      } else {
-        header?.classList.remove("scrolled");
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (window.pageYOffset > 50) {
+            header?.classList.add("scrolled");
+          } else {
+            header?.classList.remove("scrolled");
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     });
   });
@@ -161,7 +167,7 @@ const navItems = [
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(10, 22, 40, 0.8);
+    background: var(--header-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
@@ -169,7 +175,7 @@ const navItems = [
   }
 
   .header.scrolled {
-    background: rgba(10, 22, 40, 0.95);
+    background: var(--header-bg-scrolled);
     box-shadow: var(--shadow-lg);
   }
 
@@ -343,7 +349,7 @@ const navItems = [
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(10, 22, 40, 0.98);
+    background: var(--header-bg-mobile);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     transform: translateY(-10px);
