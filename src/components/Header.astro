@@ -1,139 +1,106 @@
 ---
+// Header component - Stripe-inspired navigation
 const LOGO = {
   default: "/images/logo/logo-horizontal.svg",
   dark: "/images/logo/logo-horizontal-dark.svg",
   fallback: "/images/logo/logo-horizontal.png",
   mobile: "/images/logo/logo-horizontal-mobile.svg",
 };
-// Header component - OpenAI風ナビゲーション
+
+const navItems = [
+  { href: "/", label: "ホーム" },
+  { href: "/services", label: "サービス" },
+  { href: "/about", label: "会社概要" },
+  { href: "/case-studies", label: "事例" },
+];
 ---
 
-<header
-  class="fixed top-0 left-0 right-0 z-50 bg-zinc-900/90 backdrop-blur-md border-b border-zinc-700"
->
-  <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
+<header class="header" id="header">
+  <nav class="header-nav container">
+    <div class="nav-content">
       <!-- Logo -->
-      <div class="flex items-center">
-        <a href="/" class="flex items-center" aria-label="TECMAH ホーム">
-          <picture class="logo-picture" data-logo-mode="dynamic">
-            <source
-              srcset={LOGO.dark}
-              media="(prefers-color-scheme: dark) and (min-width: 768px)"
-              type="image/svg+xml"
-            />
-            <source
-              srcset={LOGO.dark}
-              media="(prefers-color-scheme: dark)"
-              type="image/svg+xml"
-            />
-            <source
-              srcset={LOGO.mobile}
-              media="(max-width: 767px)"
-              type="image/svg+xml"
-            />
-            <source srcset={LOGO.default} type="image/svg+xml" />
-            <img
-              src={LOGO.fallback}
-              alt="TECMAH"
-              class="logo"
-              width="200"
-              height="48"
-              loading="eager"
-              decoding="async"
-            />
-          </picture>
-          <span class="sr-only">TECMAH</span>
-        </a>
-      </div>
+      <a href="/" class="logo-link" aria-label="TECMAH ホーム">
+        <picture class="logo-picture" data-logo-mode="dynamic">
+          <source
+            srcset={LOGO.dark}
+            media="(prefers-color-scheme: dark) and (min-width: 768px)"
+            type="image/svg+xml"
+          />
+          <source
+            srcset={LOGO.dark}
+            media="(prefers-color-scheme: dark)"
+            type="image/svg+xml"
+          />
+          <source
+            srcset={LOGO.mobile}
+            media="(max-width: 767px)"
+            type="image/svg+xml"
+          />
+          <source srcset={LOGO.default} type="image/svg+xml" />
+          <img
+            src={LOGO.fallback}
+            alt="TECMAH"
+            class="logo"
+            width="200"
+            height="48"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+      </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a
-          href="/"
-          class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
-        >
-          ホーム
+      <div class="nav-links">
+        {navItems.map((item) => (
+          <a href={item.href} class="nav-link">
+            {item.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- CTA Button -->
+      <div class="nav-cta">
+        <a href="/contact" class="cta-button">
+          <span class="cta-glow"></span>
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          無料相談
         </a>
-        <a
-          href="/services"
-          class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
-        >
-          サービス
-        </a>
-        <a
-          href="/about"
-          class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
-        >
-          会社概要
-        </a>
-        <a
-          href="/case-studies"
-          class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors"
-        >
-          事例
-        </a>
-        <a href="/contact" class="btn btn-primary text-sm"> 無料相談 </a>
       </div>
 
       <!-- Mobile menu button -->
-      <div class="md:hidden">
-        <button
-          type="button"
-          class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-300 hover:bg-zinc-800"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-        >
-          <span class="sr-only">メニューを開く</span>
-          <!-- Hamburger icon -->
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
+      <button
+        type="button"
+        class="mobile-menu-btn"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="メニューを開く"
+      >
+        <span class="hamburger">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </span>
+      </button>
     </div>
 
     <!-- Mobile menu -->
-    <div class="mobile-menu hidden md:hidden">
-      <div
-        class="px-2 pt-2 pb-3 space-y-1 bg-zinc-900 border-t border-zinc-700"
-      >
-        <a
-          href="/"
-          class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
-        >
-          ホーム
-        </a>
-        <a
-          href="/services"
-          class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
-        >
-          サービス
-        </a>
-        <a
-          href="/about"
-          class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
-        >
-          会社概要
-        </a>
-        <a
-          href="/case-studies"
-          class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-zinc-800"
-        >
-          事例
-        </a>
-        <a href="/contact" class="block mx-3 my-2 text-center btn btn-primary">
-          無料相談
-        </a>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-menu-content">
+        {navItems.map((item) => (
+          <a href={item.href} class="mobile-nav-link">
+            {item.label}
+          </a>
+        ))}
+        <div class="mobile-cta">
+          <a href="/contact" class="cta-button mobile">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            無料相談
+          </a>
+        </div>
       </div>
     </div>
   </nav>
@@ -142,80 +109,312 @@ const LOGO = {
 <script>
   // Mobile menu toggle
   document.addEventListener("DOMContentLoaded", function () {
-    const mobileMenuButton = document.querySelector(".mobile-menu-button");
+    const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
     const mobileMenu = document.querySelector(".mobile-menu");
+    const header = document.getElementById("header");
 
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener("click", function () {
-        const isExpanded =
-          mobileMenuButton.getAttribute("aria-expanded") === "true";
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener("click", function () {
+        const isExpanded = mobileMenuBtn.getAttribute("aria-expanded") === "true";
+        mobileMenuBtn.setAttribute("aria-expanded", (!isExpanded).toString());
+        mobileMenu.classList.toggle("open");
+        mobileMenuBtn.classList.toggle("open");
+      });
 
-        mobileMenuButton.setAttribute(
-          "aria-expanded",
-          (!isExpanded).toString()
-        );
-        mobileMenu.classList.toggle("hidden");
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", function (event) {
+        if (
+          !mobileMenu.contains(event.target as Node) &&
+          !mobileMenuBtn.contains(event.target as Node)
+        ) {
+          mobileMenu.classList.remove("open");
+          mobileMenuBtn.classList.remove("open");
+          mobileMenuBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // Close menu when clicking a link
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          mobileMenuBtn.classList.remove("open");
+          mobileMenuBtn.setAttribute("aria-expanded", "false");
+        });
       });
     }
 
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", function (event) {
-      if (
-        mobileMenu &&
-        !mobileMenu.contains(event.target) &&
-        !mobileMenuButton?.contains(event.target)
-      ) {
-        mobileMenu.classList.add("hidden");
-        mobileMenuButton?.setAttribute("aria-expanded", "false");
+    // Header scroll effect
+    let lastScroll = 0;
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > 50) {
+        header?.classList.add("scrolled");
+      } else {
+        header?.classList.remove("scrolled");
       }
+
+      lastScroll = currentScroll;
     });
   });
 </script>
 
 <style>
-  /* ヘッダー固有のスタイル */
-  header {
-    transition: all 0.3s ease;
-  }
-
-  /* スクロール時の効果 */
-  .scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10, 22, 40, 0.8);
     backdrop-filter: blur(20px);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all var(--motion-duration) var(--motion-ease);
   }
 
-  /* Logo hover effect */
-  .logo:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease;
+  .header.scrolled {
+    background: rgba(10, 22, 40, 0.95);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .header-nav {
+    position: relative;
+  }
+
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  /* Logo */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    transition: transform var(--motion-duration) var(--motion-ease);
+  }
+
+  .logo-link:hover {
+    transform: scale(1.02);
   }
 
   .logo {
-    width: clamp(120px, 15vw, 200px);
+    width: clamp(120px, 15vw, 180px);
     height: auto;
-    transition: filter 0.3s ease;
+    filter: brightness(0) invert(1);
+    transition: filter var(--motion-duration) var(--motion-ease);
   }
 
-  /* ライトモード時のロゴ調整 */
-  @media (prefers-color-scheme: light) {
-    .logo {
-      filter: brightness(0) invert(0.2);
-    }
-
-    .logo-picture[data-logo-mode="dynamic"] .logo {
-      filter: none;
-    }
+  /* Desktop Nav Links */
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .logo {
-      filter: brightness(0) invert(1);
-    }
-
-    .logo-picture[data-logo-mode="dynamic"] .logo {
-      filter: none;
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
     }
   }
 
+  .nav-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--motion-duration) var(--motion-ease);
+    border-radius: var(--radius-sm);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--gradient-secondary);
+    transition: width var(--motion-duration) var(--motion-ease);
+    border-radius: var(--radius-full);
+  }
+
+  .nav-link:hover {
+    color: var(--text);
+  }
+
+  .nav-link:hover::after {
+    width: calc(100% - 2rem);
+  }
+
+  /* CTA Button */
+  .nav-cta {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .nav-cta {
+      display: block;
+    }
+  }
+
+  .cta-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    transition: all var(--motion-duration) var(--motion-ease);
+    overflow: hidden;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(99, 91, 255, 0.3);
+  }
+
+  .cta-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0;
+    transition: opacity var(--motion-duration) var(--motion-ease);
+  }
+
+  .cta-button:hover .cta-glow {
+    opacity: 1;
+  }
+
+  /* Mobile Menu Button */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu-btn {
+      display: none;
+    }
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 24px;
+  }
+
+  .hamburger-line {
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: var(--radius-full);
+    transition: all var(--motion-duration) var(--motion-ease);
+    transform-origin: center;
+  }
+
+  .mobile-menu-btn.open .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-menu-btn.open .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .mobile-menu-btn.open .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 22, 40, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu {
+      display: none;
+    }
+  }
+
+  .mobile-menu-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--text);
+    background: rgba(99, 91, 255, 0.1);
+  }
+
+  .mobile-cta {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-button.mobile {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .header,
+    .nav-link,
+    .cta-button,
+    .mobile-menu,
+    .hamburger-line {
+      transition: none;
+    }
+
+    .nav-link::after {
+      transition: none;
+    }
+  }
 </style>

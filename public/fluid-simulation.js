@@ -57,7 +57,7 @@ let config = {
     COLORFUL: true,
     COLOR_UPDATE_SPEED: 10,
     PAUSED: false,
-    BACK_COLOR: { r: 10, g: 10, b: 11 }, // TECMAH: Brand background color
+    BACK_COLOR: { r: 10, g: 22, b: 40 }, // TECMAH: Brand background color (#0a1628)
     TRANSPARENT: false,
     BLOOM: true,
     BLOOM_ITERATIONS: 8,
@@ -68,11 +68,12 @@ let config = {
     SUNRAYS: true,
     SUNRAYS_RESOLUTION: 196,
     SUNRAYS_WEIGHT: 1.0,
-    // TECMAH: Brand color hues (HSV hue values)
+    // TECMAH: Brand color hues (HSV hue values) - Stripe-inspired
     BRAND_HUES: {
-        CYAN: 0.47,      // #00d4aa
-        INDIGO: 0.65,    // #6366f1
-        PURPLE: 0.75     // #8b5cf6
+        CYAN: 0.46,      // #00d4aa (primary)
+        INDIGO: 0.68,    // #635bff (secondary - Stripe purple)
+        CORAL: 0.02,     // #ff6b6b (accent)
+        GOLD: 0.13       // #ffd93d (accent-secondary)
     }
 };
 
@@ -1568,21 +1569,37 @@ function correctDeltaY (delta) {
 }
 
 function generateColor () {
-    // TECMAH: Brand colors using config values
-    const { CYAN, INDIGO, PURPLE } = config.BRAND_HUES;
+    // TECMAH: Brand colors using config values - Stripe-inspired palette
+    const { CYAN, INDIGO, CORAL, GOLD } = config.BRAND_HUES;
     const hueRange = Math.random();
-    let h;
-    if (hueRange < 0.5) {
-        // Cyan to indigo range
+    let h, s, v;
+
+    if (hueRange < 0.4) {
+        // Primary cyan to indigo range (most common)
         h = CYAN + Math.random() * (INDIGO - CYAN);
+        s = 0.85 + Math.random() * 0.15;
+        v = 0.9 + Math.random() * 0.1;
+    } else if (hueRange < 0.7) {
+        // Secondary indigo range
+        h = INDIGO + (Math.random() - 0.5) * 0.08;
+        s = 0.8 + Math.random() * 0.2;
+        v = 0.85 + Math.random() * 0.15;
+    } else if (hueRange < 0.85) {
+        // Accent coral
+        h = CORAL + (Math.random() - 0.5) * 0.04;
+        s = 0.75 + Math.random() * 0.2;
+        v = 0.9 + Math.random() * 0.1;
     } else {
-        // Indigo to purple range
-        h = INDIGO + Math.random() * (PURPLE - INDIGO);
+        // Accent gold
+        h = GOLD + (Math.random() - 0.5) * 0.04;
+        s = 0.8 + Math.random() * 0.15;
+        v = 0.95 + Math.random() * 0.05;
     }
-    let c = HSVtoRGB(h, 0.9, 1.0);
-    c.r *= 0.15;
-    c.g *= 0.15;
-    c.b *= 0.15;
+
+    let c = HSVtoRGB(h, s, v);
+    c.r *= 0.18;
+    c.g *= 0.18;
+    c.b *= 0.18;
     return c;
 }
 

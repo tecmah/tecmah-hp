@@ -1,142 +1,118 @@
 ---
-// Hero Section - WebGL Fluid Simulation Background
+// Hero Section - Stripe-inspired Modern Design
 import { messages, company, caseStudies } from "../data/content.ts";
 ---
 
 <section class="section-hero relative overflow-hidden">
+  <!-- Animated gradient mesh background -->
+  <div class="hero-gradient-mesh"></div>
 
-  <!-- Dark overlay for better text readability -->
-  <div class="absolute inset-0 bg-black/20 z-10"></div>
+  <!-- Floating orbs for depth -->
+  <div class="floating-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Grid pattern overlay -->
+  <div class="grid-pattern"></div>
 
   <div class="container relative z-20">
     <div class="max-w-5xl mx-auto text-center">
       <!-- Badge -->
-      <div
-        class="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-sm font-medium mb-12 animate-fade-in-up"
-      >
-        <svg
-          class="w-5 h-5 mr-3"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-        </svg>
-        <span class="text-white/90 font-semibold">🚀 AI最先端企業</span>
+      <div class="hero-badge fade-in-up">
+        <span class="badge-dot"></span>
+        <span>AI-Powered Business Transformation</span>
       </div>
 
       <!-- Main Heading -->
-      <h1
-        class="text-6xl md:text-8xl font-black text-white mb-8 leading-tight animate-fade-in-up"
-        style="animation-delay: 0.2s;"
-      >
-        <span class="block">次世代</span>
-        <span class="gradient-text-ai">AI技術</span>で<br />
-        <span class="block">ビジネスを</span>
-        <span class="gradient-text-transform">変革</span>する
+      <h1 class="hero-title fade-in-up stagger-1">
+        <span class="block text-white/90">次世代</span>
+        <span class="hero-gradient-text">AI技術</span>
+        <span class="text-white/90">で</span>
+        <br class="hidden md:block" />
+        <span class="text-white/90">ビジネスを</span>
+        <span class="hero-gradient-text-alt">変革</span>
+        <span class="text-white/90">する</span>
       </h1>
 
       <!-- Subtitle -->
-      <p
-        class="text-2xl md:text-3xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed font-light animate-fade-in-up"
-        style="animation-delay: 0.4s;"
-      >
-        生成AI、機械学習、データサイエンスの最先端技術で<br />
+      <p class="hero-subtitle fade-in-up stagger-2">
+        生成AI、機械学習、データサイエンスの最先端技術で<br class="hidden md:block" />
         あなたのビジネスを未来へ導きます
       </p>
 
       <!-- CTA Buttons -->
-      <div
-        class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in-up"
-        style="animation-delay: 0.6s;"
-      >
-        <a
-          href="/contact"
-          class="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 hover:from-blue-500 hover:to-purple-500"
-        >
-          <svg
-            class="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform duration-300"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+      <div class="hero-cta fade-in-up stagger-3">
+        <a href="/contact" class="hero-btn-primary group">
+          <span class="btn-glow"></span>
+          <svg class="w-5 h-5 mr-2 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
           無料相談を開始
-          <div
-            class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-          >
-          </div>
+          <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </a>
-        <a
-          href="/services"
-          class="group inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-transparent border-2 border-white/30 rounded-full hover:bg-white/10 hover:border-white/50 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-        >
-          <svg
-            class="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-300"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-            ></path>
+        <a href="/services" class="hero-btn-secondary group">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
           </svg>
           サービスを見る
         </a>
       </div>
 
-      <!-- Trust Indicators -->
-      <div
-        class="mt-20 pt-12 border-t border-white/20 animate-fade-in-up"
-        style="animation-delay: 0.8s;"
-      >
-        <p class="text-white/70 text-lg mb-8 font-medium">
-          提供できる価値
-        </p>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-white/90">
-          <div class="text-center group">
-            <div
-              class="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300"
-            >
-              フルサイクル
+      <!-- Trust Indicators / Value Props -->
+      <div class="hero-stats fade-in-up stagger-4">
+        <div class="stats-label">
+          <span class="stats-line"></span>
+          <span>提供できる価値</span>
+          <span class="stats-line"></span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
             </div>
-            <div class="text-sm font-medium">要件定義→設計→実装</div>
+            <div class="stat-content">
+              <div class="stat-value">フルサイクル</div>
+              <div class="stat-desc">要件定義→設計→実装</div>
+            </div>
           </div>
-          <div class="text-center group">
-            <div
-              class="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300"
-            >
-              データ活用
+          <div class="stat-item">
+            <div class="stat-icon stat-icon-alt">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
             </div>
-            <div class="text-sm font-medium">KPI設計→計測→可視化</div>
+            <div class="stat-content">
+              <div class="stat-value">データ活用</div>
+              <div class="stat-desc">KPI設計→計測→可視化</div>
+            </div>
           </div>
-          <div class="text-center group">
-            <div
-              class="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300"
-            >
-              生成AI実装
+          <div class="stat-item">
+            <div class="stat-icon stat-icon-accent">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
             </div>
-            <div class="text-sm font-medium">RAG・評価・運用</div>
+            <div class="stat-content">
+              <div class="stat-value">生成AI実装</div>
+              <div class="stat-desc">RAG・評価・運用</div>
+            </div>
           </div>
-          <div class="text-center group">
-            <div
-              class="text-3xl md:text-4xl font-black mb-2 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300"
-            >
-              運用/品質
+          <div class="stat-item">
+            <div class="stat-icon stat-icon-warm">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
             </div>
-            <div class="text-sm font-medium">監視・SLO・セキュリティ</div>
+            <div class="stat-content">
+              <div class="stat-value">運用/品質</div>
+              <div class="stat-desc">監視・SLO・セキュリティ</div>
+            </div>
           </div>
         </div>
       </div>
@@ -144,41 +120,380 @@ import { messages, company, caseStudies } from "../data/content.ts";
   </div>
 
   <!-- Scroll indicator -->
-  <div
-    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 z-20"
-  >
-    <div class="animate-bounce">
-      <div
-        class="w-8 h-8 border-2 border-white/50 rounded-full flex items-center justify-center backdrop-blur-sm bg-white/10"
-      >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
-      </div>
+  <div class="scroll-indicator">
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
     </div>
+    <span class="scroll-text">Scroll</span>
   </div>
 </section>
 
 <style>
   .section-hero {
-    background: transparent;
     min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
   }
 
-  /* アニメーション効果 */
+  /* Gradient mesh background */
+  .hero-gradient-mesh {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 91, 255, 0.3), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 50%, rgba(0, 212, 170, 0.2), transparent),
+      radial-gradient(ellipse 50% 30% at 0% 80%, rgba(255, 107, 107, 0.15), transparent);
+    pointer-events: none;
+  }
+
+  /* Floating orbs */
+  .floating-orbs {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    top: -10%;
+    right: -5%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    bottom: 10%;
+    left: -5%;
+    animation-delay: -7s;
+  }
+
+  .orb-3 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--accent-secondary), var(--primary));
+    top: 50%;
+    left: 50%;
+    animation-delay: -14s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(10px, -20px) scale(1.05); }
+    50% { transform: translate(-10px, 10px) scale(0.95); }
+    75% { transform: translate(20px, 20px) scale(1.02); }
+  }
+
+  /* Grid pattern */
+  .grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(99, 91, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 91, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  /* Badge */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 1.25rem;
+    background: rgba(99, 91, 255, 0.1);
+    border: 1px solid rgba(99, 91, 255, 0.3);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 170, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(0, 212, 170, 0); }
+  }
+
+  /* Title */
+  .hero-title {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-gradient-text {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-gradient-text-alt {
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtitle */
+  .hero-subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    color: var(--text-secondary);
+    max-width: 48rem;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  /* CTA Buttons */
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-cta {
+      flex-direction: row;
+      gap: 1.5rem;
+    }
+  }
+
+  .hero-btn-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(99, 91, 255, 0.3);
+    transition: all var(--motion-duration) var(--motion-ease);
+    overflow: hidden;
+  }
+
+  .hero-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl), 0 0 50px rgba(99, 91, 255, 0.4);
+  }
+
+  .btn-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0;
+    transition: opacity var(--motion-duration) var(--motion-ease);
+  }
+
+  .hero-btn-primary:hover .btn-glow {
+    opacity: 1;
+  }
+
+  .hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(10px);
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .hero-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Stats Section */
+  .hero-stats {
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .stats-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+  }
+
+  .stats-line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    background: rgba(15, 29, 50, 0.5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .stat-item:hover {
+    background: rgba(15, 29, 50, 0.7);
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+  }
+
+  .stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, rgba(0, 212, 170, 0.15), rgba(99, 91, 255, 0.15));
+    border: 1px solid rgba(0, 212, 170, 0.3);
+    border-radius: var(--radius-md);
+    color: var(--primary);
+  }
+
+  .stat-icon-alt {
+    background: linear-gradient(135deg, rgba(99, 91, 255, 0.15), rgba(0, 212, 170, 0.15));
+    border-color: rgba(99, 91, 255, 0.3);
+    color: var(--secondary);
+  }
+
+  .stat-icon-accent {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(99, 91, 255, 0.15));
+    border-color: rgba(255, 107, 107, 0.3);
+    color: var(--accent);
+  }
+
+  .stat-icon-warm {
+    background: linear-gradient(135deg, rgba(255, 217, 61, 0.15), rgba(255, 107, 107, 0.15));
+    border-color: rgba(255, 217, 61, 0.3);
+    color: var(--accent-secondary);
+  }
+
+  .stat-content {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Scroll Indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 20;
+  }
+
+  .scroll-mouse {
+    width: 24px;
+    height: 40px;
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+  }
+
+  .scroll-wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 2px;
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(8px); opacity: 0.5; }
+  }
+
+  .scroll-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Animations */
+  .fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.8s var(--motion-ease) forwards;
+  }
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -190,87 +505,60 @@ import { messages, company, caseStudies } from "../data/content.ts";
     }
   }
 
-  .animate-fade-in-up {
-    animation: fadeInUp 1s ease-out both;
-  }
-
-  /* AI技術のグラデーションテキスト */
-  .gradient-text-ai {
-    background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% 200%;
-  }
-
-  .gradient-text-transform {
-    background: linear-gradient(135deg, #34d399 0%, #60a5fa 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% 200%;
-  }
-
-  /* 過剰なグラデーションアニメーションを除去（静的へ） */
-
-  /* ホバー効果 */
-  .group:hover .group-hover\:scale-110 {
-    transform: scale(1.1);
-  }
-
-  .group:hover .group-hover\:rotate-12 {
-    transform: rotate(12deg);
-  }
-
-  .group:hover .group-hover\:scale-110 {
-    transform: scale(1.1);
-  }
-
-  /* レスポンシブ調整 */
-  @media (max-width: 768px) {
-    .section-hero h1 {
-      font-size: 3rem;
-      line-height: 1.1;
-    }
-
-    .section-hero p {
-      font-size: 1.2rem;
-    }
-
-    .section-hero .btn {
-      font-size: 1rem;
-      padding: 0.75rem 1.5rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .section-hero h1 {
-      font-size: 2.5rem;
-    }
-
-    .section-hero p {
-      font-size: 1rem;
-    }
-  }
-
-  /* パフォーマンス最適化 */
-  .section-hero * {
-    will-change: transform;
-  }
-
-  /* テキストシャドウで可読性向上 */
-  .section-hero h1 {
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  }
-
-  .section-hero p {
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  }
-
-  /* reduce-motion: グラデ/アニメ停止 */
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .animate-fade-in-up {
+    .orb,
+    .scroll-wheel,
+    .badge-dot {
       animation: none !important;
+    }
+
+    .fade-in-up {
+      animation: none !important;
+      opacity: 1;
+    }
+
+    .hero-btn-primary:hover,
+    .hero-btn-secondary:hover,
+    .stat-item:hover {
+      transform: none;
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .section-hero {
+      padding-top: 5rem;
+    }
+
+    .hero-badge {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+    }
+
+    .hero-subtitle {
+      padding: 0 1rem;
+    }
+
+    .stats-grid {
+      gap: 1rem;
+    }
+
+    .stat-item {
+      padding: 1rem 0.75rem;
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .stat-value {
+      font-size: 1rem;
+    }
+
+    .scroll-indicator {
+      display: none;
     }
   }
 </style>
