@@ -1,8 +1,10 @@
 ---
 // CTASection component - Stripe-inspired call-to-action
+// SECURITY NOTE: titleHtml and subtitleHtml accept raw HTML strings.
+// Only pass trusted, developer-defined content. Never pass user input directly.
 interface Props {
-  title: string;
-  subtitle?: string;
+  titleHtml: string;     // HTML allowed (e.g., <br>, <span>). Pass trusted content only.
+  subtitleHtml?: string; // HTML allowed (e.g., <br>, <span>). Pass trusted content only.
   primaryText?: string;
   primaryHref?: string;
   secondaryText?: string;
@@ -11,8 +13,8 @@ interface Props {
 }
 
 const {
-  title,
-  subtitle,
+  titleHtml,
+  subtitleHtml,
   primaryText = '無料相談を予約する',
   primaryHref = '/contact',
   secondaryText,
@@ -25,8 +27,8 @@ const {
   <div class="cta-bg"></div>
   <div class="container">
     <div class="cta-content">
-      <h2 class="cta-title" set:html={title} />
-      {subtitle && <p class="cta-subtitle" set:html={subtitle} />}
+      <h2 class="cta-title" set:html={titleHtml} />
+      {subtitleHtml && <p class="cta-subtitle" set:html={subtitleHtml} />}
 
       <div class="cta-buttons">
         <a href={primaryHref} class="cta-btn-primary">
