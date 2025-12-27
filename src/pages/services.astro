@@ -10,6 +10,11 @@ const featureCheckSvg = `
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
   </svg>
 `;
+const connectorSvg = `
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+  </svg>
+`;
 
 const services = [
   {
@@ -138,9 +143,7 @@ const services = [
           </div>
 
           <div class="process-connector">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+            <Fragment set:html={connectorSvg} />
           </div>
 
           <div class="process-step">
@@ -153,9 +156,7 @@ const services = [
           </div>
 
           <div class="process-connector">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+            <Fragment set:html={connectorSvg} />
           </div>
 
           <div class="process-step">
@@ -168,9 +169,7 @@ const services = [
           </div>
 
           <div class="process-connector">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+            <Fragment set:html={connectorSvg} />
           </div>
 
           <div class="process-step">
