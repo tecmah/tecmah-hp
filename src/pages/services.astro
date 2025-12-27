@@ -4,6 +4,72 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
+
+const featureCheckSvg = `
+  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+  </svg>
+`;
+
+const services = [
+  {
+    id: "ai-data",
+    title: "生成AI・データ活用支援",
+    description:
+      "生成AIの活用構想からPoC、運用ガバナンスまで伴走し、事業インパクトを実現します。",
+    icon: `
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    `,
+    iconVariant: "service-icon-1",
+    features: [
+      "Azure OpenAI / GPT-4o導入支援",
+      "PoC構築・運用体制整備",
+      "MLOps基盤構築・運用",
+      "プロンプト設計・評価・改善",
+    ],
+    href: "/services/ai-data",
+  },
+  {
+    id: "product-management",
+    title: "PdM/PM伴走・プロダクトマネジメント",
+    description:
+      "戦略立案からロードマップ、開発体制構築、リリース運用まで一貫したPdM/PM伴走を提供します。",
+    icon: `
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    `,
+    iconVariant: "service-icon-2",
+    features: [
+      "市場・ユーザー調査・分析",
+      "アジャイル導入・スクラム推進",
+      "開発チーム運営・マネジメント",
+      "PdM人材育成・内製化支援",
+    ],
+    href: "/services/product-management",
+  },
+  {
+    id: "dx-consulting",
+    title: "新規事業・DXコンサルティング",
+    description:
+      "市場検証・事業計画・KPI設計・オペレーション構築まで、成長を見据えたDX/新規事業を伴走します。",
+    icon: `
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    `,
+    iconVariant: "service-icon-3",
+    features: [
+      "カスタマーインタビュー・検証",
+      "事業計画・KPI設計・運用",
+      "業務プロセス可視化・改善",
+      "アライアンス戦略・パートナリング",
+    ],
+    href: "/services/dx-consulting",
+  },
+];
 ---
 
 <Layout title="サービス一覧 | 株式会社TECMAH - AI・データ活用とPdM支援">
@@ -18,182 +84,33 @@ import CTASection from "../components/CTASection.astro";
     <section class="section">
       <div class="container">
         <div class="services-grid">
-          <!-- Service 1: AI・データ活用支援 -->
-          <div class="service-card">
-            <div class="card-gradient-line"></div>
-            <div class="service-icon service-icon-1">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+          {services.map((service) => (
+            <div class="service-card" data-service={service.id}>
+              <div class="card-gradient-line"></div>
+              <div class={`service-icon ${service.iconVariant}`} set:html={service.icon} />
+              <h3 class="service-title">{service.title}</h3>
+              <p class="service-description">{service.description}</p>
+
+              <div class="service-features">
+                <h4 class="features-label">主要サービス内容</h4>
+                <ul>
+                  {service.features.map((feature) => (
+                    <li>
+                      <span class="feature-check" set:html={featureCheckSvg} />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <a href={service.href} class="service-link">
+                <span>詳細を見る</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
-            <h3 class="service-title">生成AI・データ活用支援</h3>
-            <p class="service-description">
-              生成AIの活用構想からPoC、運用ガバナンスまで伴走し、事業インパクトを実現します。
-            </p>
-
-            <div class="service-features">
-              <h4 class="features-label">主要サービス内容</h4>
-              <ul>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  Azure OpenAI / GPT-4o導入支援
-                </li>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  PoC構築・運用体制整備
-                </li>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  MLOps基盤構築・運用
-                </li>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  プロンプト設計・評価・改善
-                </li>
-              </ul>
-            </div>
-
-            <a href="/services/ai-data" class="service-link">
-              <span>詳細を見る</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-
-          <!-- Service 2: PdM/PM伴走 -->
-          <div class="service-card">
-            <div class="card-gradient-line"></div>
-            <div class="service-icon service-icon-2">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
-            <h3 class="service-title">PdM/PM伴走・プロダクトマネジメント</h3>
-            <p class="service-description">
-              戦略立案からロードマップ、開発体制構築、リリース運用まで一貫したPdM/PM伴走を提供します。
-            </p>
-
-            <div class="service-features">
-              <h4 class="features-label">主要サービス内容</h4>
-              <ul>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  市場・ユーザー調査・分析
-                </li>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  アジャイル導入・スクラム推進
-                </li>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  開発チーム運営・マネジメント
-                </li>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  PdM人材育成・内製化支援
-                </li>
-              </ul>
-            </div>
-
-            <a href="/services/product-management" class="service-link">
-              <span>詳細を見る</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-
-          <!-- Service 3: 新規事業・DXコンサルティング -->
-          <div class="service-card">
-            <div class="card-gradient-line"></div>
-            <div class="service-icon service-icon-3">
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 class="service-title">新規事業・DXコンサルティング</h3>
-            <p class="service-description">
-              市場検証・事業計画・KPI設計・オペレーション構築まで、成長を見据えたDX/新規事業を伴走します。
-            </p>
-
-            <div class="service-features">
-              <h4 class="features-label">主要サービス内容</h4>
-              <ul>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  カスタマーインタビュー・検証
-                </li>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  事業計画・KPI設計・運用
-                </li>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  業務プロセス可視化・改善
-                </li>
-                <li>
-                  <span class="feature-check">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                  アライアンス戦略・パートナリング
-                </li>
-              </ul>
-            </div>
-
-            <a href="/services/dx-consulting" class="service-link">
-              <span>詳細を見る</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
+          ))}
         </div>
       </div>
     </section>

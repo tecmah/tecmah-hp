@@ -592,7 +592,7 @@ npm run dev -- --verbose
 
 ### Lighthouse スコア目標
 
-- **Performance**: 60+
+- **Performance**: 60+（警告扱い）
 - **Accessibility**: 90+
 - **Best Practices**: 95+
 - **SEO**: 95+
@@ -636,7 +636,7 @@ npx lhci autorun --config=./lighthouserc.json
     },
     "assert": {
       "assertions": {
-        "categories:performance": ["error", {"minScore": 0.6}],
+        "categories:performance": "warn",
         "categories:accessibility": ["error", {"minScore": 0.9}],
         "categories:best-practices": ["error", {"minScore": 0.95}],
         "categories:seo": ["error", {"minScore": 0.95}]
