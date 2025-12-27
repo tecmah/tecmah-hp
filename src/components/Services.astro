@@ -1,106 +1,79 @@
 ---
-// Services Section - 3つの主要サービス
+// Services Section - Stripe-inspired design
 import { services, messages } from '../data/content.ts';
-// ローカルサービスデータ（一時的に保持）
-const localServices = [
+
+const serviceIcons = [
   {
-    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>`,
-    title: "生成AI・データ活用支援",
-    description: "生成AIの活用構想からPoC、運用ガバナンスまで伴走し、事業インパクトを実現します。",
-    features: [
-      "Azure OpenAI / GPT-4o導入",
-      "PoC構築・運用",
-      "MLOps体制整備",
-      "プロンプト設計・評価"
-    ],
-    href: "/services/ai-data"
+    icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>`
   },
   {
-    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>`,
-    title: "PdM/PM伴走・プロダクトマネジメント",
-    description: "戦略立案からロードマップ、開発体制構築、リリース運用まで一貫したPdM/PjM伴走を提供します。",
-    features: [
-      "市場・ユーザー調査",
-      "アジャイル導入・スクラム推進",
-      "開発チーム運営",
-      "PdM人材育成"
-    ],
-    href: "/services/product-management"
+    icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>`
   },
   {
-    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>`,
-    title: "新規事業・DXコンサルティング",
-    description: "市場検証・事業計画・KPI設計・オペレーション構築まで、成長を見据えたDX/新規事業を伴走します。",
-    features: [
-      "カスタマーインタビュー",
-      "事業計画・KPI設計",
-      "プロセス可視化",
-      "アライアンス戦略"
-    ],
-    href: "/services/dx-consulting"
+    icon: `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>`
   }
 ];
-// コンテンツファイルのデータを使用（将来的に移行）
-// const servicesData = services;
 ---
 
-<section class="section py-20 md:py-32 glass-surface-primary">
+<section class="services-section section" id="services">
   <div class="container">
     <!-- Section Header -->
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 text-blue-700 text-sm font-medium mb-6">
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-        </svg>
-        主要サービス
+    <div class="section-header">
+      <div class="section-badge">
+        <span class="badge-icon">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          </svg>
+        </span>
+        <span>主要サービス</span>
       </div>
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-        <span class="gradient-text">3つの専門領域</span>で<br>
+      <h2 class="section-title">
+        <span class="gradient-text">3つの専門領域</span>で<br class="hidden md:block">
         事業成長を支援
       </h2>
-      <p class="text-xl text-gray-300 leading-relaxed">
-        生成AIとプロダクトマネジメントの現場経験を活かし、<br>
+      <p class="section-description">
+        生成AIとプロダクトマネジメントの現場経験を活かし、<br class="hidden md:block">
         戦略から実装・運用まで一貫した伴走型支援を提供します。
       </p>
     </div>
 
     <!-- Services Grid -->
-    <div class="grid md:grid-cols-3 gap-8 mb-16">
+    <div class="services-grid">
       {services.map((service, index) => (
-        <div class="card group hover:shadow-2xl transition-all duration-300">
+        <div class="service-card fade-in-up" style={`animation-delay: ${index * 100}ms`}>
+          <!-- Card top gradient line -->
+          <div class="card-gradient-line"></div>
+
           <!-- Icon -->
-          <div class="text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-300">
-            <Fragment set:html={service.icon} />
+          <div class={`service-icon service-icon-${index + 1}`}>
+            <Fragment set:html={serviceIcons[index]?.icon || service.icon} />
           </div>
-          
-          <!-- Title -->
-          <h3 class="text-xl font-bold text-white mb-3">
-            {service.title}
-          </h3>
-          
-          <!-- Description -->
-          <p class="text-gray-300 mb-6 leading-relaxed">
-            {service.description}
-          </p>
-          
-          <!-- Features -->
-          <ul class="space-y-2 mb-6">
-            {service.features.map((feature) => (
-              <li class="flex items-start">
-                <span class="text-green-500 mr-2 mt-1">✓</span>
-                <span class="text-sm text-gray-300">{feature}</span>
-              </li>
-            ))}
-          </ul>
-          
-          <!-- CTA -->
-          <a 
-            href={service.href}
-            class="inline-flex items-center text-cyan-400 hover:text-cyan-300 font-medium group-hover:translate-x-1 transition-all duration-300"
-          >
-            詳細を見る
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+
+          <!-- Content -->
+          <div class="service-content">
+            <h3 class="service-title">{service.title}</h3>
+            <p class="service-description">{service.description}</p>
+
+            <!-- Features -->
+            <ul class="service-features">
+              {service.features.map((feature) => (
+                <li class="feature-item">
+                  <span class="feature-check">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span class="feature-text">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- CTA Link -->
+          <a href={service.href} class="service-link">
+            <span>詳細を見る</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </a>
         </div>
@@ -108,18 +81,26 @@ const localServices = [
     </div>
 
     <!-- Bottom CTA -->
-    <div class="text-center">
-      <div class="bg-gradient-to-r from-zinc-800/50 to-zinc-700/50 rounded-2xl p-8 border border-zinc-600">
-        <h3 class="text-2xl font-bold text-white mb-4">
-          どのサービスが最適かわからない？
-        </h3>
-        <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
-          初回60分のオンライン相談で、現状の課題をヒアリングし、<br>
-          最適なアプローチとサービス組み合わせをご提案します。
-        </p>
-        <a href="/contact" class="btn btn-primary text-lg px-8 py-4">
+    <div class="cta-section">
+      <div class="cta-card">
+        <div class="cta-content">
+          <div class="cta-icon">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="cta-text">
+            <h3 class="cta-title">どのサービスが最適かわからない？</h3>
+            <p class="cta-description">
+              初回60分のオンライン相談で、現状の課題をヒアリングし、<br class="hidden md:block">
+              最適なアプローチとサービス組み合わせをご提案します。
+            </p>
+          </div>
+        </div>
+        <a href="/contact" class="cta-button">
+          <span class="btn-glow"></span>
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
           </svg>
           {messages.cta.primary}を申し込む
         </a>
@@ -129,52 +110,380 @@ const localServices = [
 </section>
 
 <style>
-  /* サービスカード特有のスタイル */
-  .card {
+  .services-section {
+    background: rgba(15, 29, 50, 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto 4rem;
+  }
+
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(99, 91, 255, 0.1);
+    border: 1px solid rgba(99, 91, 255, 0.3);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-icon {
+    display: flex;
+    color: var(--accent-secondary);
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  /* Services Grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Service Card */
+  .service-card {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    background: rgba(15, 29, 50, 0.7);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    transition: all var(--motion-duration) var(--motion-ease);
     overflow: hidden;
   }
-  
-  .card::before {
-    content: '';
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(99, 91, 255, 0.1);
+  }
+
+  .card-gradient-line {
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #10a37f, transparent);
-    transition: left 0.5s ease;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--motion-duration) var(--motion-ease);
   }
-  
-  .card:hover::before {
-    left: 100%;
+
+  .service-card:hover .card-gradient-line {
+    opacity: 1;
   }
-  
-  /* グラデーションテキスト */
-  .gradient-text {
-    background: linear-gradient(135deg, #10a37f 0%, #3b82f6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+
+  /* Service Icon */
+  .service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 1.5rem;
+    transition: all var(--motion-duration) var(--motion-ease);
   }
-  
-  /* アニメーション */
-  .card {
-    animation: fadeInUp 0.6s ease-out;
+
+  .service-icon-1 {
+    background: linear-gradient(135deg, rgba(0, 212, 170, 0.15), rgba(99, 91, 255, 0.15));
+    border: 1px solid rgba(0, 212, 170, 0.3);
+    color: var(--primary);
   }
-  
-  .card:nth-child(2) {
-    animation-delay: 0.1s;
+
+  .service-icon-2 {
+    background: linear-gradient(135deg, rgba(99, 91, 255, 0.15), rgba(255, 107, 107, 0.15));
+    border: 1px solid rgba(99, 91, 255, 0.3);
+    color: var(--secondary);
   }
-  
-  .card:nth-child(3) {
-    animation-delay: 0.2s;
+
+  .service-icon-3 {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 217, 61, 0.15));
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    color: var(--accent);
   }
-  
-  /* レスポンシブ調整 */
+
+  .service-card:hover .service-icon {
+    transform: scale(1.1);
+  }
+
+  /* Service Content */
+  .service-content {
+    flex: 1;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .service-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Features */
+  .service-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .feature-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 212, 170, 0.1);
+    border-radius: 50%;
+    color: var(--primary);
+    margin-top: 1px;
+  }
+
+  .feature-text {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Service Link */
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary);
+    transition: all var(--motion-duration) var(--motion-ease);
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .service-link:hover {
+    color: var(--primary-light);
+    gap: 0.75rem;
+  }
+
+  .service-link svg {
+    transition: transform var(--motion-duration) var(--motion-ease);
+  }
+
+  .service-link:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    text-align: center;
+  }
+
+  .cta-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, rgba(22, 42, 69, 0.8), rgba(15, 29, 50, 0.8));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+  }
+
+  @media (min-width: 768px) {
+    .cta-card {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 3rem;
+      text-align: left;
+    }
+  }
+
+  .cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .cta-content {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+  }
+
+  .cta-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, rgba(99, 91, 255, 0.15), rgba(0, 212, 170, 0.15));
+    border: 1px solid rgba(99, 91, 255, 0.3);
+    border-radius: var(--radius-lg);
+    color: var(--secondary);
+    flex-shrink: 0;
+  }
+
+  .cta-text {
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .cta-text {
+      text-align: left;
+    }
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .cta-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg), var(--shadow-glow-secondary);
+    transition: all var(--motion-duration) var(--motion-ease);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl), 0 0 50px rgba(99, 91, 255, 0.4);
+  }
+
+  .btn-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0;
+    transition: opacity var(--motion-duration) var(--motion-ease);
+  }
+
+  .cta-button:hover .btn-glow {
+    opacity: 1;
+  }
+
+  /* Animation */
+  .fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.6s var(--motion-ease) forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .service-card,
+    .service-icon,
+    .service-link,
+    .cta-button {
+      transition: none;
+    }
+
+    .fade-in-up {
+      animation: none;
+      opacity: 1;
+    }
+
+    .service-card:hover,
+    .cta-button:hover {
+      transform: none;
+    }
+  }
+
+  /* Responsive */
   @media (max-width: 768px) {
-    .card {
-      margin-bottom: 2rem;
+    .services-grid {
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      padding: 1.5rem;
+    }
+
+    .cta-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .cta-title {
+      font-size: 1.25rem;
+    }
+
+    .cta-button {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>

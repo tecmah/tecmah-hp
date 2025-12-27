@@ -1,50 +1,155 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+
+const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`;
 ---
 
-<Layout title="プライバシーポリシー" description="株式会社TECMAHのプライバシーポリシー">
-  <main class="container py-16 md:py-24">
-    <h1 class="text-4xl font-bold mb-6">プライバシーポリシー</h1>
-    <p class="text-gray-300 mb-8">最終更新日: 2025-09-28</p>
+<Layout title="プライバシーポリシー | 株式会社TECMAH" description="株式会社TECMAHのプライバシーポリシー">
+  <Header />
+  <main>
+    <PageHero
+      titleHtml='<span class="gradient-text">プライバシー</span><br>ポリシー'
+      subtitleHtml="お客様の個人情報の取り扱いについて"
+      badge="Privacy Policy"
+      badgeIconHtml={badgeIcon}
+    />
 
-    <section class="prose prose-invert max-w-none">
-      <h2>1. 事業者情報</h2>
-      <p>株式会社TECMAH</p>
+    <section class="privacy-section">
+      <div class="container">
+        <div class="privacy-content">
+          <p class="last-updated">最終更新日: 2025-09-28</p>
 
-      <h2>2. 取得する情報</h2>
-      <p>お問い合わせフォーム等で氏名、メールアドレス、所属、その他任意記入情報を取得します。</p>
+          <div class="policy-item">
+            <h2>1. 事業者情報</h2>
+            <p>株式会社TECMAH</p>
+          </div>
 
-      <h2>3. 利用目的</h2>
-      <ul>
-        <li>お問い合わせ対応、サービス提供、品質向上のため</li>
-        <li>重要なお知らせ等の配信</li>
-      </ul>
+          <div class="policy-item">
+            <h2>2. 取得する情報</h2>
+            <p>お問い合わせフォーム等で氏名、メールアドレス、所属、その他任意記入情報を取得します。</p>
+          </div>
 
-      <h2>4. 第三者提供</h2>
-      <p>法令に基づく場合を除き、本人の同意なく第三者に提供しません。</p>
+          <div class="policy-item">
+            <h2>3. 利用目的</h2>
+            <ul>
+              <li>お問い合わせ対応、サービス提供、品質向上のため</li>
+              <li>重要なお知らせ等の配信</li>
+            </ul>
+          </div>
 
-      <h2>5. 委託</h2>
-      <p>業務委託先に取り扱いを委託する場合、適切な管理監督を行います。</p>
+          <div class="policy-item">
+            <h2>4. 第三者提供</h2>
+            <p>法令に基づく場合を除き、本人の同意なく第三者に提供しません。</p>
+          </div>
 
-      <h2>6. 安全管理措置</h2>
-      <p>アクセス制御、暗号化、ログ監査等の措置を講じます。</p>
+          <div class="policy-item">
+            <h2>5. 委託</h2>
+            <p>業務委託先に取り扱いを委託する場合、適切な管理監督を行います。</p>
+          </div>
 
-      <h2>7. 開示等の請求</h2>
-      <p>保有個人データの開示・訂正・利用停止等の請求は、下記窓口までご連絡ください。</p>
+          <div class="policy-item">
+            <h2>6. 安全管理措置</h2>
+            <p>アクセス制御、暗号化、ログ監査等の措置を講じます。</p>
+          </div>
 
-      <h2>8. お問い合わせ窓口</h2>
-      <p>Email: info@tecmah.com</p>
+          <div class="policy-item">
+            <h2>7. 開示等の請求</h2>
+            <p>保有個人データの開示・訂正・利用停止等の請求は、下記窓口までご連絡ください。</p>
+          </div>
 
-      <h2>9. 改定</h2>
-      <p>本ポリシーは予告なく改定されることがあります。</p>
+          <div class="policy-item">
+            <h2>8. お問い合わせ窓口</h2>
+            <p>Email: <a href="mailto:info@tecmah.com" class="email-link">info@tecmah.com</a></p>
+          </div>
+
+          <div class="policy-item">
+            <h2>9. 改定</h2>
+            <p>本ポリシーは予告なく改定されることがあります。</p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
+  <Footer />
 </Layout>
 
 <style>
-  .prose :where(p, li){
-    color: #d1d5db;
+  .privacy-section {
+    padding: 4rem 0 6rem;
+  }
+
+  .privacy-content {
+    max-width: 48rem;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+  }
+
+  .last-updated {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .policy-item {
+    margin-bottom: 2rem;
+  }
+
+  .policy-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .policy-item h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .policy-item p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .policy-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .policy-item li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .policy-item li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--primary);
+    border-radius: 50%;
+  }
+
+  .email-link {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: color var(--motion-duration) var(--motion-ease);
+  }
+
+  .email-link:hover {
+    color: var(--primary-light);
   }
 </style>
-
-

@@ -1,0 +1,177 @@
+---
+// Footer component - Stripe-inspired design
+---
+
+<footer class="site-footer">
+  <div class="footer-gradient"></div>
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Company Info -->
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <span class="brand-name">TECMAH</span>
+        </div>
+        <p class="brand-description">
+          AI・データ活用・PdM/PM支援を行うスタートアップ。
+          データドリブンな意思決定と生成AIを活用したプロダクト開発で、企業のデジタル変革を伴走支援します。
+        </p>
+        <div class="brand-contact">
+          <p>〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701</p>
+          <p>Email: <a href="mailto:info@tecmah.com">info@tecmah.com</a></p>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h4 class="footer-title">サービス</h4>
+        <ul>
+          <li><a href="/services/ai-data">生成AI・データ活用</a></li>
+          <li><a href="/services/product-management">PdM/PM伴走</a></li>
+          <li><a href="/services/dx-consulting">DXコンサルティング</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="footer-links">
+        <h4 class="footer-title">会社情報</h4>
+        <ul>
+          <li><a href="/about">会社概要</a></li>
+          <li><a href="/case-studies">事例</a></li>
+          <li><a href="/contact">お問い合わせ</a></li>
+          <li><a href="/privacy">プライバシーポリシー</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} 株式会社TECMAH. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    background: var(--background-dark);
+    color: var(--text);
+    padding: 4rem 0 2rem;
+    overflow: hidden;
+  }
+
+  .footer-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+    }
+  }
+
+  .footer-brand {
+    max-width: 400px;
+  }
+
+  .brand-logo {
+    margin-bottom: 1rem;
+  }
+
+  .brand-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .brand-description {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .brand-contact {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .brand-contact a {
+    color: var(--primary);
+    transition: color var(--motion-duration) var(--motion-ease);
+  }
+
+  .brand-contact a:hover {
+    color: var(--primary-light);
+  }
+
+  .footer-links h4.footer-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-links a {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    transition: color var(--motion-duration) var(--motion-ease);
+    position: relative;
+  }
+
+  .footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: width var(--motion-duration) var(--motion-ease);
+  }
+
+  .footer-links a:hover {
+    color: var(--text);
+  }
+
+  .footer-links a:hover::after {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+</style>
