@@ -1,0 +1,1360 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+
+const chartIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`;
+
+// 2025年の前提（意思決定の3本の柱）
+const decisionPillars = [
+  {
+    icon: "💪",
+    title: "健康に邁進",
+    description: "出産イベント前提で稼働を抑制。無理なく働くことを優先し、家庭と仕事の両立を実現。"
+  },
+  {
+    icon: "🔄",
+    title: "複数事業の安定化",
+    description: "個人事業・法人（株式会社TECMAH）・新規事業（megu）の3事業体を稼働状態へ。"
+  },
+  {
+    icon: "🚀",
+    title: "創業し新規事業に挑戦",
+    description: "2025年7月に法人化を実行。新規事業で小さく初収益まで到達することを目指した。"
+  }
+];
+
+// 収入サマリー
+const incomeSummary = {
+  period: "2025年1月〜10月（10ヶ月）",
+  total: "1,008.4万円",
+  breakdown: [
+    { label: "個人事業収入", value: "814.4万円", percentage: "80.8%", note: "フリーランス案件収入" },
+    { label: "役員報酬", value: "40.0万円", percentage: "4.0%", note: "法人（8-11月入金ベース）" },
+    { label: "その他収入", value: "111.7万円", percentage: "11.1%", note: "還付金・支援金・配偶者資金等" },
+    { label: "追加確定（12月）", value: "42.3万円", percentage: "4.2%", note: "レバテック売上" }
+  ],
+  otherIncome: [
+    { label: "税金還付金", value: "約30万円" },
+    { label: "子育て支援金", value: "約25万円" },
+    { label: "配偶者資金", value: "約40万円" },
+    { label: "キャッシュバック", value: "約10万円" },
+    { label: "宝くじ当選", value: "約7万円" }
+  ]
+};
+
+// 支出サマリー
+const expenseSummary = {
+  period: "2025年1月〜10月（10ヶ月）",
+  total: "777.4万円",
+  breakdown: [
+    { label: "家計簿支出", value: "458.3万円", percentage: "59.0%", monthly: "45.8万円" },
+    { label: "個人事業経費", value: "219.1万円", percentage: "28.2%", monthly: "21.9万円" },
+    { label: "会社創業（資本金）", value: "100.0万円", percentage: "12.9%", note: "資産移転" }
+  ]
+};
+
+// 家計簿カテゴリ別支出
+const householdExpenses = [
+  { category: "食費", amount: "212.4万円", percentage: "46.3%", monthly: "21.2万円", target: "15.0万円", reduction: "6.2万円", icon: "🍽️" },
+  { category: "日用品", amount: "53.9万円", percentage: "11.8%", monthly: "5.4万円", target: "3.0万円", reduction: "2.4万円", icon: "🧴" },
+  { category: "健康・医療", amount: "40.8万円", percentage: "8.9%", monthly: "4.1万円", target: "維持", reduction: "-", icon: "🏥" },
+  { category: "趣味・娯楽", amount: "38.7万円", percentage: "8.5%", monthly: "3.9万円", target: "2.0万円", reduction: "1.9万円", icon: "🎮" },
+  { category: "交際費", amount: "36.9万円", percentage: "8.0%", monthly: "3.7万円", target: "2.0万円", reduction: "1.7万円", icon: "🍻" },
+  { category: "その他", amount: "75.6万円", percentage: "16.5%", monthly: "7.6万円", target: "-", reduction: "-", icon: "📦" }
+];
+
+// 月別収支
+const monthlyBalance = [
+  { month: "1月", income: "85.0万円", expense: "23.5万円", balance: "-23.4万円" },
+  { month: "2月", income: "89.7万円", expense: "29.1万円", balance: "-29.1万円" },
+  { month: "3月", income: "144.1万円", expense: "33.2万円", balance: "-33.2万円" },
+  { month: "4月", income: "102.1万円", expense: "48.2万円", balance: "-48.2万円" },
+  { month: "5月", income: "132.2万円", expense: "28.1万円", balance: "-28.1万円" },
+  { month: "6月", income: "56.2万円", expense: "35.1万円", balance: "-35.1万円" },
+  { month: "7月", income: "50.0万円", expense: "49.5万円", balance: "-49.5万円" },
+  { month: "8月", income: "58.0万円", expense: "67.3万円", balance: "-30.6万円" },
+  { month: "9月", income: "47.5万円", expense: "35.6万円", balance: "-35.6万円" },
+  { month: "10月", income: "20.6万円", expense: "33.9万円", balance: "-33.9万円" }
+];
+
+// 残金分析
+const balanceAnalysis = {
+  totalIncome: "966.1万円",
+  totalExpense: "777.4万円",
+  balance: "188.7万円",
+  monthlyAverage: "18.9万円",
+  afterAdditional: {
+    income: "1,008.4万円",
+    balance: "231.0万円"
+  },
+  currentAssets: {
+    personal: "93.5万円",
+    company: "206.2万円",
+    total: "299.7万円",
+    breakdown: [
+      { label: "楽天証券", value: "63.9万円" },
+      { label: "個人事業口座", value: "12.0万円" },
+      { label: "個人口座", value: "17.6万円" },
+      { label: "法人口座", value: "206.2万円" }
+    ]
+  }
+};
+
+// 目標達成状況
+const goalAchievements = [
+  { goal: "年間収益1,500万円", status: "未達成", icon: "❌", rate: "65%", note: "実績：977万円（年間換算）" },
+  { goal: "法人化を実行", status: "達成", icon: "✅", rate: "100%", note: "2025年7月に株式会社TECMAH設立" },
+  { goal: "新規事業に挑戦", status: "達成", icon: "✅", rate: "100%", note: "法人での受託開始、megu検討中" },
+  { goal: "マーケティング強化", status: "未実行", icon: "❌", rate: "0%", note: "時間確保できず後回しに" },
+  { goal: "英語学習", status: "未実行", icon: "❌", rate: "0%", note: "計画のみで実行できず" }
+];
+
+// 学習・スキル開発
+const learningResults = {
+  achieved: [
+    { skill: "法人化の知識・経験", note: "設立手続き・税務・会計を習得" },
+    { skill: "会計システム構築", note: "freee MCPによる自動化" },
+    { skill: "プロジェクト管理", note: "Linear MCPによる体系化" }
+  ],
+  lowReturn: [
+    { skill: "英語学習", note: "計画のみで実行できず。本を買って満足パターン。" },
+    { skill: "Kindle購入", note: "453冊購入、読了率63.8%（163冊未読）" }
+  ],
+  highReturn: [
+    { skill: "AI・技術関連", note: "大規模言語モデル入門など、実務に直結" },
+    { skill: "ビジネス関連", note: "イシューからはじめよ、ダッシュボードづくり" },
+    { skill: "育児・子育て", note: "モンテッソーリ、ジーナ式を実践" }
+  ]
+};
+
+// 健康・ライフスタイル
+const lifestyleRules = {
+  current: [
+    { item: "睡眠", rule: "8時間確保（20-21時就寝→5時起き）", status: "維持" },
+    { item: "運動", rule: "毎朝30-60分（筋トレ+ボクササイズ+縄跳び）", status: "維持" },
+    { item: "仕事時間", rule: "8-21時（昼30分・夜1時間休憩）", status: "維持" },
+    { item: "週の上限", rule: "未設定（土日祝も稼働）", status: "要改善" }
+  ],
+  improvements: [
+    "週45時間の上限を設定し、土日のどちらかは完全休養",
+    "メンタル悪化時はサウナ・温泉で回復",
+    "食事は少量でも必ず3食"
+  ]
+};
+
+// 2026年の削減目標
+const reductionTargets = {
+  household: [
+    { item: "食費", current: "21.2万円", target: "15.0万円", reduction: "6.2万円" },
+    { item: "日用品", current: "5.4万円", target: "3.0万円", reduction: "2.4万円" },
+    { item: "交際費", current: "3.7万円", target: "2.0万円", reduction: "1.7万円" },
+    { item: "趣味・娯楽", current: "3.9万円", target: "2.0万円", reduction: "1.9万円" }
+  ],
+  business: [
+    { item: "消耗品費", current: "4.8万円", target: "3.0万円", reduction: "1.8万円" },
+    { item: "交際費", current: "3.7万円", target: "2.0万円", reduction: "1.7万円" },
+    { item: "新聞図書費", current: "3.3万円", target: "2.0万円", reduction: "1.3万円" }
+  ],
+  total: {
+    household: "122.0万円/年",
+    business: "48.0万円/年",
+    all: "170.0万円/年"
+  }
+};
+
+// 2026年の積立目標
+const savingsTargets = [
+  { item: "医療費積立", monthly: "2-3万円", annual: "24-36万円", reason: "突発的な医療費（2025年6月に23.8万円発生）に備える" },
+  { item: "税務準備金", monthly: "2-3万円", annual: "24-36万円", reason: "確定申告・社会保険料の後払いに備える" }
+];
+
+// 個人防衛ランウェイ
+const defenseRunway = {
+  formula: "Rp = (Cp - TSp - Ep) / L",
+  definitions: [
+    { term: "Cp", desc: "手元現金（個人の現金・預金）" },
+    { term: "TSp", desc: "税・社保バッファ（月2-3万円積立）" },
+    { term: "Ep", desc: "医療・突発費バッファ（月2-3万円積立）" },
+    { term: "L", desc: "生活防衛費（月額最低ライン）" }
+  ],
+  rules: [
+    { level: "Green（Go）", condition: "Rp ≥ 6ヶ月", action: "通常運転。学習・ツール・育児の投資OK。" },
+    { level: "Yellow（Caution）", condition: "3 ≤ Rp < 6ヶ月", action: "大きい買い物は延期。固定費追加禁止。" },
+    { level: "Red（No-Go）", condition: "Rp < 3ヶ月", action: "即、固定費削減・支出カット・追加キャッシュ優先。" }
+  ]
+};
+
+// マーケティング最小ループ
+const marketingLoop = {
+  totalTime: "週90分",
+  steps: [
+    { step: "Time確保", time: "15分", desc: "毎週月曜にカレンダーへ固定" },
+    { step: "配信", time: "60分", desc: "週1本、1チャネル（note or X）" },
+    { step: "計測", time: "10分", desc: "指標を1行ログ" },
+    { step: "改善", time: "5分", desc: "次の仮説を1行で決める" }
+  ],
+  output: {
+    note: "800-1,500字（長文禁止）",
+    x: "8-12ポストのスレ",
+    cta: "最後に必ず1つ（相談/紹介/資料請求）"
+  },
+  dontDo: [
+    "新しい媒体追加（YouTube/Podcast等）",
+    "SEO長文量産",
+    "LP/サイトの全面改修"
+  ]
+};
+---
+
+<Layout
+  title="個人の振り返り | 2025年実績と2026年方針 | 松浦 賢孝"
+  description="個人としての2025年の実績振り返りと2026年の方針。収入・支出・家計簿・学習・健康を総合的に分析し、来年の改善計画を策定。"
+>
+  <main>
+    <!-- Hero Section -->
+    <PageHero
+      titleHtml='<span class="gradient-text">個人の総合振り返り</span><br /><span class="gradient-text">2025年実績と教訓</span>'
+      subtitleHtml="収入・支出・家計簿・学習・健康を総合的に振り返り、<br />2026年への改善計画を策定しました。"
+      badge="Personal Review 2025"
+      badgeIconHtml={chartIcon}
+    />
+
+    <!-- 意思決定の3本の柱 -->
+    <section class="section" id="pillars">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Decision Context</span>
+          <h2 class="section-title">2025年の<span class="gradient-text">意思決定背景</span></h2>
+        </div>
+
+        <div class="pillars-grid">
+          {decisionPillars.map((pillar, index) => (
+            <div class="pillar-card scroll-fade-up" style={`--delay: ${index * 0.15}s`}>
+              <div class="pillar-icon">{pillar.icon}</div>
+              <h3 class="pillar-title">{pillar.title}</h3>
+              <p class="pillar-description">{pillar.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 収入サマリー -->
+    <section class="section section-alt" id="income">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Income Summary</span>
+          <h2 class="section-title">収入<span class="gradient-text">サマリー</span></h2>
+          <p class="section-description">{incomeSummary.period}</p>
+        </div>
+
+        <div class="income-total scroll-fade-up">
+          <div class="total-label">総収入</div>
+          <div class="total-value">{incomeSummary.total}</div>
+        </div>
+
+        <div class="income-breakdown scroll-fade-up" style="--delay: 0.1s">
+          {incomeSummary.breakdown.map((item) => (
+            <div class="income-item">
+              <div class="income-header">
+                <span class="income-label">{item.label}</span>
+                <span class="income-percentage">{item.percentage}</span>
+              </div>
+              <div class="income-value">{item.value}</div>
+              <div class="income-note">{item.note}</div>
+            </div>
+          ))}
+        </div>
+
+        <div class="other-income scroll-fade-up" style="--delay: 0.2s">
+          <h4>その他収入の内訳</h4>
+          <div class="other-income-grid">
+            {incomeSummary.otherIncome.map((item) => (
+              <div class="other-income-item">
+                <span class="other-label">{item.label}</span>
+                <span class="other-value">{item.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 支出・家計簿 -->
+    <section class="section" id="expenses">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Expense Analysis</span>
+          <h2 class="section-title">支出・<span class="gradient-text">家計簿分析</span></h2>
+          <p class="section-description">{expenseSummary.period}</p>
+        </div>
+
+        <div class="expense-overview scroll-fade-up">
+          <div class="expense-total">
+            <div class="expense-total-label">総支出</div>
+            <div class="expense-total-value">{expenseSummary.total}</div>
+          </div>
+          <div class="expense-breakdown-mini">
+            {expenseSummary.breakdown.map((item) => (
+              <div class="expense-mini-item">
+                <span class="mini-label">{item.label}</span>
+                <span class="mini-value">{item.value}</span>
+                <span class="mini-percentage">{item.percentage}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <h3 class="subsection-title scroll-fade-in">家計簿カテゴリ別支出</h3>
+        <div class="household-grid">
+          {householdExpenses.map((expense, index) => (
+            <div class="household-card scroll-fade-up" style={`--delay: ${index * 0.08}s`}>
+              <div class="household-icon">{expense.icon}</div>
+              <div class="household-content">
+                <div class="household-header">
+                  <span class="household-category">{expense.category}</span>
+                  <span class="household-percentage">{expense.percentage}</span>
+                </div>
+                <div class="household-amount">{expense.amount}</div>
+                <div class="household-monthly">月平均 {expense.monthly}</div>
+                {expense.target !== "維持" && expense.target !== "-" && (
+                  <div class="household-target">
+                    <span>目標: {expense.target}</span>
+                    <span class="reduction">-{expense.reduction}/月</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 残金分析 -->
+    <section class="section section-alt" id="balance">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Balance Analysis</span>
+          <h2 class="section-title">残金<span class="gradient-text">分析</span></h2>
+        </div>
+
+        <div class="balance-overview scroll-fade-up">
+          <div class="balance-flow">
+            <div class="flow-item income">
+              <span class="flow-label">総収入</span>
+              <span class="flow-value">{balanceAnalysis.totalIncome}</span>
+            </div>
+            <div class="flow-operator">−</div>
+            <div class="flow-item expense">
+              <span class="flow-label">総支出</span>
+              <span class="flow-value">{balanceAnalysis.totalExpense}</span>
+            </div>
+            <div class="flow-operator">=</div>
+            <div class="flow-item balance">
+              <span class="flow-label">残金</span>
+              <span class="flow-value">{balanceAnalysis.balance}</span>
+            </div>
+          </div>
+          <div class="balance-note">月平均残金: {balanceAnalysis.monthlyAverage}</div>
+        </div>
+
+        <div class="assets-section scroll-fade-up" style="--delay: 0.1s">
+          <h3>手元資金（2025年12月20日時点）</h3>
+          <div class="assets-grid">
+            {balanceAnalysis.currentAssets.breakdown.map((asset) => (
+              <div class="asset-item">
+                <span class="asset-label">{asset.label}</span>
+                <span class="asset-value">{asset.value}</span>
+              </div>
+            ))}
+            <div class="asset-item total">
+              <span class="asset-label">合計</span>
+              <span class="asset-value">{balanceAnalysis.currentAssets.total}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 目標達成状況 -->
+    <section class="section" id="goals">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Goal Achievement</span>
+          <h2 class="section-title">目標<span class="gradient-text">達成状況</span></h2>
+          <p class="section-description">総合達成率: 約48%（11項目中、完全達成2、部分的6、未達成3）</p>
+        </div>
+
+        <div class="goals-grid">
+          {goalAchievements.map((goal, index) => (
+            <div class={`goal-card ${goal.status === '達成' ? 'achieved' : 'failed'} scroll-fade-up`} style={`--delay: ${index * 0.1}s`}>
+              <div class="goal-status">
+                <span class="goal-icon">{goal.icon}</span>
+                <span class="goal-rate">{goal.rate}</span>
+              </div>
+              <h3 class="goal-title">{goal.goal}</h3>
+              <p class="goal-note">{goal.note}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 学習・スキル開発 -->
+    <section class="section section-alt" id="learning">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Learning & Skills</span>
+          <h2 class="section-title">学習・<span class="gradient-text">スキル開発</span></h2>
+        </div>
+
+        <div class="learning-grid">
+          <div class="learning-card achieved scroll-fade-up" style="--delay: 0.1s">
+            <h3>✅ 達成したスキル</h3>
+            <ul>
+              {learningResults.achieved.map((item) => (
+                <li>
+                  <strong>{item.skill}</strong>
+                  <span>{item.note}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="learning-card high-return scroll-fade-up" style="--delay: 0.2s">
+            <h3>📈 リターンが高かった学習</h3>
+            <ul>
+              {learningResults.highReturn.map((item) => (
+                <li>
+                  <strong>{item.skill}</strong>
+                  <span>{item.note}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="learning-card low-return scroll-fade-up" style="--delay: 0.3s">
+            <h3>📉 リターンが薄かった学習</h3>
+            <ul>
+              {learningResults.lowReturn.map((item) => (
+                <li>
+                  <strong>{item.skill}</strong>
+                  <span>{item.note}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 健康・ライフスタイル -->
+    <section class="section" id="lifestyle">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Health & Lifestyle</span>
+          <h2 class="section-title">健康・<span class="gradient-text">ライフスタイル</span></h2>
+        </div>
+
+        <div class="lifestyle-grid">
+          <div class="lifestyle-card scroll-fade-up" style="--delay: 0.1s">
+            <h3>現在のルール</h3>
+            <div class="rules-list">
+              {lifestyleRules.current.map((rule) => (
+                <div class={`rule-item ${rule.status === '要改善' ? 'needs-improvement' : ''}`}>
+                  <span class="rule-label">{rule.item}</span>
+                  <span class="rule-content">{rule.rule}</span>
+                  <span class={`rule-status ${rule.status === '維持' ? 'ok' : 'warning'}`}>{rule.status}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="lifestyle-card improvements scroll-fade-up" style="--delay: 0.2s">
+            <h3>2026年の改善項目</h3>
+            <ul>
+              {lifestyleRules.improvements.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2026年削減目標 -->
+    <section class="section section-reduction" id="reduction">
+      <div class="reduction-bg"></div>
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">2026 Targets</span>
+          <h2 class="section-title">2026年<span class="gradient-text">削減目標</span></h2>
+          <p class="section-description">年間削減効果: {reductionTargets.total.all}</p>
+        </div>
+
+        <div class="reduction-grid">
+          <div class="reduction-card scroll-fade-up" style="--delay: 0.1s">
+            <h3>家計簿削減（{reductionTargets.total.household}）</h3>
+            <div class="reduction-table">
+              <div class="reduction-header">
+                <span>項目</span>
+                <span>現状</span>
+                <span>目標</span>
+                <span>削減</span>
+              </div>
+              {reductionTargets.household.map((item) => (
+                <div class="reduction-row">
+                  <span>{item.item}</span>
+                  <span>{item.current}</span>
+                  <span class="target">{item.target}</span>
+                  <span class="reduction-amount">-{item.reduction}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="reduction-card scroll-fade-up" style="--delay: 0.2s">
+            <h3>事業経費削減（{reductionTargets.total.business}）</h3>
+            <div class="reduction-table">
+              <div class="reduction-header">
+                <span>項目</span>
+                <span>現状</span>
+                <span>目標</span>
+                <span>削減</span>
+              </div>
+              {reductionTargets.business.map((item) => (
+                <div class="reduction-row">
+                  <span>{item.item}</span>
+                  <span>{item.current}</span>
+                  <span class="target">{item.target}</span>
+                  <span class="reduction-amount">-{item.reduction}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="savings-section scroll-fade-up" style="--delay: 0.3s">
+          <h3>積立・準備の強化</h3>
+          <div class="savings-grid">
+            {savingsTargets.map((target) => (
+              <div class="savings-item">
+                <div class="savings-header">
+                  <span class="savings-label">{target.item}</span>
+                  <span class="savings-monthly">{target.monthly}/月</span>
+                </div>
+                <div class="savings-annual">年間: {target.annual}</div>
+                <p class="savings-reason">{target.reason}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 個人防衛ランウェイ -->
+    <section class="section section-alt" id="runway">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Defense Runway</span>
+          <h2 class="section-title">個人防衛<span class="gradient-text">ランウェイ</span></h2>
+          <p class="section-description">現金耐久の安全率を意思決定ルールに落とす</p>
+        </div>
+
+        <div class="runway-formula scroll-fade-up">
+          <code>{defenseRunway.formula}</code>
+          <div class="formula-definitions">
+            {defenseRunway.definitions.map((def) => (
+              <div class="definition-item">
+                <span class="def-term">{def.term}</span>
+                <span class="def-desc">{def.desc}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="runway-rules scroll-fade-up" style="--delay: 0.1s">
+          {defenseRunway.rules.map((rule) => (
+            <div class={`rule-card ${rule.level.toLowerCase().split('（')[0]}`}>
+              <div class="rule-level">{rule.level}</div>
+              <div class="rule-condition">{rule.condition}</div>
+              <div class="rule-action">{rule.action}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- マーケティング最小ループ -->
+    <section class="section" id="marketing">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Marketing Loop</span>
+          <h2 class="section-title">マーケティング<span class="gradient-text">最小ループ</span></h2>
+          <p class="section-description">週90分で「止まらない」仕組みを構築</p>
+        </div>
+
+        <div class="marketing-steps scroll-fade-up">
+          {marketingLoop.steps.map((step, index) => (
+            <div class="step-card">
+              <div class="step-number">{index + 1}</div>
+              <div class="step-content">
+                <div class="step-header">
+                  <span class="step-name">{step.step}</span>
+                  <span class="step-time">{step.time}</span>
+                </div>
+                <p class="step-desc">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="marketing-output scroll-fade-up" style="--delay: 0.1s">
+          <h3>最小成果の定義</h3>
+          <div class="output-grid">
+            <div class="output-item">
+              <span class="output-label">note</span>
+              <span class="output-value">{marketingLoop.output.note}</span>
+            </div>
+            <div class="output-item">
+              <span class="output-label">X</span>
+              <span class="output-value">{marketingLoop.output.x}</span>
+            </div>
+            <div class="output-item">
+              <span class="output-label">CTA</span>
+              <span class="output-value">{marketingLoop.output.cta}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dont-do scroll-fade-up" style="--delay: 0.2s">
+          <h3>🚫 やらないこと（最小ループが回るまで禁止）</h3>
+          <ul>
+            {marketingLoop.dontDo.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 関連ページ -->
+    <section class="section section-alt" id="related">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Related Pages</span>
+          <h2 class="section-title">関連<span class="gradient-text">ページ</span></h2>
+        </div>
+
+        <div class="related-links">
+          <a href="/ir" class="related-link scroll-fade-up" style="--delay: 0.1s">
+            <div class="related-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            </div>
+            <div class="related-content">
+              <h3>投資家向け情報 / 法定公告</h3>
+              <p>法定公告、会社情報、お知らせ・プレスリリースをご覧いただけます。</p>
+            </div>
+            <svg class="related-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <a href="/company-update" class="related-link scroll-fade-up" style="--delay: 0.2s">
+            <div class="related-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            </div>
+            <div class="related-content">
+              <h3>会社の取り組み</h3>
+              <p>2025年下半期の振り返りと2026年事業計画をご覧いただけます。</p>
+            </div>
+            <svg class="related-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <a href="/freelance-update" class="related-link scroll-fade-up" style="--delay: 0.3s">
+            <div class="related-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+            </div>
+            <div class="related-content">
+              <h3>個人事業の振り返り</h3>
+              <p>フリーランスとしての2025年実績と2026年方針をご覧いただけます。</p>
+            </div>
+            <svg class="related-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <CTASection
+      titleHtml="お仕事のご相談・<br />お問い合わせ"
+      subtitleHtml="AI・データ活用、プロダクトマネジメント支援に関するご相談は<br />お気軽にお問い合わせください。"
+      primaryText="お問い合わせ"
+      primaryHref="/contact"
+    />
+  </main>
+</Layout>
+
+<style>
+  /* Base Section Styles */
+  .section {
+    padding: 6rem 0;
+    position: relative;
+  }
+
+  .section-alt {
+    background: rgba(99, 91, 255, 0.02);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(99, 91, 255, 0.1);
+    border: 1px solid rgba(99, 91, 255, 0.3);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subsection-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 3rem 0 1.5rem;
+    text-align: center;
+  }
+
+  /* Scroll Animations */
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .scroll-fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Pillars Grid */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .pillar-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(99, 91, 255, 0.15);
+  }
+
+  .pillar-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .pillar-title { font-size: 1.125rem; font-weight: 700; color: var(--text); margin-bottom: 0.75rem; }
+  .pillar-description { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; margin: 0; }
+
+  /* Income Section */
+  .income-total {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .total-label { font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .total-value {
+    font-size: 4rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .income-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .income-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  .income-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  .income-label { font-size: 0.875rem; color: var(--text-secondary); }
+  .income-percentage { font-size: 0.75rem; color: var(--primary); font-weight: 600; background: rgba(99, 91, 255, 0.1); padding: 0.25rem 0.5rem; border-radius: 4px; }
+  .income-value { font-size: 1.5rem; font-weight: 800; color: var(--text); margin-bottom: 0.25rem; }
+  .income-note { font-size: 0.75rem; color: var(--text-muted); }
+
+  .other-income {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .other-income h4 { font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); margin: 0 0 1rem; }
+
+  .other-income-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .other-income-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(99, 91, 255, 0.05);
+    border-radius: 0.5rem;
+  }
+
+  .other-label { font-size: 0.875rem; color: var(--text-secondary); }
+  .other-value { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+
+  /* Expense Section */
+  .expense-overview {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .expense-total-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+  .expense-total-value { font-size: 2.5rem; font-weight: 800; color: var(--text); }
+
+  .expense-breakdown-mini { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+
+  .expense-mini-item { display: flex; flex-direction: column; gap: 0.25rem; }
+  .mini-label { font-size: 0.75rem; color: var(--text-muted); }
+  .mini-value { font-size: 1rem; font-weight: 700; color: var(--text); }
+  .mini-percentage { font-size: 0.75rem; color: var(--primary); }
+
+  /* Household Grid */
+  .household-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .household-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+  }
+
+  .household-icon { font-size: 2rem; }
+  .household-content { flex: 1; }
+  .household-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
+  .household-category { font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); }
+  .household-percentage { font-size: 0.75rem; color: var(--primary); }
+  .household-amount { font-size: 1.25rem; font-weight: 800; color: var(--text); }
+  .household-monthly { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .household-target { font-size: 0.75rem; color: var(--text-secondary); display: flex; gap: 0.5rem; }
+  .household-target .reduction { color: #22c55e; font-weight: 600; }
+
+  /* Balance Section */
+  .balance-overview {
+    text-align: center;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .balance-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .flow-item { display: flex; flex-direction: column; gap: 0.25rem; }
+  .flow-label { font-size: 0.75rem; color: var(--text-muted); }
+  .flow-value { font-size: 1.5rem; font-weight: 800; color: var(--text); }
+  .flow-item.balance .flow-value { color: var(--primary); font-size: 2rem; }
+  .flow-operator { font-size: 1.5rem; color: var(--text-muted); }
+  .balance-note { font-size: 0.875rem; color: var(--text-secondary); }
+
+  .assets-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .assets-section h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin: 0 0 1rem; }
+
+  .assets-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+  .asset-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(99, 91, 255, 0.05);
+    border-radius: 0.5rem;
+  }
+
+  .asset-item.total {
+    background: rgba(99, 91, 255, 0.1);
+    border: 1px solid var(--primary);
+  }
+
+  .asset-label { font-size: 0.875rem; color: var(--text-secondary); }
+  .asset-value { font-size: 0.875rem; font-weight: 700; color: var(--text); }
+
+  /* Goals Grid */
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .goal-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border-left: 4px solid var(--border);
+  }
+
+  .goal-card.achieved { border-left-color: #22c55e; }
+  .goal-card.failed { border-left-color: #ef4444; }
+
+  .goal-status { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+  .goal-icon { font-size: 1.5rem; }
+  .goal-rate { font-size: 1.25rem; font-weight: 800; color: var(--text); }
+  .goal-title { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 0.5rem; }
+  .goal-note { font-size: 0.8125rem; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+
+  /* Learning Grid */
+  .learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .learning-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .learning-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+
+  .learning-card.achieved { border-top: 4px solid #22c55e; }
+  .learning-card.high-return { border-top: 4px solid var(--primary); }
+  .learning-card.low-return { border-top: 4px solid #ef4444; }
+
+  .learning-card ul { margin: 0; padding: 0; list-style: none; }
+
+  .learning-card li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .learning-card li:last-child { border-bottom: none; }
+  .learning-card li strong { font-size: 0.9375rem; color: var(--text); }
+  .learning-card li span { font-size: 0.8125rem; color: var(--text-secondary); }
+
+  /* Lifestyle Grid */
+  .lifestyle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .lifestyle-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .lifestyle-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+
+  .rules-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .rule-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(99, 91, 255, 0.03);
+    border-radius: 0.5rem;
+  }
+
+  .rule-item.needs-improvement { background: rgba(245, 158, 11, 0.1); }
+
+  .rule-label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); }
+  .rule-content { font-size: 0.8125rem; color: var(--text); }
+  .rule-status { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 4px; }
+  .rule-status.ok { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+  .rule-status.warning { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+
+  .lifestyle-card.improvements ul { margin: 0; padding-left: 1.25rem; }
+  .lifestyle-card.improvements li { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.5rem; }
+
+  /* Reduction Section */
+  .section-reduction {
+    background: linear-gradient(135deg, var(--surface-dark) 0%, var(--background) 100%);
+    padding: 8rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reduction-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(99, 91, 255, 0.15), transparent);
+    pointer-events: none;
+  }
+
+  .reduction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .reduction-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .reduction-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+
+  .reduction-table { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .reduction-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .reduction-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .reduction-row:last-child { border-bottom: none; }
+  .reduction-row .target { color: var(--primary); font-weight: 600; }
+  .reduction-row .reduction-amount { color: #22c55e; font-weight: 600; }
+
+  .savings-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .savings-section h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+
+  .savings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+
+  .savings-item { padding: 1rem; background: rgba(99, 91, 255, 0.05); border-radius: 0.75rem; }
+  .savings-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
+  .savings-label { font-size: 0.9375rem; font-weight: 600; color: var(--text); }
+  .savings-monthly { font-size: 0.875rem; font-weight: 700; color: var(--primary); }
+  .savings-annual { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .savings-reason { font-size: 0.8125rem; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+
+  /* Runway Section */
+  .runway-formula {
+    text-align: center;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .runway-formula code {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    background: rgba(99, 91, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .formula-definitions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .definition-item { display: flex; gap: 0.5rem; }
+  .def-term { font-weight: 700; color: var(--text); }
+  .def-desc { font-size: 0.875rem; color: var(--text-secondary); }
+
+  .runway-rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .rule-card {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .rule-card.green { background: rgba(34, 197, 94, 0.05); border-color: #22c55e; }
+  .rule-card.yellow { background: rgba(245, 158, 11, 0.05); border-color: #f59e0b; }
+  .rule-card.red { background: rgba(239, 68, 68, 0.05); border-color: #ef4444; }
+
+  .rule-level { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+  .rule-condition { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 0.75rem; }
+  .rule-action { font-size: 0.875rem; color: var(--text); }
+
+  /* Marketing Section */
+  .marketing-steps {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .step-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    min-width: 200px;
+    flex: 1;
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .step-content { flex: 1; }
+  .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
+  .step-name { font-weight: 700; color: var(--text); }
+  .step-time { font-size: 0.875rem; font-weight: 600; color: var(--primary); }
+  .step-desc { font-size: 0.8125rem; color: var(--text-secondary); margin: 0; }
+
+  .marketing-output {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .marketing-output h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+
+  .output-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+  .output-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    background: rgba(99, 91, 255, 0.05);
+    border-radius: 0.5rem;
+  }
+
+  .output-label { font-size: 0.75rem; font-weight: 600; color: var(--primary); text-transform: uppercase; }
+  .output-value { font-size: 0.875rem; color: var(--text); }
+
+  .dont-do {
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .dont-do h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+  .dont-do ul { margin: 0; padding-left: 1.25rem; }
+  .dont-do li { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.5rem; }
+
+  /* Related Links */
+  .related-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .related-link {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .related-link:hover {
+    transform: translateX(8px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(99, 91, 255, 0.1);
+  }
+
+  .related-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(99, 91, 255, 0.1);
+    border-radius: 12px;
+    color: var(--primary);
+  }
+
+  .related-icon :global(svg) { width: 24px; height: 24px; }
+  .related-content { flex: 1; }
+  .related-content h3 { font-size: 1.125rem; font-weight: 700; color: var(--text); margin: 0 0 0.25rem; }
+  .related-content p { font-size: 0.875rem; color: var(--text-secondary); margin: 0; line-height: 1.5; }
+
+  .related-arrow {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+  }
+
+  .related-link:hover .related-arrow { color: var(--primary); transform: translateX(4px); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .section { padding: 4rem 0; }
+    .section-reduction { padding: 5rem 0; }
+    .total-value { font-size: 2.5rem; }
+    .balance-flow { flex-direction: column; gap: 1rem; }
+    .flow-operator { transform: rotate(90deg); }
+    .expense-overview { flex-direction: column; text-align: center; }
+    .rule-item { grid-template-columns: 1fr; text-align: center; }
+    .marketing-steps { flex-direction: column; }
+  }
+</style>
+
+<script>
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).style.animationPlayState = 'running';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-fade-in, .scroll-fade-up').forEach(el => {
+    (el as HTMLElement).style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+</script>
+
