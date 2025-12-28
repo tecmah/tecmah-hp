@@ -53,6 +53,38 @@ export interface PageMeta {
   keywords?: string[];
 }
 
+export interface IRHighlight {
+  period: string;
+  label: string;
+  value: string;
+  unit?: string;
+  change?: string;
+}
+
+export interface KPI {
+  label: string;
+  q1?: string;
+  q2?: string;
+  q3?: string;
+  q4?: string;
+  unit?: string;
+}
+
+export interface IRDocument {
+  id: string;
+  title: string;
+  date: string;
+  type: "決算説明資料" | "補足資料" | "決算短信" | "有価証券報告書" | "その他";
+  period?: string;
+  pdfUrl?: string;
+  htmlUrl?: string;
+}
+
+export interface IRFAQ {
+  question: string;
+  answer: string;
+}
+
 // 会社基本情報
 export const company: CompanyInfo = {
   name: "株式会社TECMAH",
@@ -230,6 +262,11 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "松浦 賢孝 - Profile | PdM / AI Engineer | 株式会社TECMAH",
     description: "松浦賢孝の経歴書。AI技術を活用した新規事業開発やPdM/AEとしてのプロジェクト推進に強みを持ち、技術とビジネスの両面から成果を生み出す。10年以上の開発・マネジメント経験。",
     keywords: ["松浦賢孝", "経歴書", "PdM", "AI Engineer", "プロダクトマネージャー", "職務経歴書"]
+  },
+  ir: {
+    title: "IR情報 | 株式会社TECMAH - 投資家向け情報",
+    description: "株式会社TECMAHの投資家向け情報（IR）。決算ハイライト、KPIダッシュボード、IR資料ライブラリ、FAQをご覧いただけます。",
+    keywords: ["IR", "投資家向け情報", "決算", "財務情報", "株主情報"]
   }
 };
 
@@ -279,6 +316,63 @@ export const footer = {
   },
   copyright: `© ${new Date().getFullYear()} ${company.name}. All rights reserved.`
 };
+
+// IR情報
+export const irHighlights: IRHighlight[] = [
+  {
+    period: "2025年",
+    label: "設立年",
+    value: "2025",
+    unit: "年"
+  },
+  {
+    period: "2025年",
+    label: "代表取締役",
+    value: "松浦 賢孝"
+  }
+];
+
+export const irKPIs: KPI[] = [
+  {
+    label: "売上高",
+    unit: "万円"
+  },
+  {
+    label: "営業利益",
+    unit: "万円"
+  },
+  {
+    label: "従業員数",
+    unit: "名"
+  }
+];
+
+export const irDocuments: IRDocument[] = [
+  // 今後、決算資料などが追加される予定
+];
+
+export const irFAQs: IRFAQ[] = [
+  {
+    question: "会社の事業内容について教えてください",
+    answer: "当社は、AI・データ活用支援、プロダクトマネジメント支援、新規事業・DXコンサルティングを主要事業として、企業のデジタル変革を伴走支援しています。詳細は<a href=\"/services\" class=\"link\">サービスページ</a>をご覧ください。"
+  },
+  {
+    question: "財務情報はどこで確認できますか",
+    answer: "当社は2025年に設立されたばかりのため、決算資料はまだございません。今後、決算情報がございます場合は、このIRページで公開いたします。"
+  },
+  {
+    question: "IRに関するお問い合わせはどこに連絡すればよいですか",
+    answer: `IRに関するお問い合わせは、<a href="mailto:info@tecmah.com" class="link">info@tecmah.com</a> までご連絡ください。`
+  },
+  {
+    question: "上場予定はありますか",
+    answer: "現時点では上場予定はございません。今後の事業展開により検討してまいります。"
+  },
+  {
+    question: "株主優待制度はありますか",
+    answer: "当社は未上場のため、株主優待制度はございません。"
+  }
+];
 
 // ナビゲーション情報
 export const navigation = {

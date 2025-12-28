@@ -1,0 +1,682 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageHero from "../components/PageHero.astro";
+import CTASection from "../components/CTASection.astro";
+import { company, pageMeta, irHighlights, irKPIs, irDocuments, irFAQs } from "../data/content.ts";
+
+const irIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>`;
+---
+
+<Layout title={pageMeta.ir.title} description={pageMeta.ir.description}>
+  <Header />
+  <main>
+    <PageHero
+      titleHtml='<span class="gradient-text">IR情報</span>'
+      subtitleHtml="投資家向け情報をご覧いただけます。<br />決算ハイライト、KPIダッシュボード、IR資料ライブラリを公開しています。"
+      badge="投資家向け情報"
+      badgeIconHtml={irIcon}
+    />
+
+    <!-- IR Highlights Section -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="gradient-text">決算ハイライト</span>
+          </h2>
+          <p class="section-description">
+            最新の決算情報をHTML形式でご確認いただけます
+          </p>
+        </div>
+
+        <div class="highlights-grid">
+          {irHighlights.map((highlight) => (
+            <div class="highlight-card">
+              <div class="highlight-header">
+                <span class="highlight-period">{highlight.period}</span>
+                <h3 class="highlight-label">{highlight.label}</h3>
+              </div>
+              <div class="highlight-value">
+                <span class="value-number">{highlight.value}</span>
+                {highlight.unit && <span class="value-unit">{highlight.unit}</span>}
+              </div>
+              {highlight.change && (
+                <div class="highlight-change">
+                  <span class="change-badge">{highlight.change}</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div class="highlights-note">
+          <p>
+            <strong>注記：</strong>当社は2025年に設立されたばかりのため、決算情報はまだございません。
+            今後、決算情報がございます場合は、このページでHTML形式で公開いたします。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPI Dashboard Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="gradient-text">KPIダッシュボード</span>
+          </h2>
+          <p class="section-description">
+            四半期ごとの主要KPIをHTML表でご確認いただけます
+          </p>
+        </div>
+
+        <div class="kpi-dashboard">
+          <div class="kpi-table-container">
+            <table class="kpi-table">
+              <thead>
+                <tr>
+                  <th>指標</th>
+                  <th>Q1</th>
+                  <th>Q2</th>
+                  <th>Q3</th>
+                  <th>Q4</th>
+                </tr>
+              </thead>
+              <tbody>
+                {irKPIs.map((kpi) => (
+                  <tr>
+                    <td class="kpi-label">
+                      {kpi.label}
+                      {kpi.unit && <span class="kpi-unit">({kpi.unit})</span>}
+                    </td>
+                    <td>{kpi.q1 || "-"}</td>
+                    <td>{kpi.q2 || "-"}</td>
+                    <td>{kpi.q3 || "-"}</td>
+                    <td>{kpi.q4 || "-"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IR Library Section -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="gradient-text">IR資料ライブラリ</span>
+          </h2>
+          <p class="section-description">
+            決算説明資料、補足資料、決算短信、有価証券報告書を時系列でご確認いただけます
+          </p>
+        </div>
+
+        <div class="ir-library">
+          {irDocuments.length > 0 ? (
+            <>
+              <div class="library-filters">
+                <button class="filter-btn active" data-filter="all">すべて</button>
+                <button class="filter-btn" data-filter="決算説明資料">決算説明資料</button>
+                <button class="filter-btn" data-filter="補足資料">補足資料</button>
+                <button class="filter-btn" data-filter="決算短信">決算短信</button>
+                <button class="filter-btn" data-filter="有価証券報告書">有価証券報告書</button>
+              </div>
+
+              <div class="library-list" id="library-list">
+                {irDocuments.map((doc) => (
+                  <div class="library-item" data-type={doc.type}>
+                    <div class="library-item-content">
+                      <div class="library-item-header">
+                        <span class="library-type">{doc.type}</span>
+                        {doc.period && <span class="library-period">{doc.period}</span>}
+                      </div>
+                      <h3 class="library-title">{doc.title}</h3>
+                      <div class="library-date">{doc.date}</div>
+                    </div>
+                    <div class="library-item-actions">
+                      {doc.htmlUrl && (
+                        <a href={doc.htmlUrl} class="btn btn-primary" target="_blank" rel="noopener">
+                          HTMLで見る
+                        </a>
+                      )}
+                      {doc.pdfUrl && (
+                        <a href={doc.pdfUrl} class="btn btn-secondary" target="_blank" rel="noopener">
+                          PDFで見る
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div class="library-empty">
+              <div class="empty-icon">
+                <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+              <h3 class="empty-title">IR資料はまだありません</h3>
+              <p class="empty-description">
+                当社は2025年に設立されたばかりのため、決算資料はまだございません。
+                今後、決算情報がございます場合は、このページで公開いたします。
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="gradient-text">よくある質問（FAQ）</span>
+          </h2>
+          <p class="section-description">
+            投資家の方からよくいただく質問と回答
+          </p>
+        </div>
+
+        <div class="faq-list">
+          {irFAQs.map((faq, index) => (
+            <div class="faq-item">
+              <button class="faq-question" data-faq-index={index}>
+                <span class="faq-q">Q{index + 1}</span>
+                <span class="faq-text">{faq.question}</span>
+                <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="faq-answer" data-faq-answer={index}>
+                <div class="faq-answer-content" set:html={faq.answer}></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection
+      titleHtml="IRに関するお問い合わせ"
+      subtitleHtml="投資家向け情報に関するご質問・ご相談は<br />お気軽にお問い合わせください。"
+      primaryText="お問い合わせ"
+      primaryHref="/contact"
+      secondaryText="会社概要を見る"
+      secondaryHref="/about"
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* Highlights Section */
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .highlight-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .highlight-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .highlight-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight-period {
+    font-size: 0.875rem;
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  .highlight-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .highlight-value {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .value-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .value-unit {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .highlight-change {
+    margin-top: 1rem;
+  }
+
+  .change-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0, 212, 170, 0.15);
+    color: var(--primary);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .highlights-note {
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .highlights-note strong {
+    color: var(--text);
+  }
+
+  /* KPI Dashboard Section */
+  .kpi-dashboard {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  .kpi-table-container {
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .kpi-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .kpi-table thead {
+    border-bottom: 2px solid var(--border);
+  }
+
+  .kpi-table th {
+    text-align: left;
+    padding: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .kpi-table td {
+    padding: 1rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .kpi-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .kpi-table tbody tr:hover {
+    background: var(--surface-light);
+  }
+
+  .kpi-label {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .kpi-unit {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: normal;
+    margin-left: 0.5rem;
+  }
+
+
+  /* IR Library Section */
+  .ir-library {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  .library-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .filter-btn:hover {
+    border-color: var(--border-hover);
+    color: var(--text);
+  }
+
+  .filter-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--background);
+  }
+
+  .library-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .library-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .library-item:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+  }
+
+  .library-item-content {
+    flex: 1;
+  }
+
+  .library-item-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .library-type {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(99, 91, 255, 0.15);
+    color: var(--secondary);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .library-period {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .library-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .library-date {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .library-item-actions {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .library-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+  }
+
+  .empty-icon {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .empty-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .empty-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+
+  /* FAQ Section */
+  .faq-list {
+    max-width: 48rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .faq-item:hover {
+    border-color: var(--border-hover);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .faq-question:hover {
+    background: var(--surface-light);
+  }
+
+  .faq-q {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: rgba(0, 212, 170, 0.15);
+    color: var(--primary);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .faq-text {
+    flex: 1;
+  }
+
+  .faq-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    transition: transform var(--motion-duration) var(--motion-ease);
+    color: var(--text-muted);
+  }
+
+  .faq-item.active .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--motion-duration-slow) var(--motion-ease);
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 500px;
+  }
+
+  .faq-answer-content {
+    padding: 0 1.5rem 1.5rem 4.5rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .faq-answer-content :global(.link) {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .faq-answer-content :global(.link:hover) {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .library-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .library-item-actions {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .library-item-actions .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .faq-question {
+      padding: 1rem;
+    }
+
+    .faq-answer-content {
+      padding: 0 1rem 1rem 3.5rem;
+    }
+
+    .kpi-table-container {
+      padding: 1rem;
+    }
+
+    .kpi-table th,
+    .kpi-table td {
+      padding: 0.75rem 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+</style>
+
+<script>
+  // FAQ Accordion
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach((question) => {
+      question.addEventListener('click', () => {
+        const faqItem = question.closest('.faq-item');
+        const isActive = faqItem?.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach((item) => {
+          item.classList.remove('active');
+        });
+        
+        // Toggle current item
+        if (!isActive) {
+          faqItem?.classList.add('active');
+        }
+      });
+    });
+  });
+
+  // Library Filter (将来実装用)
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const libraryItems = document.querySelectorAll('.library-item');
+    
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        
+        // Update active button
+        filterButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Filter items
+        libraryItems.forEach((item) => {
+          if (filter === 'all' || item.getAttribute('data-type') === filter) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
