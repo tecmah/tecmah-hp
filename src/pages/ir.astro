@@ -4,167 +4,169 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
-import { company, pageMeta, irHighlights, irKPIs, irDocuments, irFAQs } from "../data/content.ts";
+import { company, pageMeta, irDocuments, irFAQs, irDisclaimer, irCompanyLinks } from "../data/content.ts";
 
-const irIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>`;
+const irIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`;
+
+// グループ化: お知らせ・プレスリリースを年別に整理
+const documentsByYear = irDocuments.reduce((acc, doc) => {
+  const year = doc.date.split('-')[0];
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(doc);
+  return acc;
+}, {} as Record<string, typeof irDocuments>);
+
+// 年を降順でソート
+const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
 <Layout title={pageMeta.ir.title} description={pageMeta.ir.description}>
   <Header />
   <main>
     <PageHero
-      titleHtml='<span class="gradient-text">IR情報</span>'
-      subtitleHtml="投資家向け情報をご覧いただけます。<br />決算ハイライト、KPIダッシュボード、IR資料ライブラリを公開しています。"
-      badge="投資家向け情報"
+      titleHtml='<span class="gradient-text">投資家向け情報 / 法定公告</span>'
+      subtitleHtml="当社の法定公告（決算公告）および投資家向け情報を掲載しています。<br /><span class='text-muted'>未上場企業のため、上場企業向け開示（決算短信・有価証券報告書等）は行っていません。</span>"
+      badge="法定公告"
       badgeIconHtml={irIcon}
     />
 
-    <!-- IR Highlights Section -->
+    <!-- Disclaimer Section -->
     <section class="section section-alt">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">
-            <span class="gradient-text">決算ハイライト</span>
+            <span class="gradient-text">{irDisclaimer.title}</span>
           </h2>
-          <p class="section-description">
-            最新の決算情報をHTML形式でご確認いただけます
-          </p>
         </div>
 
-        <div class="highlights-grid">
-          {irHighlights.map((highlight) => (
-            <div class="highlight-card">
-              <div class="highlight-header">
-                <span class="highlight-period">{highlight.period}</span>
-                <h3 class="highlight-label">{highlight.label}</h3>
-              </div>
-              <div class="highlight-value">
-                <span class="value-number">{highlight.value}</span>
-                {highlight.unit && <span class="value-unit">{highlight.unit}</span>}
-              </div>
-              {highlight.change && (
-                <div class="highlight-change">
-                  <span class="change-badge">{highlight.change}</span>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div class="highlights-note">
-          <p>
-            <strong>注記：</strong>当社は2025年に設立されたばかりのため、決算情報はまだございません。
-            今後、決算情報がございます場合は、このページでHTML形式で公開いたします。
-          </p>
+        <div class="disclaimer-card">
+          <ul class="disclaimer-list">
+            {irDisclaimer.items.map((item) => (
+              <li class="disclaimer-item">
+                <svg class="disclaimer-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- KPI Dashboard Section -->
+    <!-- Company Info Section -->
     <section class="section">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">
-            <span class="gradient-text">KPIダッシュボード</span>
+            <span class="gradient-text">会社情報</span>
           </h2>
           <p class="section-description">
-            四半期ごとの主要KPIをHTML表でご確認いただけます
+            当社の詳細情報は以下のページでご確認いただけます
           </p>
         </div>
 
-        <div class="kpi-dashboard">
-          <div class="kpi-table-container">
-            <table class="kpi-table">
-              <thead>
-                <tr>
-                  <th>指標</th>
-                  <th>Q1</th>
-                  <th>Q2</th>
-                  <th>Q3</th>
-                  <th>Q4</th>
-                </tr>
-              </thead>
-              <tbody>
-                {irKPIs.map((kpi) => (
-                  <tr>
-                    <td class="kpi-label">
-                      {kpi.label}
-                      {kpi.unit && <span class="kpi-unit">({kpi.unit})</span>}
-                    </td>
-                    <td>{kpi.q1 || "-"}</td>
-                    <td>{kpi.q2 || "-"}</td>
-                    <td>{kpi.q3 || "-"}</td>
-                    <td>{kpi.q4 || "-"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <div class="company-links-grid">
+          {irCompanyLinks.map((link) => (
+            <a href={link.href} class="company-link-card">
+              <div class="company-link-icon" set:html={link.icon}></div>
+              <div class="company-link-content">
+                <h3 class="company-link-title">{link.title}</h3>
+                <p class="company-link-description">{link.description}</p>
+              </div>
+              <svg class="company-link-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          ))}
+        </div>
+
+        <div class="company-summary">
+          <div class="company-summary-grid">
+            <div class="company-summary-item">
+              <span class="company-summary-label">社名</span>
+              <span class="company-summary-value">{company.name}</span>
+            </div>
+            <div class="company-summary-item">
+              <span class="company-summary-label">設立</span>
+              <span class="company-summary-value">{company.established}年7月</span>
+            </div>
+            <div class="company-summary-item">
+              <span class="company-summary-label">代表取締役</span>
+              <span class="company-summary-value">{company.representative}</span>
+            </div>
+            <div class="company-summary-item">
+              <span class="company-summary-label">所在地</span>
+              <span class="company-summary-value">{company.address.full}</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- IR Library Section -->
+    <!-- News & Press Releases Section -->
     <section class="section section-alt">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">
-            <span class="gradient-text">IR資料ライブラリ</span>
+            <span class="gradient-text">お知らせ・プレスリリース</span>
           </h2>
           <p class="section-description">
-            決算説明資料、補足資料、決算短信、有価証券報告書を時系列でご確認いただけます
+            当社に関するお知らせ・プレスリリース等を時系列で掲載しています。<br />
+            <span class="text-muted">※未上場企業のため、決算短信・有価証券報告書などの上場企業向け開示資料は作成していません。</span>
           </p>
         </div>
 
-        <div class="ir-library">
+        <div class="news-section">
           {irDocuments.length > 0 ? (
-            <>
-              <div class="library-filters">
-                <button class="filter-btn active" data-filter="all">すべて</button>
-                <button class="filter-btn" data-filter="決算説明資料">決算説明資料</button>
-                <button class="filter-btn" data-filter="補足資料">補足資料</button>
-                <button class="filter-btn" data-filter="決算短信">決算短信</button>
-                <button class="filter-btn" data-filter="有価証券報告書">有価証券報告書</button>
-              </div>
-
-              <div class="library-list" id="library-list">
-                {irDocuments.map((doc) => (
-                  <div class="library-item" data-type={doc.type}>
-                    <div class="library-item-content">
-                      <div class="library-item-header">
-                        <span class="library-type">{doc.type}</span>
-                        {doc.period && <span class="library-period">{doc.period}</span>}
+            <div class="news-list">
+              {sortedYears.map((year) => (
+                <div class="news-year-group">
+                  <h3 class="news-year-title">{year}年</h3>
+                  <div class="news-items">
+                    {documentsByYear[year].map((doc) => (
+                      <div class="news-item">
+                        <div class="news-item-header">
+                          <span class="news-date">{doc.date}</span>
+                          <span class="news-type" data-type={doc.type}>{doc.type}</span>
+                        </div>
+                        <h4 class="news-title">{doc.title}</h4>
+                        {doc.summary && <p class="news-summary">{doc.summary}</p>}
+                        <div class="news-actions">
+                          {doc.htmlUrl && (
+                            <a href={doc.htmlUrl} class="news-link" target="_blank" rel="noopener noreferrer">
+                              詳細を見る
+                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                              </svg>
+                            </a>
+                          )}
+                          {doc.pdfUrl && (
+                            <a href={doc.pdfUrl} class="news-link news-link-pdf" target="_blank" rel="noopener noreferrer">
+                              PDF
+                              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                              </svg>
+                            </a>
+                          )}
+                        </div>
                       </div>
-                      <h3 class="library-title">{doc.title}</h3>
-                      <div class="library-date">{doc.date}</div>
-                    </div>
-                    <div class="library-item-actions">
-                      {doc.htmlUrl && (
-                        <a href={doc.htmlUrl} class="btn btn-primary" target="_blank" rel="noopener">
-                          HTMLで見る
-                        </a>
-                      )}
-                      {doc.pdfUrl && (
-                        <a href={doc.pdfUrl} class="btn btn-secondary" target="_blank" rel="noopener">
-                          PDFで見る
-                        </a>
-                      )}
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </>
+                </div>
+              ))}
+            </div>
           ) : (
-            <div class="library-empty">
+            <div class="news-empty">
               <div class="empty-icon">
-                <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
               </div>
-              <h3 class="empty-title">IR資料はまだありません</h3>
+              <h3 class="empty-title">お知らせはまだありません</h3>
               <p class="empty-description">
-                当社は2025年に設立されたばかりのため、決算資料はまだございません。
-                今後、決算情報がございます場合は、このページで公開いたします。
+                当社は2025年7月に設立されたばかりのため、公開情報はまだございません。<br />
+                第1期の決算公告は2026年に公開予定です。
               </p>
             </div>
           )}
@@ -216,261 +218,268 @@ const irIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path
 </Layout>
 
 <style>
-  /* Highlights Section */
-  .highlights-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .highlight-card {
+  /* Disclaimer Section */
+  .disclaimer-card {
+    max-width: 64rem;
+    margin: 0 auto;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: 2rem;
+  }
+
+  .disclaimer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .disclaimer-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .disclaimer-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    color: var(--primary);
+    margin-top: 0.125rem;
+  }
+
+  /* Company Info Section */
+  .company-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .company-link-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
     transition: all var(--motion-duration) var(--motion-ease);
   }
 
-  .highlight-card:hover {
+  .company-link-card:hover {
     transform: translateY(-4px);
     border-color: var(--border-hover);
     box-shadow: var(--shadow-lg);
   }
 
-  .highlight-header {
+  .company-link-icon {
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .highlight-period {
-    font-size: 0.875rem;
-    color: var(--primary);
-    font-weight: 600;
-  }
-
-  .highlight-label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-  }
-
-  .highlight-value {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .value-number {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--text);
-    line-height: 1;
-  }
-
-  .value-unit {
-    font-size: 1rem;
-    color: var(--text-muted);
-    font-weight: 500;
-  }
-
-  .highlight-change {
-    margin-top: 1rem;
-  }
-
-  .change-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
+    align-items: center;
+    justify-content: center;
     background: rgba(0, 212, 170, 0.15);
-    color: var(--primary);
-    border-radius: var(--radius-full);
-    font-size: 0.875rem;
-    font-weight: 600;
-  }
-
-  .highlights-note {
-    background: var(--surface-light);
-    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
+    color: var(--primary);
   }
 
-  .highlights-note strong {
+  .company-link-icon :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .company-link-content {
+    flex: 1;
+  }
+
+  .company-link-title {
+    font-size: 1.125rem;
+    font-weight: 700;
     color: var(--text);
+    margin-bottom: 0.25rem;
   }
 
-  /* KPI Dashboard Section */
-  .kpi-dashboard {
-    max-width: 64rem;
-    margin: 0 auto;
+  .company-link-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
   }
 
-  .kpi-table-container {
-    overflow-x: auto;
+  .company-link-arrow {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: transform var(--motion-duration) var(--motion-ease);
+  }
+
+  .company-link-card:hover .company-link-arrow {
+    transform: translateX(4px);
+    color: var(--primary);
+  }
+
+  .company-summary {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: 2rem;
-    margin-bottom: 2rem;
   }
 
-  .kpi-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .kpi-table thead {
-    border-bottom: 2px solid var(--border);
-  }
-
-  .kpi-table th {
-    text-align: left;
-    padding: 1rem;
-    font-weight: 600;
-    color: var(--text);
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .kpi-table td {
-    padding: 1rem;
-    color: var(--text-secondary);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .kpi-table tbody tr:last-child td {
-    border-bottom: none;
-  }
-
-  .kpi-table tbody tr:hover {
-    background: var(--surface-light);
-  }
-
-  .kpi-label {
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .kpi-unit {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    font-weight: normal;
-    margin-left: 0.5rem;
-  }
-
-
-  /* IR Library Section */
-  .ir-library {
-    max-width: 64rem;
-    margin: 0 auto;
-  }
-
-  .library-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
-    justify-content: center;
-  }
-
-  .filter-btn {
-    padding: 0.5rem 1.25rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-full);
-    color: var(--text-secondary);
-    font-size: 0.875rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all var(--motion-duration) var(--motion-ease);
-  }
-
-  .filter-btn:hover {
-    border-color: var(--border-hover);
-    color: var(--text);
-  }
-
-  .filter-btn.active {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: var(--background);
-  }
-
-  .library-list {
-    display: flex;
-    flex-direction: column;
+  .company-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
   }
 
-  .library-item {
+  .company-summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .company-summary-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .company-summary-value {
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  /* News Section */
+  .news-section {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .news-year-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .news-year-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .news-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .news-item {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
     transition: all var(--motion-duration) var(--motion-ease);
   }
 
-  .library-item:hover {
+  .news-item:hover {
     border-color: var(--border-hover);
     box-shadow: var(--shadow-md);
   }
 
-  .library-item-content {
-    flex: 1;
-  }
-
-  .library-item-header {
+  .news-item-header {
     display: flex;
-    gap: 1rem;
     align-items: center;
+    gap: 1rem;
     margin-bottom: 0.75rem;
-    flex-wrap: wrap;
   }
 
-  .library-type {
+  .news-date {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .news-type {
     display: inline-block;
     padding: 0.25rem 0.75rem;
-    background: rgba(99, 91, 255, 0.15);
-    color: var(--secondary);
     border-radius: var(--radius-full);
     font-size: 0.75rem;
     font-weight: 600;
   }
 
-  .library-period {
-    font-size: 0.875rem;
-    color: var(--text-muted);
+  .news-type[data-type="お知らせ"] {
+    background: rgba(99, 91, 255, 0.15);
+    color: var(--secondary);
   }
 
-  .library-title {
-    font-size: 1.25rem;
+  .news-type[data-type="プレスリリース"] {
+    background: rgba(0, 212, 170, 0.15);
+    color: var(--primary);
+  }
+
+  .news-type[data-type="法定公告"] {
+    background: rgba(255, 159, 67, 0.15);
+    color: #ff9f43;
+  }
+
+  .news-title {
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 0.5rem;
   }
 
-  .library-date {
+  .news-summary {
     font-size: 0.875rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
   }
 
-  .library-item-actions {
+  .news-actions {
     display: flex;
     gap: 1rem;
-    flex-shrink: 0;
   }
 
-  .library-empty {
+  .news-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .news-link:hover {
+    opacity: 0.8;
+  }
+
+  .news-link svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .news-link-pdf {
+    color: var(--text-secondary);
+  }
+
+  .news-empty {
     text-align: center;
     padding: 4rem 2rem;
     background: var(--surface);
@@ -481,6 +490,11 @@ const irIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path
   .empty-icon {
     color: var(--text-muted);
     margin-bottom: 1.5rem;
+  }
+
+  .empty-icon svg {
+    width: 4rem;
+    height: 4rem;
   }
 
   .empty-title {
@@ -594,21 +608,24 @@ const irIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path
     text-decoration: underline;
   }
 
+  /* Utility */
+  .text-muted {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
-    .library-item {
-      flex-direction: column;
-      align-items: flex-start;
+    .company-links-grid {
+      grid-template-columns: 1fr;
     }
 
-    .library-item-actions {
-      width: 100%;
-      flex-direction: column;
+    .company-link-card {
+      padding: 1.25rem;
     }
 
-    .library-item-actions .btn {
-      width: 100%;
-      justify-content: center;
+    .company-summary-grid {
+      grid-template-columns: 1fr;
     }
 
     .faq-question {
@@ -619,14 +636,8 @@ const irIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path
       padding: 0 1rem 1rem 3.5rem;
     }
 
-    .kpi-table-container {
-      padding: 1rem;
-    }
-
-    .kpi-table th,
-    .kpi-table td {
-      padding: 0.75rem 0.5rem;
-      font-size: 0.875rem;
+    .news-item-header {
+      flex-wrap: wrap;
     }
   }
 </style>
@@ -653,30 +664,4 @@ const irIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path
       });
     });
   });
-
-  // Library Filter (将来実装用)
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const libraryItems = document.querySelectorAll('.library-item');
-    
-    filterButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-        
-        // Update active button
-        filterButtons.forEach((btn) => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        // Filter items
-        libraryItems.forEach((item) => {
-          if (filter === 'all' || item.getAttribute('data-type') === filter) {
-            item.style.display = 'flex';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
-    });
-  });
 </script>
-

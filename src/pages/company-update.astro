@@ -1,0 +1,1715 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+
+const chartIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`;
+
+// 会社の沿革タイムライン（2025年）
+const milestones2025 = [
+  {
+    date: "2025年7月14日",
+    title: "株式会社TECMAH設立",
+    description: "北海道札幌市を拠点に、AI・データ活用とプロダクトマネジメント支援を専門とする法人を設立。",
+    type: "major"
+  },
+  {
+    date: "2025年8月",
+    title: "創業手続き完了",
+    description: "法人登記、税務届出、社会保険手続き等の創業事務を完了。freeeによる会計基盤を構築。",
+    type: "normal"
+  },
+  {
+    date: "2025年9月",
+    title: "初の法人案件決定",
+    description: "Findy経由でBAKUTAN株式会社からPM/PdM案件を受注。AIのPoC、人事領域のAI化プロジェクトに参画。",
+    type: "major"
+  },
+  {
+    date: "2025年10月",
+    title: "法人案件稼働開始",
+    description: "BAKUTAN案件にてフルコミット稼働（月間158時間）を開始。法人として初の売上を計上。",
+    type: "normal"
+  },
+  {
+    date: "2025年11月",
+    title: "安定稼働体制へ移行",
+    description: "案件が安定稼働（週24時間程度）に移行。新規事業への投資時間確保に向けた体制を構築。",
+    type: "normal"
+  },
+  {
+    date: "2025年12月",
+    title: "IR情報公開開始",
+    description: "投資家向け情報ページを公開。事業計画・財務情報の透明性を確保。",
+    type: "normal"
+  }
+];
+
+// 財務データ（詳細）
+const financialData = {
+  period: "2025年7月〜12月（第1期上半期）",
+  revenue: {
+    total: "132.3万円",
+    note: "（予定入金含む）",
+    breakdown: [
+      { label: "BAKUTAN案件（10月稼働分）", value: "88.9万円", note: "入金: 11月末" },
+      { label: "BAKUTAN案件（11月稼働分）", value: "44.5万円", note: "入金: 12月末" }
+    ]
+  },
+  expenses: {
+    monthly: "約29万円",
+    total: "116.3万円",
+    note: "（7-10月実績）",
+    breakdown: [
+      { label: "役員報酬", value: "40万円" },
+      { label: "給料手当", value: "22.8万円" },
+      { label: "減価償却費", value: "14.8万円" },
+      { label: "法定福利費", value: "5.7万円" },
+      { label: "その他経費", value: "33万円" }
+    ]
+  },
+  profit: {
+    operating: "-116.3万円",
+    note: "（7-10月実績、投資フェーズ）"
+  },
+  cash: {
+    current: "174.8万円",
+    note: "（10月末時点）",
+    forecast: "約280万円",
+    forecastNote: "（12月末見通し）"
+  },
+  capital: {
+    equity: "100万円",
+    debt: "200万円",
+    debtSource: "日本政策金融公庫"
+  }
+};
+
+// 案件詳細
+const projectDetails = {
+  name: "BAKUTAN株式会社",
+  role: "PM/PdM（プロダクトマネージャー）",
+  description: "AIのPoC開発、人事領域のAI化・業務報告システム、スキル可視化アプリケーションのPoC",
+  hourlyRate: "5,000円（税抜）",
+  channel: "Findy経由",
+  workload: [
+    { month: "10月", hours: "158時間", note: "フルコミット" },
+    { month: "11月", hours: "79時間", note: "半分稼働（週24時間）" }
+  ]
+};
+
+// 2026年目標（詳細）
+const targets2026 = {
+  revenue: {
+    monthly: "50万円",
+    annual: "600万円"
+  },
+  profit: {
+    monthly: "20万円",
+    annual: "240万円"
+  },
+  expenses: {
+    q1q2: "29万円/月",
+    q3q4: "35万円/月"
+  },
+  quarterly: [
+    { quarter: "Q1", revenue: "150万円", profit: "60万円", note: "BAKUTAN案件継続（月約44.5万円）を前提" },
+    { quarter: "Q2", revenue: "150万円", profit: "60万円", note: "新規事業基盤確立" },
+    { quarter: "Q3", revenue: "150万円", profit: "45万円", note: "教育コンテンツ事業開始" },
+    { quarter: "Q4", revenue: "150万円", profit: "45万円", note: "自動化サイクル本格稼働" }
+  ]
+};
+
+// 時間配分ルール
+const timeAllocation = {
+  maxWeekly: "45h/週",
+  categories: [
+    { 
+      name: "Cash（現金調達）", 
+      hours: "25h/週", 
+      description: "法人・個人の受託案件（BAKUTAN, Kodato等）",
+      color: "var(--primary)"
+    },
+    { 
+      name: "Build（新規事業）", 
+      hours: "15h/週", 
+      description: "自動化サイクル構築（n8n/Dify/発信基盤/MVP）",
+      color: "var(--accent)"
+    },
+    { 
+      name: "Ops（維持）", 
+      hours: "5h/週", 
+      description: "経理/事務/障害対応/レビュー",
+      color: "var(--text-muted)"
+    }
+  ],
+  rules: [
+    "週の総稼働上限を超える計画は禁止",
+    "Buildの時間が不足するなら、Cashを削る",
+    "Opsは最小を割らない（詰むので）"
+  ]
+};
+
+// 成長戦略
+const growthStrategy = {
+  vision: "情報を資産化し、教育で回収し、M&Aで拡大する完全自動化サイクル",
+  phases: [
+    {
+      phase: "Phase 1",
+      period: "2025-2026",
+      title: "情報収集基盤構築期",
+      status: "current",
+      kpis: ["monthly_articles", "followers", "engagement_rate"],
+      initiatives: [
+        "n8n/Difyによる自動情報収集システム構築",
+        "コンテンツ発信基盤の確立",
+        "AI関連ブログ・SNS投稿の自動化"
+      ],
+      whyWin: "自動化により低コストで大量の知的資産を積み上げる"
+    },
+    {
+      phase: "Phase 2",
+      period: "2027-2028",
+      title: "教育コンテンツ事業期",
+      status: "future",
+      kpis: ["courses", "education_revenue", "retention_rate"],
+      initiatives: [
+        "教育コンテンツ量産（Udemy/Kindle/Note）",
+        "有料講座・書籍のリリース",
+        "収益の複線化"
+      ],
+      whyWin: "コンテンツ→教育→M&Aの循環により資産回収が複線化"
+    },
+    {
+      phase: "Phase 3",
+      period: "2028-2029",
+      title: "M&A事業開始期",
+      status: "future",
+      kpis: ["ma_deals", "take_rate", "avg_deal_size"],
+      initiatives: [
+        "小規模M&A案件の実行",
+        "デューデリジェンス・評価の自動化",
+        "PMIテンプレートの確立"
+      ],
+      whyWin: "仲介ではなく、評価/運用の自動化を武器に差別化"
+    },
+    {
+      phase: "Phase 4",
+      period: "2029-2030",
+      title: "M&A自動化拡大期",
+      status: "future",
+      kpis: ["ma_deals", "automation_rate", "operating_profit"],
+      initiatives: [
+        "自動化M&Aプラットフォーム完成",
+        "ポートフォリオ運用の本格化",
+        "再現性のある獲得・運用モデル確立"
+      ],
+      whyWin: "プラットフォーム化により限界コストを下げスケール"
+    },
+    {
+      phase: "Phase 5",
+      period: "2030-2035",
+      title: "投資・ホールディングス期",
+      status: "future",
+      kpis: ["investment_irrs", "portfolio_companies", "cash_buffer_months"],
+      initiatives: [
+        "投資活動中心の事業構成へ移行",
+        "資本配分の最適化",
+        "複数事業の統合とシナジー最大化"
+      ],
+      whyWin: "知的資産循環で回収ルートを複線化し持続的成長"
+    }
+  ]
+};
+
+// 10年財務シナリオ
+const financialScenarios = [
+  { year: "2026", bear: "1,000万円", base: "3,000万円", bull: "5,000万円" },
+  { year: "2030", bear: "5,000万円", base: "2億円", bull: "10億円" },
+  { year: "2035", bear: "2億円", base: "20億円", bull: "100億円" }
+];
+
+// 課題と対策
+const challenges = [
+  {
+    title: "24時間の制約",
+    description: "PM/PdM案件は時間ありきのビジネスモデルであり、個人の稼働時間がボトルネック。営業してもスケールしない構造的課題。",
+    solution: "情報収集→コンテンツ→教育→M&Aの自動化サイクルを構築し、時間に依存しない収益モデルを確立。"
+  },
+  {
+    title: "新規事業への投資時間不足",
+    description: "現金調達案件（週40-44時間程度）でリソースがカツカツ。新規事業を育てる時間が確保できていない。",
+    solution: "時間配分ルールを厳格化し、Build（新規事業）に週15時間を最優先で確保。不足するならCash案件を削る。"
+  },
+  {
+    title: "固定費の回収",
+    description: "月額固定費約29万円が発生しているが、初年度は投資フェーズで赤字が継続。",
+    solution: "2026年Q1から月50万円の売上目標を設定し、固定費を回収できる売上構造を構築。"
+  }
+];
+
+// 意思決定の3本の柱
+const decisionPillars = [
+  {
+    icon: "💪",
+    title: "健康に邁進する",
+    description: "持続可能な働き方を優先。週45時間の上限を設け、育児と仕事の両立を実現。"
+  },
+  {
+    icon: "🔄",
+    title: "複数事業の安定化",
+    description: "個人事業・法人・新規事業の3事業体を稼働状態にして、当面のキャッシュと挑戦を両立。"
+  },
+  {
+    icon: "🚀",
+    title: "創業し新規事業に挑戦",
+    description: "24時間の制約を超えるビジネスモデルを構築。自動化サイクルで持続的成長を目指す。"
+  }
+];
+---
+
+<Layout
+  title="会社の取り組み | 2025年振り返りと2026年事業計画 | 株式会社TECMAH"
+  description="株式会社TECMAHの2025年下半期振り返りと2026年事業計画。財務データ、成長戦略、中長期ロードマップを詳細にご報告します。"
+>
+  <main>
+    <!-- Hero Section -->
+    <PageHero
+      titleHtml='<span class="gradient-text">2025年の歩みと</span><br /><span class="gradient-text">これからの挑戦</span>'
+      subtitleHtml="設立6ヶ月の実績と、2026年以降の成長戦略を詳細にご報告いたします。"
+      badge="Company Update 2025"
+      badgeIconHtml={chartIcon}
+    />
+
+    <!-- 意思決定の3本の柱 -->
+    <section class="section" id="pillars">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Decision Pillars</span>
+          <h2 class="section-title">意思決定の<span class="gradient-text">3本の柱</span></h2>
+          <p class="section-description">
+            2025年の行動原理として、以下の3つの柱を中心に意思決定を行ってまいりました。
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          {decisionPillars.map((pillar, index) => (
+            <div class="pillar-card scroll-fade-up" style={`--delay: ${index * 0.15}s`}>
+              <div class="pillar-icon">{pillar.icon}</div>
+              <h3 class="pillar-title">{pillar.title}</h3>
+              <p class="pillar-description">{pillar.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 沿革タイムライン -->
+    <section class="section section-alt" id="milestones">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">2025 Milestones</span>
+          <h2 class="section-title">2025年<span class="gradient-text">沿革</span></h2>
+          <p class="section-description">
+            設立から6ヶ月間の主要なマイルストーンをご報告いたします。
+          </p>
+        </div>
+
+        <div class="timeline">
+          {milestones2025.map((milestone, index) => (
+            <div class={`timeline-item ${milestone.type} scroll-fade-up`} style={`--delay: ${index * 0.1}s`}>
+              <div class="timeline-marker">
+                <div class="marker-dot"></div>
+                {index < milestones2025.length - 1 && <div class="marker-line"></div>}
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-date">{milestone.date}</span>
+                <h3 class="timeline-title">{milestone.title}</h3>
+                <p class="timeline-description">{milestone.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 財務詳細 -->
+    <section class="section" id="financials">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Financial Details</span>
+          <h2 class="section-title">財務<span class="gradient-text">詳細</span></h2>
+          <p class="section-description">
+            {financialData.period}の財務状況を詳細にご報告いたします。
+          </p>
+        </div>
+
+        <div class="financial-sections">
+          <!-- 売上 -->
+          <div class="financial-section scroll-fade-up" style="--delay: 0.1s">
+            <div class="financial-section-header">
+              <h3>売上高</h3>
+              <div class="financial-section-value">{financialData.revenue.total}<span class="note">{financialData.revenue.note}</span></div>
+            </div>
+            <div class="financial-breakdown">
+              {financialData.revenue.breakdown.map((item) => (
+                <div class="breakdown-item">
+                  <span class="breakdown-label">{item.label}</span>
+                  <span class="breakdown-value">{item.value}</span>
+                  <span class="breakdown-note">{item.note}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- 固定費 -->
+          <div class="financial-section scroll-fade-up" style="--delay: 0.2s">
+            <div class="financial-section-header">
+              <h3>固定費</h3>
+              <div class="financial-section-value">{financialData.expenses.monthly}<span class="note">/月</span></div>
+            </div>
+            <div class="financial-breakdown">
+              {financialData.expenses.breakdown.map((item) => (
+                <div class="breakdown-item">
+                  <span class="breakdown-label">{item.label}</span>
+                  <span class="breakdown-value">{item.value}</span>
+                </div>
+              ))}
+            </div>
+            <div class="breakdown-total">
+              <span>期間合計（7-10月）</span>
+              <span>{financialData.expenses.total}</span>
+            </div>
+          </div>
+
+          <!-- 資金調達 -->
+          <div class="financial-section scroll-fade-up" style="--delay: 0.3s">
+            <div class="financial-section-header">
+              <h3>資金調達</h3>
+              <div class="financial-section-value">300万円<span class="note">（自己資本+借入）</span></div>
+            </div>
+            <div class="financial-breakdown">
+              <div class="breakdown-item">
+                <span class="breakdown-label">資本金（自己資本）</span>
+                <span class="breakdown-value">{financialData.capital.equity}</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="breakdown-label">長期借入金</span>
+                <span class="breakdown-value">{financialData.capital.debt}</span>
+                <span class="breakdown-note">{financialData.capital.debtSource}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 現金残高 -->
+          <div class="financial-section scroll-fade-up" style="--delay: 0.4s">
+            <div class="financial-section-header">
+              <h3>現金残高</h3>
+              <div class="financial-section-value">{financialData.cash.current}<span class="note">{financialData.cash.note}</span></div>
+            </div>
+            <div class="financial-forecast">
+              <div class="forecast-item">
+                <span class="forecast-label">12月末見通し</span>
+                <span class="forecast-value">{financialData.cash.forecast}</span>
+              </div>
+              <p class="forecast-note">
+                ※ 11-12月の予定入金（132.3万円）を反映した見通し
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="financial-note scroll-fade-in">
+          <h4>📝 初年度の位置づけ</h4>
+          <p>
+            当社は2025年7月に設立された未上場企業です。第1期（2025年7月〜2026年6月）は<strong>基盤構築期</strong>として、
+            収益構造の確立と新規事業への投資を優先しております。7-10月は売上0円の状態が続きましたが、
+            9月に初の法人案件を決定し、10月より稼働を開始いたしました。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 案件詳細 -->
+    <section class="section section-alt" id="project">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Project Details</span>
+          <h2 class="section-title">主要案件<span class="gradient-text">詳細</span></h2>
+        </div>
+
+        <div class="project-card scroll-fade-up">
+          <div class="project-header">
+            <div class="project-badge">法人案件</div>
+            <h3 class="project-name">{projectDetails.name}</h3>
+          </div>
+          <div class="project-content">
+            <div class="project-info">
+              <div class="info-item">
+                <span class="info-label">役割</span>
+                <span class="info-value">{projectDetails.role}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">業務内容</span>
+                <span class="info-value">{projectDetails.description}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">時間単価</span>
+                <span class="info-value">{projectDetails.hourlyRate}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">獲得チャネル</span>
+                <span class="info-value">{projectDetails.channel}</span>
+              </div>
+            </div>
+            <div class="project-workload">
+              <h4>稼働実績</h4>
+              <div class="workload-items">
+                {projectDetails.workload.map((item) => (
+                  <div class="workload-item">
+                    <span class="workload-month">{item.month}</span>
+                    <span class="workload-hours">{item.hours}</span>
+                    <span class="workload-note">{item.note}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2026年目標 -->
+    <section class="section" id="targets">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">2026 Targets</span>
+          <h2 class="section-title">2026年度<span class="gradient-text">事業目標</span></h2>
+        </div>
+
+        <div class="targets-overview scroll-fade-up">
+          <div class="target-card primary">
+            <div class="target-label">年間売上目標</div>
+            <div class="target-value">{targets2026.revenue.annual}</div>
+            <div class="target-sub">月次 {targets2026.revenue.monthly}</div>
+          </div>
+          <div class="target-card">
+            <div class="target-label">年間利益目標</div>
+            <div class="target-value">{targets2026.profit.annual}</div>
+            <div class="target-sub">月次 {targets2026.profit.monthly}</div>
+          </div>
+          <div class="target-card">
+            <div class="target-label">固定費（Q1-Q2）</div>
+            <div class="target-value">{targets2026.expenses.q1q2}</div>
+            <div class="target-sub">Q3-Q4: {targets2026.expenses.q3q4}</div>
+          </div>
+        </div>
+
+        <div class="quarterly-targets scroll-fade-up" style="--delay: 0.2s">
+          <h3>四半期別目標</h3>
+          <div class="quarterly-grid">
+            {targets2026.quarterly.map((q) => (
+              <div class="quarterly-item">
+                <div class="quarterly-header">{q.quarter}</div>
+                <div class="quarterly-values">
+                  <div class="quarterly-value">
+                    <span class="label">売上</span>
+                    <span class="value">{q.revenue}</span>
+                  </div>
+                  <div class="quarterly-value">
+                    <span class="label">利益</span>
+                    <span class="value">{q.profit}</span>
+                  </div>
+                </div>
+                <p class="quarterly-note">{q.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 時間配分ルール -->
+    <section class="section section-alt" id="time-allocation">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Time Allocation</span>
+          <h2 class="section-title">時間配分<span class="gradient-text">ルール</span></h2>
+          <p class="section-description">
+            週の総稼働上限を<strong>{timeAllocation.maxWeekly}</strong>と定め、以下のカテゴリに配分します。
+          </p>
+        </div>
+
+        <div class="allocation-chart scroll-fade-up">
+          <div class="allocation-visual">
+            {timeAllocation.categories.map((cat) => (
+              <div class="allocation-bar" style={`--color: ${cat.color}`}>
+                <div class="bar-label">{cat.name}</div>
+                <div class="bar-value">{cat.hours}</div>
+              </div>
+            ))}
+          </div>
+          <div class="allocation-details">
+            {timeAllocation.categories.map((cat, index) => (
+              <div class="allocation-item scroll-fade-up" style={`--delay: ${index * 0.1}s`}>
+                <div class="allocation-header">
+                  <span class="allocation-dot" style={`background: ${cat.color}`}></span>
+                  <span class="allocation-name">{cat.name}</span>
+                  <span class="allocation-hours">{cat.hours}</span>
+                </div>
+                <p class="allocation-description">{cat.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="allocation-rules scroll-fade-up" style="--delay: 0.3s">
+          <h4>意思決定ルール</h4>
+          <ul>
+            {timeAllocation.rules.map((rule) => (
+              <li>{rule}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 成長戦略 -->
+    <section class="section section-strategy" id="strategy">
+      <div class="strategy-bg"></div>
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Growth Strategy</span>
+          <h2 class="section-title">成長<span class="gradient-text">戦略</span></h2>
+        </div>
+
+        <div class="vision-statement scroll-fade-up">
+          <blockquote>"{growthStrategy.vision}"</blockquote>
+        </div>
+
+        <div class="strategy-phases">
+          {growthStrategy.phases.map((phase, index) => (
+            <div class={`strategy-phase ${phase.status} scroll-fade-up`} style={`--delay: ${index * 0.1}s`}>
+              <div class="phase-header">
+                <div class="phase-badge">{phase.phase}</div>
+                <span class="phase-period">{phase.period}</span>
+                {phase.status === 'current' && <span class="phase-current">現在</span>}
+              </div>
+              <h3 class="phase-title">{phase.title}</h3>
+              
+              <div class="phase-content">
+                <div class="phase-initiatives">
+                  <h4>主要施策</h4>
+                  <ul>
+                    {phase.initiatives.map((initiative) => (
+                      <li>{initiative}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div class="phase-kpis">
+                  <h4>KPI</h4>
+                  <div class="kpi-tags">
+                    {phase.kpis.map((kpi) => (
+                      <span class="kpi-tag">{kpi}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="phase-why-win">
+                <span class="why-win-label">勝ち筋</span>
+                <p>{phase.whyWin}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 10年財務シナリオ -->
+    <section class="section section-alt" id="scenarios">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">10-Year Scenarios</span>
+          <h2 class="section-title">長期財務<span class="gradient-text">シナリオ</span></h2>
+          <p class="section-description">
+            数字の正確さより「意思決定に使える幅」を優先し、3シナリオで管理します。
+          </p>
+        </div>
+
+        <div class="scenarios-table scroll-fade-up">
+          <div class="scenarios-header">
+            <div class="scenario-col year">年度</div>
+            <div class="scenario-col bear">Bear（下振れ）</div>
+            <div class="scenario-col base">Base（現実）</div>
+            <div class="scenario-col bull">Bull（上振れ）</div>
+          </div>
+          {financialScenarios.map((scenario) => (
+            <div class="scenarios-row">
+              <div class="scenario-col year">{scenario.year}</div>
+              <div class="scenario-col bear">{scenario.bear}</div>
+              <div class="scenario-col base">{scenario.base}</div>
+              <div class="scenario-col bull">{scenario.bull}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 課題と対策 -->
+    <section class="section" id="challenges">
+      <div class="container">
+        <div class="section-header scroll-fade-in">
+          <span class="section-badge">Challenges & Solutions</span>
+          <h2 class="section-title">課題と<span class="gradient-text">対策</span></h2>
+        </div>
+
+        <div class="challenges-grid">
+          {challenges.map((challenge, index) => (
+            <div class="challenge-card scroll-fade-up" style={`--delay: ${index * 0.15}s`}>
+              <div class="challenge-header">
+                <span class="challenge-icon">⚠️</span>
+                <h3 class="challenge-title">{challenge.title}</h3>
+              </div>
+              <p class="challenge-description">{challenge.description}</p>
+              <div class="challenge-solution">
+                <span class="solution-label">💡 対策</span>
+                <p>{challenge.solution}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <CTASection />
+  </main>
+</Layout>
+
+<style>
+  /* Base Section Styles */
+  .section {
+    padding: 6rem 0;
+    position: relative;
+  }
+
+  .section-alt {
+    background: rgba(99, 91, 255, 0.02);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(99, 91, 255, 0.1);
+    border: 1px solid rgba(99, 91, 255, 0.3);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Scroll Animations */
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .scroll-fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 0.8s ease forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Pillars Grid */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .pillar-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(99, 91, 255, 0.15);
+  }
+
+  .pillar-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .pillar-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .pillar-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Timeline */
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+  }
+
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .marker-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid var(--border);
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  .timeline-item.major .marker-dot {
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(99, 91, 255, 0.5);
+  }
+
+  .timeline-item:hover .marker-dot {
+    transform: scale(1.2);
+    border-color: var(--primary);
+  }
+
+  .marker-line {
+    width: 2px;
+    flex-grow: 1;
+    background: var(--border);
+    min-height: 30px;
+  }
+
+  .timeline-content {
+    flex: 1;
+    padding-bottom: 2.5rem;
+  }
+
+  .timeline-date {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0.5rem 0;
+  }
+
+  .timeline-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Financial Sections */
+  .financial-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .financial-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .financial-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .financial-section-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .financial-section-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .financial-section-value .note {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-left: 0.25rem;
+  }
+
+  .financial-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .breakdown-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .breakdown-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .breakdown-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    width: 100%;
+    text-align: right;
+  }
+
+  .breakdown-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .financial-forecast {
+    margin-top: 1rem;
+  }
+
+  .forecast-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(99, 91, 255, 0.05);
+    border-radius: 0.5rem;
+  }
+
+  .forecast-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .forecast-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .forecast-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin: 0.5rem 0 0;
+  }
+
+  .financial-note {
+    background: rgba(99, 91, 255, 0.05);
+    border-left: 4px solid var(--primary);
+    padding: 1.5rem;
+    border-radius: 0 0.75rem 0.75rem 0;
+  }
+
+  .financial-note h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 0.75rem;
+  }
+
+  .financial-note p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .financial-note strong {
+    color: var(--primary);
+  }
+
+  /* Project Card */
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .project-header {
+    background: linear-gradient(135deg, rgba(99, 91, 255, 0.1), rgba(0, 212, 170, 0.05));
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .project-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: rgba(99, 91, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .project-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .project-content {
+    padding: 2rem;
+  }
+
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .info-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    min-width: 100px;
+  }
+
+  .info-value {
+    font-size: 0.9375rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .project-workload h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 0 0 1rem;
+  }
+
+  .workload-items {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .workload-item {
+    background: rgba(99, 91, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 150px;
+  }
+
+  .workload-month {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+  }
+
+  .workload-hours {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .workload-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Targets Overview */
+  .targets-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .target-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .target-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+  }
+
+  .target-card.primary {
+    background: linear-gradient(135deg, rgba(99, 91, 255, 0.1), rgba(0, 212, 170, 0.05));
+    border-color: var(--primary);
+  }
+
+  .target-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .target-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .target-card.primary .target-value {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .target-sub {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  /* Quarterly Targets */
+  .quarterly-targets h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .quarterly-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .quarterly-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .quarterly-header {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  .quarterly-values {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .quarterly-value {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .quarterly-value .label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .quarterly-value .value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .quarterly-note {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Time Allocation */
+  .allocation-chart {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .allocation-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .allocation-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: rgba(99, 91, 255, 0.05);
+    border-left: 4px solid var(--color);
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+
+  .bar-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .bar-value {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .allocation-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .allocation-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .allocation-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .allocation-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .allocation-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .allocation-hours {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-left: auto;
+  }
+
+  .allocation-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .allocation-rules {
+    margin-top: 3rem;
+    background: rgba(99, 91, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+  }
+
+  .allocation-rules h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 1rem;
+  }
+
+  .allocation-rules ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .allocation-rules li {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .allocation-rules li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Strategy Section */
+  .section-strategy {
+    background: linear-gradient(135deg, var(--surface-dark) 0%, var(--background) 100%);
+    padding: 8rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .strategy-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(99, 91, 255, 0.15), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 50%, rgba(0, 212, 170, 0.1), transparent);
+    pointer-events: none;
+  }
+
+  .vision-statement {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .vision-statement blockquote {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+    margin: 0;
+    padding: 2rem;
+    background: rgba(99, 91, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    display: inline-block;
+  }
+
+  .strategy-phases {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .strategy-phase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .strategy-phase:hover {
+    transform: translateX(8px);
+    border-color: var(--primary);
+  }
+
+  .strategy-phase.current {
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(99, 91, 255, 0.1);
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .phase-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    background: rgba(99, 91, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .phase-period {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .phase-current {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(0, 212, 170, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  .phase-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 1.5rem;
+  }
+
+  .strategy-phase.current .phase-title {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .phase-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .phase-initiatives h4,
+  .phase-kpis h4 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.75rem;
+  }
+
+  .phase-initiatives ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .phase-initiatives li {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .kpi-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .kpi-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: rgba(99, 91, 255, 0.05);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .phase-why-win {
+    background: rgba(0, 212, 170, 0.05);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .why-win-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(0, 212, 170, 0.15);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .phase-why-win p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Scenarios Table */
+  .scenarios-table {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .scenarios-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: rgba(99, 91, 255, 0.05);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scenarios-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scenarios-row:last-child {
+    border-bottom: none;
+  }
+
+  .scenario-col {
+    padding: 1rem 1.5rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  .scenarios-header .scenario-col {
+    font-weight: 700;
+    color: var(--text);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .scenario-col.year {
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .scenario-col.base {
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  /* Challenges Grid */
+  .challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .challenge-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .challenge-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+  }
+
+  .challenge-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .challenge-icon {
+    font-size: 1.5rem;
+  }
+
+  .challenge-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .challenge-description {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0 0 1.5rem;
+  }
+
+  .challenge-solution {
+    background: rgba(0, 212, 170, 0.05);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .solution-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .challenge-solution p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .section {
+      padding: 4rem 0;
+    }
+
+    .section-strategy {
+      padding: 5rem 0;
+    }
+
+    .timeline-item {
+      gap: 1rem;
+    }
+
+    .allocation-chart {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .phase-content {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .scenarios-table {
+      overflow-x: auto;
+    }
+
+    .scenarios-header,
+    .scenarios-row {
+      min-width: 500px;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.scroll-fade-in, .scroll-fade-up').forEach(el => {
+    (el as HTMLElement).style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+</script>
