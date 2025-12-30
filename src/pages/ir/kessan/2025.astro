@@ -3,10 +3,10 @@ import Layout from "../../../layouts/Layout.astro";
 import Header from "../../../components/Header.astro";
 import Footer from "../../../components/Footer.astro";
 import PageHero from "../../../components/PageHero.astro";
+import { pageMeta } from "../../../data/content";
 import { reportInfo, balanceSheet, formatAmount } from "../../../data/kessan-2025";
 
-const pageTitle = "第1期 半期報告（決算公告） | 株式会社TECMAH";
-const pageDescription = "株式会社TECMAHの第1期（2025年7月〜12月）半期報告書。貸借対照表の要旨を掲載しています。";
+const { title: pageTitle, description: pageDescription } = pageMeta["kessan-2025"];
 
 const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`;
 ---
@@ -26,28 +26,30 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
       <div class="container">
         <div class="notice-card">
           <h2 class="notice-title">決算公告</h2>
-          <div class="notice-info">
-            <div class="notice-row">
-              <span class="notice-label">対象期間</span>
-              <span class="notice-value">{reportInfo.period}</span>
-            </div>
-            <div class="notice-row">
-              <span class="notice-label">公告日</span>
-              <span class="notice-value">{reportInfo.publishDate}</span>
-            </div>
-            <div class="notice-row">
-              <span class="notice-label">商号</span>
-              <span class="notice-value">{reportInfo.companyName}</span>
-            </div>
-            <div class="notice-row">
-              <span class="notice-label">本店所在地</span>
-              <span class="notice-value">{reportInfo.address}</span>
-            </div>
-            <div class="notice-row">
-              <span class="notice-label">代表取締役</span>
-              <span class="notice-value">{reportInfo.representative}</span>
-            </div>
-          </div>
+          <table class="notice-table" role="presentation">
+            <tbody>
+              <tr>
+                <th scope="row">対象期間</th>
+                <td>{reportInfo.period}</td>
+              </tr>
+              <tr>
+                <th scope="row">公告日</th>
+                <td>{reportInfo.publishDate}</td>
+              </tr>
+              <tr>
+                <th scope="row">商号</th>
+                <td>{reportInfo.companyName}</td>
+              </tr>
+              <tr>
+                <th scope="row">本店所在地</th>
+                <td>{reportInfo.address}</td>
+              </tr>
+              <tr>
+                <th scope="row">代表取締役</th>
+                <td>{reportInfo.representative}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -67,103 +69,118 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
         <div class="balance-sheet">
           <div class="bs-grid">
             <!-- 資産の部 -->
-            <div class="bs-section">
-              <h3 class="bs-section-title">資産の部</h3>
-
-              <div class="bs-category">
-                <h4 class="bs-category-title">流動資産</h4>
+            <table class="bs-table" aria-label="資産の部">
+              <caption class="bs-caption">資産の部</caption>
+              <thead class="visually-hidden">
+                <tr>
+                  <th scope="col">勘定科目</th>
+                  <th scope="col">金額（円）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" colspan="2" class="bs-category-header">流動資産</th>
+                </tr>
                 {balanceSheet.assets.current.map((item) => (
-                  <div class="bs-row">
-                    <span class="bs-item">{item.name}</span>
-                    <span class="bs-amount">{formatAmount(item.amount)}</span>
-                  </div>
+                  <tr>
+                    <td class="bs-item">{item.name}</td>
+                    <td class="bs-amount">{formatAmount(item.amount)}</td>
+                  </tr>
                 ))}
-                <div class="bs-row bs-subtotal">
-                  <span class="bs-item">流動資産合計</span>
-                  <span class="bs-amount">{formatAmount(balanceSheet.assets.currentTotal)}</span>
-                </div>
-              </div>
-
-              <div class="bs-category">
-                <h4 class="bs-category-title">固定資産</h4>
+                <tr class="bs-subtotal">
+                  <td class="bs-item">流動資産合計</td>
+                  <td class="bs-amount">{formatAmount(balanceSheet.assets.currentTotal)}</td>
+                </tr>
+                <tr>
+                  <th scope="row" colspan="2" class="bs-category-header">固定資産</th>
+                </tr>
                 {balanceSheet.assets.fixed.map((item) => (
-                  <div class="bs-row">
-                    <span class="bs-item">{item.name}</span>
-                    <span class="bs-amount">{formatAmount(item.amount)}</span>
-                  </div>
+                  <tr>
+                    <td class="bs-item">{item.name}</td>
+                    <td class="bs-amount">{formatAmount(item.amount)}</td>
+                  </tr>
                 ))}
-                <div class="bs-row bs-subtotal">
-                  <span class="bs-item">固定資産合計</span>
-                  <span class="bs-amount">{formatAmount(balanceSheet.assets.fixedTotal)}</span>
-                </div>
-              </div>
-
-              <div class="bs-row bs-total">
-                <span class="bs-item">資産合計</span>
-                <span class="bs-amount">{formatAmount(balanceSheet.assets.total)}</span>
-              </div>
-            </div>
+                <tr class="bs-subtotal">
+                  <td class="bs-item">固定資産合計</td>
+                  <td class="bs-amount">{formatAmount(balanceSheet.assets.fixedTotal)}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="bs-total">
+                  <th scope="row" class="bs-item">資産合計</th>
+                  <td class="bs-amount">{formatAmount(balanceSheet.assets.total)}</td>
+                </tr>
+              </tfoot>
+            </table>
 
             <!-- 負債・純資産の部 -->
-            <div class="bs-section">
-              <h3 class="bs-section-title">負債の部</h3>
-
-              <div class="bs-category">
-                <h4 class="bs-category-title">流動負債</h4>
+            <table class="bs-table" aria-label="負債及び純資産の部">
+              <caption class="bs-caption">負債の部</caption>
+              <thead class="visually-hidden">
+                <tr>
+                  <th scope="col">勘定科目</th>
+                  <th scope="col">金額（円）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" colspan="2" class="bs-category-header">流動負債</th>
+                </tr>
                 {balanceSheet.liabilities.current.map((item) => (
-                  <div class="bs-row">
-                    <span class="bs-item">{item.name}</span>
-                    <span class="bs-amount">{formatAmount(item.amount)}</span>
-                  </div>
+                  <tr>
+                    <td class="bs-item">{item.name}</td>
+                    <td class="bs-amount">{formatAmount(item.amount)}</td>
+                  </tr>
                 ))}
-                <div class="bs-row bs-subtotal">
-                  <span class="bs-item">流動負債合計</span>
-                  <span class="bs-amount">{formatAmount(balanceSheet.liabilities.currentTotal)}</span>
-                </div>
-              </div>
-
-              <div class="bs-category">
-                <h4 class="bs-category-title">固定負債</h4>
+                <tr class="bs-subtotal">
+                  <td class="bs-item">流動負債合計</td>
+                  <td class="bs-amount">{formatAmount(balanceSheet.liabilities.currentTotal)}</td>
+                </tr>
+                <tr>
+                  <th scope="row" colspan="2" class="bs-category-header">固定負債</th>
+                </tr>
                 {balanceSheet.liabilities.fixed.map((item) => (
-                  <div class="bs-row">
-                    <span class="bs-item">{item.name}</span>
-                    <span class="bs-amount">{formatAmount(item.amount)}</span>
-                  </div>
+                  <tr>
+                    <td class="bs-item">{item.name}</td>
+                    <td class="bs-amount">{formatAmount(item.amount)}</td>
+                  </tr>
                 ))}
-                <div class="bs-row bs-subtotal">
-                  <span class="bs-item">固定負債合計</span>
-                  <span class="bs-amount">{formatAmount(balanceSheet.liabilities.fixedTotal)}</span>
-                </div>
-              </div>
-
-              <div class="bs-row bs-subtotal">
-                <span class="bs-item">負債合計</span>
-                <span class="bs-amount">{formatAmount(balanceSheet.liabilities.total)}</span>
-              </div>
-
-              <h3 class="bs-section-title bs-section-title-margin">純資産の部</h3>
-
-              <div class="bs-category">
-                <h4 class="bs-category-title">株主資本</h4>
-                <div class="bs-row">
-                  <span class="bs-item">資本金</span>
-                  <span class="bs-amount">{formatAmount(balanceSheet.equity.capital)}</span>
-                </div>
-                <div class="bs-row">
-                  <span class="bs-item">利益剰余金</span>
-                  <span class="bs-amount negative">{formatAmount(balanceSheet.equity.retainedEarnings)}</span>
-                </div>
-                <div class="bs-row bs-subtotal">
-                  <span class="bs-item">純資産合計</span>
-                  <span class="bs-amount negative">{formatAmount(balanceSheet.equity.total)}</span>
-                </div>
-              </div>
-
-              <div class="bs-row bs-total">
-                <span class="bs-item">負債及び純資産合計</span>
-                <span class="bs-amount">{formatAmount(balanceSheet.liabilitiesAndEquityTotal)}</span>
-              </div>
-            </div>
+                <tr class="bs-subtotal">
+                  <td class="bs-item">固定負債合計</td>
+                  <td class="bs-amount">{formatAmount(balanceSheet.liabilities.fixedTotal)}</td>
+                </tr>
+                <tr class="bs-subtotal">
+                  <td class="bs-item">負債合計</td>
+                  <td class="bs-amount">{formatAmount(balanceSheet.liabilities.total)}</td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <th scope="row" colspan="2" class="bs-caption bs-caption-inline">純資産の部</th>
+                </tr>
+                <tr>
+                  <th scope="row" colspan="2" class="bs-category-header">株主資本</th>
+                </tr>
+                <tr>
+                  <td class="bs-item">資本金</td>
+                  <td class="bs-amount">{formatAmount(balanceSheet.equity.capital)}</td>
+                </tr>
+                <tr>
+                  <td class="bs-item">利益剰余金</td>
+                  <td class="bs-amount negative">{formatAmount(balanceSheet.equity.retainedEarnings)}</td>
+                </tr>
+                <tr class="bs-subtotal">
+                  <td class="bs-item">純資産合計</td>
+                  <td class="bs-amount negative">{formatAmount(balanceSheet.equity.total)}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr class="bs-total">
+                  <th scope="row" class="bs-item">負債及び純資産合計</th>
+                  <td class="bs-amount">{formatAmount(balanceSheet.liabilitiesAndEquityTotal)}</td>
+                </tr>
+              </tfoot>
+            </table>
           </div>
         </div>
       </div>
@@ -231,6 +248,19 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
 </Layout>
 
 <style>
+  /* Visually hidden for screen readers */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   /* Notice Card */
   .notice-card {
     max-width: 48rem;
@@ -251,25 +281,26 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
     border-bottom: 2px solid var(--border);
   }
 
-  .notice-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  .notice-table {
+    width: 100%;
+    border-collapse: collapse;
   }
 
-  .notice-row {
+  .notice-table tr {
     display: flex;
     gap: 1rem;
+    margin-bottom: 1rem;
   }
 
-  .notice-label {
+  .notice-table th {
     flex-shrink: 0;
     width: 120px;
     font-weight: 600;
     color: var(--primary);
+    text-align: left;
   }
 
-  .notice-value {
+  .notice-table td {
     color: var(--text);
   }
 
@@ -290,48 +321,46 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
     gap: 2rem;
   }
 
-  .bs-section {
-    padding: 1rem;
+  .bs-table {
+    width: 100%;
+    border-collapse: collapse;
   }
 
-  .bs-section-title {
+  .bs-caption {
     font-size: 1.125rem;
     font-weight: 700;
     color: var(--text);
     padding-bottom: 0.75rem;
     margin-bottom: 1rem;
     border-bottom: 2px solid var(--primary);
+    text-align: left;
+    caption-side: top;
   }
 
-  .bs-section-title-margin {
-    margin-top: 1.5rem;
+  .bs-caption-inline {
+    padding-top: 1.5rem;
+    margin-top: 0.5rem;
+    border-bottom: 2px solid var(--primary);
   }
 
-  .bs-category {
-    margin-bottom: 1.5rem;
-  }
-
-  .bs-category-title {
+  .bs-category-header {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 0.75rem;
-    padding-left: 0.5rem;
+    padding: 0.75rem 0 0.75rem 0.5rem;
+    text-align: left;
     border-left: 3px solid var(--secondary);
   }
 
-  .bs-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0;
+  .bs-table tr {
     border-bottom: 1px solid var(--border);
   }
 
   .bs-item {
     font-size: 0.9375rem;
     color: var(--text);
-    padding-left: 1rem;
+    padding: 0.5rem 0 0.5rem 1rem;
+    text-align: left;
   }
 
   .bs-amount {
@@ -339,6 +368,7 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
     font-family: var(--font-mono, monospace);
     color: var(--text);
     text-align: right;
+    padding: 0.5rem 0;
     min-width: 120px;
   }
 
@@ -350,10 +380,7 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
     background: rgba(0, 212, 170, 0.05);
   }
 
-  .bs-subtotal .bs-item {
-    font-weight: 600;
-  }
-
+  .bs-subtotal .bs-item,
   .bs-subtotal .bs-amount {
     font-weight: 600;
   }
@@ -361,18 +388,17 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
   .bs-total {
     background: rgba(0, 212, 170, 0.15);
     border-bottom: 2px solid var(--primary);
-    margin-top: 1rem;
-    padding: 0.75rem 0;
   }
 
-  .bs-total .bs-item {
+  .bs-total .bs-item,
+  .bs-total .bs-amount {
     font-weight: 700;
-    color: var(--text);
+    padding: 0.75rem 0 0.75rem 1rem;
   }
 
   .bs-total .bs-amount {
-    font-weight: 700;
     font-size: 1rem;
+    padding-left: 0;
   }
 
   /* Notes */
@@ -515,12 +541,12 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
       grid-template-columns: 1fr;
     }
 
-    .notice-row {
+    .notice-table tr {
       flex-direction: column;
       gap: 0.25rem;
     }
 
-    .notice-label {
+    .notice-table th {
       width: auto;
     }
 
