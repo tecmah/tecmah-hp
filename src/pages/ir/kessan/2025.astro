@@ -1,0 +1,582 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import PageHero from "../../../components/PageHero.astro";
+import { company } from "../../../data/content.ts";
+
+const pageTitle = "第1期 半期報告（決算公告） | 株式会社TECMAH";
+const pageDescription = "株式会社TECMAHの第1期（2025年7月〜12月）半期報告書。貸借対照表の要旨を掲載しています。";
+
+const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`;
+
+// 半期報告データ（2025年7月〜12月）
+const reportInfo = {
+  period: "第1期 半期（2025年7月1日〜2025年12月31日）",
+  publishDate: "2025年12月30日",
+  companyName: company.name,
+  address: company.address.full,
+  representative: company.representative
+};
+
+// 貸借対照表データ（単位：円）
+const balanceSheet = {
+  assets: {
+    current: [
+      { name: "現金及び預金", amount: 1747879 }
+    ],
+    currentTotal: 1747879,
+    fixed: [
+      { name: "繰延資産（創立費）", amount: 288998 }
+    ],
+    fixedTotal: 288998,
+    total: 2036877
+  },
+  liabilities: {
+    current: [
+      { name: "未払金", amount: 199570 }
+    ],
+    currentTotal: 199570,
+    fixed: [
+      { name: "長期借入金", amount: 2000000 }
+    ],
+    fixedTotal: 2000000,
+    total: 2199570
+  },
+  equity: {
+    capital: 1000000,
+    retainedEarnings: -1162693,
+    total: -162693
+  },
+  liabilitiesAndEquityTotal: 2036877
+};
+
+// 金額フォーマット関数
+function formatAmount(amount: number): string {
+  return amount.toLocaleString('ja-JP');
+}
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+  <main>
+    <PageHero
+      titleHtml='<span class="gradient-text">第1期 半期報告（決算公告）</span>'
+      subtitleHtml="株式会社TECMAHの第1期（2025年7月〜12月）半期報告書<br /><span class='text-muted'>会社法第440条に基づく決算公告</span>"
+      badge="法定公告"
+      badgeIconHtml={kessanIcon}
+    />
+
+    <!-- 公告情報 -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="notice-card">
+          <h2 class="notice-title">決算公告</h2>
+          <div class="notice-info">
+            <div class="notice-row">
+              <span class="notice-label">対象期間</span>
+              <span class="notice-value">{reportInfo.period}</span>
+            </div>
+            <div class="notice-row">
+              <span class="notice-label">公告日</span>
+              <span class="notice-value">{reportInfo.publishDate}</span>
+            </div>
+            <div class="notice-row">
+              <span class="notice-label">商号</span>
+              <span class="notice-value">{reportInfo.companyName}</span>
+            </div>
+            <div class="notice-row">
+              <span class="notice-label">本店所在地</span>
+              <span class="notice-value">{reportInfo.address}</span>
+            </div>
+            <div class="notice-row">
+              <span class="notice-label">代表取締役</span>
+              <span class="notice-value">{reportInfo.representative}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 貸借対照表 -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="gradient-text">貸借対照表の要旨</span>
+          </h2>
+          <p class="section-description">
+            2025年12月31日現在（単位：円）
+          </p>
+        </div>
+
+        <div class="balance-sheet">
+          <div class="bs-grid">
+            <!-- 資産の部 -->
+            <div class="bs-section">
+              <h3 class="bs-section-title">資産の部</h3>
+
+              <div class="bs-category">
+                <h4 class="bs-category-title">流動資産</h4>
+                {balanceSheet.assets.current.map((item) => (
+                  <div class="bs-row">
+                    <span class="bs-item">{item.name}</span>
+                    <span class="bs-amount">{formatAmount(item.amount)}</span>
+                  </div>
+                ))}
+                <div class="bs-row bs-subtotal">
+                  <span class="bs-item">流動資産合計</span>
+                  <span class="bs-amount">{formatAmount(balanceSheet.assets.currentTotal)}</span>
+                </div>
+              </div>
+
+              <div class="bs-category">
+                <h4 class="bs-category-title">固定資産</h4>
+                {balanceSheet.assets.fixed.map((item) => (
+                  <div class="bs-row">
+                    <span class="bs-item">{item.name}</span>
+                    <span class="bs-amount">{formatAmount(item.amount)}</span>
+                  </div>
+                ))}
+                <div class="bs-row bs-subtotal">
+                  <span class="bs-item">固定資産合計</span>
+                  <span class="bs-amount">{formatAmount(balanceSheet.assets.fixedTotal)}</span>
+                </div>
+              </div>
+
+              <div class="bs-row bs-total">
+                <span class="bs-item">資産合計</span>
+                <span class="bs-amount">{formatAmount(balanceSheet.assets.total)}</span>
+              </div>
+            </div>
+
+            <!-- 負債・純資産の部 -->
+            <div class="bs-section">
+              <h3 class="bs-section-title">負債の部</h3>
+
+              <div class="bs-category">
+                <h4 class="bs-category-title">流動負債</h4>
+                {balanceSheet.liabilities.current.map((item) => (
+                  <div class="bs-row">
+                    <span class="bs-item">{item.name}</span>
+                    <span class="bs-amount">{formatAmount(item.amount)}</span>
+                  </div>
+                ))}
+                <div class="bs-row bs-subtotal">
+                  <span class="bs-item">流動負債合計</span>
+                  <span class="bs-amount">{formatAmount(balanceSheet.liabilities.currentTotal)}</span>
+                </div>
+              </div>
+
+              <div class="bs-category">
+                <h4 class="bs-category-title">固定負債</h4>
+                {balanceSheet.liabilities.fixed.map((item) => (
+                  <div class="bs-row">
+                    <span class="bs-item">{item.name}</span>
+                    <span class="bs-amount">{formatAmount(item.amount)}</span>
+                  </div>
+                ))}
+                <div class="bs-row bs-subtotal">
+                  <span class="bs-item">固定負債合計</span>
+                  <span class="bs-amount">{formatAmount(balanceSheet.liabilities.fixedTotal)}</span>
+                </div>
+              </div>
+
+              <div class="bs-row bs-subtotal">
+                <span class="bs-item">負債合計</span>
+                <span class="bs-amount">{formatAmount(balanceSheet.liabilities.total)}</span>
+              </div>
+
+              <h3 class="bs-section-title bs-section-title-margin">純資産の部</h3>
+
+              <div class="bs-category">
+                <h4 class="bs-category-title">株主資本</h4>
+                <div class="bs-row">
+                  <span class="bs-item">資本金</span>
+                  <span class="bs-amount">{formatAmount(balanceSheet.equity.capital)}</span>
+                </div>
+                <div class="bs-row">
+                  <span class="bs-item">利益剰余金</span>
+                  <span class="bs-amount negative">{formatAmount(balanceSheet.equity.retainedEarnings)}</span>
+                </div>
+                <div class="bs-row bs-subtotal">
+                  <span class="bs-item">純資産合計</span>
+                  <span class="bs-amount negative">{formatAmount(balanceSheet.equity.total)}</span>
+                </div>
+              </div>
+
+              <div class="bs-row bs-total">
+                <span class="bs-item">負債及び純資産合計</span>
+                <span class="bs-amount">{formatAmount(balanceSheet.liabilitiesAndEquityTotal)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 注記事項 -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="gradient-text">注記事項</span>
+          </h2>
+        </div>
+
+        <div class="notes-card">
+          <ol class="notes-list">
+            <li class="notes-item">
+              <strong>重要な会計方針</strong>
+              <ul class="notes-sublist">
+                <li>繰延資産の処理方法：創立費は5年間で均等償却しています。</li>
+                <li>固定資産の減価償却：定率法によっています。</li>
+              </ul>
+            </li>
+            <li class="notes-item">
+              <strong>会社の概況</strong>
+              <p>当社は2025年7月14日に設立され、AI・データ活用支援、プロダクトマネジメント支援、DXコンサルティング事業を営んでいます。第1期は事業立ち上げ期間であり、本格的な売上計上は2026年以降を見込んでいます。</p>
+            </li>
+            <li class="notes-item">
+              <strong>長期借入金</strong>
+              <p>長期借入金2,000,000円は、日本政策金融公庫からの創業融資です。</p>
+            </li>
+            <li class="notes-item">
+              <strong>公告の方法</strong>
+              <p>当社の公告は、電子公告により行います。公告掲載URL：https://www.tecmah.com/ir/kessan/</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 免責事項 -->
+    <section class="section">
+      <div class="container">
+        <div class="disclaimer-box">
+          <h3 class="disclaimer-title">掲載について</h3>
+          <ul class="disclaimer-list">
+            <li>本決算公告は、会社法第440条に基づき公告するものです。</li>
+            <li>電子公告の掲載期間は、公告の日から5年間です。</li>
+            <li>本公告に関するお問い合わせは、<a href="mailto:info@tecmah.com" class="link">info@tecmah.com</a> までご連絡ください。</li>
+          </ul>
+        </div>
+
+        <div class="back-link-container">
+          <a href="/ir" class="back-link">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            IR情報トップに戻る
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* Notice Card */
+  .notice-card {
+    max-width: 48rem;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+  }
+
+  .notice-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .notice-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .notice-row {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .notice-label {
+    flex-shrink: 0;
+    width: 120px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .notice-value {
+    color: var(--text);
+  }
+
+  /* Balance Sheet */
+  .balance-sheet {
+    max-width: 64rem;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    overflow-x: auto;
+  }
+
+  .bs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .bs-section {
+    padding: 1rem;
+  }
+
+  .bs-section-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--primary);
+  }
+
+  .bs-section-title-margin {
+    margin-top: 1.5rem;
+  }
+
+  .bs-category {
+    margin-bottom: 1.5rem;
+  }
+
+  .bs-category-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--secondary);
+  }
+
+  .bs-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .bs-item {
+    font-size: 0.9375rem;
+    color: var(--text);
+    padding-left: 1rem;
+  }
+
+  .bs-amount {
+    font-size: 0.9375rem;
+    font-family: var(--font-mono, monospace);
+    color: var(--text);
+    text-align: right;
+    min-width: 120px;
+  }
+
+  .bs-amount.negative {
+    color: #ef4444;
+  }
+
+  .bs-subtotal {
+    background: rgba(0, 212, 170, 0.05);
+  }
+
+  .bs-subtotal .bs-item {
+    font-weight: 600;
+  }
+
+  .bs-subtotal .bs-amount {
+    font-weight: 600;
+  }
+
+  .bs-total {
+    background: rgba(0, 212, 170, 0.15);
+    border-bottom: 2px solid var(--primary);
+    margin-top: 1rem;
+    padding: 0.75rem 0;
+  }
+
+  .bs-total .bs-item {
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .bs-total .bs-amount {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  /* Notes */
+  .notes-card {
+    max-width: 48rem;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+  }
+
+  .notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: notes-counter;
+  }
+
+  .notes-item {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+    counter-increment: notes-counter;
+  }
+
+  .notes-item::before {
+    content: counter(notes-counter) ".";
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .notes-item strong {
+    display: block;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .notes-item p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .notes-sublist {
+    margin: 0.5rem 0 0 1rem;
+    padding: 0;
+    list-style: disc;
+  }
+
+  .notes-sublist li {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Disclaimer */
+  .disclaimer-box {
+    max-width: 48rem;
+    margin: 0 auto 2rem;
+    background: rgba(255, 159, 67, 0.1);
+    border: 1px solid rgba(255, 159, 67, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+
+  .disclaimer-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ff9f43;
+    margin-bottom: 1rem;
+  }
+
+  .disclaimer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .disclaimer-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .disclaimer-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #ff9f43;
+  }
+
+  .disclaimer-list .link {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .disclaimer-list .link:hover {
+    text-decoration: underline;
+  }
+
+  /* Back Link */
+  .back-link-container {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--motion-duration) var(--motion-ease);
+  }
+
+  .back-link:hover {
+    opacity: 0.8;
+  }
+
+  .back-link svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* Utility */
+  .text-muted {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .bs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .notice-row {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .notice-label {
+      width: auto;
+    }
+
+    .bs-amount {
+      min-width: 100px;
+      font-size: 0.875rem;
+    }
+
+    .bs-item {
+      font-size: 0.875rem;
+    }
+  }
+</style>
