@@ -269,9 +269,9 @@ export const pageMeta: Record<string, PageMeta> = {
     keywords: ["導入事例", "成功事例", "実績", "AI導入", "データ活用事例"]
   },
   contact: {
-    title: "お問い合わせ・無料相談予約 | 株式会社TECMAH",
-    description: "株式会社TECMAHへのお問い合わせ・無料相談のお申し込み。初回60分のオンライン相談は無料。AI・データ活用、プロダクトマネジメント支援のご相談はお気軽に。",
-    keywords: ["お問い合わせ", "無料相談", "相談予約", "コンタクト"]
+    title: "お問い合わせ・コンサルティング予約 | 株式会社TECMAH",
+    description: "株式会社TECMAHへのお問い合わせ・コンサルティングのお申し込み。60分の専門コンサルティングで課題を整理し最適な解決策をご提案。AI・データ活用、プロダクトマネジメント支援のご相談はお気軽に。",
+    keywords: ["お問い合わせ", "コンサルティング", "相談予約", "コンタクト"]
   },
   profile: {
     title: "松浦 賢孝 - Profile | PdM / AI Engineer | 株式会社TECMAH",
@@ -298,11 +298,11 @@ export const messages = {
     subtitle: "プロダクト戦略の立案からデータ基盤の整備、生成AIの活用企画と実装、内製化支援まで。ビジネスインパクトに直結する伴走型チームで、短期間でも確かな成果創出につなげます。"
   },
   cta: {
-    primary: "無料相談を予約",
+    primary: "コンサルティングを予約",
     secondary: "サービスを見る",
     consultation: {
       title: "まずはお気軽にご相談ください",
-      subtitle: "初回60分のオンライン相談は無料です。お客様の課題をお聞かせください。最適な解決策をご提案します。"
+      subtitle: "60分の専門コンサルティングで、お客様の課題を整理し最適な解決策をご提案します。"
     }
   },
   stats: {
@@ -482,5 +482,5 @@ export const navigation = {
     { title: "会社概要", href: "/about" },
     { title: "事例", href: "/case-studies" }
   ],
-  cta: { title: "無料相談", href: "/contact" }
+  cta: { title: "ご相談予約", href: "/contact" }
 };
