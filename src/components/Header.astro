@@ -1,5 +1,7 @@
 ---
 // Header component - Stripe-inspired navigation
+import { navigation } from "../data/content";
+
 const LOGO = {
   default: "/images/logo/logo-horizontal.svg",
   dark: "/images/logo/logo-horizontal-dark.svg",
@@ -66,7 +68,7 @@ const lightningIcon = `<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColo
         <a href="/contact" class="cta-button">
           <span class="cta-glow"></span>
           <Fragment set:html={lightningIcon} />
-          ご相談予約
+          {navigation.cta.title}
         </a>
       </div>
 

@@ -58,7 +58,7 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
 
             <p class="card-note">※ 正式契約時には相談料を差し引かせていただきます。</p>
 
-            <button class="card-btn primary" onclick="scrollToForm()">
+            <button class="card-btn primary" id="scroll-to-form-btn" type="button">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
               </svg>
@@ -76,9 +76,9 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
           <!-- Form Header -->
           <div class="form-header">
             <h2 class="form-title">
-              <span class="gradient-text" id="form-title">コンサルティングお申し込み</span>
+              <span class="gradient-text">コンサルティングお申し込み</span>
             </h2>
-            <p class="form-subtitle" id="form-subtitle">
+            <p class="form-subtitle">
               以下のフォームにご記入ください。お支払い方法については後日ご連絡いたします。
             </p>
           </div>
@@ -395,6 +395,13 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
       form.scrollIntoView({ behavior: "smooth" });
     }
   }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const scrollBtn = document.getElementById("scroll-to-form-btn");
+    if (scrollBtn) {
+      scrollBtn.addEventListener("click", scrollToForm);
+    }
+  });
 
   // Character count for message textarea
   document.addEventListener("DOMContentLoaded", function () {
