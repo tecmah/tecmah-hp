@@ -50,14 +50,13 @@ interface ReportInfo {
 const sum = (items: ReadonlyArray<{ amount: number }>) =>
   items.reduce((acc, item) => acc + item.amount, 0);
 
-// TODO: 定時株主総会（2026年9月上旬に開催予定・期限2026年9月30日）の終結後、
-//       meetingDate / publishDate / publicationEndDate を確定日に差し替えてから公開する。
+// 定時株主総会は 2026-08-19 のみなし決議（会社法319条1項）で終結。
 export const reportInfo: ReportInfo = {
   period: "第1期（2025年7月14日〜2026年6月30日）",
   baseDate: "2026年6月30日現在",
-  meetingDate: "2026年9月4日",
-  publishDate: "2026年9月7日",
-  publicationEndDate: "2031年9月4日",
+  meetingDate: "2026年8月19日",
+  publishDate: "2026年8月19日",
+  publicationEndDate: "2031年8月19日",
   companyName: company.name,
   address: company.address.full,
   representative: company.representative,
