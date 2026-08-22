@@ -287,6 +287,11 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "第1期 半期報告（決算公告） | 株式会社TECMAH",
     description: "株式会社TECMAHの第1期（2025年7月〜12月）半期報告書。貸借対照表の要旨を掲載しています。会社法第440条に基づく決算公告。",
     keywords: ["決算公告", "貸借対照表", "半期報告", "法定公告", "第1期"]
+  },
+  "kessan-fy1": {
+    title: "第1期 決算公告 | 株式会社TECMAH",
+    description: "株式会社TECMAHの第1期（2025年7月14日〜2026年6月30日）決算公告。貸借対照表の要旨を掲載しています。会社法第440条に基づく決算公告。",
+    keywords: ["決算公告", "貸借対照表", "法定公告", "第1期"]
   }
 };
 
@@ -368,6 +373,14 @@ export const irKPIs: KPI[] = [
 ];
 
 export const irDocuments: IRDocument[] = [
+  {
+    id: "2026-08-kessan-fy1",
+    title: "第1期 決算公告を公開しました",
+    date: "2026-08-19",
+    type: "法定公告",
+    summary: "第1期（2025年7月14日〜2026年6月30日）の決算公告（貸借対照表）を公開いたしました。会社法第440条に基づく法定公告です。",
+    htmlUrl: "/ir/kessan/fy1"
+  },
   {
     id: "2025-12-kessan-h1",
     title: "第1期 半期報告（決算公告）を公開しました",
