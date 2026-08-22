@@ -374,6 +374,13 @@ export const irKPIs: KPI[] = [
 
 export const irDocuments: IRDocument[] = [
   {
+    id: "2026-08-fy2-policy",
+    title: "第2期の経営方針について",
+    date: "2026-08-22",
+    type: "お知らせ",
+    summary: "第1期の決算確定を受け、第2期（2026年7月1日〜2027年6月30日）は収益基盤の安定化を最優先といたします。あわせて、生成AI活用支援における顧問・伴走型サービスの拡充に取り組みます。"
+  },
+  {
     id: "2026-08-kessan-fy1",
     title: "第1期 決算公告を公開しました",
     date: "2026-08-19",
@@ -399,14 +406,14 @@ export const irDocuments: IRDocument[] = [
   {
     id: "2025-07-establishment",
     title: "株式会社TECMAH 設立のお知らせ",
-    date: "2025-07-01",
+    date: "2025-07-14",
     type: "プレスリリース",
     summary: "AI・データ活用とプロダクトマネジメント支援を専門とする株式会社TECMAHを設立いたしました。北海道札幌市を拠点に、全国の企業向けDX支援事業を開始します。"
   },
   {
     id: "2025-07-service-start",
     title: "DX支援事業を開始しました",
-    date: "2025-07-01",
+    date: "2025-07-14",
     type: "お知らせ",
     summary: "生成AI・データ活用支援、PdM/PM伴走、新規事業・DXコンサルティングの3つのサービスを提供開始いたしました。"
   }
