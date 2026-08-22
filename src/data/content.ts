@@ -74,7 +74,7 @@ export interface IRDocument {
   id: string;
   title: string;
   date: string;
-  type: "お知らせ" | "プレスリリース" | "法定公告";
+  type: "お知らせ" | "プレスリリース" | "法定公告" | "参考資料";
   summary?: string;
   period?: string;
   pdfUrl?: string;
@@ -284,13 +284,13 @@ export const pageMeta: Record<string, PageMeta> = {
     keywords: ["IR", "投資家向け情報", "法定公告", "決算公告", "会社情報"]
   },
   "kessan-2025": {
-    title: "第1期 半期報告（決算公告） | 株式会社TECMAH",
-    description: "株式会社TECMAHの第1期（2025年7月〜12月）半期報告書。貸借対照表の要旨を掲載しています。会社法第440条に基づく決算公告。",
-    keywords: ["決算公告", "貸借対照表", "半期報告", "法定公告", "第1期"]
+    title: "第1期 半期報告（参考資料） | 株式会社TECMAH",
+    description: "株式会社TECMAHの第1期（2025年7月〜12月）の期中開示。参考資料として貸借対照表を掲載しています。法定の決算公告ではありません。",
+    keywords: ["半期報告", "貸借対照表", "参考資料", "第1期"]
   },
   "kessan-fy1": {
     title: "第1期 決算公告 | 株式会社TECMAH",
-    description: "株式会社TECMAHの第1期（2025年7月14日〜2026年6月30日）決算公告。貸借対照表の要旨を掲載しています。会社法第440条に基づく決算公告。",
+    description: "株式会社TECMAHの第1期（2025年7月14日〜2026年6月30日）決算公告。会社法第440条に基づき貸借対照表を掲載しています。",
     keywords: ["決算公告", "貸借対照表", "法定公告", "第1期"]
   }
 };
@@ -374,6 +374,13 @@ export const irKPIs: KPI[] = [
 
 export const irDocuments: IRDocument[] = [
   {
+    id: "2026-08-fy2-policy",
+    title: "第2期の経営方針について",
+    date: "2026-08-22",
+    type: "お知らせ",
+    summary: "第1期の決算確定を受け、第2期（2026年7月1日〜2027年6月30日）は収益基盤の安定化を最優先といたします。あわせて、生成AI活用支援における顧問・伴走型サービスの拡充に取り組みます。"
+  },
+  {
     id: "2026-08-kessan-fy1",
     title: "第1期 決算公告を公開しました",
     date: "2026-08-19",
@@ -383,10 +390,10 @@ export const irDocuments: IRDocument[] = [
   },
   {
     id: "2025-12-kessan-h1",
-    title: "第1期 半期報告（決算公告）を公開しました",
+    title: "第1期 半期報告を公開しました",
     date: "2025-12-30",
-    type: "法定公告",
-    summary: "2025年7月〜12月の半期報告書（貸借対照表の要旨）を公開いたしました。",
+    type: "参考資料",
+    summary: "2025年7月〜12月の期中の状況を参考資料として公開いたしました。法定の決算公告ではありません。",
     htmlUrl: "/ir/kessan/2025"
   },
   {
@@ -399,14 +406,14 @@ export const irDocuments: IRDocument[] = [
   {
     id: "2025-07-establishment",
     title: "株式会社TECMAH 設立のお知らせ",
-    date: "2025-07-01",
+    date: "2025-07-14",
     type: "プレスリリース",
     summary: "AI・データ活用とプロダクトマネジメント支援を専門とする株式会社TECMAHを設立いたしました。北海道札幌市を拠点に、全国の企業向けDX支援事業を開始します。"
   },
   {
     id: "2025-07-service-start",
     title: "DX支援事業を開始しました",
-    date: "2025-07-01",
+    date: "2025-07-14",
     type: "お知らせ",
     summary: "生成AI・データ活用支援、PdM/PM伴走、新規事業・DXコンサルティングの3つのサービスを提供開始いたしました。"
   }
@@ -419,7 +426,7 @@ export const irFAQs: IRFAQ[] = [
   },
   {
     question: "財務情報はどこで確認できますか",
-    answer: "当社の決算公告（貸借対照表の要旨）は、本ページの「お知らせ・プレスリリース」セクションからご確認いただけます。最新の半期報告は<a href=\"/ir/kessan/2025\" class=\"link\">第1期 半期報告（2025年7月〜12月）</a>をご覧ください。"
+    answer: "会社法第440条に基づく決算公告は<a href=\"/ir/kessan/fy1\" class=\"link\">第1期 決算公告（2025年7月14日〜2026年6月30日）</a>をご覧ください。期中の参考資料として<a href=\"/ir/kessan/2025\" class=\"link\">第1期 半期報告（2025年7月〜12月）</a>も公開しています。"
   },
   {
     question: "IRに関するお問い合わせはどこに連絡すればよいですか",
@@ -449,12 +456,6 @@ export const irDisclaimer: IRDisclaimer = {
 
 // 会社情報リンク
 export const irCompanyLinks: IRCompanyLink[] = [
-  {
-    title: "会社の取り組み",
-    description: "2025年下半期の振り返りと2026年事業計画。中長期ロードマップをご覧いただけます。",
-    href: "/company-update",
-    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>`
-  },
   {
     title: "会社概要",
     description: "会社の基本情報、設立、所在地、代表者情報をご覧いただけます。",
