@@ -374,6 +374,14 @@ export const irKPIs: KPI[] = [
 
 export const irDocuments: IRDocument[] = [
   {
+    id: "2026-08-kessan-fy1",
+    title: "第1期 決算公告を公開しました",
+    date: "2026-08-19",
+    type: "法定公告",
+    summary: "第1期（2025年7月14日〜2026年6月30日）の決算公告（貸借対照表）を公開いたしました。会社法第440条に基づく法定公告です。",
+    htmlUrl: "/ir/kessan/fy1"
+  },
+  {
     id: "2025-12-kessan-h1",
     title: "第1期 半期報告（決算公告）を公開しました",
     date: "2025-12-30",
