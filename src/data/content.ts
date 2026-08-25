@@ -53,21 +53,26 @@ export interface PageMeta {
   keywords?: string[];
 }
 
+// 業績ハイライト（決算期ごとの主要指標）
 export interface IRHighlight {
-  period: string;
   label: string;
   value: string;
   unit?: string;
-  change?: string;
+  note?: string;
 }
 
-export interface KPI {
-  label: string;
-  q1?: string;
-  q2?: string;
-  q3?: string;
-  q4?: string;
-  unit?: string;
+// 事業セグメント別の状況
+export interface IRSegment {
+  name: string;
+  description: string;
+  fy1Status: string;
+}
+
+// リスク要因と対策
+export interface IRRisk {
+  risk: string;
+  detail: string;
+  mitigation: string;
 }
 
 export interface IRDocument {
@@ -342,33 +347,70 @@ export const footer = {
   copyright: `© ${new Date().getFullYear()} ${company.name}. All rights reserved.`
 };
 
-// IR情報
+// 業績ハイライト — 第1期（2025年7月14日〜2026年6月30日）
+// 数値は定時株主総会で承認された計算書類に基づく確定値（千円未満切捨て）
+export const irHighlightsPeriod = "第1期（2025年7月14日〜2026年6月30日）";
 export const irHighlights: IRHighlight[] = [
+  { label: "売上高", value: "6,757", unit: "千円" },
+  { label: "営業利益", value: "1,905", unit: "千円" },
+  { label: "経常利益", value: "1,892", unit: "千円" },
+  { label: "当期純利益", value: "1,405", unit: "千円" },
+  { label: "総資産", value: "7,843", unit: "千円" },
+  { label: "純資産", value: "2,405", unit: "千円" },
+  { label: "自己資本比率", value: "30.7", unit: "%" }
+];
+
+// 事業セグメント別の状況
+// 当社は単一セグメント（DX支援事業）で、その中で3つのサービスラインを展開
+export const irSegmentNote =
+  "当社は単一セグメント（DX支援事業）として運営しており、その中で以下の3つのサービスラインを展開しています。";
+export const irSegments: IRSegment[] = [
   {
-    period: "2025年",
-    label: "設立年",
-    value: "2025",
-    unit: "年"
+    name: "生成AI・データ活用支援",
+    description: "生成AIの導入・活用支援、データ分析基盤の構築、AIエージェントを用いた業務自動化の伴走支援。",
+    fy1Status: "第1期の売上の大部分を占める主力サービスライン。長期の伴走型支援案件を中心に安定的に推移しました。"
   },
   {
-    period: "2025年",
-    label: "代表取締役",
-    value: "松浦 賢孝"
+    name: "PdM/PM伴走支援",
+    description: "プロダクトマネジメント・プロジェクトマネジメントの実務伴走。戦略策定からチーム運営、KPI管理まで支援。",
+    fy1Status: "生成AI・データ活用支援案件の中で複合的に提供。単独案件としての拡大は第2期以降の課題です。"
+  },
+  {
+    name: "新規事業・DXコンサルティング",
+    description: "市場検証・事業計画・KPI設計・オペレーション構築まで、新規事業立ち上げとDX推進を支援。",
+    fy1Status: "第1期は実績が限定的でした。第2期以降、生成AI顧問型の支援を軸に拡大を図ります。"
   }
 ];
 
-export const irKPIs: KPI[] = [
+// 成長戦略・今後の見通し
+export const irStrategy: string[] = [
+  "生成AI活用の伴走・顧問型支援の拡大 — 導入支援にとどまらず、経営・業務プロセスへの生成AI定着を継続支援する顧問型サービスを成長の軸とします。",
+  "教育・コンテンツ事業の育成 — 支援を通じて得たナレッジをオンライン講座・技術記事等のコンテンツとして資産化し、ストック型の収益基盤を構築します。",
+  "自社業務の極限自動化 — AIエージェントを自社の経理・PM・情報収集業務に適用し、少人数でも高い生産性と利益率を維持する経営モデルを実証します。",
+  "財務健全性の維持 — 過大な先行投資を避け、黒字経営と手元流動性の確保を優先した堅実な財務運営を継続します。"
+];
+
+// リスク要因と対策
+export const irRisks: IRRisk[] = [
   {
-    label: "売上高",
-    unit: "万円"
+    risk: "代表者への依存",
+    detail: "当社は少人数体制であり、事業運営の大部分を代表取締役に依存しています。代表者に不測の事態が生じた場合、事業継続に重大な影響を及ぼす可能性があります。",
+    mitigation: "業務プロセスのドキュメント化と自動化を徹底し、属人性を低減しています。また、ナレッジのコンテンツ資産化により、個人に依存しない収益基盤の構築を進めています。"
   },
   {
-    label: "営業利益",
-    unit: "万円"
+    risk: "特定顧客への収益集中",
+    detail: "第1期の売上は少数の顧客に集中しており、主要顧客との契約終了・縮小が業績に大きく影響する可能性があります。",
+    mitigation: "顧問型支援の複数社展開とコンテンツ事業の育成により、収益源の分散を図っています。"
   },
   {
-    label: "従業員数",
-    unit: "名"
+    risk: "生成AI市場の急速な技術変化",
+    detail: "当社の主力事業は生成AI関連技術に依存しており、技術の陳腐化や市場環境の急変が競争力に影響する可能性があります。",
+    mitigation: "最新技術の継続的な検証・実装を自社業務で日常的に行い、実践知として蓄積することで技術変化への追随力を維持しています。"
+  },
+  {
+    risk: "小規模組織ゆえの事業継続リスク",
+    detail: "資本規模・人員規模が小さいため、外部環境の急変や大口案件の失注が資金繰りに影響する可能性があります。",
+    mitigation: "固定費を低く抑え、手元流動性の確保を優先する財務運営により、収益変動への耐性を確保しています。"
   }
 ];
 
@@ -426,7 +468,7 @@ export const irFAQs: IRFAQ[] = [
   },
   {
     question: "財務情報はどこで確認できますか",
-    answer: "会社法第440条に基づく決算公告は<a href=\"/ir/kessan/fy1\" class=\"link\">第1期 決算公告（2025年7月14日〜2026年6月30日）</a>をご覧ください。期中の参考資料として<a href=\"/ir/kessan/2025\" class=\"link\">第1期 半期報告（2025年7月〜12月）</a>も公開しています。"
+    answer: "本ページの「業績ハイライト」セクションに主要な財務指標を掲載しています。会社法第440条に基づく決算公告は<a href=\"/ir/kessan/fy1\" class=\"link\">第1期 決算公告（2025年7月14日〜2026年6月30日）</a>をご覧ください。期中の参考資料として<a href=\"/ir/kessan/2025\" class=\"link\">第1期 半期報告（2025年7月〜12月）</a>も公開しています。"
   },
   {
     question: "IRに関するお問い合わせはどこに連絡すればよいですか",
