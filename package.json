@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "node scripts/verify-koukoku.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "test:build": "npm run build && npm run preview",
-    "lhci": "npm run build && lhci autorun --collect.staticDistDir=./dist"
+    "lhci": "npm run build && lhci autorun --collect.staticDistDir=./dist",
+    "verify:koukoku": "node scripts/verify-koukoku.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",

@@ -1,4 +1,14 @@
 ---
+// =====================================================================
+// 第1期 決算公告ページ（会社法第440条第1項）
+//
+// !!! このページの URL（/ir/kessan/fy1）は 2031年8月19日まで変更禁止 !!!
+// 会社法第940条第1項第2号により、決算公告は定時株主総会の終結の日（2026年8月19日）後
+// 5年を経過する日まで継続して電子公告しなければならない。途中で URL が変わる・404 になると
+// 公告義務を果たしていないことになる（Issue #22）。
+// - ルーティング変更時は必ず 301 リダイレクトを残すこと
+// - scripts/verify-koukoku.mjs がビルド後に本ページの存在と主要数値を検証する
+// =====================================================================
 import Layout from "../../../layouts/Layout.astro";
 import Header from "../../../components/Header.astro";
 import Footer from "../../../components/Footer.astro";
@@ -190,6 +200,16 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
                   <td class="bs-item">利益剰余金</td>
                   <td class="bs-amount">{formatAmount(balanceSheet.equity.retainedEarnings)}</td>
                 </tr>
+                <tr>
+                  <td class="bs-item bs-item-indent">その他利益剰余金</td>
+                  <td class="bs-amount">{formatAmount(balanceSheet.equity.otherRetainedEarningsTotal)}</td>
+                </tr>
+                {balanceSheet.equity.otherRetainedEarnings.map((item) => (
+                  <tr>
+                    <td class="bs-item bs-item-indent-2">{item.name}</td>
+                    <td class="bs-amount">{formatAmount(item.amount)}</td>
+                  </tr>
+                ))}
                 <tr class="bs-subtotal">
                   <td class="bs-item">純資産合計</td>
                   <td class="bs-amount">{formatAmount(balanceSheet.equity.total)}</td>
@@ -235,7 +255,7 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
             </li>
             <li class="notes-item">
               <strong>公告の方法</strong>
-              <p>当社の公告は、電子公告により行います。公告掲載URL：{reportInfo.disclosureUrl}</p>
+              <p>当社の公告は、電子公告により行います。本公告の掲載URL：{reportInfo.disclosureUrl}（当社の公告一覧は<a href="/koukoku" class="link">電子公告ページ</a>に掲載しています）</p>
             </li>
           </ol>
         </div>
@@ -255,11 +275,17 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
         </div>
 
         <div class="back-link-container">
-          <a href="/ir" class="back-link">
+          <a href="/koukoku" class="back-link">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
-            IR情報トップに戻る
+            電子公告一覧に戻る
+          </a>
+          <a href="/ir" class="back-link">
+            投資家向け情報（IR）を見る
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
           </a>
         </div>
       </div>
@@ -382,6 +408,14 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
     color: var(--text);
     padding: 0.5rem 0 0.5rem 1rem;
     text-align: left;
+  }
+
+  .bs-item-indent {
+    padding-left: 2rem;
+  }
+
+  .bs-item-indent-2 {
+    padding-left: 3rem;
   }
 
   .bs-amount {
@@ -527,7 +561,10 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
 
   /* Back Link */
   .back-link-container {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2.5rem;
     margin-top: 2rem;
   }
 

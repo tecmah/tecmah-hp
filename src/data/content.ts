@@ -17,7 +17,8 @@ export interface CompanyInfo {
     full: string;
   };
   contact: {
-    phone: string;
+    /** 会社サイトには電話番号を掲載しない方針のため任意 */
+    phone?: string;
     email: string;
     website: string;
   };
@@ -279,14 +280,19 @@ export const pageMeta: Record<string, PageMeta> = {
     keywords: ["お問い合わせ", "コンサルティング", "相談予約", "コンタクト"]
   },
   profile: {
-    title: "松浦 賢孝 - Profile | PdM / AI Engineer | 株式会社TECMAH",
-    description: "松浦賢孝の経歴書。AI技術を活用した新規事業開発やPdM/AEとしてのプロジェクト推進に強みを持ち、技術とビジネスの両面から成果を生み出す。10年以上の開発・マネジメント経験。",
-    keywords: ["松浦賢孝", "経歴書", "PdM", "AI Engineer", "プロダクトマネージャー", "職務経歴書"]
+    title: "代表者プロフィール（松浦 賢孝） | 株式会社TECMAH",
+    description: "株式会社TECMAH 代表取締役 松浦賢孝の経歴。AI技術を活用した新規事業開発やPdM/AEとしてのプロジェクト推進に強みを持ち、技術とビジネスの両面から成果を生み出す。10年以上の開発・マネジメント経験。",
+    keywords: ["松浦賢孝", "代表者", "経歴", "PdM", "AI Engineer", "プロダクトマネージャー"]
   },
   ir: {
-    title: "投資家向け情報・法定公告 | 株式会社TECMAH",
-    description: "株式会社TECMAHの法定公告（決算公告）および投資家向け情報を掲載しています。未上場企業のため、決算短信・有価証券報告書等の上場企業向け開示資料は作成していません。",
-    keywords: ["IR", "投資家向け情報", "法定公告", "決算公告", "会社情報"]
+    title: "投資家向け情報（IR） | 株式会社TECMAH",
+    description: "株式会社TECMAHの投資家向け情報（業績ハイライト・事業の状況・成長戦略・リスク要因・お知らせ）を掲載しています。会社法に基づく法定公告は電子公告ページに掲載しています。未上場企業のため、決算短信・有価証券報告書等の上場企業向け開示資料は作成していません。",
+    keywords: ["IR", "投資家向け情報", "業績", "会社情報"]
+  },
+  koukoku: {
+    title: "電子公告 | 株式会社TECMAH",
+    description: "株式会社TECMAHの電子公告ページ。会社法第440条に基づく決算公告（貸借対照表）など、当社の法定公告を掲載しています。",
+    keywords: ["電子公告", "法定公告", "決算公告", "貸借対照表", "会社法"]
   },
   "kessan-2025": {
     title: "第1期 半期報告（参考資料） | 株式会社TECMAH",
@@ -339,6 +345,8 @@ export const footer = {
       links: [
         { title: "会社概要", href: "/about" },
         { title: "事例", href: "/case-studies" },
+        { title: "IR情報", href: "/ir" },
+        { title: "電子公告", href: "/koukoku" },
         { title: "お問い合わせ", href: "/contact" },
         { title: "プライバシーポリシー", href: "/privacy" }
       ]
@@ -468,7 +476,7 @@ export const irFAQs: IRFAQ[] = [
   },
   {
     question: "財務情報はどこで確認できますか",
-    answer: "本ページの「業績ハイライト」セクションに主要な財務指標を掲載しています。会社法第440条に基づく決算公告は<a href=\"/ir/kessan/fy1\" class=\"link\">第1期 決算公告（2025年7月14日〜2026年6月30日）</a>をご覧ください。期中の参考資料として<a href=\"/ir/kessan/2025\" class=\"link\">第1期 半期報告（2025年7月〜12月）</a>も公開しています。"
+    answer: "本ページの「業績ハイライト」セクションに主要な財務指標を掲載しています。会社法第440条に基づく決算公告（貸借対照表）は<a href=\"/koukoku\" class=\"link\">電子公告ページ</a>に掲載しています（<a href=\"/ir/kessan/fy1\" class=\"link\">第1期 決算公告</a>）。期中の参考資料として<a href=\"/ir/kessan/2025\" class=\"link\">第1期 半期報告（2025年7月〜12月）</a>も公開しています。"
   },
   {
     question: "IRに関するお問い合わせはどこに連絡すればよいですか",
@@ -480,7 +488,7 @@ export const irFAQs: IRFAQ[] = [
   },
   {
     question: "決算短信や有価証券報告書はありますか",
-    answer: "当社は未上場企業のため、決算短信・有価証券報告書などの上場企業向け開示資料は作成していません。法定公告（決算公告）はこのページで公開いたします。"
+    answer: "当社は未上場企業のため、決算短信・有価証券報告書などの上場企業向け開示資料は作成していません。会社法に基づく法定公告（決算公告）は<a href=\"/koukoku\" class=\"link\">電子公告ページ</a>で公開しています。"
   }
 ];
 
@@ -497,7 +505,15 @@ export const irDisclaimer: IRDisclaimer = {
 };
 
 // 会社情報リンク
+// NOTE: 個人のページ（/profile など）はここに載せない。/ir は公告の入口として外部（取引先・金融機関）が
+// 参照するページのため、会社の公式情報のみを並べる（Issue #24）。
 export const irCompanyLinks: IRCompanyLink[] = [
+  {
+    title: "電子公告（法定公告）",
+    description: "会社法に基づく決算公告（貸借対照表）など、当社の法定公告を掲載しています。",
+    href: "/koukoku",
+    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`
+  },
   {
     title: "会社概要",
     description: "会社の基本情報、設立、所在地、代表者情報をご覧いただけます。",
@@ -509,12 +525,6 @@ export const irCompanyLinks: IRCompanyLink[] = [
     description: "AI・データ活用支援、PdM/PM伴走、DXコンサルティングの詳細をご覧いただけます。",
     href: "/services",
     icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>`
-  },
-  {
-    title: "代表者プロフィール",
-    description: "代表取締役 松浦 賢孝の経歴、専門分野をご覧いただけます。",
-    href: "/profile",
-    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>`
   }
 ];
 
@@ -524,7 +534,8 @@ export const navigation = {
     { title: "ホーム", href: "/" },
     { title: "サービス", href: "/services" },
     { title: "会社概要", href: "/about" },
-    { title: "事例", href: "/case-studies" }
+    { title: "事例", href: "/case-studies" },
+    { title: "IR情報", href: "/ir" }
   ],
   cta: { title: "ご相談予約", href: "/contact" }
 };

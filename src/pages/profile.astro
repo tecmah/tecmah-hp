@@ -11,11 +11,16 @@ import {
   featuredProjects,
   metrics,
 } from "../data/resume";
+import { company, pageMeta } from "../data/content";
+
+// NOTE: このページは「代表者の経歴」（会社概要の補足）として掲載する。
+// 個人事業・フリーランスとしての営業ページではないため、法定公告（/koukoku）や IR（/ir）からはリンクしない。
+// 導線は /about（会社概要）の代表者プロフィールからのみ。
 ---
 
 <Layout
-  title="松浦 賢孝 - Profile | PdM / AI Engineer"
-  description="松浦賢孝の経歴書。AI技術を活用した新規事業開発やPdM/AEとしてのプロジェクト推進に強みを持ち、技術とビジネスの両面から成果を生み出す。"
+  title={pageMeta.profile.title}
+  description={pageMeta.profile.description}
 >
   <Header />
 
@@ -47,8 +52,8 @@ import {
           <!-- Hero Content -->
           <div class="order-1 lg:order-2 text-center lg:text-left animate-on-scroll" data-animation="fade-left">
             <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-sm font-medium mb-6">
-              <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-              Available for Projects
+              <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+              {company.name} 代表取締役
             </div>
             
             <p class="text-green-400 font-medium mb-2">{personalInfo.nameKana}</p>
@@ -364,11 +369,11 @@ import {
       <div class="container text-center">
         <div class="max-w-3xl mx-auto animate-on-scroll" data-animation="fade-up">
           <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-            一緒に仕事をしませんか？
+            {company.name}へのご相談
           </h2>
           <p class="text-xl text-white/90 mb-8">
-            プロジェクトのご相談、お気軽にお問い合わせください。<br />
-            技術力とマネジメント力の両面から貢献します。
+            AI・データ活用やプロダクトマネジメントに関するご相談は、<br />
+            会社のお問い合わせ窓口までお寄せください。
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a

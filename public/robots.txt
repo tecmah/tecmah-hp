@@ -15,3 +15,5 @@ Allow: /about
 Allow: /services
 Allow: /contact
 Allow: /case-studies
+Allow: /ir
+Allow: /koukoku

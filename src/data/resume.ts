@@ -6,10 +6,8 @@ export interface PersonalInfo {
   nameKana: string;
   title: string;
   subtitle: string;
-  age: number;
   location: string;
   email: string;
-  phone: string;
   image: string;
   tagline: string;
 }
@@ -55,16 +53,14 @@ export interface SelfPRPoint {
   icon: string;
 }
 
-// 個人情報
+// 基本情報（会社サイトに掲載する範囲のみ。個人の連絡先・年齢は載せない）
 export const personalInfo: PersonalInfo = {
   name: "松浦 賢孝",
   nameKana: "マツウラ ヨシノリ",
   title: "PdM / AI Engineer",
   subtitle: "技術とビジネスの架け橋",
-  age: 34,
   location: "北海道札幌市",
   email: "info@tecmah.com",
-  phone: "070-8359-2530",
   image: "/images/ceo-profile.png",
   tagline: "AI技術を活用した新規事業開発やPdM/AEとしてのプロジェクト推進に強みを持ち、技術とビジネスの両面から成果を生み出す"
 };

@@ -39,7 +39,10 @@ tecmah-hp/
 │   │   └── ...
 │   ├── data/                # コンテンツ管理
 │   │   ├── content.ts       # 統一コンテンツ管理ファイル
-│   │   └── resume.ts        # 経歴書データ管理
+│   │   ├── koukoku.ts       # 電子公告（法定公告）一覧
+│   │   ├── kessan-fy1.ts    # 第1期 決算公告データ（URL固定・変更禁止）
+│   │   ├── kessan-2025.ts   # 第1期 半期報告（参考資料）データ
+│   │   └── resume.ts        # 代表者経歴データ
 │   ├── layouts/             # レイアウトテンプレート
 │   │   └── Layout.astro     # ベースレイアウト
 │   ├── pages/               # ページファイル
@@ -53,7 +56,11 @@ tecmah-hp/
 │   │   │   ├── [slug].astro # 個別事例詳細
 │   │   │   └── index.astro  # 事例一覧
 │   │   ├── contact.astro    # お問い合わせ
-│   │   └── profile.astro    # 経歴書LP
+│   │   ├── koukoku.astro    # 電子公告（法定公告の入口）
+│   │   ├── ir.astro         # 投資家向け情報（IR）
+│   │   ├── ir/kessan/fy1.astro   # 第1期 決算公告（2031-08-19 まで URL 固定）
+│   │   ├── ir/kessan/2025.astro  # 第1期 半期報告（参考資料）
+│   │   └── profile.astro    # 代表者の経歴（/about からのみ導線）
 │   └── styles/              # スタイルファイル
 │       └── global.css       # ダークテーマCSS
 ├── public/                  # 静的アセット
@@ -65,6 +72,38 @@ tecmah-hp/
 ├── astro.config.mjs         # Astro設定
 ├── package.json             # 依存関係
 └── tsconfig.json            # TypeScript設定
+```
+
+## 法定公告 / IR / 個人ページの区分
+
+会社サイトに置くページを、法的な性質で 3 つに分けている。混ぜないこと。
+
+| 区分 | ページ | 性質 | 導線 |
+|---|---|---|---|
+| **法定公告（電子公告）** | `/koukoku` → `/ir/kessan/fy1` | 会社法 440条・939条・940条に基づく公告。営業的 CTA を置かない | トップのフッター「電子公告」、ヘッダー「IR情報」→ IR ページ内リンク |
+| **投資家向け情報（IR）** | `/ir`（+ 参考資料 `/ir/kessan/2025`） | 任意開示（業績ハイライト・戦略・リスク・お知らせ） | ヘッダー「IR情報」、フッター「IR情報」 |
+| **代表者の経歴** | `/profile` | 会社概要の補足。個人事業・フリーランスの営業ページではない | `/about` の代表者プロフィールからのみ。公告・IR からはリンクしない |
+
+個人事業・家計等の個人コンテンツは会社サイトに掲載しない（Issue #24）。
+
+### 電子公告の URL 固定ルール（Issue #22）
+
+- 登記した公告 URL（`https://www.tecmah.com` トップ）→ フッター「電子公告」→ `/koukoku` → 各公告ページ、が会社法上の到達導線
+- 決算公告は定時株主総会の終結の日後 **5 年間** 継続掲載が必要（会社法 940条1項2号）。第1期 `/ir/kessan/fy1` は **2031-08-19 まで URL・金額・日付を変更しない**
+- 公告ページを動かす場合は `astro.config.mjs` の `redirects` に必ず 301 相当の転送を残す
+- 新しい公告は `src/data/koukoku.ts` の `legalNotices` に追加し、`scripts/verify-koukoku.mjs` の `EXPECTED_NOTICES` も更新する
+
+### ビルド時ガード
+
+`npm run build` の `postbuild` で `scripts/verify-koukoku.mjs` が走り、以下が崩れているとビルドが失敗する（= デプロイが止まる）。
+
+- トップページに `/koukoku` と `/ir` へのリンクがある
+- `/koukoku` に各公告ページへのリンクがある
+- 各公告ページが存在し、主要数値・日付（資産合計 7,843,932 円、公告日 2026-08-19、掲載終了 2031-08-19 など）が含まれる
+- 全ページのフッターから `/koukoku` へ辿れる
+
+```bash
+npm run verify:koukoku   # ビルド済み dist/ に対して単独実行
 ```
 
 ## 開発環境セットアップ
