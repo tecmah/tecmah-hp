@@ -14,7 +14,9 @@ export default defineConfig({
   // - 公告ページを動かす場合は必ずここに redirect を残す（static 出力では meta refresh ページが生成される）
   redirects: {
     // 半期報告（参考資料）が以前「公告掲載URL」として案内していたパス。公告一覧へ誘導する
-    '/ir/kessan': '/koukoku'
+    '/ir/kessan': '/koukoku',
+    // 旧 経歴書LP。Issue #24 案Cで廃止し、会社概要の代表者紹介に統合した
+    '/profile': '/about'
   },
   build: {
     assets: 'assets'

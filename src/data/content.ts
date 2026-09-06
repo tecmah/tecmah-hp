@@ -266,8 +266,8 @@ export const pageMeta: Record<string, PageMeta> = {
   },
   about: {
     title: "会社概要 | 株式会社TECMAH - AI・データ活用とPdM支援",
-    description: "株式会社TECMAHの会社概要。代表者情報、企業理念、事業内容をご紹介。AI時代の伴走パートナーとして、企業のデジタル変革を専門的に支援しています。",
-    keywords: ["会社概要", "企業情報", "代表者", "松浦賢孝"]
+    description: "株式会社TECMAHの会社概要。企業理念、事業内容、会社情報、沿革に加え、代表取締役 松浦賢孝の経歴をご紹介。AI時代の伴走パートナーとして、企業のデジタル変革を専門的に支援しています。",
+    keywords: ["会社概要", "企業情報", "代表者", "松浦賢孝", "代表者プロフィール", "経歴"]
   },
   "case-studies": {
     title: "導入事例・成功事例 | 株式会社TECMAH - AI・データ活用支援実績",
@@ -278,11 +278,6 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "お問い合わせ・コンサルティング予約 | 株式会社TECMAH",
     description: "株式会社TECMAHへのお問い合わせ・コンサルティングのお申し込み。60分の専門コンサルティングで課題を整理し最適な解決策をご提案。AI・データ活用、プロダクトマネジメント支援のご相談はお気軽に。",
     keywords: ["お問い合わせ", "コンサルティング", "相談予約", "コンタクト"]
-  },
-  profile: {
-    title: "代表者プロフィール（松浦 賢孝） | 株式会社TECMAH",
-    description: "株式会社TECMAH 代表取締役 松浦賢孝の経歴。AI技術を活用した新規事業開発やPdM/AEとしてのプロジェクト推進に強みを持ち、技術とビジネスの両面から成果を生み出す。10年以上の開発・マネジメント経験。",
-    keywords: ["松浦賢孝", "代表者", "経歴", "PdM", "AI Engineer", "プロダクトマネージャー"]
   },
   ir: {
     title: "投資家向け情報（IR） | 株式会社TECMAH",
@@ -505,8 +500,8 @@ export const irDisclaimer: IRDisclaimer = {
 };
 
 // 会社情報リンク
-// NOTE: 個人のページ（/profile など）はここに載せない。/ir は公告の入口として外部（取引先・金融機関）が
-// 参照するページのため、会社の公式情報のみを並べる（Issue #24）。
+// NOTE: 個人のページ（旧 /profile のような個人の経歴書・個人事業のページ）はここに載せない。
+// /ir は公告の入口として外部（取引先・金融機関）が参照するページのため、会社の公式情報のみを並べる（Issue #24）。
 export const irCompanyLinks: IRCompanyLink[] = [
   {
     title: "電子公告（法定公告）",

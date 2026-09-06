@@ -32,6 +32,18 @@ const EXPECTED_NOTICES = [
   },
 ];
 
+// 公告・IR ページに含まれてはならないリンク（個人ページ。Issue #24）
+// 旧 /profile（代表者の経歴書LP）は /about に統合済み。個人事業・家計のページは PR #20 で削除済み。
+const FORBIDDEN_LINKS_ON_LEGAL_PAGES = ["/profile", "/freelance-update", "/personal-update"];
+// 検査対象: 登記した公告URL（トップ）と、公告・IR 系の全ページ
+const LEGAL_PAGES = [
+  "/",
+  KOUKOKU_PATH,
+  "/ir",
+  "/ir/kessan/2025",
+  ...EXPECTED_NOTICES.map((n) => n.path),
+];
+
 // 検査対象外の静的ファイル
 const IGNORED_HTML = new Set(["404.html", "test-fluid.html"]);
 
@@ -52,8 +64,21 @@ function readHtml(routePath) {
   return readFileSync(file, "utf8");
 }
 
+function escapeRe(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function hasLink(html, href) {
-  return new RegExp(`href=["']${href.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']`).test(html);
+  return new RegExp(`href=["']${escapeRe(href)}["']`).test(html);
+}
+
+// 禁止リンクの検出は表記ゆれに強くする（末尾スラッシュ・絶対URL・クエリ/ハッシュ付き）
+function hasForbiddenLink(html, path) {
+  const re = new RegExp(
+    `href=["'](?:https?://[^"']*?)?${escapeRe(path)}/?(?:[?#][^"']*)?["']`,
+    "i"
+  );
+  return re.test(html);
 }
 
 function walkHtml(dir, acc = []) {
@@ -84,6 +109,15 @@ for (const notice of EXPECTED_NOTICES) {
   if (!html) continue;
   for (const text of notice.mustContain) {
     if (!html.includes(text)) fail(`${notice.path} に「${text}」が含まれていません`);
+  }
+}
+
+// 3b. 公告・IR ページに個人ページへのリンクがない
+for (const page of LEGAL_PAGES) {
+  const html = readHtml(page);
+  if (!html) continue;
+  for (const href of FORBIDDEN_LINKS_ON_LEGAL_PAGES) {
+    if (hasForbiddenLink(html, href)) fail(`${page} に個人ページへのリンク href="${href}" が含まれています`);
   }
 }
 

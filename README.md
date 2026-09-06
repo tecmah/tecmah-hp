@@ -15,7 +15,7 @@ Astro + TypeScript + Tailwind CSS で構築されたコーポレートサイト
 - **レスポンシブ**: モバイルファーストデザイン
 - **SEO最適化**: メタタグ、構造化データ対応
 - **SVGアイコン**: アイコンによる表現
-- **経歴書LP**: スクロールアニメーション付きのインタラクティブな経歴書ページ（`/profile`）
+- **法定公告・IR の分離**: 電子公告（`/koukoku`）と投資家向け情報（`/ir`）を分け、ビルド時に到達性を検証
 
 ## 技術スタック
 
@@ -42,7 +42,7 @@ tecmah-hp/
 │   │   ├── koukoku.ts       # 電子公告（法定公告）一覧
 │   │   ├── kessan-fy1.ts    # 第1期 決算公告データ（URL固定・変更禁止）
 │   │   ├── kessan-2025.ts   # 第1期 半期報告（参考資料）データ
-│   │   └── resume.ts        # 代表者経歴データ
+│   │   └── ceo-profile.ts   # 代表者紹介データ（/about で使用）
 │   ├── layouts/             # レイアウトテンプレート
 │   │   └── Layout.astro     # ベースレイアウト
 │   ├── pages/               # ページファイル
@@ -52,17 +52,19 @@ tecmah-hp/
 │   │   │   ├── ai-data.astro          # AI・データ活用
 │   │   │   ├── product-management.astro # PdM/PM伴走
 │   │   │   └── dx-consulting.astro    # DXコンサルティング
+│   │   ├── case-studies.astro    # 事例一覧
 │   │   ├── case-studies/    # 事例ページ
-│   │   │   ├── [slug].astro # 個別事例詳細
-│   │   │   └── index.astro  # 事例一覧
+│   │   │   └── [slug].astro # 個別事例詳細
 │   │   ├── contact.astro    # お問い合わせ
+│   │   ├── privacy.astro    # プライバシーポリシー
 │   │   ├── koukoku.astro    # 電子公告（法定公告の入口）
 │   │   ├── ir.astro         # 投資家向け情報（IR）
 │   │   ├── ir/kessan/fy1.astro   # 第1期 決算公告（2031-08-19 まで URL 固定）
-│   │   ├── ir/kessan/2025.astro  # 第1期 半期報告（参考資料）
-│   │   └── profile.astro    # 代表者の経歴（/about からのみ導線）
+│   │   └── ir/kessan/2025.astro  # 第1期 半期報告（参考資料）
 │   └── styles/              # スタイルファイル
 │       └── global.css       # ダークテーマCSS
+├── scripts/                 # ビルド時チェック
+│   └── verify-koukoku.mjs   # 電子公告の到達性ガード（postbuild）
 ├── public/                  # 静的アセット
 │   ├── images/              # 画像ファイル
 │   ├── logo.svg             # ロゴ
@@ -82,9 +84,20 @@ tecmah-hp/
 |---|---|---|---|
 | **法定公告（電子公告）** | `/koukoku` → `/ir/kessan/fy1` | 会社法 440条・939条・940条に基づく公告。営業的 CTA を置かない | トップのフッター「電子公告」、ヘッダー「IR情報」→ IR ページ内リンク |
 | **投資家向け情報（IR）** | `/ir`（+ 参考資料 `/ir/kessan/2025`） | 任意開示（業績ハイライト・戦略・リスク・お知らせ） | ヘッダー「IR情報」、フッター「IR情報」 |
-| **代表者の経歴** | `/profile` | 会社概要の補足。個人事業・フリーランスの営業ページではない | `/about` の代表者プロフィールからのみ。公告・IR からはリンクしない |
+| **代表者紹介** | `/about` 内「代表者プロフィール」 | 会社概要の一部。個人事業・フリーランスの営業要素は載せない | 旧 `/profile` は廃止し `/about` へ redirect。公告・IR から個人ページへはリンクしない（ガードで検証） |
 
 個人事業・家計等の個人コンテンツは会社サイトに掲載しない（Issue #24）。
+
+削除済みページの転送方針:
+
+| 旧URL | 対応 | 理由 |
+|---|---|---|
+| `/profile` | `/about` へ転送 | 内容を代表者紹介として統合したため、転送先に相当する情報がある |
+| `/freelance-update` | 404（転送しない） | 個人事業の振り返り。会社サイトに転送先となる相当ページが無い |
+| `/personal-update` | 404（転送しない） | 個人の家計・健康記録。会社サイトに載せる情報ではない |
+
+なお GitHub Pages は 301 を返せないため、`/profile` の転送は Astro が生成する meta refresh ページによる。
+検索評価の引き継ぎは限定的だが、旧URLは公開期間が短く実害は小さいと判断した。
 
 ### 電子公告の URL 固定ルール（Issue #22）
 
@@ -101,6 +114,7 @@ tecmah-hp/
 - `/koukoku` に各公告ページへのリンクがある
 - 各公告ページが存在し、主要数値・日付（資産合計 7,843,932 円、公告日 2026-08-19、掲載終了 2031-08-19 など）が含まれる
 - 全ページのフッターから `/koukoku` へ辿れる
+- 公告・IR ページに個人ページ（旧 `/profile` など）へのリンクがない
 
 ```bash
 npm run verify:koukoku   # ビルド済み dist/ に対して単独実行
@@ -278,7 +292,7 @@ icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor">...</svg>`
 | 実績事例 | 完了 | `content.ts` → `caseStudies` |
 | メッセージ・文言 | 完了 | `content.ts` → `messages` |
 | ページメタ情報 | 完了 | `content.ts` → `pageMeta` |
-| 経歴書データ | 完了 | `resume.ts` → `personalInfo`, `workExperiences`, etc. |
+| 代表者紹介データ | 完了 | `ceo-profile.ts` → `ceoProfile`, `ceoMetrics`, `careerHighlights` |
 | フォームラベル | 部分的 | 各ページ |
 | プレースホルダー | 個別管理 | 各ページ |
 
@@ -448,142 +462,21 @@ const service = serviceId ? services.find(s => s.id === serviceId) : null;
 </div>
 ```
 
-## 経歴書ページ（/profile）
+## 代表者紹介（/about）
 
-代表取締役の経歴書をLP風の1ページで表示するインタラクティブなページ。
+旧 `/profile`（経歴書LP）は Issue #24 の案Cにより廃止し、会社概要（`/about`）の「代表者プロフィール」に統合した。
+`/profile` へのアクセスは `astro.config.mjs` の `redirects` で `/about` に転送される。
 
-### URL
+### データ管理（`src/data/ceo-profile.ts`）
 
-- **開発環境**: `http://localhost:4321/profile`
-- **本番環境**: `https://www.tecmah.com/profile`
+| エクスポート | 内容 |
+|---|---|
+| `ceoProfile` | 氏名・役職・肩書・写真・タグライン |
+| `ceoMetrics` | 経験年数などの要約指標（3件） |
+| `careerHighlights` | 主な経歴（抜粋、新しい順） |
 
-### ページ構成
-
-| セクション | 説明 |
-|------------|------|
-| **Hero** | フルスクリーンHero、プロフィール画像、FluidBackground |
-| **Metrics** | 経験年数・プロジェクト数などのカウントアップアニメーション |
-| **About** | 4つの強みをカード形式で表示 |
-| **Skills** | 6カテゴリのスキルタグ（言語、フレームワーク、クラウド、AI/ML、ドメイン、マネジメント） |
-| **Featured Projects** | 注目プロジェクト4件をカード形式で表示 |
-| **Career Timeline** | 縦型タイムラインで職務経歴を表示 |
-| **Contact CTA** | お問い合わせへの誘導 |
-
-### 特徴
-
-- **スクロールアニメーション**: Intersection Observer APIによるフェードイン・スライドイン
-- **カウントアップアニメーション**: メトリクスの数値がスクロール時にアニメーション
-- **タイムライン表示**: 職務経歴を視覚的に表示（モバイル/デスクトップ対応）
-- **グラスモーフィズム**: カードにblur効果を適用
-- **アクセシビリティ対応**: `prefers-reduced-motion` でアニメーション無効化
-
-### データ管理（`src/data/resume.ts`）
-
-```typescript
-// 個人情報
-export const personalInfo: PersonalInfo = {
-  name: "松浦 賢孝",
-  title: "PdM / AI Engineer",
-  tagline: "技術とビジネスの両面から成果を生み出す",
-  // ...
-};
-
-// スキルカテゴリ
-export const skillCategories: SkillCategory[] = [
-  {
-    name: "プログラミング言語",
-    skills: ["TypeScript", "Python", "Ruby", "Swift", ...]
-  },
-  // ...
-];
-
-// 職務経歴
-export const workExperiences: WorkExperience[] = [
-  {
-    company: "株式会社 古田土経営",
-    period: "2025年10月～現在",
-    role: "PM / 業務コンサルタント",
-    projectTitle: "中小企業向け経営計画モデル設計支援",
-    highlights: ["経営者支援プロセスの可視化", ...],
-    technologies: ["Python", "TypeScript", "AWS SageMaker", ...]
-  },
-  // ...
-];
-
-// 注目プロジェクト
-export const featuredProjects: FeaturedProject[] = [
-  {
-    title: "インタラクティブミラー開発",
-    company: "株式会社Sapeet",
-    achievement: "世界初のAIインタラクティブミラー",
-    // ...
-  },
-  // ...
-];
-```
-
-### カスタマイズ
-
-#### 経歴情報の更新
-
-`src/data/resume.ts` を編集：
-
-```typescript
-// 新しい職歴を追加
-export const workExperiences: WorkExperience[] = [
-  {
-    id: "new-company-2025",
-    company: "新しい会社名",
-    period: "2025年12月～現在",
-    duration: "現在進行中",
-    role: "役割",
-    projectTitle: "プロジェクト名",
-    description: "プロジェクトの説明",
-    highlights: ["成果1", "成果2"],
-    technologies: ["技術1", "技術2"],
-    isFeatured: true  // 注目プロジェクトとして表示
-  },
-  // ... 既存の経歴
-];
-```
-
-#### スキルの追加
-
-```typescript
-export const skillCategories: SkillCategory[] = [
-  {
-    name: "プログラミング言語",
-    icon: "code",
-    skills: ["TypeScript", "Python", "Ruby", "NewSkill"]  // 追加
-  },
-  // ...
-];
-```
-
-### アニメーション制御
-
-```css
-/* スクロールアニメーションの調整 */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.animate-on-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* アニメーション無効化（アクセシビリティ） */
-@media (prefers-reduced-motion: reduce) {
-  .animate-on-scroll {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-```
+会社サイトに載せるのは「代表者紹介として妥当な範囲」に絞る。個人の連絡先・年齢・全職歴、
+個人事業・フリーランスとしての営業要素（稼働可否など）は載せない。フルの職務経歴書は個人チャネルで管理する。
 
 ## トラブルシューティング
 

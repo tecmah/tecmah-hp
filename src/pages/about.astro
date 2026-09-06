@@ -3,12 +3,14 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import PageHero from "../components/PageHero.astro";
+import { pageMeta } from "../data/content";
+import { ceoProfile, ceoMetrics, careerHighlights } from "../data/ceo-profile";
 import CTASection from "../components/CTASection.astro";
 
 const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>`;
 ---
 
-<Layout title="会社概要 | 株式会社TECMAH - AI・データ活用とPdM支援">
+<Layout title={pageMeta.about.title} description={pageMeta.about.description}>
   <Header />
   <main>
     <PageHero
@@ -125,13 +127,24 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
           <div class="ceo-image-container">
             <div class="ceo-image-wrapper">
               <img
-                src="/images/ceo-profile.png"
-                alt="代表取締役 松浦 賢孝"
+                src={ceoProfile.image}
+                alt={`${ceoProfile.role} ${ceoProfile.name}`}
                 class="ceo-image"
               />
             </div>
-            <h3 class="ceo-name">松浦 賢孝</h3>
-            <p class="ceo-role">代表取締役</p>
+            <p class="ceo-kana">{ceoProfile.nameKana}</p>
+            <h3 class="ceo-name">{ceoProfile.name}</h3>
+            <p class="ceo-role">{ceoProfile.role}</p>
+            <p class="ceo-title">{ceoProfile.title}</p>
+
+            <ul class="ceo-metrics" role="list" aria-label="代表者の経験の概要">
+              {ceoMetrics.map((m) => (
+                <li class="ceo-metric">
+                  <span class="ceo-metric-value">{m.value}</span>
+                  <span class="ceo-metric-label">{m.label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div class="ceo-info">
@@ -139,7 +152,7 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
               <div class="info-section">
                 <h4 class="info-label">経歴・専門分野</h4>
                 <p class="info-text">
-                  大手IT企業でのプロダクトマネジメント経験を経て、AI・データ活用分野で複数のスタートアップ支援に従事。技術とビジネスの両面からアプローチする実践的な手法で、多くの企業のデジタル変革を成功に導いてきました。
+                  通信・官公庁・医療などの基幹システム開発でキャリアを始め、事業会社・スタートアップでPdM/PMとして新規事業とプロダクト開発を推進。近年はAI・データ活用分野で複数社の支援に従事し、技術とビジネスの両面からアプローチする実践的な手法で、企業のデジタル変革を支援しています。
                 </p>
               </div>
 
@@ -182,14 +195,28 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
               </div>
 
               <div class="info-section">
+                <h4 class="info-label">主な経歴（抜粋）</h4>
+                <ol class="career-list" role="list">
+                  {careerHighlights.map((c) => (
+                    <li class="career-item">
+                      <span class="career-period">{c.period}</span>
+                      <div class="career-body">
+                        <p class="career-org">
+                          {c.organization}
+                          <span class="career-role">{c.role}</span>
+                        </p>
+                        <p class="career-summary">{c.summary}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <div class="info-section">
                 <h4 class="info-label">メッセージ</h4>
                 <p class="info-text">
                   「技術は手段であり、真の価値はビジネス成果にある」という信念のもと、お客様の事業成長に直結するソリューションの提供に全力で取り組んでいます。一緒に新しい価値を創造していきましょう。
                 </p>
-              </div>
-
-              <div class="info-section">
-                <a href="/profile" class="link">代表者の経歴詳細を見る →</a>
               </div>
             </div>
           </div>
@@ -303,10 +330,36 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
             <div class="timeline-content">
               <div class="timeline-header">
                 <h3 class="timeline-title">株式会社TECMAH 設立</h3>
-                <span class="timeline-date">2025年</span>
+                <span class="timeline-date">2025年7月</span>
               </div>
               <p class="timeline-text">
                 AI・データ活用とプロダクトマネジメント支援を専門とする企業として創業。北海道札幌市を拠点に、全国の企業向けDX支援事業を開始。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot active"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3 class="timeline-title">第1期 事業年度末</h3>
+                <span class="timeline-date">2026年6月</span>
+              </div>
+              <p class="timeline-text">
+                生成AI・データ活用支援を主力に、第1期を黒字で着地。業績の詳細は<a href="/ir" class="link">IR情報</a>に掲載しています。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot active"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <h3 class="timeline-title">第1期 決算公告を公開</h3>
+                <span class="timeline-date">2026年8月</span>
+              </div>
+              <p class="timeline-text">
+                会社法第440条に基づく決算公告（貸借対照表）を<a href="/koukoku" class="link">電子公告</a>により公開。
               </p>
             </div>
           </div>
@@ -315,11 +368,11 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <div class="timeline-header">
-                <h3 class="timeline-title">サービス拡充・組織拡大</h3>
-                <span class="timeline-date">2025年後半〜</span>
+                <h3 class="timeline-title">第2期 収益基盤の安定化</h3>
+                <span class="timeline-date">2026年7月〜</span>
               </div>
               <p class="timeline-text">
-                支援実績の拡大に伴うサービスラインアップの充実、パートナー企業との協業体制構築、組織体制の拡充を予定。
+                収益基盤の安定化を最優先に、生成AI活用支援における顧問・伴走型サービスの拡充に取り組んでいます。
               </p>
             </div>
           </div>
@@ -533,10 +586,135 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
     margin-bottom: 0.5rem;
   }
 
+  .ceo-kana {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+
   .ceo-role {
     font-size: 1.125rem;
     color: var(--primary);
     font-weight: 500;
+  }
+
+  .ceo-title {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  .ceo-metrics {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin: 1.5rem auto 0;
+    padding: 0;
+    max-width: 280px;
+  }
+
+  .ceo-metric {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+
+  .ceo-metric-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .ceo-metric-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.125rem;
+  }
+
+  /* 主な経歴（抜粋） */
+  .career-list {
+    position: relative;
+    list-style: none;
+    padding: 0 0 0 1.25rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* 沿革（global.css の .timeline）と同じ連続した縦線＋ドットで視覚言語を揃える */
+  .career-list::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+  }
+
+  .career-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.25rem 1rem;
+  }
+
+  .career-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.4rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 2px solid var(--surface);
+  }
+
+  @media (min-width: 640px) {
+    .career-item {
+      grid-template-columns: 11.5rem 1fr;
+    }
+  }
+
+  .career-period {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    padding-top: 0.125rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .career-body {
+    min-width: 0;
+  }
+
+  .career-org {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.25rem;
+  }
+
+  .career-role {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--primary);
+    margin-left: 0.5rem;
+  }
+
+  .career-summary {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
   }
 
   .info-card {
