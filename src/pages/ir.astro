@@ -5,6 +5,10 @@ import Footer from "../components/Footer.astro";
 import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
 import { company, pageMeta, irDocuments, irFAQs, irDisclaimer, irCompanyLinks, irHighlights, irHighlightsPeriod, irSegments, irSegmentNote, irStrategy, irRisks } from "../data/content.ts";
+import { kessanNotices } from "../data/koukoku";
+
+// NOTE: このページは投資家向け情報（任意開示）。会社法上の法定公告は /koukoku に分離している。
+// 個人（代表者個人・個人事業）のコンテンツはこのページに載せない（Issue #24）。
 
 const irIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`;
 
@@ -24,14 +28,14 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
   <Header />
   <main>
     <PageHero
-      titleHtml='<span class="gradient-text">投資家向け情報 / 法定公告</span>'
-      subtitleHtml="当社の法定公告（決算公告）および投資家向け情報を掲載しています。<br /><span class='text-muted'>未上場企業のため、上場企業向け開示（決算短信・有価証券報告書等）は行っていません。</span>"
-      badge="法定公告"
+      titleHtml='<span class="gradient-text">投資家向け情報（IR）</span>'
+      subtitleHtml="当社の業績・事業の状況・成長戦略・リスク要因・お知らせを掲載しています。<br />会社法に基づく法定公告（決算公告）は<a href='/koukoku' class='hero-link'>電子公告ページ</a>に掲載しています。<br /><span class='text-muted'>未上場企業のため、上場企業向け開示（決算短信・有価証券報告書等）は行っていません。</span>"
+      badge="IR"
       badgeIconHtml={irIcon}
     />
 
     <!-- Disclaimer Section -->
-    <section class="section section-alt">
+    <section class="section">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">
@@ -50,6 +54,40 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal Notice (電子公告) Section -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span class="gradient-text">法定公告（電子公告）</span>
+          </h2>
+          <p class="section-description">
+            会社法に基づく決算公告（貸借対照表）などの法定公告は、投資家向け情報とは分けて電子公告ページに掲載しています。
+          </p>
+        </div>
+
+        <div class="koukoku-card">
+          <ul class="koukoku-list">
+            {kessanNotices.map((notice) => (
+              <li>
+                <a href={notice.href} class="koukoku-item">
+                  <span class="koukoku-kind">{notice.kind}</span>
+                  <span class="koukoku-title">{notice.title}</span>
+                  <span class="koukoku-meta">公告日 {notice.publishDate} ／ 掲載期間 〜{notice.publicationEndDate}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a href="/koukoku" class="koukoku-more">
+            電子公告ページ（公告一覧）を見る
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </section>
@@ -268,8 +306,7 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
               </div>
               <h3 class="empty-title">お知らせはまだありません</h3>
               <p class="empty-description">
-                当社は2025年7月に設立されたばかりのため、公開情報はまだございません。<br />
-                第1期の決算公告は2026年に公開予定です。
+                法定公告は<a href="/koukoku" class="link">電子公告ページ</a>をご覧ください。
               </p>
             </div>
           )}
@@ -321,6 +358,82 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
 </Layout>
 
 <style>
+  /* PageHero の subtitle は set:html で描画されるため :global で指定 */
+  :global(.hero-subtitle .hero-link) {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  /* Legal Notice (電子公告) Section */
+  .koukoku-card {
+    max-width: 48rem;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem 2rem;
+  }
+
+  .koukoku-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+  }
+
+  .koukoku-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+  }
+
+  .koukoku-kind {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: rgba(0, 212, 170, 0.1);
+    border: 1px solid rgba(0, 212, 170, 0.3);
+    border-radius: var(--radius-full);
+    padding: 0.125rem 0.75rem;
+  }
+
+  .koukoku-title {
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .koukoku-item:hover .koukoku-title {
+    color: var(--primary);
+  }
+
+  .koukoku-meta {
+    width: 100%;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .koukoku-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .koukoku-more:hover {
+    text-decoration: underline;
+  }
+
+  .koukoku-more svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
   /* Disclaimer Section */
   .disclaimer-card {
     max-width: 64rem;

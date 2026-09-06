@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import Services from "../components/Services.astro";
 import FluidBackground from "../components/FluidBackground.astro";
@@ -229,67 +230,7 @@ import { company, pageMeta } from "../data/content.ts";
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-12">
-    <div class="container">
-      <div class="grid md:grid-cols-4 gap-8">
-        <!-- Company Info -->
-        <div class="md:col-span-2">
-          <div class="flex items-center space-x-2 mb-4">
-            <span class="text-2xl font-bold">TECMAH</span>
-          </div>
-          <p class="text-gray-400 mb-4">
-            AI・データ活用・PdM/PM支援を行うスタートアップ。<br />
-            データドリブンな意思決定と生成AIを活用したプロダクト開発で、企業のデジタル変革を伴走支援します。
-          </p>
-          <div class="text-sm text-gray-400">
-            <p>〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701</p>
-            <p>Email: info@tecmah.com</p>
-          </div>
-        </div>
-
-        <!-- Quick Links -->
-        <div>
-          <h4 class="font-bold mb-4">サービス</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li>
-              <a href="/services/ai-data" class="hover:text-white"
-                >生成AI・データ活用</a>
-            </li>
-            <li>
-              <a href="/services/product-management" class="hover:text-white"
-                >PdM/PM伴走</a>
-            </li>
-            <li>
-              <a href="/services/dx-consulting" class="hover:text-white"
-                >DXコンサルティング</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Company -->
-        <div>
-          <h4 class="font-bold mb-4">会社情報</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><a href="/about" class="hover:text-white">会社概要</a></li>
-            <li><a href="/case-studies" class="hover:text-white">事例</a></li>
-            <li><a href="/ir" class="hover:text-white">電子公告・IR</a></li>
-            <li>
-              <a href="/contact" class="hover:text-white">お問い合わせ</a>
-            </li>
-            <li>
-              <a href="/privacy" class="hover:text-white"
-                >プライバシーポリシー</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2025 株式会社TECMAH. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <Footer />
 </Layout>
 
 <style>

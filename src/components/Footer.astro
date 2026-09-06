@@ -37,7 +37,13 @@
         <ul>
           <li><a href="/about">会社概要</a></li>
           <li><a href="/case-studies">事例</a></li>
-          <li><a href="/ir">電子公告・IR</a></li>
+          <li><a href="/ir">IR情報</a></li>
+          <!--
+            「電子公告」リンクは会社法上の公告到達性を担保する法的に効く導線。
+            登記した公告URL（tecmah.com トップ）から /koukoku → 各公告ページへ辿れる必要がある。
+            削除・改名しないこと（scripts/verify-koukoku.mjs がビルド後に検証する）。
+          -->
+          <li><a href="/koukoku">電子公告</a></li>
           <li><a href="/contact">お問い合わせ</a></li>
           <li><a href="/privacy">プライバシーポリシー</a></li>
         </ul>
