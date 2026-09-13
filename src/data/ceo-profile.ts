@@ -42,6 +42,13 @@ export const ceoMetrics: readonly CeoMetric[] = [
 ];
 
 // 主な経歴（抜粋）。新しい順。
+//
+// 取引先の社名は掲載しない（/case-studies と同じ匿名化方針）。organization は
+// 「◯◯領域の事業会社」形式の領域表記に統一する。実名を出す場合は取引先ごとに個別許諾を取ること。
+//
+// id は `career-<開始年>-<ドメイン>` 形式。社名由来の語は使わない（公開リポジトリのソースに残るため）。
+// /case-studies 側の id（education-saas / manufacturing-audio / retail-ai / ai-startup）とは
+// 意図的に一致させない。一致させると経歴と事例を突合するキーになってしまう。
 export const careerHighlights: readonly CareerHighlight[] = [
   {
     id: "tecmah-2025",
@@ -51,37 +58,37 @@ export const careerHighlights: readonly CareerHighlight[] = [
     summary: "AI・データ活用支援、PdM/PM伴走、新規事業・DXコンサルティングを提供。"
   },
   {
-    id: "ripla-2025",
+    id: "career-2025-edtech",
     period: "2025年4月〜9月",
-    organization: "株式会社ripla",
+    organization: "教育領域の事業会社",
     role: "PMO / SE",
     summary: "AI教育プロダクトのアダプティブドリル改善。つまずき判定アルゴリズムの設計と、LLMを活用した個別最適化機能の企画を担当。"
   },
   {
-    id: "hmcomm-2025",
+    id: "career-2025-analytics",
     period: "2025年2月〜5月",
-    organization: "株式会社Hmcomm",
+    organization: "データ解析領域の事業会社",
     role: "PM / SE",
     summary: "音声データ解析による異常検知。音声認識アルゴリズム開発とデータ環境の整備。"
   },
   {
-    id: "sapeet-2024",
+    id: "career-2024-retail",
     period: "2024年10月〜2025年3月",
-    organization: "株式会社Sapeet",
+    organization: "小売・接客領域の事業会社",
     role: "PdM / AE",
     summary: "Azure OpenAI と RAG 構成によるインタラクティブミラー開発。音声UIからナレッジベースへアクセスする体験を実装。"
   },
   {
-    id: "algoage-2023",
+    id: "career-2023-newbiz",
     period: "2023年9月〜2024年4月",
-    organization: "株式会社Algoage",
+    organization: "AI領域の事業会社",
     role: "PM / PMO",
     summary: "AI新規事業創出。市場調査・PoC構築からビジネスモデルの検証まで一貫して担当。"
   },
   {
-    id: "nadja-2020",
+    id: "career-2020-realestate",
     period: "2020年8月〜2021年3月",
-    organization: "NADJA株式会社",
+    organization: "不動産領域の事業会社",
     role: "CTO / PM",
     summary: "不動産系Web・スマホアプリと対話型AI受付システムの開発をオフショア体制で統括。"
   },
