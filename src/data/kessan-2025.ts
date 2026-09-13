@@ -1,4 +1,5 @@
 // 第1期 半期報告（2025年7月〜12月）データ
+// 参考資料。会社法第440条に基づく決算公告ではない（法定公告は /koukoku 配下の一覧から辿る）。
 import { company } from "./content";
 
 interface BalanceSheetItem {
@@ -49,7 +50,7 @@ export const reportInfo: ReportInfo = {
   companyName: company.name,
   address: company.address.full,
   representative: company.representative,
-  disclosureUrl: `${company.contact.website}/ir/kessan/`
+  disclosureUrl: `${company.contact.website}/ir/kessan/2025`
 };
 
 // 貸借対照表データ（単位：円）
