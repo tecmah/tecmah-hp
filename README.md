@@ -63,8 +63,10 @@ tecmah-hp/
 │   │   └── ir/kessan/2025.astro  # 第1期 半期報告（参考資料）
 │   └── styles/              # スタイルファイル
 │       └── global.css       # ダークテーマCSS
-├── scripts/                 # ビルド時チェック
-│   └── verify-koukoku.mjs   # 電子公告の到達性ガード（postbuild）
+├── scripts/                 # 電子公告の検証
+│   ├── koukoku-expectations.mjs  # 公告の期待値と照合ヘルパー（下2つの単一ソース）
+│   ├── verify-koukoku.mjs        # ビルド成果物の到達性ガード（postbuild）
+│   └── check-koukoku-live.mjs    # 本番URLの生存確認（週次 GitHub Actions）
 ├── public/                  # 静的アセット
 │   ├── images/              # 画像ファイル
 │   ├── logo.svg             # ロゴ
@@ -109,7 +111,7 @@ tecmah-hp/
 - 登記した公告 URL（`https://www.tecmah.com` トップ）→ フッター「電子公告」→ `/koukoku` → 各公告ページ、が会社法上の到達導線
 - 決算公告は定時株主総会の終結の日後 **5 年間** 継続掲載が必要（会社法 940条1項2号）。第1期 `/ir/kessan/fy1` は **2031-08-19 まで URL・金額・日付を変更しない**
 - 公告ページを動かす場合は `astro.config.mjs` の `redirects` に必ず 301 相当の転送を残す
-- 新しい公告は `src/data/koukoku.ts` の `legalNotices` に追加し、`scripts/verify-koukoku.mjs` の `EXPECTED_NOTICES` も更新する
+- 新しい公告は `src/data/koukoku.ts` の `legalNotices` に追加し、`scripts/koukoku-expectations.mjs` の `EXPECTED_NOTICES` も更新する（ビルド時ガードと本番監視が同じ定義を読む）
 
 ### ビルド時ガード
 
@@ -117,12 +119,27 @@ tecmah-hp/
 
 - トップページに `/koukoku` と `/ir` へのリンクがある
 - `/koukoku` に各公告ページへのリンクがある
-- 各公告ページが存在し、主要数値・日付（資産合計 7,843,932 円、公告日 2026-08-19、掲載終了 2031-08-19 など）が含まれる
+- 各公告ページが存在し、公告の記載事項・貸借対照表の全科目が「項目名 → 値」の対で一致する
+  （金額を単独文字列で照合すると、同額の行が互いの検査を素通りさせてしまうため）
 - 全ページのフッターから `/koukoku` へ辿れる
 - 公告・IR ページに個人ページ（旧 `/profile` など）へのリンクがない
 
 ```bash
 npm run verify:koukoku   # ビルド済み dist/ に対して単独実行
+```
+
+### 本番URLの生存監視
+
+ビルド時ガードはビルド成果物しか見ないため、デプロイ停止・DNS/CNAME 切れ・ホスティング移転による
+404 は検知できない。掲載義務は 2031-08-19 まで続くので、リポジトリを触らない期間に公告が落ちると
+気づけない。これを埋めるため `.github/workflows/koukoku-liveness.yml` が **毎週月曜 09:00 JST** に
+本番 URL へ実際に HTTP GET し、200 と公告内容を確認する。失敗するとワークフローが落ちて通知される。
+
+期待値は `scripts/koukoku-expectations.mjs` を `verify-koukoku.mjs` と共有しているので二重管理にならない。
+
+```bash
+npm run verify:koukoku:live                            # 本番（www.tecmah.com）を確認
+KOUKOKU_ORIGIN=http://localhost:4321 npm run verify:koukoku:live   # 任意のホストを確認
 ```
 
 ## 開発環境セットアップ

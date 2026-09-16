@@ -1001,7 +1001,10 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
   }
 
   /* Utility */
-  .text-muted {
+  /* hero の副題は set:html で描画されるため、Astro のスコープ属性が付かない。
+     :global() を併記しないとそちら側にだけスタイルが当たらない。 */
+  .text-muted,
+  :global(.hero-subtitle .text-muted) {
     color: var(--text-muted);
     font-size: 0.875rem;
   }

@@ -8,29 +8,18 @@
 //  4. すべてのページ（フッター）から /koukoku へ辿れる
 //
 // 公告ページの URL・金額・日付は掲載期間（第1期: 2031-08-19 まで）中は変更してはならない。
-// 意図的に変更する場合（新期の公告追加など）は、このファイルの EXPECTED も併せて更新すること。
+// 意図的に変更する場合（新期の公告追加など）は、scripts/koukoku-expectations.mjs も併せて更新すること。
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
+import {
+  EXPECTED_NOTICES,
+  KOUKOKU_PATH,
+  checkNoticeContent,
+  escapeRe,
+  hasLink
+} from "./koukoku-expectations.mjs";
 
 const DIST = process.env.DIST_DIR ?? "dist";
-const KOUKOKU_PATH = "/koukoku";
-
-// 掲載中の公告ページと、ページに含まれていなければならない文字列
-const EXPECTED_NOTICES = [
-  {
-    path: "/ir/kessan/fy1",
-    mustContain: [
-      "決算公告",
-      "貸借対照表",
-      "7,843,932", // 資産合計
-      "7,843,932", // 負債及び純資産合計（同額）
-      "5,666,525", // 現金及び預金
-      "1,405,674", // 繰越利益剰余金
-      "2026年8月19日", // 公告日・定時株主総会終結日
-      "2031年8月19日", // 掲載終了予定日
-    ],
-  },
-];
 
 // 公告・IR ページに含まれてはならないリンク（個人ページ。Issue #24）
 // 旧 /profile（代表者の経歴書LP）は /about に統合済み。個人事業・家計のページは PR #20 で削除済み。
@@ -62,14 +51,6 @@ function readHtml(routePath) {
     return null;
   }
   return readFileSync(file, "utf8");
-}
-
-function escapeRe(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function hasLink(html, href) {
-  return new RegExp(`href=["']${escapeRe(href)}["']`).test(html);
 }
 
 // 禁止リンクの検出は表記ゆれに強くする（末尾スラッシュ・絶対URL・クエリ/ハッシュ付き）
@@ -107,9 +88,7 @@ if (koukoku) {
 for (const notice of EXPECTED_NOTICES) {
   const html = readHtml(notice.path);
   if (!html) continue;
-  for (const text of notice.mustContain) {
-    if (!html.includes(text)) fail(`${notice.path} に「${text}」が含まれていません`);
-  }
+  for (const error of checkNoticeContent(notice, html)) fail(error);
 }
 
 // 3b. 公告・IR ページに個人ページへのリンクがない

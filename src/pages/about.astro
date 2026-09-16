@@ -811,7 +811,9 @@ const badgeIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><p
 
   .dl-row {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    /* 固定幅だと「投資家向け情報」のような長い項目名が必ず折り返す。
+       内容に追従させつつ、短い項目名でも列が揃うよう下限だけ持たせる。 */
+    grid-template-columns: minmax(100px, max-content) 1fr;
     gap: 1rem;
   }
 

@@ -5,7 +5,10 @@
 // このデータが表示される公告ページ URL（/ir/kessan/fy1）は、会社法第940条第1項第2号により
 // 定時株主総会の終結の日（2026年8月19日）後5年間 = 2031年8月19日まで継続して掲載する義務がある。
 // それまで URL・金額・日付を変更しないこと。URL を動かす場合は必ず 301 リダイレクトを残すこと。
-import { company } from "./content";
+//
+// 商号・本店所在地・代表者名は「2026年8月19日の公告時点の値」をここにリテラルで固定してある。
+// src/data/content.ts の company を参照してはいけない。参照すると本店移転や代表者変更で
+// content.ts を1行直しただけで、掲載義務期間中の公告の記載内容が黙って書き換わる。
 
 interface BalanceSheetItem {
   name: string;
@@ -69,11 +72,12 @@ export const reportInfo: ReportInfo = {
   meetingDate: "2026年8月19日",
   publishDate: "2026年8月19日",
   publicationEndDate: "2031年8月19日",
-  companyName: company.name,
-  address: company.address.full,
-  representative: company.representative,
+  // 以下3件と disclosureUrl は公告時点（2026年8月19日）の値。掲載義務期間中は変更禁止。
+  companyName: "株式会社TECMAH",
+  address: "〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701",
+  representative: "松浦 賢孝",
   disclosurePath: DISCLOSURE_PATH,
-  disclosureUrl: `${company.contact.website}${DISCLOSURE_PATH}`
+  disclosureUrl: `https://www.tecmah.com${DISCLOSURE_PATH}`
 };
 
 // 貸借対照表データ（単位：円）
@@ -120,6 +124,16 @@ export const balanceSheet: BalanceSheet = (() => {
   const otherRetainedEarningsTotal = sum(equityData.otherRetainedEarnings);
   const retainedEarnings = otherRetainedEarningsTotal;
   const equityTotal = equityData.capital + retainedEarnings;
+  const liabilitiesAndEquityTotal = liabilitiesTotal + equityTotal;
+
+  // 貸借対照表の不変条件。どれか1科目を書き換えて貸借が崩れたら、ビルドを失敗させて公開を止める。
+  // 会社法第440条の決算公告として貸借不一致の表を掲載するのは不備にあたるため、
+  // 実行時エラーにしてでも公開しないほうがよい。
+  if (assetsTotal !== liabilitiesAndEquityTotal) {
+    throw new Error(
+      `[kessan-fy1] 貸借が一致しません: 資産合計 ${assetsTotal} / 負債及び純資産合計 ${liabilitiesAndEquityTotal}`
+    );
+  }
 
   return {
     assets: {
@@ -141,7 +155,7 @@ export const balanceSheet: BalanceSheet = (() => {
       retainedEarnings,
       total: equityTotal
     },
-    liabilitiesAndEquityTotal: liabilitiesTotal + equityTotal
+    liabilitiesAndEquityTotal
   };
 })();
 

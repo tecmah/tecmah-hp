@@ -9,15 +9,9 @@ const LOGO = {
   mobile: "/images/logo/logo-horizontal-mobile.svg",
 };
 
-// NOTE: navigation.main（content.ts）と同期させること。
+// ナビ項目は content.ts の navigation.main を単一ソースとする。
 // 「IR情報」はトップから投資家向け情報・電子公告へ到達できるようにするために必須。
-const navItems = [
-  { href: "/", label: "ホーム" },
-  { href: "/services", label: "サービス" },
-  { href: "/about", label: "会社概要" },
-  { href: "/case-studies", label: "事例" },
-  { href: "/ir", label: "IR情報" },
-];
+const navItems = navigation.main.map((item) => ({ href: item.href, label: item.title }));
 
 // Shared icon for CTA buttons (desktop and mobile)
 const lightningIcon = `<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`;

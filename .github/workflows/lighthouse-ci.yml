@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "src/**"
+      - "scripts/**"
       - "public/**"
       - "astro.config.mjs"
       - "package.json"
@@ -17,6 +18,7 @@ on:
       - main
     paths:
       - "src/**"
+      - "scripts/**"
       - "public/**"
       - "astro.config.mjs"
       - "package.json"

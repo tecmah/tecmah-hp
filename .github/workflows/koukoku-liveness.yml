@@ -1,0 +1,37 @@
+# 掲載中の電子公告が本番URLで生きていることの定期確認
+#
+# postbuild の verify-koukoku.mjs はビルド成果物しか見ないため、
+# 「デプロイが止まった」「独自ドメインのDNS/CNAMEが切れた」「ホスティングを移して404」
+# を検知できない。掲載義務は第1期分だけでも 2031年8月19日まで続く（会社法第940条第1項第2号）ので、
+# リポジトリを何ヶ月も触らない期間に公告が落ちると誰も気づかない。
+#
+# そのため実際の https://www.tecmah.com に週1回 HTTP GET して確認し、
+# 落ちていたらこのジョブを失敗させる（GitHub の workflow failure 通知で気づく）。
+name: 電子公告の生存確認
+
+on:
+  schedule:
+    # 毎週月曜 00:00 UTC（＝月曜 09:00 JST）
+    - cron: "0 0 * * 1"
+  # デプロイ直後の手動確認用。main への push では自動実行しない
+  # （Pages のデプロイと同時に走ると、反映前の本番を見て誤検知するため）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      # 依存パッケージは不要（Node 標準の fetch のみ使用）
+      - name: 本番URLの電子公告を確認
+        run: node scripts/check-koukoku-live.mjs

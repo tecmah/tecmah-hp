@@ -1,6 +1,5 @@
 // 第1期 半期報告（2025年7月〜12月）データ
 // 参考資料。会社法第440条に基づく決算公告ではない（法定公告は /koukoku 配下の一覧から辿る）。
-import { company } from "./content";
 
 interface BalanceSheetItem {
   name: string;
@@ -47,10 +46,12 @@ const sum = (items: ReadonlyArray<{ amount: number }>) =>
 export const reportInfo: ReportInfo = {
   period: "第1期 半期（2025年7月1日〜2025年12月31日）",
   publishDate: "2025年12月30日",
-  companyName: company.name,
-  address: company.address.full,
-  representative: company.representative,
-  disclosureUrl: `${company.contact.website}/ir/kessan/2025`
+  // 公開時点（2025年12月30日）の値をリテラルで固定する。content.ts の company を参照すると、
+  // 本店移転や代表者変更で公開済みの資料の記載が遡って書き換わってしまう。
+  companyName: "株式会社TECMAH",
+  address: "〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701",
+  representative: "松浦 賢孝",
+  disclosureUrl: "https://www.tecmah.com/ir/kessan/2025"
 };
 
 // 貸借対照表データ（単位：円）

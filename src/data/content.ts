@@ -330,10 +330,13 @@ export const footer = {
   sections: {
     services: {
       title: "サービス",
-      links: services.map(service => ({
-        title: service.title.replace(/・.*$/, "").replace(/^.*・/, ""),
-        href: service.href
-      }))
+      // フッター用の短縮ラベル。services の title を機械的に切り詰めると
+      // 「生成AI」「新規事業」のように意味が変わるので、表示名は個別に持つ。
+      links: [
+        { title: "生成AI・データ活用", href: "/services/ai-data" },
+        { title: "PdM/PM伴走", href: "/services/product-management" },
+        { title: "DXコンサルティング", href: "/services/dx-consulting" }
+      ]
     },
     company: {
       title: "会社情報",
