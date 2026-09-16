@@ -14,6 +14,7 @@ import { join, relative } from "node:path";
 import {
   EXPECTED_NOTICES,
   KOUKOKU_PATH,
+  checkMandatoryNoticesPresent,
   checkNoticeContent,
   escapeRe,
   hasLink
@@ -70,6 +71,10 @@ function walkHtml(dir, acc = []) {
   }
   return acc;
 }
+
+// 0. 掲載義務期間中の公告が EXPECTED_NOTICES から消されていないか
+//    （これが無いと、公告エントリごと削除したときに検査対象がゼロになって ✔ OK になる）
+for (const error of checkMandatoryNoticesPresent()) fail(error);
 
 // 1. トップページ → /koukoku
 const top = readHtml("/");

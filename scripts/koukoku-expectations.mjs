@@ -10,6 +10,37 @@
 export const SITE_ORIGIN = "https://www.tecmah.com";
 export const KOUKOKU_PATH = "/koukoku";
 
+// 掲載義務のある公告と、その掲載終了日（会社法第940条第1項第2号）。
+//
+// これが無いと、下の EXPECTED_NOTICES から公告エントリを丸ごと消したときに
+// 「検査対象がゼロ件 → ループが回らない → ✔ OK」になり、ガードが自分の設定を
+// 検査しているだけの自己参照になる。義務のほうを日付付きで別に持ち、
+// 掲載終了日までは EXPECTED_NOTICES に存在することを強制する。
+//
+// 行を消すには「2031年8月19日まで掲載義務がある」と明記された行を消す必要があり、
+// レビューで必ず目に入る。掲載終了日を過ぎたら、この行ごと削除してよい。
+export const MANDATORY_NOTICES = [
+  { path: "/ir/kessan/fy1", until: "2031-08-19", reason: "第1期決算公告（定時株主総会終結 2026-08-19 の5年後まで）" }
+];
+
+// 掲載義務期間中の公告が EXPECTED_NOTICES から欠けていないか検査する。
+// 失敗メッセージの配列を返す（空なら OK）。
+export function checkMandatoryNoticesPresent(today = new Date()) {
+  const errors = [];
+  for (const mandatory of MANDATORY_NOTICES) {
+    // 掲載終了日の当日までは義務がある（終了日翌日の 00:00 JST を期限とみなす）
+    const deadline = new Date(`${mandatory.until}T23:59:59+09:00`);
+    if (today > deadline) continue;
+    if (!EXPECTED_NOTICES.some((n) => n.path === mandatory.path)) {
+      errors.push(
+        `${mandatory.path} は ${mandatory.until} まで掲載義務があるのに ` +
+          `EXPECTED_NOTICES から消えています（${mandatory.reason}）`
+      );
+    }
+  }
+  return errors;
+}
+
 // 掲載中の公告ページと、ページに含まれていなければならない内容
 //
 // 金額を単独の文字列として並べてはいけない。貸借対照表には同額の行が複数あり
@@ -23,7 +54,9 @@ export const EXPECTED_NOTICES = [
       "決算公告",
       "貸借対照表",
       "会社法第440条",
+      "第1期（2025年7月14日〜2026年6月30日）", // 会計期間
       "2026年6月30日現在", // 貸借対照表日
+      "（単位：円）", // 金額の単位。貸借対照表の記載内容そのものなので金額と同様に凍結する
       "2026年8月19日", // 公告日・定時株主総会終結日
       "2031年8月19日", // 掲載終了予定日
       "https://www.tecmah.com/ir/kessan/fy1", // 登記した公告URL配下の掲載URL
@@ -84,12 +117,29 @@ export function hasLabeledValue(html, label, value) {
 }
 
 // 1ページ分の公告内容を検査し、失敗メッセージの配列を返す（空なら OK）。
+//
+// 期待値の書き忘れ自体をエラーにする（fail-closed）。以前は mustContainPairs だけ
+// `?? []` でフォールバックしていたため、ペアを書き忘れた公告は金額を1件も検証しないまま
+// ✔ OK になっていた。公告ページは必ず貸借対照表を持つので、ペアが0件なのは設定ミス以外にない。
 export function checkNoticeContent(notice, html) {
   const errors = [];
-  for (const text of notice.mustContain) {
+  const texts = notice.mustContain;
+  const pairs = notice.mustContainPairs;
+
+  if (!Array.isArray(texts) || texts.length === 0) {
+    errors.push(`${notice.path}: mustContain が未定義です（koukoku-expectations.mjs を確認）`);
+  }
+  if (!Array.isArray(pairs) || pairs.length === 0) {
+    errors.push(
+      `${notice.path}: mustContainPairs が未定義です。金額が1件も検証されない状態なので、` +
+        `貸借対照表の全科目を「ラベル→値」で追加すること`
+    );
+  }
+
+  for (const text of texts ?? []) {
     if (!html.includes(text)) errors.push(`${notice.path} に「${text}」が含まれていません`);
   }
-  for (const [label, value] of notice.mustContainPairs ?? []) {
+  for (const [label, value] of pairs ?? []) {
     if (!hasLabeledValue(html, label, value)) {
       errors.push(`${notice.path} の「${label}」が「${value}」ではありません`);
     }

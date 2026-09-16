@@ -62,7 +62,7 @@ const lightningIcon = `<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColo
 
       <!-- CTA Button -->
       <div class="nav-cta">
-        <a href="/contact" class="cta-button">
+        <a href={navigation.cta.href} class="cta-button">
           <span class="cta-glow"></span>
           <Fragment set:html={lightningIcon} />
           {navigation.cta.title}
@@ -94,9 +94,9 @@ const lightningIcon = `<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColo
           </a>
         ))}
         <div class="mobile-cta">
-          <a href="/contact" class="cta-button mobile">
+          <a href={navigation.cta.href} class="cta-button mobile">
             <Fragment set:html={lightningIcon} />
-            ご相談予約
+            {navigation.cta.title}
           </a>
         </div>
       </div>

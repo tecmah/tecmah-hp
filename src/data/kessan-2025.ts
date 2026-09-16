@@ -80,6 +80,16 @@ export const balanceSheet: BalanceSheet = (() => {
   const assetsTotal = assetsCurrentTotal + assetsFixedTotal;
   const liabilitiesTotal = liabilitiesCurrentTotal + liabilitiesFixedTotal;
   const equityTotal = equityData.capital + equityData.retainedEarnings;
+  const liabilitiesAndEquityTotal = liabilitiesTotal + equityTotal;
+
+  // 貸借対照表の不変条件。kessan-fy1.ts と同じく、崩れたらビルドを失敗させて公開を止める。
+  // 半期報告は法定公告ではない任意開示だが、貸借不一致の表を出すと開示資料としての信頼を損ない、
+  // 法定公告である第1期決算公告の信頼性まで巻き添えにする。
+  if (assetsTotal !== liabilitiesAndEquityTotal) {
+    throw new Error(
+      `[kessan-2025] 貸借が一致しません: 資産合計 ${assetsTotal} / 負債及び純資産合計 ${liabilitiesAndEquityTotal}`
+    );
+  }
 
   return {
     assets: {
@@ -98,7 +108,7 @@ export const balanceSheet: BalanceSheet = (() => {
       ...equityData,
       total: equityTotal
     },
-    liabilitiesAndEquityTotal: liabilitiesTotal + equityTotal
+    liabilitiesAndEquityTotal
   };
 })();
 

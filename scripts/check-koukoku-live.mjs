@@ -18,15 +18,31 @@ import {
   EXPECTED_NOTICES,
   KOUKOKU_PATH,
   SITE_ORIGIN,
+  checkMandatoryNoticesPresent,
   checkNoticeContent,
   hasLink
 } from "./koukoku-expectations.mjs";
 
 const ORIGIN = (process.env.KOUKOKU_ORIGIN ?? SITE_ORIGIN).replace(/\/+$/, "");
 const TIMEOUT_MS = 20000;
-// 一時的なネットワーク断で夜間に誤通知しないよう、少しだけ粘る。
-const ATTEMPTS = 3;
-const RETRY_WAIT_MS = 5000;
+
+// 週1回しか走らないので、リトライ予算は「秒」ではなく「分」で取る。
+// 5秒×3回では数分規模の CDN 障害で誤通知し、通知を無視される（狼少年になる）。
+const ATTEMPTS = 4;
+const BACKOFF_MS = [5000, 30000, 120000]; // 1→2, 2→3, 3→4 回目の待ち時間
+const MAX_RETRY_AFTER_MS = 180000;
+
+// 再試行しても結果が変わらない＝ページが恒久的に失われている状態。即座に確定させる。
+//   404/410 … 消えた   451 … 法的理由でブロック
+//   400/405/414 … こちらのリクエストが不正（＝このスクリプトのバグ）
+//
+// これ以外の 4xx は再試行する。www.tecmah.com は Cloudflare 経由（server: cloudflare / cf-ray）で
+// GitHub Pages に繋がっており、次はいずれも一過性でありうる:
+//   403 … Cloudflare の WAF / Bot Fight Mode によるチャレンジ
+//   408 … Cloudflare のエッジ内部タイムアウト
+//   429 … GitHub Pages / Cloudflare のレート制限
+// ただし再試行を使い切れば必ず失敗させる。見逃し（落ちているのに通す）は作らない。
+const PERMANENT_STATUS = new Set([400, 404, 405, 410, 414, 451]);
 
 const failures = [];
 const fail = (msg) => failures.push(msg);
@@ -42,34 +58,79 @@ async function fetchOnce(url) {
       headers: { "user-agent": "tecmah-koukoku-liveness/1.0 (+https://www.tecmah.com/koukoku)" }
     });
     const body = await res.text();
-    return { status: res.status, finalUrl: res.url, body };
+    return { status: res.status, finalUrl: res.url, body, headers: res.headers };
   } finally {
     clearTimeout(timer);
   }
 }
 
-// 本文まで取得できて 200 なら成功。それ以外（5xx・ネットワークエラー）は再試行する。
-// 404 は再試行しても変わらないので即座に確定させる。
+// サーバーが Retry-After で待ち時間を指定してきたら従う（秒数形式・HTTP-date 形式の両方）。
+function retryAfterMs(headers) {
+  const raw = headers?.get?.("retry-after");
+  if (!raw) return null;
+  const secs = Number(raw);
+  const ms = Number.isFinite(secs) ? secs * 1000 : Date.parse(raw) - Date.now();
+  if (!Number.isFinite(ms) || ms <= 0) return null;
+  return Math.min(ms, MAX_RETRY_AFTER_MS);
+}
+
+// Node の fetch は到達できない原因をすべて `TypeError: fetch failed` に潰してしまい、
+// 区別できる情報は error.cause にしか入らない。通知だけで原因の当たりが付くよう展開する。
+// 例: ENOTFOUND → DNS/CNAME、CERT_HAS_EXPIRED → 証明書、ECONNREFUSED → ホスト側の停止
+function describeError(error) {
+  if (error?.name === "AbortError") return `${TIMEOUT_MS}ms でタイムアウト（応答なし）`;
+  const cause = error?.cause;
+  // Node のバージョンによっては複数アドレスへの試行が AggregateError にまとまる
+  const detail =
+    cause?.code ??
+    cause?.errors?.map((e) => e?.code).filter(Boolean).join(", ") ??
+    cause?.message ??
+    "";
+  const message = error?.message ?? String(error);
+  return detail ? `${message} (${detail})` : message;
+}
+
+// 本文まで取得できて 200 なら成功。PERMANENT_STATUS は即確定、それ以外は再試行する。
 async function fetchPage(routePath) {
   const url = `${ORIGIN}${routePath}`;
   let lastError = null;
   for (let attempt = 1; attempt <= ATTEMPTS; attempt++) {
+    let waitMs = BACKOFF_MS[attempt - 1] ?? BACKOFF_MS.at(-1);
     try {
       const res = await fetchOnce(url);
       if (res.status === 200) return res;
-      if (res.status >= 400 && res.status < 500) {
-        fail(`${url} が HTTP ${res.status} を返しました（掲載義務のあるページが到達不能）`);
+
+      if (PERMANENT_STATUS.has(res.status)) {
+        const why =
+          res.status === 451
+            ? "法的理由によるブロック。至急、内容を確認すること"
+            : "再試行しても回復しない種類の失敗";
+        fail(`${url} が HTTP ${res.status} を返しました（掲載義務のあるページが到達不能／${why}）`);
         return null;
       }
-      lastError = `HTTP ${res.status}`;
+
+      // Cloudflare のチャレンジは Node の fetch では突破できない。原因を取り違えて
+      // 「公告が落ちた」と誤解しないよう、メッセージで区別しておく。
+      const mitigated = res.headers?.get?.("cf-mitigated");
+      lastError = mitigated
+        ? `HTTP ${res.status}（cf-mitigated: ${mitigated} — Cloudflare のチャレンジ。` +
+          `公告自体は落ちていない可能性が高い。WAF の Skip ルールで監視元を除外すること）`
+        : `HTTP ${res.status}`;
+
+      const hinted = retryAfterMs(res.headers);
+      if (hinted) waitMs = hinted;
     } catch (error) {
-      lastError = error instanceof Error ? error.message : String(error);
+      lastError = describeError(error);
     }
-    if (attempt < ATTEMPTS) await sleep(RETRY_WAIT_MS);
+    if (attempt < ATTEMPTS) await sleep(waitMs);
   }
   fail(`${url} の取得に ${ATTEMPTS} 回失敗しました: ${lastError}`);
   return null;
 }
+
+// 0. 掲載義務期間中の公告が EXPECTED_NOTICES から消されていないか
+//    （これが無いと、公告エントリごと削除したときに検査対象がゼロになって ✔ OK になる）
+for (const error of checkMandatoryNoticesPresent()) fail(error);
 
 // 1. 登記した公告URL（トップ）から /koukoku・/ir へ
 const top = await fetchPage("/");
