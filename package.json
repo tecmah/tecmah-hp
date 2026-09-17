@@ -11,6 +11,9 @@
     "test:build": "npm run build && npm run preview",
     "lhci": "npm run build && lhci autorun --collect.staticDistDir=./dist"
   },
+  "engines": {
+    "node": ">=24"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
     "@types/three": "^0.180.0",
