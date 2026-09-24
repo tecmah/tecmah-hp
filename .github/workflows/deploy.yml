@@ -13,7 +13,15 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
+    # このジョブが GITHUB_TOKEN に求めるのは checkout の読み取りだけ。
+    # 明示しないとリポジトリ既定を継承する（本コミット時点の既定は write）。
+    # deploy ジョブの permissions は build には適用されないので、ここに書く必要がある。
+    # upload-pages-artifact はアーティファクト用の実行時トークンを使うため contents: read で足りる
+    # （GitHub 公式の Pages スターターワークフローも build に write を与えていない）。
+    permissions:
+      contents: read
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
