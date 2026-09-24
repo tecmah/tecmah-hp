@@ -168,7 +168,7 @@ KOUKOKU_ORIGIN=http://localhost:4321 npm run verify:koukoku:live   # 任意の�
 
 ### 前提条件
 
-- Node.js 18.x 以上
+- Node.js 24.x 以上（バージョンは `.nvmrc` が単一ソース。CI も同じファイルを参照する）
 - npm または yarn
 
 ### 1. 依存関係インストール

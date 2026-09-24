@@ -10,6 +10,7 @@ on:
       - "public/**"
       - "astro.config.mjs"
       - "package.json"
+      - ".nvmrc"
       - "package-lock.json"
       - "lighthouserc.json"
       - ".github/workflows/lighthouse-ci.yml"
@@ -22,6 +23,7 @@ on:
       - "public/**"
       - "astro.config.mjs"
       - "package.json"
+      - ".nvmrc"
       - "package-lock.json"
       - "lighthouserc.json"
       - ".github/workflows/lighthouse-ci.yml"
@@ -41,7 +43,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Install dependencies

@@ -14,6 +14,9 @@
     "verify:koukoku": "node scripts/verify-koukoku.mjs",
     "verify:koukoku:live": "node scripts/check-koukoku-live.mjs"
   },
+  "engines": {
+    "node": ">=24"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
     "@types/three": "^0.180.0",
