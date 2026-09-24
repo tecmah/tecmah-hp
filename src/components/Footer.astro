@@ -1,5 +1,16 @@
 ---
 // Footer component - Stripe-inspired design
+//
+// リンクと会社情報は src/data/content.ts を単一ソースとして描画する。
+// ここにハードコードすると content.ts と二重管理になり、どちらが実体か分からなくなる。
+//
+// 会社情報セクションの「電子公告」リンクは会社法上の公告到達性を担保する法的に効く導線。
+// 登記した公告URL（tecmah.com トップ）から /koukoku → 各公告ページへ辿れる必要がある。
+// content.ts の footer.sections.company.links から削除・改名しないこと
+// （scripts/verify-koukoku.mjs がビルド後に全ページで検証する）。
+import { company, footer } from "../data/content";
+
+const footerSections = [footer.sections.services, footer.sections.company];
 ---
 
 <footer class="site-footer">
@@ -12,40 +23,29 @@
           <span class="brand-name">TECMAH</span>
         </div>
         <p class="brand-description">
-          AI・データ活用・PdM/PM支援を行うスタートアップ。
-          データドリブンな意思決定と生成AIを活用したプロダクト開発で、企業のデジタル変革を伴走支援します。
+          {company.tagline}を行うスタートアップ。
+          {footer.description}
         </p>
         <div class="brand-contact">
-          <p>〒060-0062 北海道札幌市中央区南二条西5丁目31-1 RMBld.701</p>
-          <p>Email: <a href="mailto:info@tecmah.com">info@tecmah.com</a></p>
+          <p>{company.address.full}</p>
+          <p>Email: <a href={`mailto:${company.contact.email}`}>{company.contact.email}</a></p>
         </div>
       </div>
 
-      <!-- Quick Links -->
-      <div class="footer-links">
-        <h4 class="footer-title">サービス</h4>
-        <ul>
-          <li><a href="/services/ai-data">生成AI・データ活用</a></li>
-          <li><a href="/services/product-management">PdM/PM伴走</a></li>
-          <li><a href="/services/dx-consulting">DXコンサルティング</a></li>
-        </ul>
-      </div>
-
-      <!-- Company -->
-      <div class="footer-links">
-        <h4 class="footer-title">会社情報</h4>
-        <ul>
-          <li><a href="/about">会社概要</a></li>
-          <li><a href="/case-studies">事例</a></li>
-          <li><a href="/ir">電子公告・IR</a></li>
-          <li><a href="/contact">お問い合わせ</a></li>
-          <li><a href="/privacy">プライバシーポリシー</a></li>
-        </ul>
-      </div>
+      {footerSections.map((section) => (
+        <div class="footer-links">
+          <h4 class="footer-title">{section.title}</h4>
+          <ul>
+            {section.links.map((link) => (
+              <li><a href={link.href}>{link.title}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; {new Date().getFullYear()} 株式会社TECMAH. All rights reserved.</p>
+      <p>{footer.copyright}</p>
     </div>
   </div>
 </footer>

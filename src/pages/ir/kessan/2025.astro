@@ -33,7 +33,7 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
                 <td>{reportInfo.period}</td>
               </tr>
               <tr>
-                <th scope="row">公告日</th>
+                <th scope="row">公開日</th>
                 <td>{reportInfo.publishDate}</td>
               </tr>
               <tr>
@@ -210,11 +210,11 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
             </li>
             <li class="notes-item">
               <strong>長期借入金</strong>
-              <p>長期借入金2,000,000円は、金融機関からの創業期借入によるものです。</p>
+              <p>長期借入金{formatAmount(balanceSheet.liabilities.fixedTotal)}円は、金融機関からの創業期借入によるものです。</p>
             </li>
             <li class="notes-item">
-              <strong>公告の方法</strong>
-              <p>当社の公告は、電子公告により行います。公告掲載URL：{reportInfo.disclosureUrl}</p>
+              <strong>本資料の位置づけ</strong>
+              <p>本資料は期中の状況を示す参考資料であり、会社法第440条に基づく決算公告ではありません。当社の法定公告は<a href="/koukoku" class="link">電子公告ページ</a>に掲載しています。本資料の掲載URL：{reportInfo.disclosureUrl}</p>
             </li>
           </ol>
         </div>
@@ -229,7 +229,7 @@ const kessanIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><
           <ul class="disclaimer-list">
             <li>本ページは期中（設立から2025年12月31日まで）の状況を示す参考資料であり、会社法第440条に基づく決算公告ではありません。</li>
             <li>第1期（2025年7月14日〜2026年6月30日）の法定決算公告は、<a href="/ir/kessan/fy1" class="link">第1期 決算公告</a>をご覧ください。</li>
-            <li>本公告に関するお問い合わせは、<a href="mailto:info@tecmah.com" class="link">info@tecmah.com</a> までご連絡ください。</li>
+            <li>本資料に関するお問い合わせは、<a href="mailto:info@tecmah.com" class="link">info@tecmah.com</a> までご連絡ください。</li>
           </ul>
         </div>
 

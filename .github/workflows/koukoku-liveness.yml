@@ -1,0 +1,82 @@
+# 掲載中の電子公告が本番URLで生きていることの定期確認
+#
+# postbuild の verify-koukoku.mjs はビルド成果物しか見ないため、
+# 「デプロイが止まった」「独自ドメインのDNS/CNAMEが切れた」「ホスティングを移して404」
+# を検知できない。掲載義務は第1期分だけでも 2031年8月19日まで続く（会社法第940条第1項第2号）ので、
+# リポジトリを何ヶ月も触らない期間に公告が落ちると誰も気づかない。
+#
+# そのため実際の https://www.tecmah.com に週1回 HTTP GET して確認し、
+# 落ちていたらこのジョブを失敗させる（GitHub の workflow failure 通知で気づく）。
+name: 電子公告の生存確認
+
+on:
+  schedule:
+    # 毎週月曜 06:17 UTC（＝月曜 15:17 JST）
+    #
+    # 毎時00分ちょうど・特に0時台は GitHub Actions の高負荷帯で、公式ドキュメントが
+    # schedule の遅延と「some queued jobs may be dropped」を明記している。
+    # 週1回しか実行機会がない監視でドロップされると次は7日後になるため、半端な分にずらす。
+    - cron: "17 6 * * 1"
+  # デプロイ直後の手動確認用。main への push では自動実行しない
+  # （Pages のデプロイと同時に走ると、反映前の本番を見て誤検知するため）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      # 依存パッケージは不要（Node 標準の fetch のみ使用）
+      - name: 本番URLの電子公告を確認
+        run: node scripts/check-koukoku-live.mjs
+
+  # GitHub は public リポジトリの scheduled workflow を、リポジトリ活動が60日ないと
+  # 自動的に無効化する（公式ドキュメント: schedule / Disable and enable workflows）。
+  # 無効化されると cron は静かに止まり、失敗通知も出ない＝「沈黙＝正常」と誤解する。
+  #
+  # このリポジトリは実際に 98日（2025-12-30→2026-04-07）と 135日（→2026-08-20）の
+  # 無コミット期間があった。つまり放置すれば、この監視は「監視したい休眠期間」でこそ止まる。
+  # 2031年までに60日の空白は何度も来るので、毎回メールに気づいて手で再有効化する運用は破綻する。
+  #
+  # そこで最終コミットから40日以上経っていたらマーカーを更新して活動タイマーを延ばす。
+  # GITHUB_TOKEN による push は他のワークフローを起動しない（公式ドキュメント: GITHUB_TOKEN）ため、
+  # deploy.yml が再実行されることはなく、ループしない。
+  keepalive:
+    # check が落ちていても keepalive は走らせる（監視の仕組み自体を止めないため）。
+    # fork では push させない。
+    if: github.event_name == 'schedule' && github.repository == 'tecmah/tecmah-hp'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 40日以上コミットが無ければ活動タイマーを更新する
+        run: |
+          set -euo pipefail
+          age=$(( ( $(date -u +%s) - $(git log -1 --format=%ct) ) / 86400 ))
+          echo "最終コミットから ${age} 日経過"
+          if [ "$age" -lt 40 ]; then
+            echo "40日未満のため keepalive 不要（60日の無効化まで余裕あり）"
+            exit 0
+          fi
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .github/keepalive
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/keepalive
+          git commit -m "chore: 電子公告の生存確認ワークフローの活動タイマーを更新
+
+          public リポジトリの scheduled workflow が60日無活動で自動無効化されるのを防ぐ。
+          掲載義務期間（〜2031-08-19）中は監視を止められないため。"
+          git push

@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://www.tecmah.com/about</loc>
-    <lastmod>2025-01-21</lastmod>
+    <lastmod>2026-09-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -47,5 +47,37 @@
     <lastmod>2025-01-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.tecmah.com/privacy</loc>
+    <lastmod>2025-09-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <!-- 投資家向け情報（IR） -->
+  <url>
+    <loc>https://www.tecmah.com/ir</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tecmah.com/ir/kessan/2025</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <!-- 電子公告（法定公告）: 公告ページの URL は掲載期間中（第1期: 2031-08-19 まで）固定 -->
+  <url>
+    <loc>https://www.tecmah.com/koukoku</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.tecmah.com/ir/kessan/fy1</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
