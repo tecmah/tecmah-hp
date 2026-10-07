@@ -6,6 +6,7 @@ import PageHero from "../components/PageHero.astro";
 import CTASection from "../components/CTASection.astro";
 import { company, pageMeta, irDocuments, irFAQs, irDisclaimer, irCompanyLinks, irHighlights, irHighlightsPeriod, irSegments, irSegmentNote, irStrategy, irRisks } from "../data/content.ts";
 import { kessanNotices } from "../data/koukoku";
+import { reportInfo as fy1ReportInfo } from "../data/kessan-fy1";
 
 // NOTE: このページは投資家向け情報（任意開示）。会社法上の法定公告は /koukoku に分離している。
 // 個人（代表者個人・個人事業）のコンテンツはこのページに載せない（Issue #24）。
@@ -101,7 +102,7 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
           </h2>
           <p class="section-description">
             {irHighlightsPeriod}の主要な財務指標です。<br />
-            <span class="text-muted">※千円未満切捨て。計算書類は定時株主総会の承認をもって確定します。</span>
+            <span class="text-muted">※千円未満切捨て。{fy1ReportInfo.meetingDate}の定時株主総会で承認された計算書類に基づく確定値です。</span>
           </p>
         </div>
 

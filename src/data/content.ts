@@ -355,6 +355,7 @@ export const footer = {
 
 // 業績ハイライト — 第1期（2025年7月14日〜2026年6月30日）
 // 数値は定時株主総会で承認された計算書類に基づく確定値（千円未満切捨て）
+// P/L は freee 試算表（株式会社TECMAH, 2025-07-14〜2026-06-30）、B/S は /ir/kessan/fy1 の貸借対照表と一致（2026-10-07 照合）
 export const irHighlightsPeriod = "第1期（2025年7月14日〜2026年6月30日）";
 export const irHighlights: IRHighlight[] = [
   { label: "売上高", value: "6,757", unit: "千円" },
