@@ -102,7 +102,7 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
           </h2>
           <p class="section-description">
             {irHighlightsPeriod}の主要な財務指標です。<br />
-            <span class="text-muted">※千円未満切捨て。{fy1ReportInfo.meetingDate}の定時株主総会で承認された計算書類に基づく確定値です。</span>
+            <span class="text-muted">※{fy1ReportInfo.meetingDate}の定時株主総会で承認された計算書類に基づく確定値です。</span>
           </p>
         </div>
 
@@ -576,7 +576,7 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
   /* Financial Highlights Section */
   .highlights-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
     max-width: 64rem;
     margin: 0 auto;
