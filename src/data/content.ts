@@ -354,16 +354,16 @@ export const footer = {
 };
 
 // 業績ハイライト — 第1期（2025年7月14日〜2026年6月30日）
-// 数値は定時株主総会で承認された計算書類に基づく確定値（千円未満切捨て）
-// P/L は freee 試算表（株式会社TECMAH, 2025-07-14〜2026-06-30）、B/S は /ir/kessan/fy1 の貸借対照表と一致（2026-10-07 照合）
+// 数値は定時株主総会で承認された計算書類に基づく確定値（円単位）
+// P/L は freee 試算表（株式会社TECMAH, 2025-07-14〜2026-06-30）、B/S は /ir/kessan/fy1 の貸借対照表と一致（2026-11-06 照合）
 export const irHighlightsPeriod = "第1期（2025年7月14日〜2026年6月30日）";
 export const irHighlights: IRHighlight[] = [
-  { label: "売上高", value: "6,757", unit: "千円" },
-  { label: "営業利益", value: "1,905", unit: "千円" },
-  { label: "経常利益", value: "1,892", unit: "千円" },
-  { label: "当期純利益", value: "1,405", unit: "千円" },
-  { label: "総資産", value: "7,843", unit: "千円" },
-  { label: "純資産", value: "2,405", unit: "千円" },
+  { label: "売上高", value: "6,757,685", unit: "円" },
+  { label: "営業利益", value: "1,905,587", unit: "円" },
+  { label: "経常利益", value: "1,892,888", unit: "円" },
+  { label: "当期純利益", value: "1,405,674", unit: "円" },
+  { label: "総資産", value: "7,843,932", unit: "円" },
+  { label: "純資産", value: "2,405,674", unit: "円" },
   { label: "自己資本比率", value: "30.7", unit: "%" }
 ];
 
