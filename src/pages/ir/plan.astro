@@ -1,0 +1,610 @@
+---
+// 経営計画（第2期〜第6期）の HP 転載ページ
+// 内容は src/data/ir-plan.ts。正本は社内の経営計画書で、数値はそちらを先に直す。
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PageHero from "../../components/PageHero.astro";
+import { pageMeta } from "../../data/content";
+import {
+  planInfo,
+  planPhilosophy,
+  planPolicies,
+  planNotDoing,
+  planPhases,
+  planVision,
+  planBusinesses,
+  planActions,
+  planKpis,
+  planForecastPeriod,
+  planForecast,
+  planForecastNotes,
+  planRisks,
+  planDisclaimer
+} from "../../data/ir-plan";
+
+const { title: pageTitle, description: pageDescription } = pageMeta["ir-plan"];
+
+const planIcon = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>`;
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <Header />
+  <main>
+    <PageHero
+      titleHtml={`<span class="gradient-text">${planInfo.title}</span>`}
+      subtitleHtml={`${planInfo.period}<br /><span class='text-muted'>${planInfo.decidedOn} 策定 ／ 次回の見直し ${planInfo.nextRevision}</span>`}
+      badge="IR"
+      badgeIconHtml={planIcon}
+    />
+
+    <!-- 概要 -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="plan-summary">
+          <p>{planInfo.summary}</p>
+          <a href="/ir" class="plan-back">投資家向け情報（IR）トップへ戻る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. 経営理念・ビジョン -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><span class="gradient-text">経営理念・ビジョン</span></h2>
+        </div>
+        <div class="plan-card plan-narrow">
+          <dl class="philosophy">
+            <dt>経営理念</dt>
+            <dd>{planPhilosophy.mission}</dd>
+            <dt>ビジョン</dt>
+            <dd>
+              {planPhilosophy.vision}
+              <ul class="plan-bullets">
+                {planPhilosophy.visionPoints.map((point) => <li>{point}</li>)}
+              </ul>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 経営方針 -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><span class="gradient-text">経営方針</span></h2>
+        </div>
+        <div class="policy-list">
+          {planPolicies.map((policy, index) => (
+            <div class="policy-item">
+              <span class="policy-number">{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 class="policy-title">{policy.title}</h3>
+                <p class="policy-detail">{policy.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="plan-card plan-narrow plan-gap">
+          <h3 class="plan-subtitle">行わないこと</h3>
+          <ul class="plan-bullets">
+            {planNotDoing.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 5年の位置づけ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><span class="gradient-text">5年の位置づけ</span></h2>
+        </div>
+        <ol class="phase-list">
+          {planPhases.map((phase) => (
+            <li class="phase-item">
+              <div class="phase-head">
+                <span class="phase-period">{phase.period}</span>
+                <span class="phase-term">{phase.term}</span>
+              </div>
+              <p class="phase-theme">{phase.theme}</p>
+              <p class="phase-milestone">{phase.milestone}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- 4. 3年後・5年後の姿 -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><span class="gradient-text">3年後・5年後の姿</span></h2>
+          <p class="section-description">
+            <span class="text-muted">※中期の目標であり、確定した業績予想ではありません。</span>
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table class="plan-table">
+            <thead>
+              <tr>
+                <th scope="col">項目</th>
+                <th scope="col">第2期（今期）</th>
+                <th scope="col">第4期（3年後）</th>
+                <th scope="col">第6期（5年後）</th>
+              </tr>
+            </thead>
+            <tbody>
+              {planVision.map((row) => (
+                <tr>
+                  <th scope="row">{row.label}</th>
+                  <td>{row.fy2}</td>
+                  <td>{row.fy4}</td>
+                  <td>{row.fy6}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 事業 -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><span class="gradient-text">事業</span></h2>
+        </div>
+        <div class="business-grid">
+          {planBusinesses.map((business) => (
+            <div class="plan-card business-card">
+              <span class="business-role">{business.role}</span>
+              <h3 class="business-name">{business.name}</h3>
+              <p class="business-text">{business.description}</p>
+              <p class="business-text business-approach">{business.approach}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 第2期の主な予定 -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><span class="gradient-text">第2期の主な予定</span></h2>
+        </div>
+        <div class="plan-card plan-narrow">
+          <ul class="action-list">
+            {planActions.map((action) => (
+              <li class="action-item">
+                <span class="action-when">{action.when}</span>
+                <span class="action-what">{action.what}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. KPI -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><span class="gradient-text">重要指標（KPI）</span></h2>
+        </div>
+        <div class="table-wrap">
+          <table class="plan-table">
+            <thead>
+              <tr>
+                <th scope="col">指標</th>
+                <th scope="col">第2期</th>
+                <th scope="col">第4期</th>
+                <th scope="col">第6期</th>
+              </tr>
+            </thead>
+            <tbody>
+              {planKpis.map((kpi) => (
+                <tr>
+                  <th scope="row">{kpi.name}</th>
+                  <td>{kpi.fy2}</td>
+                  <td>{kpi.fy4}</td>
+                  <td>{kpi.fy6}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. 第2期の見通し -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><span class="gradient-text">第2期の見通し</span></h2>
+          <p class="section-description">{planForecastPeriod}</p>
+        </div>
+        <div class="forecast-grid">
+          {planForecast.map((item) => (
+            <div class="forecast-card">
+              <span class="forecast-label">{item.label}</span>
+              <span class="forecast-value">
+                {item.value}<span class="forecast-unit">{item.unit}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+        <div class="plan-card plan-narrow plan-gap">
+          <h3 class="plan-subtitle">前提</h3>
+          <ul class="plan-bullets">
+            {planForecastNotes.map((note) => <li>{note}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. リスク -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><span class="gradient-text">主なリスクと対策</span></h2>
+        </div>
+        <div class="risk-grid">
+          {planRisks.map((item) => (
+            <div class="plan-card">
+              <h3 class="risk-name">{item.risk}</h3>
+              <p class="business-text">{item.mitigation}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 注意事項 -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="plan-card plan-narrow">
+          <h3 class="plan-subtitle">将来の見通しに関する注意事項</h3>
+          <ul class="plan-bullets">
+            {planDisclaimer.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .plan-summary {
+    max-width: 56rem;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text-secondary);
+    line-height: 1.9;
+  }
+
+  .plan-back {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .plan-back:hover {
+    text-decoration: underline;
+  }
+
+  .plan-card {
+    padding: 1.75rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+  }
+
+  .plan-narrow {
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .plan-gap {
+    margin-top: 1.5rem;
+  }
+
+  .plan-subtitle {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .plan-bullets {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 0.5rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .plan-bullets li + li {
+    margin-top: 0.375rem;
+  }
+
+  .philosophy dt {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .philosophy dd {
+    margin: 0.25rem 0 1.25rem;
+    color: var(--text);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .philosophy dd:last-child {
+    margin-bottom: 0;
+  }
+
+  .policy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+
+  .policy-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+  }
+
+  .policy-number {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.4;
+  }
+
+  .policy-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.375rem;
+  }
+
+  .policy-detail {
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .phase-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 56rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .phase-item {
+    padding: 1.25rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-lg);
+  }
+
+  .phase-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+  }
+
+  .phase-period {
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .phase-term {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .phase-theme {
+    margin-top: 0.375rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .phase-milestone {
+    margin-top: 0.25rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .table-wrap {
+    max-width: 64rem;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+
+  .plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    font-size: 0.9375rem;
+  }
+
+  .plan-table th,
+  .plan-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .plan-table thead th {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .plan-table tbody th {
+    font-weight: 700;
+    color: var(--text);
+    min-width: 9rem;
+  }
+
+  .plan-table td {
+    color: var(--text-secondary);
+    min-width: 8rem;
+  }
+
+  .plan-table tbody tr:last-child th,
+  .plan-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .business-grid,
+  .risk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 1.5rem;
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  .business-role {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: rgba(0, 212, 170, 0.1);
+    border: 1px solid rgba(0, 212, 170, 0.3);
+    border-radius: var(--radius-full);
+    padding: 0.125rem 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .business-name,
+  .risk-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .business-text {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .business-approach {
+    margin-top: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: rgba(0, 212, 170, 0.08);
+    border-radius: var(--radius-lg);
+  }
+
+  .action-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .action-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .action-item:last-child {
+    border-bottom: none;
+  }
+
+  .action-when {
+    flex: 0 0 7rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .action-what {
+    flex: 1 1 16rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 1.5rem;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  .forecast-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    text-align: center;
+  }
+
+  .forecast-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .forecast-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .forecast-unit {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-left: 0.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .plan-card {
+      padding: 1.25rem;
+    }
+
+    .policy-item {
+      padding: 1.25rem;
+      gap: 1rem;
+    }
+  }
+</style>
