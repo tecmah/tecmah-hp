@@ -166,6 +166,15 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
             </div>
           ))}
         </div>
+
+        <div class="strategy-more">
+          <a href="/ir/plan" class="koukoku-more">
+            経営計画（第2期〜第6期）を見る
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -696,6 +705,12 @@ const sortedYears = Object.keys(documentsByYear).sort((a, b) => parseInt(b) - pa
   .strategy-text {
     color: var(--text-secondary);
     line-height: 1.8;
+  }
+
+  .strategy-more {
+    max-width: 56rem;
+    margin: 1.5rem auto 0;
+    text-align: right;
   }
 
   /* Risk Factors Section */
